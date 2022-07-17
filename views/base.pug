@@ -1,0 +1,26 @@
+block variables
+
+doctype html
+html(lang="fr")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1")
+        meta(name="msapplication-tap-highlight" content="no")
+
+        base(href="/")
+
+        title cassandre
+
+        link(rel="stylesheet" href="https://use.typekit.net/pey0bud.css")
+        link(href="/main.css" rel="stylesheet")
+
+        meta(name="description" content="Cassandre Levrard digital designer portfolio")
+        // TODO: metas data for favicon (see favicon generator) + facebook and twitter metas
+
+    body
+
+        #app.app
+            div(class="page page-" + page)
+                block page
+
+        script(src="/main.js")

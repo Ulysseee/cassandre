@@ -1,0 +1,24 @@
+@mixin respond-to($name) {
+
+    @if map-has-key($breakpoints, $name) {
+
+        @media #{inspect(map-get($breakpoints, $name))} {
+            @content;
+        }
+    } @else {
+
+        @warn "Unfortunately, no value could retieved from `#{$name}`. Please make sure it is defined in the `$breakpoints` map.";
+    }
+}
+
+@mixin index-layer($keys...) {
+    $first-el: nth($keys, 1);
+    $valid-positions: static, relative, absolute, fixed, sticky;
+    @if (index($valid-positions, $first-el)) {
+        position: $first-el;
+        z-index: z-number(list-remove($keys, 1));
+    } @else {
+        position: relative;
+        z-index: z-number($keys);
+    }
+}

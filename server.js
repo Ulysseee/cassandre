@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.render('base');
 });
 
+app.get('/ui', (req, res) => {
+    res.render('pages/ui');
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

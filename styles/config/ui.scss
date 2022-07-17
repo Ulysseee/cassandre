@@ -1,0 +1,123 @@
+.ui-h1 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(67px, 163px);
+    line-height: 1.14;
+
+    @include respond-to('large') {
+        font-size: font-size(67px, 163px, 'desktop');
+        line-height: 1.14;
+    }
+}
+
+.ui-h2 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(56px, 140px);
+    line-height: 0.9;
+
+    @include respond-to('large') {
+        font-size: font-size(56px, 140px, 'desktop');
+        line-height: 0.8;
+    }
+}
+
+.ui-h3 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(48px, 80px);
+    line-height: 0.93;
+
+    @include respond-to('large') {
+        font-size: font-size(48px, 80px, 'desktop');
+        line-height: 0.93;
+    }
+}
+
+.ui-h4 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(48px, 80px);
+    line-height: 1.14;
+
+    @include respond-to('large') {
+        font-size: font-size(48px, 80px, 'desktop');
+        line-height: 0.83;
+    }
+}
+
+.ui-h5 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(48px, 80px);
+    line-height: 0.9;
+
+    @include respond-to('large') {
+        font-size: font-size(48px, 80px, 'desktop');
+        line-height: 0.9;
+    }
+}
+
+.ui-h6 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(40px, 64px);
+    line-height: 1;
+
+    @include respond-to('large') {
+        font-size: font-size(40px, 64px, 'desktop');
+        line-height: 0.95;
+    }
+}
+
+.ui-h7 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(22px, 40px);
+    line-height: 1.05;
+
+    @include respond-to('large') {
+        font-size: font-size(22px, 40px, 'desktop');
+        line-height: 0.95;
+    }
+}
+
+.ui-h8 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(22px, 40px);
+    line-height: 1.15;
+
+    @include respond-to('large') {
+        font-size: font-size(22px, 40px, 'desktop');
+        line-height: 1.15;
+    }
+}
+
+.ui-h9 {
+    font-family: $ivy-presto-regular-italic;
+    font-size: font-size(24px, 32px);
+    line-height: 0.9;
+
+    @include respond-to('large') {
+        font-size: font-size(24px, 32px, 'desktop');
+        line-height: 0.9;
+    }
+}
+
+.ui-p-l {
+    font-size: font-size(16px, 18px);
+    line-height: 0.9;
+
+    @include respond-to('large') {
+        font-size: font-size(16px, 18px, 'desktop');
+        line-height: 0.9;
+    }
+}
+
+.ui-p-m {
+    font-size: 16px;
+    line-height: 1.67;
+}
+
+.ui-p-s {
+    font-size: 14px;
+    line-height: 1.42;
+}
+
+.ui-p-xs {
+    font-size: 12px;
+    line-height: 1.43;
+}

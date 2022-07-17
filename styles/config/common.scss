@@ -1,0 +1,22 @@
+html {
+    --vw: 1vw;
+    --vh: 1vh;
+}
+
+.app {
+    width: vw(100);
+    min-height: vh(100);
+
+    background-color: $beige;
+
+    font-family: $neue-montreal-regular;
+    font-size: 16px;
+    line-height: 1;
+    color: $black;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    padding: 4%;
+}

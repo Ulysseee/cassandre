@@ -1,0 +1,55 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+    @return math.div($number, ($number * 0 + 1));
+}
+
+@function vh($value: 1) {
+    @return calc(#{$value} * var(--vh));
+}
+
+@function vw($value: 1) {
+    @return calc(#{$value} * var(--vw));
+}
+
+@function aspect-ratio($width, $height) {
+    @return #{math.div(strip-unit($height), (strip-unit($width)) * 100%)};
+}
+
+@function list-remove($list, $index) {
+    $newList: ();
+    @for $i from 1 through length($list) {
+        @if $i != $index {
+            $newList: append($newList, nth($list, $i), 'space');
+        }
+    }
+    @return $newList;
+}
+
+@function z-number($keys) {
+    $map: $layers;
+    $found-index: null;
+    @each $key in $keys {
+        @if (type-of($map) == "map") {
+            $found-index: index(map-keys($map), $key);
+            $map: map-get($map, $key);
+        } @else {
+            $found-index: index($map, $key);
+        }
+        @if ($found-index == null) {
+            @error "`#{$key}` is not part of the elevation map: `#{$layers}`";
+        }
+    }
+    @return $found-index;
+}
+
+@function font-size($min, $max, $viewport: 'mobile') {
+    $base-value: null;
+    @if ($viewport == 'mobile') {
+        $base-value: strip-unit($min);
+    } @else if ($viewport == 'desktop') {
+        $base-value: strip-unit($max);
+    }
+    $strip-viewport: strip-unit(map-get($viewports, $viewport));
+    @return min(#{$max}, max(#{$min}, #{vw(($base-value / $strip-viewport) * 100)}));
+}

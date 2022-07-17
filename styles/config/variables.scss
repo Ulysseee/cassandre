@@ -1,0 +1,55 @@
+// Colors
+$black: #1C1B1A;
+$black-dark: #141313;
+$grey: #ABB0B4;
+$white: #FFFFFF;
+$brown: #DACAB5;
+$beige: #F5EDE2;
+$beige-light: #F9F4ED;
+$blue: #4185F4;
+$blue-light: #CCDCF7;
+$green: #E6FFF5;
+$pink: #F5DADA;
+$orange: #FF6C3C;
+
+// Eases
+$soft-ease-ut: cubic-bezier(.13, .85, .33, .99);
+$soft-ease-in-ut: cubic-bezier(.18, .64, .21, .97);
+
+// Fonts
+$neue-montreal-regular: 'PPNeueMontreal Regular';
+$neue-montreal-thin: 'PPNeueMontreal Thin';
+$ivy-presto-regular-italic: 'IvyPresto Display Regular Italic';
+$ivy-presto-thin-italic: 'IvyPresto Display Thin Italic';
+
+// Viewport widths based on design
+$viewports: (
+    'mobile': 390px,
+    'desktop': 1440px,
+);
+
+// Breakpoints
+$breakpoints: (
+    'medium': (min-width: 768px),
+    'large': (min-width: 1280px),
+);
+
+// Layers
+$layers: (
+    content: (
+        under: (),
+        base: (),
+        card: (
+                base,
+                raised,
+        ),
+        raised: (),
+    ),
+    nav: (
+        base,
+        raised,
+    ),
+    tempCover: (),
+    loader: (),
+    cursor: (),
+);

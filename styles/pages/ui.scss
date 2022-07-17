@@ -1,0 +1,64 @@
+.page-ui {
+
+    &-section {
+        padding: 48px 0;
+
+        &-title {
+            margin-bottom: 32px;
+        }
+    }
+
+    &-colors {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 24px 4%;
+
+        &-item {
+            padding-bottom: 100%;
+
+            &.is-black {
+                background-color: $black;
+            }
+
+            &.is-dark-black {
+                background-color: $black-dark;
+            }
+
+            &.is-grey {
+                background-color: $grey;
+            }
+
+            &.is-white {
+                background-color: $white;
+            }
+
+            &.is-brown {
+                background-color: $brown;
+            }
+
+            &.is-beige-light {
+                background-color: $beige-light;
+            }
+
+            &.is-blue-light {
+                background-color: $blue-light;
+            }
+
+            &.is-blue {
+                background-color: $blue;
+            }
+
+            &.is-green {
+                background-color: $green;
+            }
+
+            &.is-pink {
+                background-color: $pink;
+            }
+
+            &.is-orange {
+                background-color: $orange;
+            }
+        }
+    }
+}
