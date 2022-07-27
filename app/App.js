@@ -1,6 +1,9 @@
 import AppEvents from './components/containers/AppEvents';
-import { createApp } from '@studiometa/js-toolkit';
+import { createApp, getInstanceFromElement } from '@studiometa/js-toolkit';
 import Cursor from './components/Cursor';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
 import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks } from './utils/dom';
@@ -10,8 +13,11 @@ class App extends AppEvents {
         name: 'App',
         components: {
             Cursor,
-            Ui,
             ScribbleLink,
+            Home,
+            About,
+            Projects,
+            Ui,
         },
         refs: [...AppEvents.config.refs, 'pageContainer'],
     };
@@ -50,6 +56,15 @@ class App extends AppEvents {
 
         if (push) window.history.pushState({}, '', url);
         const pageDocument = await request.text();
+
+        const pageElement = document.getElementById('page');
+        const pageClass = pageElement.getAttribute('data-component');
+        const pageComponent = getInstanceFromElement(pageElement, App.config.components[pageClass]);
+
+        if (pageComponent) {
+            if (pageComponent.animateOut) await pageComponent.animateOut();
+            pageComponent.$destroy();
+        }
         this.replacePage(pageDocument);
         this.$update();
     }

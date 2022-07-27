@@ -4,13 +4,20 @@ import Cursor from '../Cursor';
     export default class AppEvents extends Base {
     static config = {
         refs: ['cursorLink[]', 'cursorSlider[]'],
+        log: true,
     };
 
     cursor;
 
     mounted() {
+        this.$log('Mounted');
         const cursorElement = document.querySelector('[data-component="Cursor"]');
         this.cursor = getInstanceFromElement(cursorElement, Cursor);
+        if (this.animateIn) return this.animateIn();
+    }
+
+    destroyed() {
+        this.$log('Destroyed');
     }
 
     onCursorLinkMouseenter(e) {

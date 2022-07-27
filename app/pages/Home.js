@@ -1,10 +1,9 @@
 import Page from '../components/containers/Page';
 
-export default class Ui extends Page {
+export default class Projects extends Page {
     static config = {
         ...Page.config,
-        name: 'Ui',
+        name: 'Home',
         refs: [...Page.config.refs],
-    };
-
-};
+    }
+}
