@@ -1,4 +1,4 @@
-import Page from '../components/containers/Page';
+import Page from '../containers/Page';
 
 export default class Ui extends Page {
     static config = {

@@ -1,5 +1,5 @@
 import { Base, getInstanceFromElement } from '@studiometa/js-toolkit';
-import Cursor from '../Cursor';
+import Cursor from '../components/Cursor';
 
     export default class AppEvents extends Base {
     static config = {

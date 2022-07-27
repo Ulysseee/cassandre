@@ -1,4 +1,4 @@
-import AppEvents from './components/containers/AppEvents';
+import AppEvents from './containers/AppEvents';
 import { createApp, getInstanceFromElement } from '@studiometa/js-toolkit';
 import Cursor from './components/Cursor';
 import Home from './pages/Home';
