@@ -16,9 +16,10 @@ html {
 }
 
 .page {
+    @extend .ui-container;
+
     width: 100%;
     height: 100%;
-    padding: 4%;
     overflow: hidden;
 
     @include index-layer(relative, content);

@@ -16,11 +16,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-    res.render('base');
+    res.render('pages/home');
 });
 
 app.get('/ui', (req, res) => {
     res.render('pages/ui');
+});
+
+app.get('/projects', async (req, res) => {
+    res.render('pages/projects');
+});
+
+app.get('/about', async (req, res) => {
+    res.render('pages/about');
 });
 
 app.listen(port, () => {
