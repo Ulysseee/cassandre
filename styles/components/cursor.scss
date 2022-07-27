@@ -1,0 +1,155 @@
+.component-cursor {
+    --translateX: 0px;
+    --translateY: 0px;
+    --skewX: 0deg;
+    --skewY: 0deg;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: vw(100);
+    height: vh(100);
+    pointer-events: none;
+
+    @include index-layer(fixed, cursor);
+
+    &.is-down.on-slider .component-cursor {
+
+        &-backgroundContainer {
+            transform: scale(0.8);
+        }
+
+        &-contentContainer {
+            transform: scaleX(1.1);
+        }
+    }
+
+    &.is-down.on-link .component-cursor {
+
+        &-backgroundContainer {
+            transform: scale(0.8);
+        }
+
+        &-contentContainer {
+            transform: scaleX(1.2) translate3d(-5px, -5px , 0) rotate(15deg);
+        }
+    }
+
+    &.is-white .component-cursor {
+
+        &-background {
+            background-image: url('../assets/images/spot-white.png');
+        }
+
+        &-arrow {
+
+            svg path {
+                stroke: $black-dark;
+            }
+        }
+    }
+
+    &.is-white .component-cursor {
+
+        &-background {
+            background-image: url('../assets/images/spot-brown.png');
+        }
+    }
+
+    &.on-link .component-cursor {
+
+        &-inner {
+            transform: scale(1) rotate(-40deg);
+        }
+    }
+
+    &.on-slider .component-cursor {
+
+        &-inner {
+            transform: scale(1) rotate(0deg);
+        }
+
+        &-background {
+            transform: scale(1.2);
+        }
+
+        &-arrow {
+
+            &.is-left {
+                opacity: 1;
+                transform: translate3d(-40%, 0, 0);
+            }
+
+            &.is-right {
+                transform: translate3d(40%, 0, 0);
+            }
+        }
+    }
+
+    &-wrapper {
+        display: inline-block;
+        transform: translate3d(var(--translateX), var(--translateY), 0) skewX(var(--skewX)) skewY(var(--skewX));
+        transition: transform $middle-ease-out 0.8s;
+    }
+
+    &-inner {
+        position: relative;
+        width: 112px;
+        height: 112px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0);
+        transition: transform 0.7s $middle-ease-out;
+    }
+
+    &-backgroundContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: transform 1.7s $strong-ease-out;
+    }
+
+    &-background {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/images/spot-orange.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform 0.4s $soft-ease-in-out;
+    }
+
+    &-contentContainer {
+        position: absolute;
+        transition: transform 1.7s $strong-ease-out;
+        transform-origin: left bottom;
+    }
+
+    &-content {
+        display: flex;
+        transition: transform 1.7s $strong-ease-out;
+    }
+
+    &-arrow {
+        width: 23px;
+        height: 21px;
+        transition: 1s $strong-ease-out;
+        transition-property: opacity, transform;
+
+        &.is-left {
+            opacity: 0;
+            transform: translate3d(50%, 0, 0);
+        }
+
+        &.is-right {
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        svg path {
+            stroke: $white;
+            transition: stroke 0.7s $strong-ease-out;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 @import 'core/reset';
 @import 'core/functions';
 @import 'core/mixins';
+@import 'core/extends';
 
 // Config
 @import 'config/variables';
@@ -11,3 +12,9 @@
 
 // Pages
 @import 'pages/ui';
+
+// Components
+@import 'components/cursor';
+@import 'components/scribbleLink';
+@import 'components/circledButton';
+@import 'components/workCard';
