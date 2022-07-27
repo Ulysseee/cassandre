@@ -1,6 +1,6 @@
 import AppEvents from './AppEvents';
 import { timeline } from 'motion';
-import { removeClass } from '@studiometa/js-toolkit/utils';
+import { addStyle, removeClass } from '@studiometa/js-toolkit/utils';
 
 export default class Page extends AppEvents {
 
@@ -13,9 +13,9 @@ export default class Page extends AppEvents {
         super.mounted();
         if (this.animateIn) {
             this.cursor.isListening = true;
-            await this.animateIn();
             this.cursor.enable();
         }
+        this.$on('animate-in', this.animateIn);
     }
 
     destroyed() {

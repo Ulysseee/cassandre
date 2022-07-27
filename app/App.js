@@ -1,5 +1,5 @@
 import AppEvents from './containers/AppEvents';
-import { createApp, getInstanceFromElement } from '@studiometa/js-toolkit';
+import { getInstanceFromElement } from '@studiometa/js-toolkit';
 import Cursor from './components/Cursor';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -7,7 +7,7 @@ import Projects from './pages/Projects';
 import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks, preloadImages } from './utils/dom';
-import { addClass } from '@studiometa/js-toolkit/utils';
+import Preloader from './components/Preloader';
 
 class App extends AppEvents {
     static config = {
@@ -23,13 +23,21 @@ class App extends AppEvents {
         refs: [...AppEvents.config.refs, 'pageContainer'],
     };
 
+    currentPageInstance = null;
     DOMParser = new DOMParser();
     internalLinks = [];
 
     mounted () {
         super.mounted();
+
+        this.updateCurrentPageInstance();
+
         this.setupListeners();
         this.setupInternalLinks();
+    }
+
+    handleLoaderEnd() {
+        this.currentPageInstance.$emit('animate-in', this.animateIn);
     }
 
     updated () {
@@ -65,19 +73,21 @@ class App extends AppEvents {
 
         const preloadedImages = preloadImages(pageDocument);
 
-        const pageElement = document.getElementById('page');
-        const pageClass = pageElement.getAttribute('data-component');
-        const pageComponent = getInstanceFromElement(pageElement, App.config.components[pageClass]);
+        this.updateCurrentPageInstance();
 
-        if (pageComponent) {
+        if (this.currentPageInstance) {
             await Promise.allSettled([
-                pageComponent.animateOut(),
+                this.currentPageInstance.animateOut(),
                 ...preloadedImages,
             ]);
-            pageComponent.$destroy();
+            this.currentPageInstance.$destroy();
         }
+
         this.replacePage(pageDocument);
         this.$update();
+
+        this.updateCurrentPageInstance();
+        this.currentPageInstance.$emit('animate-in', this.animateIn);
     }
 
     replacePage(pageDocument) {
@@ -95,6 +105,26 @@ class App extends AppEvents {
             }
         }
     }
+
+    updateCurrentPageInstance () {
+        const pageElement = document.getElementById('page');
+        const pageClass = pageElement.getAttribute('data-component');
+        this.currentPageInstance = getInstanceFromElement(pageElement, App.config.components[pageClass]);
+    }
 }
 
-export default createApp(App, document.body);
+const [preloader] = Preloader.$factory('Preloader');
+const [app] = App.$factory('App');
+
+app.$on('preloader-end', app.handleLoaderEnd);
+
+preloader.$on('app-loaded', async () => {
+    await preloader.handleAppLoaded();
+    app.$emit('preloader-end');
+});
+
+const onLoad = () => {
+    preloader.$emit('app-loaded');
+}
+
+window.addEventListener('load', () => onLoad());
