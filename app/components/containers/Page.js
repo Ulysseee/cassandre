@@ -1,7 +1,5 @@
 import AppEvents from './AppEvents';
-import { getInstanceFromElement } from '@studiometa/js-toolkit';
-import Cursor from '../Cursor';
-import { animate } from 'motion';
+import { animate, timeline } from 'motion';
 
 export default class Page extends AppEvents {
 
@@ -20,21 +18,19 @@ export default class Page extends AppEvents {
     }
 
     animateIn() {
-        return animate(this.$el,{
-            opacity: [0, 1],
-        },{
-            duration: 0.6,
-            easing: 'ease-out',
-        }).finished;
+        return timeline([
+            [this.$el, { pointerEvents: 'none' }, { duration: 0 }],
+            [this.$el, { opacity: [0, 1] }, { duration: 0.5, easing: 'ease-out' }],
+            [this.$el, { pointerEvents: 'auto' }, { duration: 0 }],
+        ]).finished;
     }
 
     animateOut() {
-        return animate(this.$el,{
-            opacity: 0,
-        },{
-            duration: 0.6,
-            easing: 'ease-out',
-        }).finished;
+        return timeline([
+            [this.$el, { pointerEvents: 'none' }, { duration: 0 }],
+            [this.$el, { opacity: 0 }, { duration: 0.5, easing: 'ease-out' }],
+            [this.$el, { pointerEvents: 'auto' }, { duration: 0 }],
+        ]).finished;
     }
 
 }

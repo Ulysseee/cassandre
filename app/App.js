@@ -6,7 +6,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
-import { getInternalLinks } from './utils/dom';
+import { getInternalLinks, preloadImages } from './utils/dom';
 
 class App extends AppEvents {
     static config = {
@@ -55,14 +55,20 @@ class App extends AppEvents {
         }
 
         if (push) window.history.pushState({}, '', url);
-        const pageDocument = await request.text();
+        let pageDocument = await request.text();
+        pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
+
+        const preloadedImages = preloadImages(pageDocument);
 
         const pageElement = document.getElementById('page');
         const pageClass = pageElement.getAttribute('data-component');
         const pageComponent = getInstanceFromElement(pageElement, App.config.components[pageClass]);
 
         if (pageComponent) {
-            if (pageComponent.animateOut) await pageComponent.animateOut();
+            await Promise.allSettled([
+                pageComponent.animateOut(),
+                ...preloadedImages,
+            ]);
             pageComponent.$destroy();
         }
         this.replacePage(pageDocument);
@@ -70,7 +76,6 @@ class App extends AppEvents {
     }
 
     replacePage(pageDocument) {
-        pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
         const pageElement = pageDocument.getElementById('page');
         this.$refs.pageContainer.replaceChildren(pageElement);
     }

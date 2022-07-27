@@ -10,3 +10,14 @@ export const getInternalLinks = () => {
         return (isLocal && isNotPhone && isNotEmail && !isAnchor);
     });
 };
+
+export const preloadImages = (targetElement = document, selector = 'img') => {
+    const images = [...targetElement.querySelectorAll(selector)].filter(image => image.getAttribute('loading') !== 'lazy');
+    return [...images].map(imageElement => (
+        new Promise(res => {
+            const image = new Image();
+            image.onload = () => res(imageElement);
+            image.src = imageElement.getAttribute('src');
+        })
+    ));
+};
