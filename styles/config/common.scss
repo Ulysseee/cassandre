@@ -10,6 +10,7 @@ body {
     position: relative;
     height: 100%;
     overflow: auto;
+    pointer-events: auto;
     -webkit-overflow-scrolling: touch;
 }
 

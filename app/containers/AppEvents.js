@@ -13,7 +13,6 @@ import Cursor from '../components/Cursor';
         this.$log('Mounted');
         const cursorElement = document.querySelector('[data-component="Cursor"]');
         this.cursor = getInstanceFromElement(cursorElement, Cursor);
-        if (this.animateIn) return this.animateIn();
     }
 
     destroyed() {

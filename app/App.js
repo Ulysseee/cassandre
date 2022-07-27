@@ -7,6 +7,7 @@ import Projects from './pages/Projects';
 import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks, preloadImages } from './utils/dom';
+import { addClass } from '@studiometa/js-toolkit/utils';
 
 class App extends AppEvents {
     static config = {
@@ -26,6 +27,7 @@ class App extends AppEvents {
     internalLinks = [];
 
     mounted () {
+        super.mounted();
         this.setupListeners();
         this.setupInternalLinks();
     }
@@ -55,6 +57,9 @@ class App extends AppEvents {
         }
 
         if (push) window.history.pushState({}, '', url);
+
+        this.cursor.disable();
+
         let pageDocument = await request.text();
         pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
 

@@ -8,6 +8,9 @@ export default class Cursor extends withBreakpointObserver(Base) {
         log: true,
     };
 
+    isOnLink = false;
+    isOnSlider = false;
+    isListening = true;
     position = {
         x: 0,
         y: 0,
@@ -86,15 +89,18 @@ export default class Cursor extends withBreakpointObserver(Base) {
     }
 
     onEnterLink ({ target }) {
+        if (!this.isListening) return;
+        this.isOnLink = true;
         this.currentTarget.element = target;
         this.currentTarget.box = target.getBoundingClientRect();
-        const { cursorColor, cursorSticky, cursorStickySide } = target.dataset;
+        const { cursorColor, cursorSticky, cursorStickySide } = this.currentTarget.element.dataset;
         this.setColor(cursorColor);
         this.setSticky(target, cursorSticky, cursorStickySide);
         addClass(this.$el, 'on-link');
     }
 
     onLeaveLink ({ target }) {
+        this.isOnLink = false;
         this.currentTarget.element = null;
         this.currentTarget.box = null;
         this.setSticky(target, false);
@@ -102,6 +108,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
     }
 
     onEnterSlider ({ target }) {
+        if (!this.isListening) return;
+        this.isOnSlider = true;
         this.currentTarget.element = target;
         this.currentTarget.box = target.getBoundingClientRect();
         this.setColor(target);
@@ -109,6 +117,7 @@ export default class Cursor extends withBreakpointObserver(Base) {
     }
 
     onLeaveSlider ({ target }) {
+        this.isOnSlider = false;
         this.currentTarget.element = null;
         this.currentTarget.box = null;
         removeClass(this.$el, 'on-slider');
@@ -119,5 +128,29 @@ export default class Cursor extends withBreakpointObserver(Base) {
         this.$el.style.setProperty('--translateY', `${ translateY }px`);
         this.$el.style.setProperty('--skewX', `${ skewX }deg`);
         this.$el.style.setProperty('--skewY', `${ skewY }deg`);
+    }
+
+    disable() {
+        this.isListening = false;
+        this.onLeaveLink({ ...this.currentTarget.element });
+        this.onLeaveSlider({ ...this.currentTarget.element });
+    }
+
+    enable() {
+        this.isListening = true;
+        if (this.isOnSlider) {
+            this.setColor(target);
+            addClass(this.$el, 'on-slider');
+        }
+        if (this.isOnLink) {
+            const { cursorColor, cursorSticky, cursorStickySide } = this.currentTarget.element.dataset;
+            this.setColor(cursorColor);
+            this.setSticky(this.currentTarget.element, cursorSticky, cursorStickySide);
+            addClass(this.$el, 'on-link');
+        }
+    }
+
+    set isListening(value) {
+        this.isListening = value;
     }
 }
