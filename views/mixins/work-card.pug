@@ -1,0 +1,11 @@
+mixin work-card(name, excerpt, date, url, coverUrl, coverAlt)
+    a.component-workCard(href=url data-ref="cursorLink[]" data-cursor-sticky)
+        article.component-workCard-wrapper
+            .component-workCard-cover
+                img.component-workCard-coverImage(src=coverUrl, alt=coverAlt)
+            .component-workCard-content
+                h2.ui-h9.component-workCard-name= name
+                .component-workCard-separator
+                .component-workCard-details
+                    p.ui-p-xl.component-workCard-excerpt= excerpt
+                    span.ui-p-xl.component-workCard-date= date

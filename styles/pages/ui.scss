@@ -1,9 +1,11 @@
 .page-ui {
 
     &-section {
-        padding: 48px 0;
+        padding: 64px 0;
 
-        &-title {
+        &Title {
+            @extend .ui-h9;
+
             margin-bottom: 32px;
         }
     }
@@ -13,7 +15,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 24px 4%;
 
-        &-item {
+        &Item {
             padding-bottom: 100%;
 
             &.is-black {
@@ -33,7 +35,7 @@
             }
 
             &.is-brown {
-                background-color: $brown;
+                background-color: $brown-light;
             }
 
             &.is-beige-light {
@@ -60,5 +62,30 @@
                 background-color: $orange;
             }
         }
+    }
+
+    &-cursor {
+        display: flex;
+        justify-content: space-between;
+
+        &Link {
+            width: 100px;
+            height: 30px;
+            background-color: $brown-light;
+        }
+
+        &Slider {
+            width: 100px;
+            height: 30px;
+            background-color: $blue-light;
+        }
+    }
+
+    &-textLinks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
     }
 }

@@ -1,0 +1,12 @@
+.component-scribbleLink {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    white-space: pre;
+
+    &-scribble {
+        position: absolute;
+        top: 80%;
+        width: 120%;
+    }
+}

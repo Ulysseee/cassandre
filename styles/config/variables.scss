@@ -3,7 +3,8 @@ $black: #1C1B1A;
 $black-dark: #141313;
 $grey: #ABB0B4;
 $white: #FFFFFF;
-$brown: #DACAB5;
+$brown: #686158;
+$brown-light: #DACAB5;
 $beige: #F5EDE2;
 $beige-light: #F9F4ED;
 $blue: #4185F4;
@@ -13,8 +14,10 @@ $pink: #F5DADA;
 $orange: #FF6C3C;
 
 // Eases
-$soft-ease-ut: cubic-bezier(.13, .85, .33, .99);
-$soft-ease-in-ut: cubic-bezier(.18, .64, .21, .97);
+$strong-ease-out: cubic-bezier(0.060, 0.645, 0.000, 0.985);
+$middle-ease-out: cubic-bezier(.11,.9,.09,1);
+$soft-ease-out: cubic-bezier(.13, .85, .33, .99);
+$soft-ease-in-out: cubic-bezier(.18, .64, .21, .97);
 
 // Fonts
 $neue-montreal-regular: 'PPNeueMontreal Regular';
@@ -37,7 +40,6 @@ $breakpoints: (
 // Layers
 $layers: (
     content: (
-        under: (),
         base: (),
         card: (
                 base,

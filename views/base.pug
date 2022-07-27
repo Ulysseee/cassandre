@@ -1,5 +1,9 @@
 block variables
 
+include mixins/scribble-link
+include mixins/circled-button
+include mixins/work-card
+
 doctype html
 html(lang="fr")
     head
@@ -20,7 +24,7 @@ html(lang="fr")
     body
 
         #app.app
-            div(class="page page-" + page)
+            div(class="page page-" + pageName data-component=pageComponent)
                 block page
 
         script(src="/main.js")
