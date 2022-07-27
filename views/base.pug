@@ -25,7 +25,8 @@ html(lang="fr")
 
         #app.app
             include components/navigation
-            div(class="page page-" + pageName data-component=pageComponent)
-                block page
+            #page-container(data-ref="pageContainer")
+                #page(class="page page-" + pageName data-component=pageComponent)
+                    block page
 
         script(src="/main.js")
