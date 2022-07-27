@@ -43,7 +43,6 @@ block page
 
     section.page-ui-section
         h2.page-ui-sectionTitle Cursor
-        include ../components/cursor.pug
         .page-ui-cursor
             .page-ui-cursorLink(data-ref="cursorLink[]" data-cursor-sticky data-cursor-color="brown")
             .page-ui-cursorLink(data-ref="cursorLink[]" data-cursor-color="white")
@@ -52,7 +51,7 @@ block page
     section.page-ui-section
         h2.page-ui-sectionTitle Links
         .page-ui-textLinks
-            +scribble-link('#', 'Scribble Link')(class='ui-p-m')
+            +scribble-link('/projects', 'Scribble Link')(class='ui-p-m')
             a(href="#").ui-p-m.ui-spotLink Spot Link
             a(href="#").ui-p-m.ui-underlineLink Underline Link
             a(href="#" data-ref="cursorLink[]" data-cursor-sticky data-cursor-sticky-side="right").ui-p-m.ui-cursorTextLink Cursor Sticky Link Right

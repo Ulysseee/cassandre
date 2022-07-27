@@ -1,0 +1,14 @@
+nav.component-navigation
+    .component-navigation-wrapper
+        .component-navigation-entry
+            a.component-navigation-entry(href="/")
+                svg.component-navigation-entryFigure(width='62' height='48' viewbox='0 0 62 48' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M34.4451 1.29974C29.2441 2.93202 25.825 7.83982 29.2441 11.3796C36.5463 18.9397 56.9351 15.3776 57.6847 10.4912C58.4342 5.60478 45.5414 4.71635 36.5463 11.3796C27.5513 18.0429 28.1737 25.3248 34.4451 28.7751C40.0972 31.8846 61.2964 30.1078 60.9966 24.0368C60.6968 17.9658 48.5095 19.4403 40.8858 22.4263C35.4175 24.5681 29.0205 28.9733 20.7751 30.8982C12.5296 32.8232 1.09278 30.9368 1.09277 26.0751C1.09277 21.2134 12.4407 21.1763 19.9741 23.6565C27.5075 26.1367 33.3208 29.1978 29.7774 39.5804C28.5945 42.6719 25.5254 45.53 22.2773 46.23' stroke='#1C1B1A' stroke-width='2' stroke-linecap='square')
+
+        ul.component-navigation-entries
+            li.component-navigation-entry
+                +scribble-link('/projects', 'Projets')(class='ui-p-s')
+            li.component-navigation-entry
+                +scribble-link('/about', 'À propos')(class='ui-p-s')
+            li.component-navigation-entry
+                +scribble-link('/ui', 'UI Kit')(class='ui-p-s')

@@ -24,7 +24,10 @@ html(lang="fr")
     body
 
         #app.app
-            div(class="page page-" + pageName data-component=pageComponent)
-                block page
+            include components/navigation
+            include components/cursor
+            #page-container(data-ref="pageContainer")
+                #page(class="page page-" + pageName data-component=pageComponent)
+                    block page
 
         script(src="/main.js")

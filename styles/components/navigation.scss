@@ -1,0 +1,28 @@
+.component-navigation {
+    @extend .ui-container;
+
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 0;
+
+        @include respond-to('large') {
+            padding: 34px 0;
+        }
+    }
+
+    &-entries {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+
+        @include respond-to('large') {
+            gap: 40px;
+        }
+    }
+
+    &-entry {
+        text-transform: uppercase;
+    }
+}
