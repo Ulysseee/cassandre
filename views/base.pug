@@ -23,11 +23,12 @@ html(lang="fr")
 
     body
 
-        #app.app
+        #app.app(data-component="App")
             include components/navigation
             include components/cursor
             #page-container(data-ref="pageContainer")
                 #page(class="page page-" + pageName data-component=pageComponent)
                     block page
+            include components/preloader
 
         script(src="/main.js")
