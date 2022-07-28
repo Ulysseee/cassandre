@@ -1,6 +1,5 @@
 import AppEvents from './AppEvents';
 import { timeline } from 'motion';
-import { addStyle, removeClass } from '@studiometa/js-toolkit/utils';
 
 export default class Page extends AppEvents {
 

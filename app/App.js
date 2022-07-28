@@ -34,6 +34,8 @@ class App extends AppEvents {
 
         this.setupListeners();
         this.setupInternalLinks();
+
+        this.$on('preloader-end', this.handleLoaderEnd);
     }
 
     handleLoaderEnd() {
@@ -115,8 +117,6 @@ class App extends AppEvents {
 
 const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');
-
-app.$on('preloader-end', app.handleLoaderEnd);
 
 preloader.$on('app-loaded', async () => {
     await preloader.handleAppLoaded();

@@ -88,4 +88,10 @@
         align-items: flex-start;
         gap: 8px;
     }
+
+    &-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+    }
 }

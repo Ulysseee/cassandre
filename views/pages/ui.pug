@@ -42,6 +42,20 @@ block page
         p.ui-p-xs Paragraph XS
 
     section.page-ui-section
+        h2.page-ui-sectionTitle Cards
+        .page-ui-cards
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.12)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.24)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.36)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.48)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.60)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.72)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.84)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 0.96)
+            +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image', 1.08)
+
+    section.page-ui-section
         h2.page-ui-sectionTitle Cursor
         .page-ui-cursor
             .page-ui-cursorLink(data-ref="cursorLink[]" data-cursor-sticky data-cursor-color="brown")
@@ -56,8 +70,3 @@ block page
             a(href="#").ui-p-m.ui-underlineLink Underline Link
             a(href="#" data-ref="cursorLink[]" data-cursor-sticky data-cursor-sticky-side="right").ui-p-m.ui-cursorTextLink Cursor Sticky Link Right
             +circled-button('#', 'Circled Button')
-
-    section.page-ui-section
-        h2.page-ui-sectionTitle Cards
-        +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image')
-        +work-card('Work Card', 'Work excerpt description', '2022', '#', 'https://source.unsplash.com/random/', 'work cover image')

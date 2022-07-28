@@ -1,10 +1,14 @@
-mixin work-card(name, excerpt, date, url, coverUrl, coverAlt)
-    a.component-workCard(href=url data-ref="cursorLink[]" data-cursor-sticky)
+mixin work-card(name, excerpt, date, url, coverUrl, coverAlt, transitionDelay)
+    a.component-workCard.is-hidden(href=url data-component="WorkCard" data-option-transition-delay=transitionDelay)
         article.component-workCard-wrapper
-            .component-workCard-cover
+            .component-workCard-cover(data-ref="cursorLink[]" data-cursor-sticky)
                 img.component-workCard-coverImage(src=coverUrl, alt=coverAlt)
             .component-workCard-content
-                h2.ui-h9.component-workCard-name= name
+                h2.ui-h9.ui-wordMask.component-workCard-name
+                    span.component-workCard-nameInner(data-ref="nameInners[]")
+                        | name
+                    span.component-workCard-nameInner(data-ref="nameInners[]")
+                        | name
                 .component-workCard-separator
                 .component-workCard-details
                     p.ui-p-xl.component-workCard-excerpt= excerpt

@@ -189,3 +189,18 @@
 
     @include index-layer(relative, content, base);
 }
+
+.ui-wordMask {
+    position: relative;
+    overflow: hidden;
+
+    > span {
+        display: block;
+    }
+
+    > span:nth-child(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}

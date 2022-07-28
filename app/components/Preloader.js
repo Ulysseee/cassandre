@@ -15,7 +15,7 @@ export default class Preloader extends Base {
 
     animateOut() {
         return timeline([
-            [this.$el, { scaleX: [1, 0] }, { duration: 1.3, easing: 'ease-in-out' }],
+            [this.$el, { scaleX: [1, 0] }, { duration: 1.3, easing: [.66, 0.11, 0, 1] }],
         ]).finished;
     }
 }
