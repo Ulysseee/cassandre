@@ -5,7 +5,7 @@ import { animate } from 'motion';
 
 export default class WorkCard extends withIntersectionObserver(AppEvents, {
     rootMargin: '0px',
-    threshold: [0, 0.2],
+    threshold: [0, 0.3],
 }) {
     static config = {
         ...AppEvents.config,
@@ -22,9 +22,7 @@ export default class WorkCard extends withIntersectionObserver(AppEvents, {
     isVisible = false;
 
     onMouseenter() {
-        console.log('tner');
         [...this.$refs.nameInners].forEach(nameInner => {
-            console.log(nameInner);
             animate(nameInner,
                 { transform: 'translate3d(0, -100%, 0)' },
                 { duration: 1.4, easing: [.12, .82, 0, .99] },
@@ -34,7 +32,6 @@ export default class WorkCard extends withIntersectionObserver(AppEvents, {
 
     onMouseleave() {
         [...this.$refs.nameInners].forEach(nameInner => {
-            console.log(nameInner);
             animate(nameInner,
                 { transform: 'translate3d(0, 0, 0)' },
                 { duration: 0.8, easing: [.12, .82, 0, .99] },
@@ -45,17 +42,12 @@ export default class WorkCard extends withIntersectionObserver(AppEvents, {
     intersected(entries) {
         const target = entries[0];
 
-        if (!this.isVisible && target.intersectionRatio >= 0.2) {
+        if (!this.isVisible && target.intersectionRatio >= 0.3) {
             this.isVisible = true;
             const removeHiddenClassTimeout = setTimeout(() => {
                 removeClass(this.$el, 'is-hidden');
                 clearTimeout(removeHiddenClassTimeout);
             }, this.$options.transitionDelay * 1000);
         }
-
-        // if (this.isVisible && target.intersectionRatio <= 0) {
-        //     this.isVisible = false;
-        //     addClass(this.$el, 'is-hidden');
-        // }
     }
 }
