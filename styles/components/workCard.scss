@@ -59,6 +59,10 @@
                 @include respond-to('large') {
                     width: 523px;
                 }
+
+                &Image {
+                    transform: scale(1.3);
+                }
             }
         }
     }
@@ -74,7 +78,7 @@
         height: 334px;
 
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        transition: width 0.7s $strong-ease-out, clip-path 1.1s cubic-bezier(.8,.09,0,.99);
+        transition: width 0.7s $strong-ease-out, clip-path 1.1s cubic-bezier(0.075, 0.930, 0.055, 0.990);
 
         @include respond-to('large') {
             width: 507px;
@@ -83,7 +87,6 @@
 
         &Image {
             transition: transform 1.6s $strong-ease-out;
-            transition-delay: 0.4s;
             will-change: transform;
         }
     }
@@ -102,7 +105,7 @@
 
         &Inner {
             transition: transform 1.4s $strong-ease-out;
-            transition-delay: 0.7s;
+            transition-delay: 0.4s;
         }
     }
 
@@ -113,7 +116,7 @@
         margin: 24px 0;
         transform-origin: left;
         transition: transform 1.4s $strong-ease-out;
-        transition-delay: 1s;
+        transition-delay: 0.7s;
     }
 
     &-details {
@@ -124,12 +127,12 @@
     &-excerpt {
         transition: 1.7s $soft-ease-out;
         transition-property: transform, opacity;
-        transition-delay: 1.1s;
+        transition-delay: 0.8s;
     }
 
     &-date {
         transition: 2.2s $soft-ease-out;
         transition-property: transform, opacity;
-        transition-delay: 1.1s;
+        transition-delay: 0.8s;
     }
 }
