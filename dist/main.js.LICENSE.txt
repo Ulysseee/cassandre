@@ -1,3 +1,23 @@
+/*!
+ * CSSPlugin 3.11.0
+ * https://greensock.com
+ *
+ * Copyright 2008-2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
+/*!
+ * GSAP 3.11.0
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
 /*! ../../services/key.js */
 
 /*! ../../services/load.js */
@@ -48,6 +68,8 @@
 
 /*! ../utils/index.js */
 
+/*! ../utils/intervalPromise */
+
 /*! ../utils/is.js */
 
 /*! ../utils/keyCodes.js */
@@ -65,6 +87,8 @@
 /*! ./AppEvents */
 
 /*! ./BaseClient */
+
+/*! ./CSSPlugin.js */
 
 /*! ./RefsManager.js */
 
@@ -99,6 +123,8 @@
 /*! ./feature-detection.es.js */
 
 /*! ./getCurrentScriptSource */
+
+/*! ./gsap-core.js */
 
 /*! ./has.js */
 
@@ -224,6 +250,8 @@
 
 /*! events */
 
+/*! gsap */
+
 /*! hey-listen */
 
 /*! html-entities */
@@ -300,6 +328,10 @@
   !*** ./app/components/WorkCard.js ***!
   \************************************/
 
+/*!************************************!*\
+  !*** ./node_modules/gsap/index.js ***!
+  \************************************/
+
 /*!*************************************!*\
   !*** ./app/components/Preloader.js ***!
   \*************************************/
@@ -308,12 +340,24 @@
   !*** ./app/containers/AppEvents.js ***!
   \*************************************/
 
+/*!**************************************!*\
+  !*** ./app/utils/intervalPromise.js ***!
+  \**************************************/
+
 /*!***************************************!*\
   !*** ./node_modules/events/events.js ***!
   \***************************************/
 
 /*!****************************************!*\
   !*** ./app/components/ScribbleLink.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/gsap/CSSPlugin.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/gsap/gsap-core.js ***!
   \****************************************/
 
 /*!*****************************************!*\

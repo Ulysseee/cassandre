@@ -1,3 +1,5 @@
+import { easeOutQuad, map, tween } from '@studiometa/js-toolkit/utils';
+
 export default class SVG {
     static getShapes(svg) {
         const shapes = [];
@@ -46,25 +48,27 @@ export default class SVG {
         return shapes;
     }
 
-    static drawShapes(shapes, { duration = 1.5, stagger = 0.15, ease = 'cubic.inOut' }) {
-        const shapesElements = shapes.map(shape => shape.el);
-        return gsap.timeline().to(shapesElements, {
-            strokeDashoffset: 0,
-            duration,
-            ease,
-            stagger,
-        });
+    static drawShapes(shapes, {
+        reverse = false, duration = 1, easing = easeOutQuad, onFinish = () => {}, fromFullDrawn = false,
+    }) {
+        tween(
+            progress => {
+                if (reverse) progress = map(progress, 0, 1, 1, 0);
+                SVG.setStrokeDashOffsetShapes(shapes, progress, fromFullDrawn);
+            },
+            {
+                duration,
+                easing,
+                onFinish,
+            },
+        ).start();
     }
 
-    static undrawShapes(shapes, {
-        reverse = false, duration = 1.5, stagger = 0.15, ease = 'cubic.inOut',
-    }) {
-        const shapesTweens = shapes.map(shape => gsap.to(shape.el, {
-            strokeDashoffset: (reverse ? -1 : 1) * shape.length + 1,
-            duration,
-            ease,
-            stagger,
-        }));
-        return gsap.timeline().add(shapesTweens);
+    static setStrokeDashOffsetShapes(shapes, factor, fromFullDrawn = false) {
+        let offset = 0;
+        for (const shape of shapes) {
+            if (fromFullDrawn) offset = shape.length;
+            shape.el.setAttribute('stroke-dashoffset', `${shape.length * factor + offset}`);
+        }
     }
 }

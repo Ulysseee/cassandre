@@ -3,14 +3,124 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $blue;
-    transform-origin: right;
 
     @include index-layer(fixed, preloader);
 
-    &.is-hidden {
-        display: none;
-        visibility: hidden;
+    @extend %has-hidden-state;
+
+    &-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $black;
+
+        @extend %has-hidden-state;
+    }
+
+    &-logo {
+
+        @extend %has-hidden-state;
+    }
+
+    &-name {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        @extend %has-hidden-state;
+
+        &Word {
+            color: $beige;
+            text-transform: uppercase;
+        }
+
+        &Carret {
+            position: absolute;
+            top: 0;
+            right: -6px;
+            width: 2px;
+            height: 100%;
+            background-color: $beige;
+            animation: flash 0.7s infinite reverse;
+        }
+
+        &Figure {
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    &-splitName {
+        position: relative;
+
+        @extend %has-hidden-state;
+
+        &Figure {
+            position: absolute;
+            top: 0;
+            left: -56%;
+        }
+
+        &Line {
+            display: block;
+            color: $beige;
+            text-transform: uppercase;
+        }
+    }
+
+    &-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        //background-color: $orange;
+
+        @extend %has-hidden-state;
+
+        &.is-brownLight {
+            background-color: $brown-light;
+        }
+
+        &.is-animating svg path.blurp {
+            animation: blurp 0.8s linear forwards;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    76% {
         opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes blurp {
+    0% {
+        d: path('M0 718C0 718 163.5 718 720 718C1276.5 718 1440 718 1440 718V734.5H720H0V718Z');
+    }
+    20% {
+        d: path('M0 521C0 521 168 364 724.5 364C1281 364 1440 521 1440 521V734.5H720H0V521Z');
+    }
+    75% {
+        d: path('M0 247C0 247 163.5 4.5 720 4.5C1276.5 4.5 1440 247 1440 247V734H720H0V247Z');
+    }
+    100% {
+        d: path('M0 2.5C0 2.5 168 2.5 724.5 2.5C1281 2.5 1440 2.5 1440 2.5V734.5H720H0V2.5Z');
     }
 }

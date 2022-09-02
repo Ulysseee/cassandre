@@ -10,3 +10,12 @@
         border-radius: inherit;
     }
 }
+
+%has-hidden-state {
+
+    &.is-hidden {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+}
