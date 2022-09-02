@@ -34,9 +34,11 @@ class App extends AppEvents {
 
         this.setupListeners();
         this.setupInternalLinks();
+
+        this.$on('preloader-end', this.handleLoaderEnd);
     }
 
-    handleLoaderEnd() {
+    showCurrentPage() {
         this.currentPageInstance.$emit('animate-in', this.animateIn);
     }
 
@@ -116,15 +118,14 @@ class App extends AppEvents {
 const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');
 
-app.$on('preloader-end', app.handleLoaderEnd);
+const bootApp = async () => {
+    await preloader.animateOut();
+    app.showCurrentPage();
+};
 
-preloader.$on('app-loaded', async () => {
-    await preloader.handleAppLoaded();
-    app.$emit('preloader-end');
+const appLoaded = new Promise((resolve) => {
+    window.addEventListener('load', resolve);
 });
+const preloaderAnimateIn = preloader.animateIn();
 
-const onLoad = () => {
-    preloader.$emit('app-loaded');
-}
-
-window.addEventListener('load', () => onLoad());
+Promise.all([appLoaded, preloaderAnimateIn]).then(bootApp);
