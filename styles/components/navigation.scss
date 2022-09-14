@@ -1,5 +1,25 @@
 .component-navigation {
+    top: 0;
+    left: 0;
+    width: 100%;
+
     @extend .ui-container;
+    @include index-layer(fixed, nav);
+
+    &.of-dark-page .component-navigation {
+
+        &-entryFigure path {
+            stroke: $beige;
+        }
+
+        &-entry {
+            color: $beige;
+
+            path {
+                stroke: $beige;
+            }
+        }
+    }
 
     &-wrapper {
         display: flex;
@@ -10,6 +30,10 @@
         @include respond-to('large') {
             padding: 34px 0;
         }
+    }
+
+    &-entryFigure path {
+        stroke: $black;
     }
 
     &-entries {
@@ -23,6 +47,11 @@
     }
 
     &-entry {
+        color: $black;
         text-transform: uppercase;
+
+        path {
+            stroke: $black;
+        }
     }
 }

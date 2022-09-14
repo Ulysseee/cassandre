@@ -8,6 +8,7 @@ import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks, preloadImages } from './utils/dom';
 import Preloader from './components/Preloader';
+import Parallax from './components/Parallax';
 
 class App extends AppEvents {
     static config = {
@@ -15,6 +16,7 @@ class App extends AppEvents {
         components: {
             Cursor,
             ScribbleLink,
+            Parallax,
             Home,
             About,
             Projects,
@@ -34,16 +36,10 @@ class App extends AppEvents {
 
         this.setupListeners();
         this.setupInternalLinks();
-
-        this.$on('preloader-end', this.handleLoaderEnd);
     }
 
-    showCurrentPage() {
+    handleLoaderEnd() {
         this.currentPageInstance.animateIn();
-    }
-
-    updated () {
-        this.setupInternalLinks();
     }
 
     setupListeners () {
@@ -75,20 +71,20 @@ class App extends AppEvents {
 
         const preloadedImages = preloadImages(pageDocument);
 
-        this.updateCurrentPageInstance();
+        await Promise.all([
+            this.currentPageInstance.animateOut(),
+            ...preloadedImages,
+        ]);
 
-        if (this.currentPageInstance) {
-            await Promise.allSettled([
-                this.currentPageInstance.animateOut(),
-                ...preloadedImages,
-            ]);
-            this.currentPageInstance.$destroy();
-        }
+        this.currentPageInstance.$destroy();
 
         this.replacePage(pageDocument);
         this.$update();
-
         this.updateCurrentPageInstance();
+
+        this.updateNavigationColor();
+        this.setupInternalLinks();
+
         this.currentPageInstance.animateIn();
     }
 
@@ -112,6 +108,12 @@ class App extends AppEvents {
         const pageElement = document.getElementById('page');
         const pageClass = pageElement.getAttribute('data-component');
         this.currentPageInstance = getInstanceFromElement(pageElement, App.config.components[pageClass]);
+    }
+
+    updateNavigationColor () {
+        const isDarkPage = this.currentPageInstance.$el.classList.contains('is-dark');
+        const navigation = document.querySelector('.component-navigation');
+        navigation.classList.toggle('of-dark-page', isDarkPage);
     }
 }
 

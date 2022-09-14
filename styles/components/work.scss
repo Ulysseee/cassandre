@@ -1,0 +1,229 @@
+.section-work {
+    padding: 60px 0;
+
+    @include index-layer(content, card);
+
+    @include respond-to('large') {
+        padding: 116px 0;
+    }
+
+    &:nth-of-type(3n+1) .section-work {
+
+        &__cover {
+
+            @include respond-to('large') {
+                width: 735px;
+                height: 450px;
+            }
+        }
+
+        &__scribble {
+            top: 93%;
+            left: 4%;
+        }
+
+        &__text {
+            left: 97%;
+        }
+    }
+
+    &:nth-of-type(3n+2) .section-work {
+
+        &__container {
+            justify-content: flex-end;
+            margin-right: 140px;
+        }
+
+        &__cover {
+
+            @include respond-to('large') {
+                width: 720px;
+                height: 440px;
+            }
+        }
+
+        &__scribble {
+            top: -10%;
+            left: 90%;
+        }
+
+        &__text {
+            right: 98%;
+        }
+
+        &__header {
+            flex-direction: row-reverse;
+        }
+
+        &__index {
+            margin: 4px 16px 0 0;
+        }
+    }
+
+    &:nth-of-type(3n+3) .section-work {
+
+        &__container {
+            justify-content: center;
+        }
+
+        &__text {
+            width: 480px;
+            left: 97%;
+        }
+
+        &__cover {
+
+            @include respond-to('large') {
+                width: 382px;
+                height: 540px;
+            }
+        }
+
+        &__scribble {
+            right: 76%;
+            bottom: 6%;
+        }
+    }
+
+    &.is-beige, .section-work {
+
+        &__cover-overlay {
+            background-color: $beige;
+        }
+    }
+
+    &.is-lightblue .section-work {
+
+        &__cover-overlay {
+            background-color: $blue-light;
+        }
+    }
+
+    &.is-blue, .section-work {
+
+        &__cover-overlay {
+            background-color: $blue;
+        }
+    }
+
+    &.is-green, .section-work {
+
+        &__cover-overlay {
+            background-color: $green;
+        }
+    }
+
+    &.is-pink, .section-work {
+
+        &__cover-overlay {
+            background-color: $pink;
+        }
+    }
+
+    &.is-orange, .section-work {
+
+        &__cover-overlay {
+            background-color: $orange;
+        }
+    }
+
+    &.is-visible .section-work {
+
+        &__cover {
+            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+        }
+
+        &__cover-inner {
+            transform: translate3d(0, 0, 0);
+        }
+
+        &__cover-overlay {
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+        }
+    }
+
+    &__container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        @include respond-to('large') {
+            flex-direction: row;
+        }
+    }
+
+    &__link {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    &__cover {
+        position: relative;
+        clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+        transition: clip-path 0.7s $strong-ease-out;
+
+        @extend %cover-media-container;
+    }
+
+    &__cover-inner {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform: translate3d(-40px, 0, 0);
+        transition: transform 1.8s $strong-ease-out 0.4s;
+    }
+
+    &__cover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+        transition: clip-path 1.4s $strong-ease-out 0.4s;
+    }
+
+    &__text {
+        @include index-layer(content, card, raised);
+
+        @include respond-to('large') {
+            position: absolute;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &__name {
+        color: $beige;
+        text-transform: lowercase;
+    }
+
+    &__index {
+        font-family: $rebond-grotesque-extralight;
+        color: $beige;
+        margin: 12px 0 0 16px;
+    }
+
+    &__tags {
+        margin: 32px 0 0 122px;
+    }
+
+    &__tag-item {
+        font-family: $neue-montreal-regular;
+        color: $beige;
+        text-transform: uppercase;
+        margin-top: 4px;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
+    &__scribble {
+        position: absolute;
+    }
+}

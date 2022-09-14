@@ -1,7 +1,9 @@
 block variables
 
 include mixins/scribble-link
+include mixins/svg-reveal
 include mixins/circled-button
+include mixins/parallax
 include mixins/work-card
 
 doctype html
@@ -27,7 +29,7 @@ html(lang="fr")
             include components/navigation
             include components/cursor
             #page-container(data-ref="pageContainer")
-                #page(class="page page-" + pageName data-component=pageComponent)
+                #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent)
                     block page
             include components/preloader
 

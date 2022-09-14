@@ -3,6 +3,7 @@ extends ../base.pug
 block variables
     - var pageName = 'ui'
     - var pageComponent = 'Ui'
+    - var pageShade = 'light'
 
 block page
     h1.ui-h1 UI Kit
@@ -22,7 +23,6 @@ block page
             .page-ui-colorsItem.is-green
             .page-ui-colorsItem.is-pink
             .page-ui-colorsItem.is-orange
-
 
     section.page-ui-section
         h2.page-ui-sectionTitle Texts
@@ -70,3 +70,8 @@ block page
             a(href="#").ui-p-m.ui-underlineLink Underline Link
             a(href="#" data-ref="cursorLink[]" data-cursor-sticky data-cursor-sticky-side="right").ui-p-m.ui-cursorTextLink Cursor Sticky Link Right
             +circled-button('#', 'Circled Button')
+
+    section.page-ui-section
+        h2.page-ui-title Parallax
+        .page-ui-parallaxImage
+            +parallax('../assets/images/placeholder.jpg', 'parallax image')

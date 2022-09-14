@@ -17,6 +17,7 @@ export const preloadImages = (targetElement = document, selector = 'img') => {
         new Promise(res => {
             const image = new Image();
             image.onload = () => res(imageElement);
+            image.onerror = () => res(imageElement);
             image.src = imageElement.getAttribute('src');
         })
     ));

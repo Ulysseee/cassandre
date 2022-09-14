@@ -89,6 +89,12 @@
         gap: 8px;
     }
 
+    &-parallaxImage {
+        display: inline-block;
+        width: 500px;
+        height: 300px;
+    }
+
     &-cards {
         display: flex;
         flex-wrap: wrap;
