@@ -39,7 +39,7 @@ class App extends AppEvents {
     }
 
     showCurrentPage() {
-        this.currentPageInstance.$emit('animate-in', this.animateIn);
+        this.currentPageInstance.animateIn();
     }
 
     updated () {
@@ -89,7 +89,7 @@ class App extends AppEvents {
         this.$update();
 
         this.updateCurrentPageInstance();
-        this.currentPageInstance.$emit('animate-in', this.animateIn);
+        this.currentPageInstance.animateIn();
     }
 
     replacePage(pageDocument) {
@@ -126,6 +126,5 @@ const bootApp = async () => {
 const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
 });
-const preloaderAnimateIn = preloader.animateIn();
 
-Promise.all([appLoaded, preloaderAnimateIn]).then(bootApp);
+Promise.all([appLoaded, preloader.animateIn()]).then(bootApp);

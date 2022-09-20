@@ -3,6 +3,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 
     @include index-layer(fixed, preloader);
 
@@ -20,8 +21,22 @@
     }
 
     &-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         @extend %has-hidden-state;
+
+        &Frame {
+            position: absolute;
+            width: 35%;
+
+            @extend %has-hidden-state;
+
+            @include respond-to('large') {
+                width: 12%;
+            }
+        }
     }
 
     &-name {
@@ -43,30 +58,17 @@
             width: 2px;
             height: 100%;
             background-color: $beige;
-            animation: flash 0.7s infinite reverse;
+            animation: flash 0.75s infinite reverse;
         }
 
         &Figure {
             position: absolute;
             right: 0;
-        }
-    }
+            width: 65%;
 
-    &-splitName {
-        position: relative;
-
-        @extend %has-hidden-state;
-
-        &Figure {
-            position: absolute;
-            top: 0;
-            left: -56%;
-        }
-
-        &Line {
-            display: block;
-            color: $beige;
-            text-transform: uppercase;
+            svg {
+                width: 100%;
+            }
         }
     }
 
@@ -76,16 +78,11 @@
         left: 0;
         width: 100%;
         height: 100%;
-        //background-color: $orange;
 
         @extend %has-hidden-state;
 
         &.is-brownLight {
             background-color: $brown-light;
-        }
-
-        &.is-animating svg path.blurp {
-            animation: blurp 0.8s linear forwards;
         }
 
         svg {
@@ -99,28 +96,13 @@
     0% {
         opacity: 1;
     }
-    75% {
+    50% {
         opacity: 1;
     }
-    76% {
+    51% {
         opacity: 0;
     }
     100% {
         opacity: 0;
-    }
-}
-
-@keyframes blurp {
-    0% {
-        d: path('M0 718C0 718 163.5 718 720 718C1276.5 718 1440 718 1440 718V734.5H720H0V718Z');
-    }
-    20% {
-        d: path('M0 521C0 521 168 364 724.5 364C1281 364 1440 521 1440 521V734.5H720H0V521Z');
-    }
-    75% {
-        d: path('M0 247C0 247 163.5 4.5 720 4.5C1276.5 4.5 1440 247 1440 247V734H720H0V247Z');
-    }
-    100% {
-        d: path('M0 2.5C0 2.5 168 2.5 724.5 2.5C1281 2.5 1440 2.5 1440 2.5V734.5H720H0V2.5Z');
     }
 }
