@@ -50,6 +50,12 @@ module.exports = {
         }),
 
         new CleanWebpackPlugin(),
+
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'assets/images', to: 'images' },
+            ],
+        }),
     ],
 
     module: {

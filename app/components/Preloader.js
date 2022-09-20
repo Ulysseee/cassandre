@@ -1,7 +1,6 @@
 import { Base } from '@studiometa/js-toolkit';
 import {
     addClass,
-    easeInOutExpo,
     easeOutQuint,
     removeClass,
 } from '@studiometa/js-toolkit/utils';
@@ -12,7 +11,7 @@ import gsap from 'gsap';
 export default class Preloader extends Base {
     static config = {
         name: 'Preloader',
-        refs: ['wrapper', 'logo', 'logoSvg', 'name', 'nameFigure', 'nameWord', 'splitName', 'overlay', 'overlayPath'],
+        refs: ['wrapper', 'logoFrames[]', 'name', 'nameFigure', 'nameWord', 'overlay'],
         options: {
             name: {
                 type: String,
@@ -22,9 +21,6 @@ export default class Preloader extends Base {
     };
 
     mounted () {
-        this.logoShapes = SVG.getShapes(this.$refs.logoSvg);
-        SVG.setInitialAttributesShapes(this.logoShapes);
-        console.log(this.logoShapes);
         this.nameShapes = SVG.getShapes(this.$refs.nameFigure);
         SVG.setInitialAttributesShapes(this.nameShapes);
 
@@ -39,62 +35,73 @@ export default class Preloader extends Base {
 
     async animateIn () {
         return new Promise(async (resolve) => {
-            await new Promise((resolve) => {
-                SVG.drawShapes(this.logoShapes, {
-                    reverse: true,
-                    duration: 1.3,
-                    easing: easeInOutExpo,
-                    onFinish: resolve,
-                });
-            });
-            await new Promise((resolve) => {
-                SVG.drawShapes(this.logoShapes, {
-                    reverse: true,
-                    fromFullDrawn: true,
-                    duration: 1.3,
-                    easing: easeInOutExpo,
-                    onFinish: resolve,
-                });
+            await this.animateLogo({
+                framesInterval: 50,
+                loops: 0
             });
 
             addClass(this.$refs.logo, 'is-hidden');
+
             removeClass(this.$refs.name, 'is-hidden');
 
+            new Promise(resolve => {
+                setTimeout(() => {
+                    SVG.drawShapes(this.nameShapes, {
+                        reverse: true,
+                        duration: 0.7,
+                        easing: easeOutQuint,
+                        onFinish: resolve,
+                    });
+                }, 300);
+            })
             await this.animateName({
-                lettersInterval: 70,
-            });
-            await new Promise((resolve) => {
-                SVG.drawShapes(this.nameShapes, {
-                    reverse: true,
-                    duration: 1.3,
-                    easing: easeOutQuint,
-                    onFinish: resolve,
-                });
+                lettersInterval: 30,
             });
 
             removeClass(this.$refs.overlay, 'is-hidden');
-            await gsap.to(this.overlay, {
-                duration: 1,
-                ease: 'expo.inOut',
-                onUpdate: this.overlayAnimate,
-                onUpdateParams: [this.overlay, this.overlay.height, '#FF6C3C'],
-            });
-
-            addClass(this.$refs.name, 'is-hidden');
-            removeClass(this.$refs.splitName, 'is-hidden');
-
-            await gsap.to(this.overlay, {
-                duration: 1,
-                ease: 'expo.inOut',
-                onUpdate: this.overlayAnimate,
-                onUpdateParams: [this.overlay, 0, '#FF6C3C'],
-            });
-
             resolve();
         });
     }
 
-    overlayAnimate (overlay, baseY, fillColor) {
+    async animateOut () {
+        return gsap.timeline({
+            onComplete: () => addClass(this.$el, 'is-hidden'),
+        })
+            .add(gsap.to(this.overlay, {
+                duration: 1,
+                ease: 'expo.inOut',
+                onUpdate: this.animateOverlay,
+                onUpdateParams: [this.overlay, this.overlay.height, '#FF6C3C'],
+            }))
+            .call(() => addClass(this.$refs.wrapper, 'is-hidden'))
+            .add(gsap.to(this.overlay, {
+                duration: 1,
+                ease: 'expo.inOut',
+                onUpdate: this.animateOverlay,
+                onUpdateParams: [this.overlay, 0, '#FF6C3C'],
+            }));
+    }
+
+    async animateName ({ lettersInterval }) {
+        return intervalPromise(callsAmount => {
+            this.$refs.nameWord.innerText = this.$options.name.slice(0, callsAmount);
+        }, this.$options.name.length, lettersInterval);
+    }
+
+    async animateLogo({ framesInterval = 100, loops = 4 }) {
+        return intervalPromise(callsAmount => {
+            this.$refs.logoFrames.forEach((frame, index) => {
+                setTimeout(() => {
+                    removeClass(frame, 'is-hidden');
+                    setTimeout(() => {
+                        addClass(frame, 'is-hidden');
+                    }, framesInterval);
+                }, framesInterval * index + 1);
+            });
+        }, loops, framesInterval * this.$refs.logoFrames.length + 1);
+    }
+
+    animateOverlay (overlay, baseY, fillColor) {
         overlay.context.clearRect(0, 0, overlay.width, overlay.height);
         overlay.context.save();
         overlay.context.beginPath();
@@ -104,7 +111,7 @@ export default class Preloader extends Base {
 
         const widthSegments = Math.ceil(overlay.width / 40);
         const t = (1 - this.ratio) * overlay.height;
-        const amplitude = 350 * Math.sin(this.ratio * Math.PI);
+        const amplitude = (window.innerWidth / 4) * Math.sin(this.ratio * Math.PI);
 
         overlay.context.lineTo(0, t);
 
@@ -118,30 +125,5 @@ export default class Preloader extends Base {
         overlay.context.fillStyle = fillColor;
         overlay.context.fill();
         overlay.context.restore();
-    }
-
-    animateOut () {
-        gsap.timeline({
-            onComplete: () => addClass(this.$el, 'is-hidden'),
-        })
-            .add(gsap.to(this.overlay, {
-                duration: 1,
-                ease: 'expo.inOut',
-                onUpdate: this.overlayAnimate,
-                onUpdateParams: [this.overlay, this.overlay.height, '#DACAB5'],
-            }))
-            .call(() => addClass(this.$refs.wrapper, 'is-hidden'))
-            .add(gsap.to(this.overlay, {
-                duration: 1,
-                ease: 'expo.inOut',
-                onUpdate: this.overlayAnimate,
-                onUpdateParams: [this.overlay, 0, '#DACAB5'],
-            }));
-    }
-
-    async animateName ({ lettersInterval }) {
-        return intervalPromise(callsAmount => {
-            this.$refs.nameWord.innerText = this.$options.name.slice(0, callsAmount);
-        }, this.$options.name.length, lettersInterval);
     }
 }
