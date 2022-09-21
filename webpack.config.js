@@ -89,7 +89,7 @@ module.exports = {
             },
 
             {
-                test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp|otf|ttf)$/,
+                test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp|otf|ttf|ico)$/,
                 loader: 'file-loader',
                 options: {
                     name() {

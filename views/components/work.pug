@@ -1,7 +1,7 @@
-article.section-work(data-component='Work' class=`is-${getColorName(work.fields.color)}`)
+article.section-work(data-component='Work' class=`is-${ getColorName(work.fields.color) }`)
     .container.section-work__container
         a.section-work__link(href=getLinkUrl(work) data-ref="cursorLink[]" data-cursor-sticky)
-            figure.section-work__cover(data-ref="cover" data-rotate-value=`${(index % 2 === 0 ? -4 : 3 )}`)
+            figure.section-work__cover(data-ref="cover" data-rotate-value=`${ (index % 2 === 0 ? -4 : 3) }`)
                 .section-work__cover-inner
                     +parallax(work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.description)
                 .section-work__cover-overlay(data-ref="coverOverlay" data-animation="image-overlay")
@@ -19,7 +19,7 @@ article.section-work(data-component='Work' class=`is-${getColorName(work.fields.
             .section-work__text
                 header.section-work__header
                     h2.ui-h4.section-work__name(data-anim-title)=work.fields.name
-                    span.ui-p-s.section-work__index(data-anim-text)=`(0${index + 1})`
+                    span.ui-p-s.section-work__index(data-anim-text)=`(0${ index + 1 })`
                 ul.section-work__tags(data-anim-text)
                     each tag in work.metadata.tags
                         li.ui-p-xs.section-work__tag-item=tag.sys.id

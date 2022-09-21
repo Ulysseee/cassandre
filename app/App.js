@@ -38,7 +38,7 @@ class App extends AppEvents {
         this.setupInternalLinks();
     }
 
-    handleLoaderEnd() {
+    showCurrentPage() {
         this.currentPageInstance.animateIn();
     }
 
@@ -97,6 +97,7 @@ class App extends AppEvents {
         for (const internalLink of this.internalLinks) {
             internalLink.onclick = e => {
                 e.preventDefault();
+                if (internalLink.href === window.location.href) return;
                 this.onUrlChange({
                     url: internalLink.href,
                 });

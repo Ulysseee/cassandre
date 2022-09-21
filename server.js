@@ -16,16 +16,18 @@ const initCMS = () => createClient({
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
-const handleRequest = async CMS =>
-// const global = await CMS.getEntry('5cKjWZGhvzmSnnLK8Npv96');
-// const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
+const handleRequest = async CMS => {
+    const global = await CMS.getEntry('5cKjWZGhvzmSnnLK8Npv96');
+    const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
 
-    ({
-        // global: global.fields,
-        // footer: footer.fields,
-    });
-const handleColorName = color => {
-    [color] = color;
+    return {
+        global: global.fields,
+        footer: footer.fields,
+    };
+};
+
+const handleColorName = col => {
+    const [color] = col;
     if (color === 'Beige') return 'beige';
     if (color === 'Bleu ciel') return 'lightblue';
     if (color === 'Bleu électrique') return 'blue';
@@ -33,6 +35,7 @@ const handleColorName = color => {
     if (color === 'Vert clair') return 'lightgreen';
     if (color === 'Rose pale') return 'rose';
     if (color === 'Orange') return 'orange';
+    return 'beige';
 };
 
 const handleLinkResolver = data => {

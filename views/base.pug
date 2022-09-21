@@ -17,6 +17,8 @@ html(lang="fr")
 
         title cassandre
 
+        link(rel="icon" type="image/x-icon" href="images/favicon.ico")
+
         link(rel="stylesheet" href="https://use.typekit.net/pey0bud.css")
         link(href="/main.css" rel="stylesheet")
 
@@ -27,10 +29,10 @@ html(lang="fr")
 
         #app.app(data-component="App")
             include components/navigation
-            include components/cursor
             #page-container(data-ref="pageContainer")
                 #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent)
                     block page
+            include components/cursor
             include components/preloader
 
         script(src="/main.js")
