@@ -16,13 +16,11 @@ const initCMS = () => createClient({
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
-const handleRequest = async CMS => {
+const getCommon = async CMS => {
     const global = await CMS.getEntry('5cKjWZGhvzmSnnLK8Npv96');
-    const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
 
     return {
         global: global.fields,
-        footer: footer.fields,
     };
 };
 
@@ -54,10 +52,13 @@ const handleLinkResolver = data => {
     return '/';
 };
 
+const handleMail = links => links.find(link => link.key === 'mail');
+
 app.use((req, res, next) => {
     res.locals.renderRichText = documentToHtmlString;
     res.locals.getColorName = handleColorName;
     res.locals.getLinkUrl = handleLinkResolver;
+    res.locals.getMail = handleMail;
 
     next();
 });
@@ -67,17 +68,19 @@ app.set('view engine', 'pug');
 
 app.get('/', async (req, res) => {
     const CMS = await initCMS();
-    const defaults = await handleRequest(CMS);
+    const common = await getCommon(CMS);
     const home = await CMS.getEntry('3MspXo6cNqu83f6mwIBXWD');
     const works = await CMS.getEntries({
         content_type: 'work',
         order: '-fields.year',
     });
+    const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
 
     res.render('pages/home', {
-        ...defaults,
+        ...common,
         home: home.fields,
         works: works.items,
+        footer: footer.fields,
     });
 });
 

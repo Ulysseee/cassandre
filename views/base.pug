@@ -29,7 +29,7 @@ html(lang="fr")
 
         #app.app(data-component="App")
             include components/navigation
-            #page-container(data-ref="pageContainer")
+            main#page-container(data-ref="pageContainer")
                 #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent)
                     block page
             include components/cursor

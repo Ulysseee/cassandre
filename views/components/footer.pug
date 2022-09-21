@@ -1,0 +1,24 @@
+footer.component-footer
+    //.component-footer-spacer
+    //.component-footer-overlay(data-ref="overlay")
+    .component-footer-wrapper.ui-container-large
+        .container
+            .component-footer-top
+                .component-footer-text
+                    .ui-h6.component-footer-title!=footer.title
+                    .ui-p-l.component-footer-paragraph!=renderRichText(footer.text)
+                a.ui-h7.component-footer-mail(href='mailto:' + getMail(global.externalLinks).value data-ref='cursorLink[]' data-cursor-sticky data-cursor-sticky-side='right')!=getMail(global.externalLinks).value
+            .component-footer-divider
+            .component-footer-bottom
+                ul.component-footer-social-list
+                    each externalLink in global.externalLinks
+                        if externalLink.key !== 'mail'
+                            li.component-footer-social-item
+                                a.ui-p-xs.ui-spotLink.component-footer-social-link(href=externalLink.value class=`is-${externalLink.key}`)=externalLink.key
+                .component-footer-signature
+                    .component-footer-signature-figure
+                        +svg-reveal
+                            svg(data-ref="svg" width='82' height='76' viewbox='0 0 82 76' fill='none' xmlns='http://www.w3.org/2000/svg')
+                                path(d='M2.03201 67.0691C3.74933 64.8369 6.10508 61.8099 8.78388 57.772M8.78388 57.772C14.0684 49.8064 20.6101 37.907 25.9878 20.4165C27.6508 15.0078 30.5472 3.8165 26.8151 2.77664C23.0831 1.73678 15.8819 16.3091 12.749 30.5941C10.3248 41.6481 9.24442 50.748 8.78388 57.772ZM8.78388 57.772C8.64927 59.8251 8.56763 61.7008 8.52085 63.3961C8.40071 67.7505 9.19391 73.2655 12.466 74.1772C17.0942 75.4667 23.2657 68.1609 28.7592 58.9518M28.7592 58.9518C33.5858 50.8605 37.889 41.3001 40.1622 34.8091C45.0227 20.9303 47.2184 8.29601 45.7447 4.07714C44.2709 -0.141728 41.0683 3.72164 39.9541 6.43756C38.47 10.0553 29.2905 35.4939 28.3096 48.2297C27.9336 53.1107 28.1601 56.5268 28.7592 58.9518ZM28.7592 58.9518C29.7233 62.8542 31.6526 64.19 33.5898 64.934C36.7308 66.1403 43.0251 63.7546 47.1982 55.314C48.2305 53.2261 49.1972 50.9374 50.0663 48.5896M50.0663 48.5896C52.7104 41.4463 54.4513 33.7552 54.3904 29.5012C54.3095 23.8491 50.81 22.8164 48.7055 27.9172C46.043 34.37 47.4469 43.1307 49.4244 47.3243C49.6342 47.7693 49.8481 48.193 50.0663 48.5896ZM50.0663 48.5896C51.9043 51.9311 54.0478 53.3488 56.6458 49.3364C58.5065 46.4628 60.1833 41.57 61.3671 37.4826M61.3671 37.4826C62.0325 35.1855 62.5421 33.1427 62.8411 31.8558C63.6721 28.2791 59.8133 27.8662 59.4608 30.914C59.2922 32.3717 59.8884 35.0275 61.3671 37.4826ZM61.3671 37.4826C62.98 40.1605 65.643 42.5999 69.5089 42.986C75.4371 43.578 79.1187 40.5858 80.2185 39.0158' stroke='#FF6C3C' stroke-width='3' stroke-linecap='round')
+                    span.ui-p-m.component-footer-signature-link(href=footer.developerLink)=footer.developerSignature + ' '
+                        a.ui-underlineLink='Tibère Debizet'

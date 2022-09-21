@@ -52,7 +52,7 @@ export default class Preloader extends Base {
                         easing: easeOutQuint,
                         onFinish: resolve,
                     });
-                }, 300);
+                }, 260);
             })
             await this.animateName({
                 lettersInterval: 30,
@@ -66,6 +66,7 @@ export default class Preloader extends Base {
     async animateOut () {
         return gsap.timeline({
             onComplete: () => addClass(this.$el, 'is-hidden'),
+            delay: 0.6,
         })
             .add(gsap.to(this.overlay, {
                 duration: 1,

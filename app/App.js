@@ -85,6 +85,8 @@ class App extends AppEvents {
         this.updateNavigationColor();
         this.setupInternalLinks();
 
+        window.scrollTo(0, 0);
+
         this.currentPageInstance.animateIn();
     }
 

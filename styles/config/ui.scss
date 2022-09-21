@@ -1,6 +1,21 @@
 .ui-container {
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @include respond-to('large') {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    &-large {
+        padding-left: 24px;
+        padding-right: 24px;
+
+        @include respond-to('large') {
+            padding-left: 12%;
+            padding-right: 12%;
+        }
+    }
 }
 
 .ui-h1 {
@@ -169,7 +184,7 @@
     cursor: pointer;
 
     &:hover::after {
-        transform: translate3d(0, -3px, 0) scaleX(1);
+        transform: translate3d(0, -1px, 0) scaleX(0.97);
     }
 
     &::after {
@@ -180,7 +195,7 @@
         width: 100%;
         height: 1px;
         background-color: $black;
-        transform: translate3d(0, 0, 0) scaleX(1.02);
+        transform: translate3d(0, 0, 0);
         transition: transform 1s $strong-ease-out;
     }
 }

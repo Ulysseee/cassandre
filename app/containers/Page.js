@@ -22,9 +22,6 @@ export default class Page extends AppEvents {
 
     animateIn() {
         return timeline([
-            [this.$el, { pointerEvents: 'none' }, { duration: 0 }],
-            [this.$el, { opacity: [0, 1] }, { duration: 0.5, easing: 'ease-out' }],
-            [this.$el, { pointerEvents: 'auto' }, { duration: 0 }],
         ]).finished;
     }
 

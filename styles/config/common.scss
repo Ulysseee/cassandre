@@ -37,7 +37,5 @@ body {
 
     padding-top: 140px;
 
-    opacity: 0;
-
     @include index-layer(relative, content);
 }
