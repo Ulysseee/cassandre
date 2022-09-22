@@ -1,7 +1,7 @@
 mixin work-card(name, excerpt, date, url, coverUrl, coverAlt, transitionDelay)
     a.component-workCard.is-hidden(href=url data-component="WorkCard" data-option-transition-delay=transitionDelay)
-        article.component-workCard-wrapper
-            .component-workCard-cover(data-ref="cursorLink[]" data-cursor-sticky)
+        article.component-workCard-wrapper(data-ref="cursorLink[]" data-cursor-sticky)
+            .component-workCard-cover(data-cursor-target)
                 img.component-workCard-coverImage(src=coverUrl, alt=coverAlt)
             .component-workCard-content
                 h2.ui-h9.ui-wordMask.component-workCard-name

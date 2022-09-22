@@ -1,6 +1,6 @@
 import AppEvents from '../containers/AppEvents';
 import { withIntersectionObserver } from '@studiometa/js-toolkit';
-import { addClass, easeOutExpo, removeClass, toggleClass } from '@studiometa/js-toolkit/utils';
+import { removeClass } from '@studiometa/js-toolkit/utils';
 import { animate } from 'motion';
 
 export default class WorkCard extends withIntersectionObserver(AppEvents, {

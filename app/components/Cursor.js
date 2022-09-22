@@ -75,7 +75,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
         } else {
             this.sticky.isActive = true;
             this.sticky.side = cursorStickySide;
-            const targetBox = this.currentTarget.element.getBoundingClientRect();
+            const stickyTarget = target.querySelector('[data-cursor-target]') ?? target;
+            const targetBox = stickyTarget.getBoundingClientRect();
             const cursorBox = getOffsetSizes(this.$refs.inner);
             const offsetX = cursorStickySide === 'right'
                 ? targetBox.width / 2 + cursorBox.width / 4
