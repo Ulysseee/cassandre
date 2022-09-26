@@ -9,6 +9,7 @@ import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks, preloadImages } from './utils/dom';
 import Preloader from './components/Preloader';
 import Parallax from './components/Parallax';
+import Lenis from '@studio-freight/lenis'
 
 class App extends AppEvents {
     static config = {
@@ -36,9 +37,19 @@ class App extends AppEvents {
 
         this.setupListeners();
         this.setupInternalLinks();
+
+        this.createLenis().stop();
+
+        this.updateFrame();
+    }
+
+    updateFrame(time) {
+        window.lenis.raf(time);
+        requestAnimationFrame(this.updateFrame.bind(this));
     }
 
     showCurrentPage() {
+        window.lenis.start();
         this.currentPageInstance.animateIn();
     }
 
@@ -55,6 +66,12 @@ class App extends AppEvents {
     }
 
     async onUrlChange({ url, push = true }) {
+        const preloaderAnimateIn = preloader.animatePageTransitionIn().then(() => {
+            window.lenis.destroy();
+        });
+
+        if (this.cursor) this.cursor.disable();
+
         const request = await window.fetch(url);
 
         if (request.status !== 200) {
@@ -64,19 +81,21 @@ class App extends AppEvents {
 
         if (push) window.history.pushState({}, '', url);
 
-        this.cursor.disable();
-
         let pageDocument = await request.text();
         pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
 
         const preloadedImages = preloadImages(pageDocument);
 
         await Promise.all([
-            this.currentPageInstance.animateOut(),
+            new Promise(resolve => {
+                setTimeout(resolve, 1000);
+            }),
             ...preloadedImages,
         ]);
 
         this.currentPageInstance.$destroy();
+
+        window.scrollTo(0, 0);
 
         this.replacePage(pageDocument);
         this.$update();
@@ -85,9 +104,10 @@ class App extends AppEvents {
         this.updateNavigationColor();
         this.setupInternalLinks();
 
-        window.scrollTo(0, 0);
+        this.createLenis();
 
-        this.currentPageInstance.animateIn();
+        this.showCurrentPage();
+        preloader.animatePageTransitionOut();
     }
 
     replacePage(pageDocument) {
@@ -105,6 +125,18 @@ class App extends AppEvents {
                 });
             }
         }
+    }
+
+    createLenis() {
+        if (window.lenis) window.lenis.destroy();
+        return window.lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
     }
 
     updateCurrentPageInstance () {

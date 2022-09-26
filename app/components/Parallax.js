@@ -18,6 +18,11 @@ export default class Parallax extends withScrolledInView(Base) {
         refs: ['image'],
     };
 
+    mounted() {
+        window.lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
+            // console.log({ scroll, limit, velocity, direction, progress })
+        });
+    }
 
     scrolledInView({ dampedProgress }) {
         const y = map(dampedProgress.y, 0, 1, -100, 100) * this.$options.speed * (this.$options.reverse ? -1 : 1);

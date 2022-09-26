@@ -2,14 +2,15 @@ html {
     --vw: 1vw;
     --vh: 1vh;
     position: relative;
-    height: 100%;
-    overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: initial;
 }
 
 body {
     position: relative;
-    height: 100%;
-    overflow: auto;
+    width: 100%;
+    min-height: 100%;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -24,8 +25,6 @@ body {
     font-size: 16px;
     line-height: 1;
     color: $black;
-
-    overflow: hidden;
 }
 
 .page {

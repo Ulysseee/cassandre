@@ -44,6 +44,7 @@ export default class SVG {
         shapes.forEach(shape => {
             shape.el.setAttribute('stroke-dasharray', `${shape.length} ${shape.length}`);
             shape.el.setAttribute('stroke-dashoffset', `${(reverse ? -1 : 1) * shape.length}`);
+            shape.el.setAttribute('data-stroke-length', shape.length);
         });
         return shapes;
     }

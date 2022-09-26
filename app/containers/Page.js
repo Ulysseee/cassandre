@@ -10,14 +10,12 @@ export default class Page extends AppEvents {
 
     async mounted() {
         super.mounted();
-        if (this.cursor && this.animateIn) {
-            this.cursor.isListening = true;
-            this.cursor.enable();
-        }
+        if (this.cursor) this.cursor.enable();
     }
 
     destroyed() {
-        this.$log('Destroyed');
+        super.destroyed();
+        if (this.cursor) this.cursor.disable();
     }
 
     animateIn() {
