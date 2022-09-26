@@ -10,6 +10,11 @@ module.exports = merge(config, {
 
     devServer: {
         writeToDisk: true,
+        disableHostCheck: true,
+        https: false,
+        public: '0.0.0.0:8080',
+        port: '8080',
+        host: '0.0.0.0',
     },
 
     output: {
