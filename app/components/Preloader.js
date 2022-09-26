@@ -1,6 +1,7 @@
 import { Base } from '@studiometa/js-toolkit';
 import { intervalPromise } from '../utils/intervalPromise';
 import gsap from 'gsap';
+import { removeClass } from '@studiometa/js-toolkit/utils';
 
 export default class Preloader extends Base {
     static config = {
@@ -29,6 +30,7 @@ export default class Preloader extends Base {
         return new Promise(resolve => {
             gsap.timeline({
                 onStart: () => {
+                    removeClass(this.$el, 'is-hidden');
                     gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
                     const namePathLength = this.$refs.namePath.getTotalLength();
                     gsap.set(this.$refs.namePath, { strokeDasharray: `${namePathLength} ${namePathLength}` });
