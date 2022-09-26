@@ -7,7 +7,7 @@ const { documentToHtmlString } = require('@contentful/rich-text-html-renderer');
 const app = express();
 const path = require('path');
 
-const port = 3000;
+const port = process.env.PORT || 8080;
 
 const log = data => console.log(JSON.stringify(data, null, 2));
 
