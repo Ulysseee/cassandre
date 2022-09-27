@@ -4,6 +4,12 @@
     &-projectsButton {
         display: flex;
         justify-content: center;
-        margin-bottom: 140px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+
+        @include respond-to('large') {
+            margin-top: 0;
+            margin-bottom: 140px;
+        }
     }
 }

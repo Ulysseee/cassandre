@@ -156,7 +156,7 @@ const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');
 
 const bootApp = async () => {
-    await preloader.animateOut();
+    // await preloader.animateOut();
     app.showCurrentPage();
 };
 
@@ -164,4 +164,4 @@ const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
 });
 
-Promise.all([appLoaded, preloader.animateIn()]).then(bootApp);
+Promise.all([appLoaded]).then(bootApp);

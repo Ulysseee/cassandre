@@ -1,5 +1,5 @@
 .section-work {
-    padding: 60px 0;
+    padding: 40px 0;
 
     @include index-layer(content, card);
 
@@ -31,20 +31,32 @@
     &:nth-of-type(3n+1) .section-work {
 
         &__cover {
+            height: 0;
+            padding-bottom: 61%;
 
             @include respond-to('large') {
                 width: 735px;
                 height: 450px;
+                padding-bottom: 0;
             }
         }
 
         &__scribble {
-            top: 93%;
-            left: 4%;
+            width: 11%;
+            top: -10%;
+            left: 3%;
+
+            @include respond-to('large') {
+                top: 93%;
+                left: 4%;
+            }
         }
 
         &__text {
-            left: 97%;
+
+            @include respond-to('large') {
+                left: 97%;
+            }
         }
     }
 
@@ -52,32 +64,53 @@
 
         &__container {
             justify-content: center;
-            margin-right: 140px;
+
+            @include respond-to('large') {
+                margin-right: 140px;
+            }
         }
 
         &__cover {
+            height: 0;
+            padding-bottom: 61%;
 
             @include respond-to('large') {
                 width: 720px;
                 height: 440px;
+                padding-bottom: 0;
             }
         }
 
         &__scribble {
+            width: 26%;
             top: -10%;
-            left: 90%;
+            right: 0;
+
+            @include respond-to('large') {
+                top: -10%;
+                left: 90%;
+            }
         }
 
         &__text {
-            right: 98%;
+
+            @include respond-to('large') {
+                right: 98%;
+            }
         }
 
         &__header {
-            flex-direction: row-reverse;
+
+            @include respond-to('large') {
+                flex-direction: row-reverse;
+            }
         }
 
         &__index {
-            margin: 4px 16px 0 0;
+
+            @include respond-to('large') {
+                margin: 4px 16px 0 0;
+            }
         }
     }
 
@@ -88,21 +121,37 @@
         }
 
         &__text {
-            width: 480px;
-            left: 97%;
+
+            @include respond-to('large') {
+                width: 480px;
+                left: 97%;
+            }
         }
 
         &__cover {
+            width: 67%;
+            height: 0;
+            padding-bottom: 95%;
+            margin-left: 12%;
 
             @include respond-to('large') {
                 width: 382px;
                 height: 540px;
+                padding-bottom: 0;
+                margin-left: 0;
             }
         }
 
         &__scribble {
-            right: 76%;
-            bottom: 6%;
+            width: 35%;
+            top: 53%;
+            right: -3%;
+
+            @include respond-to('large') {
+                right: 76%;
+                top: unset;
+                bottom: 6%;
+            }
         }
     }
 
@@ -175,12 +224,16 @@
 
     &__link {
         position: relative;
-        display: flex;
-        align-items: center;
+
+        @include respond-to('large') {
+            display: flex;
+            align-items: center;
+        }
     }
 
     &__cover {
         position: relative;
+        width: 100%;
         clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
         transition: clip-path 0.7s $strong-ease-out, transform 0.9s $strong-ease-out;
 
@@ -188,6 +241,7 @@
     }
 
     &__cover-inner {
+        position: absolute;
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -210,10 +264,13 @@
     }
 
     &__text {
+        margin-top: 16px;
+
         @include index-layer(content, card, raised);
 
         @include respond-to('large') {
             position: absolute;
+            margin-top: 0;
         }
     }
 
@@ -230,25 +287,40 @@
     &__index {
         font-family: $rebond-grotesque-extralight;
         color: $beige;
-        margin: 12px 0 0 16px;
+        margin: 16px 0 0 12px;
+
+        @include respond-to('large') {
+
+        }
     }
 
     &__tags {
-        margin: 32px 0 0 122px;
+        display: flex;
+        gap: 16px;
+        margin-top: 12px;
+
+        @include respond-to('large') {
+            flex-direction: column;
+            gap: 4px;
+            margin: 32px 0 0 122px;
+        }
     }
 
     &__tag-item {
         font-family: $neue-montreal-regular;
         color: $beige;
         text-transform: uppercase;
-        margin-top: 4px;
-
-        &:first-of-type {
-            margin-top: 0;
-        }
     }
 
     &__scribble {
         position: absolute;
+
+        svg path {
+            stroke-width: 4px;
+
+            @include respond-to('large') {
+                stroke-width: 3px;
+            }
+        }
     }
 }

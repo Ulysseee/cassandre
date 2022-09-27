@@ -138,16 +138,31 @@
 }
 
 .ui-p-m {
-    font-size: 16px;
+    font-size: font-size(14px, 16px);
     line-height: 1.67;
+
+    @include respond-to('large') {
+        font-size: font-size(14px, 14px, 'desktop');
+        line-height: 1.67;
+    }
 }
 
 .ui-p-s {
-    font-size: 14px;
+    font-size: font-size(12px, 14px);
     line-height: 1.42;
+
+    @include respond-to('large') {
+        font-size: font-size(12px, 14px, 'desktop');
+        line-height: 1.42;
+    }
 }
 
 .ui-p-xs {
+    font-size: 12px;
+    line-height: 1.42;
+}
+
+.ui-p-xxs {
     font-size: 12px;
     line-height: 1.43;
 }

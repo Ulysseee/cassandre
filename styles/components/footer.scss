@@ -6,7 +6,6 @@
     flex-direction: column;
     align-items: center;
     color: $black;
-    //background-color: $beige;
 
     @include index-layer(content, base);
 
@@ -26,7 +25,6 @@
     &-wrapper {
         width: 100%;
         padding-top: 60px;
-        //background-color: $beige;
 
         @include index-layer(content, raised);
 
@@ -46,7 +44,7 @@
 
     &-title {
         letter-spacing: -2px;
-        max-width: 192px;
+        max-width: 50%;
         margin-bottom: 24px;
 
         @include respond-to('large') {
@@ -55,7 +53,7 @@
     }
 
     &-paragraph {
-        max-width: 290px;
+        max-width: 78%;
         padding-bottom: 42px;
         line-height: 1.42;
 

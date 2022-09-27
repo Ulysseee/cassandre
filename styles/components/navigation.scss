@@ -4,6 +4,7 @@
     width: 100%;
 
     @extend .ui-container;
+
     @include index-layer(fixed, nav);
 
     &.of-dark-page .component-navigation {
@@ -25,15 +26,20 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 50px 0;
-
-        @include respond-to('large') {
-            padding: 34px 0;
-        }
+        padding: 34px 0;
     }
 
-    &-entryFigure path {
-        stroke: $black;
+    &-entryFigure {
+        width: 48px;
+
+        @include respond-to('large') {
+            width: 58px;
+        }
+
+        path {
+
+            stroke: $black;
+        }
     }
 
     &-entries {
