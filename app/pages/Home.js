@@ -1,5 +1,6 @@
 import Page from '../containers/Page';
 import Work from '../components/Work';
+import Footer from '../components/Footer';
 
 export default class Projects extends Page {
     static config = {
@@ -8,6 +9,7 @@ export default class Projects extends Page {
         refs: [...Page.config.refs],
         components: {
             Work,
+            Footer,
         },
     };
 }

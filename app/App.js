@@ -88,7 +88,7 @@ class App extends AppEvents {
 
         await Promise.all([
             new Promise(resolve => {
-                setTimeout(resolve, 1000);
+                setTimeout(resolve, 700);
             }),
             ...preloadedImages,
         ]);

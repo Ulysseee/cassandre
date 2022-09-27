@@ -6,7 +6,7 @@
     flex-direction: column;
     align-items: center;
     color: $black;
-    background-color: $beige;
+    //background-color: $beige;
 
     @include index-layer(content, base);
 
@@ -15,23 +15,20 @@
         margin-left: -4%;
     }
 
-    &-spacer {
-        width: 100%;
-        height: 128px;
-    }
-
     &-overlay {
         position: absolute;
         top: 0;
-        width: 112%;
-        height: 370px;
-        border-radius: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
     &-wrapper {
         width: 100%;
         padding-top: 60px;
-        background-color: $beige;
+        //background-color: $beige;
+
+        @include index-layer(content, raised);
 
         @include respond-to('large') {
             padding-top: 100px;

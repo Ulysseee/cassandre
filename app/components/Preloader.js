@@ -60,8 +60,6 @@ export default class Preloader extends Base {
         });
     }
 
-    é;
-
     async animateOut () {
         return new Promise(resolve => {
             gsap.timeline({
