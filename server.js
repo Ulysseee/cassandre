@@ -38,7 +38,7 @@ const handleColorName = col => {
 
 const handleLinkResolver = data => {
     if (data.sys.contentType.sys.id === 'work') {
-        return `/creation/${data.fields.slug}`;
+        return `/creation/${ data.fields.slug }`;
     }
 
     if (data.sys.contentType.sys.id === 'contact') {
@@ -54,11 +54,28 @@ const handleLinkResolver = data => {
 
 const handleMail = links => links.find(link => link.key === 'mail');
 
+const handleFormat = format => {
+    if (format === 'Carré') return 'square';
+    if (format === 'Horizontal') return 'horizontal';
+    if (format === 'Vertical') return 'vertical';
+    return 'square';
+};
+
+const handleWorksRows = works => {
+    return works.reduce((prev, curr, index) => (index % 2 === 0 ? prev.push([curr])
+        : prev[prev.length - 1].push(curr)) && prev, []);
+};
+
+const handleYear = date => new Date(date).getFullYear();
+
 app.use((req, res, next) => {
     res.locals.renderRichText = documentToHtmlString;
     res.locals.getColorName = handleColorName;
     res.locals.getLinkUrl = handleLinkResolver;
     res.locals.getMail = handleMail;
+    res.locals.getFormat = handleFormat;
+    res.locals.getWorksRows = handleWorksRows;
+    res.locals.getYear = handleYear;
 
     next();
 });
@@ -69,17 +86,12 @@ app.set('view engine', 'pug');
 app.get('/', async (req, res) => {
     const CMS = await initCMS();
     const common = await getCommon(CMS);
-    const home = await CMS.getEntry('3MspXo6cNqu83f6mwIBXWD');
-    const works = await CMS.getEntries({
-        content_type: 'work',
-        order: '-fields.year',
-    });
+    const homePage = await CMS.getEntry('3MspXo6cNqu83f6mwIBXWD');
     const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
 
     res.render('pages/home', {
         ...common,
-        home: home.fields,
-        works: works.items,
+        homePage: homePage.fields,
         footer: footer.fields,
     });
 });
@@ -89,7 +101,16 @@ app.get('/ui', (req, res) => {
 });
 
 app.get('/projects', async (req, res) => {
-    res.render('pages/projects');
+    const CMS = await initCMS();
+    const common = await getCommon(CMS);
+    const projectsPage = await CMS.getEntry('19D81NneK510sD1PAjAVNS');
+    const footer = await CMS.getEntry('2nsk60KEJQkGM7SFWFfpfQ');
+
+    res.render('pages/projects', {
+        ...common,
+        projectsPage: projectsPage.fields,
+        footer: footer.fields,
+    });
 });
 
 app.get('/about', async (req, res) => {
@@ -97,5 +118,5 @@ app.get('/about', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port ${ port }`);
 });

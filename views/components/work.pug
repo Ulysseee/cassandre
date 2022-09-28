@@ -19,7 +19,7 @@ article.section-work(data-component='Work' class=`is-${ getColorName(work.fields
             .section-work__text
                 header.section-work__header
                     h2.ui-h4.section-work__name(data-component='Title')=work.fields.name
-                    span.ui-p-s.section-work__index(data-anim-text)=`(0${ index + 1 })`
+                    span.ui-p-s.section-work__index(data-component='Paragraph' data-option-delay='0.2')=`(0${ index + 1 })`
                 ul.section-work__tags(data-component='Paragraph' data-option-delay='0.3')
                     each tag in work.metadata.tags
                         li.ui-p-xs.section-work__tag-item=tag.sys.id

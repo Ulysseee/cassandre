@@ -3,6 +3,16 @@ extends ../base.pug
 block variables
     - var pageName = 'projects'
     - var pageComponent = 'Projects'
+    - var pageShade = 'light'
 
 block page
-    h1.ui-h1(data-component='Title') Projects
+    header.page-projects-header
+        h1.ui-h5.page-projects-title(data-component='Title')=projectsPage.title
+        .ui-p-m.page-projects-paragraph(data-component='Paragraph' data-option-delay='0.5')!=renderRichText(projectsPage.paragraph)
+    section.page-projects-grid
+        each row in getWorksRows(projectsPage.works)
+            .page-projects-gridRow
+                 each work, index in row
+                     +work-card(work.fields.format, work.fields.name, work.fields.description, getYear(work.fields.date), getLinkUrl(work), work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.description, index * 0.3)
+
+    include ../components/footer

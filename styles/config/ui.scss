@@ -2,7 +2,7 @@
     padding-left: 24px;
     padding-right: 24px;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         padding-left: 4%;
         padding-right: 4%;
     }
@@ -11,7 +11,7 @@
         padding-left: 24px;
         padding-right: 24px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             padding-left: 12%;
             padding-right: 12%;
         }
@@ -23,7 +23,7 @@
     font-size: font-size(67px, 163px);
     line-height: 1.14;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(67px, 163px, 'desktop');
         line-height: 1.14;
     }
@@ -34,7 +34,7 @@
     font-size: font-size(56px, 140px);
     line-height: 0.9;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(56px, 140px, 'desktop');
         line-height: 0.8;
     }
@@ -45,7 +45,7 @@
     font-size: font-size(48px, 80px);
     line-height: 0.93;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(48px, 80px, 'desktop');
         line-height: 0.93;
     }
@@ -56,7 +56,7 @@
     font-size: font-size(48px, 80px);
     line-height: 0.92;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(48px, 80px, 'desktop');
         line-height: 0.92;
     }
@@ -67,7 +67,7 @@
     font-size: font-size(48px, 80px);
     line-height: 0.9;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(48px, 80px, 'desktop');
         line-height: 0.9;
     }
@@ -78,7 +78,7 @@
     font-size: font-size(40px, 64px);
     line-height: 1;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(40px, 64px, 'desktop');
         line-height: 0.95;
     }
@@ -89,7 +89,7 @@
     font-size: font-size(22px, 40px);
     line-height: 1.05;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(22px, 40px, 'desktop');
         line-height: 0.95;
     }
@@ -100,7 +100,7 @@
     font-size: font-size(22px, 40px);
     line-height: 1.15;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(22px, 40px, 'desktop');
         line-height: 1.15;
     }
@@ -109,11 +109,11 @@
 .ui-h9 {
     font-family: $rebond-extralight;
     font-size: font-size(24px, 32px);
-    line-height: 0.9;
+    line-height: 1;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(24px, 32px, 'desktop');
-        line-height: 0.9;
+        line-height: 1;
     }
 }
 
@@ -121,7 +121,7 @@
     font-size: font-size(20px, 16px);
     line-height: 0.875;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(20px, 16px, 'desktop');
         line-height: 0.9;
     }
@@ -131,7 +131,7 @@
     font-size: font-size(16px, 18px);
     line-height: 0.9;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(16px, 18px, 'desktop');
         line-height: 0.9;
     }
@@ -141,7 +141,7 @@
     font-size: font-size(14px, 16px);
     line-height: 1.67;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(14px, 14px, 'desktop');
         line-height: 1.67;
     }
@@ -151,7 +151,7 @@
     font-size: font-size(12px, 14px);
     line-height: 1.42;
 
-    @include respond-to('large') {
+    @include respond-to('medium') {
         font-size: font-size(12px, 14px, 'desktop');
         line-height: 1.42;
     }

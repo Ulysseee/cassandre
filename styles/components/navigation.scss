@@ -32,7 +32,7 @@
     &-entryFigure {
         width: 48px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             width: 58px;
         }
 
@@ -47,7 +47,7 @@
         align-items: center;
         gap: 24px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             gap: 40px;
         }
     }

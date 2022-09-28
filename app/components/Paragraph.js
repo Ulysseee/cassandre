@@ -9,6 +9,17 @@ export default class Paragraph extends Base {
         },
     };
 
+    isVisible = false;
+
+    mounted() {
+        if (this.isVisible) return;
+        this.isVisible = true;
+        gsap.set(this.$el, {
+            y: 12,
+            opacity: 0,
+        });
+    }
+
     animateIn () {
         gsap.fromTo(this.$el, {
             y: 12,

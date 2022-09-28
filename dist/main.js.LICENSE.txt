@@ -48,6 +48,10 @@
 
 /*! ../components/Footer */
 
+/*! ../components/Paragraph */
+
+/*! ../components/Title */
+
 /*! ../components/Work */
 
 /*! ../components/WorkCard */
@@ -103,8 +107,6 @@
 /*! ./SockJSClient */
 
 /*! ./Title */
-
-/*! ./animate-style.es.js */
 
 /*! ./clamp.es.js */
 
@@ -206,8 +208,6 @@
 
 /*! ./utils/calc-time.es.js */
 
-/*! ./utils/controls.es.js */
-
 /*! ./utils/createSocketUrl */
 
 /*! ./utils/css-var.es.js */
@@ -226,8 +226,6 @@
 
 /*! ./utils/log */
 
-/*! ./utils/options.es.js */
-
 /*! ./utils/reloadApp */
 
 /*! ./utils/sendMessage */
@@ -245,8 +243,6 @@
 /*! ./xml-entities */
 
 /*! @motionone/animation */
-
-/*! @motionone/dom */
 
 /*! @motionone/easing */
 
@@ -448,10 +444,6 @@
   !*** ./node_modules/split-type/dist/index.js ***!
   \***********************************************/
 
-/*!************************************************!*\
-  !*** ./node_modules/motion/dist/animate.es.js ***!
-  \************************************************/
-
 /*!*************************************************!*\
   !*** ./node_modules/html-entities/lib/index.js ***!
   \*************************************************/
@@ -591,10 +583,6 @@
 /*!*************************************************************!*\
   !*** ./node_modules/webpack-dev-server/client/utils/log.js ***!
   \*************************************************************/
-
-/*!**************************************************************!*\
-  !*** ./node_modules/@motionone/dom/dist/animate/index.es.js ***!
-  \**************************************************************/
 
 /*!**************************************************************!*\
   !*** ./node_modules/@motionone/dom/dist/animate/style.es.js ***!

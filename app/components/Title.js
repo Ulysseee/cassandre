@@ -8,6 +8,16 @@ export default class Title extends Base {
     };
 
     splitText = null;
+    isVisible = false;
+
+    mounted() {
+        if (this.isVisible) return;
+        this.isVisible = true;
+        this.split();
+        gsap.set(this.splitText.chars, {
+            yPercent: 100,
+        });
+    }
 
     split () {
         this.$el.style.fontKerning = 'none';
@@ -23,7 +33,6 @@ export default class Title extends Base {
     }
 
     animateIn () {
-        this.split();
         gsap.fromTo(this.splitText.chars, {
             yPercent: 100,
         }, {

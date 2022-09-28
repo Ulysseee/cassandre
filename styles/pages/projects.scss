@@ -1,0 +1,66 @@
+.page-projects {
+    background-color: $beige;
+
+    &-header {
+        @extend .ui-container;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 156px;
+        margin-bottom: 116px;
+    }
+
+    &-title {
+        max-width: 341px;
+        letter-spacing: -3px
+    }
+
+    &-paragraph {
+        max-width: 466px;
+        margin-top: 32px;
+    }
+
+    &-grid {
+        @extend .ui-container;
+
+        @include respond-to('medium') {
+            margin-bottom: 200px;
+        }
+
+        &Row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+
+            @include respond-to('medium') {
+                margin-bottom: 140px;
+            }
+
+            &:nth-of-type(3n+1) {
+                justify-content: flex-end;
+            }
+
+            &:nth-of-type(3n+2) {
+                justify-content: flex-start;
+            }
+
+            &:nth-of-type(3n+3) {
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .component-footer {
+
+        &-overlayRound {
+            background-color: $beige;
+        }
+
+        &-wrapper {
+            @extend .ui-container;
+        }
+    }
+}

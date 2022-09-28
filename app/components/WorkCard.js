@@ -1,7 +1,7 @@
 import AppEvents from '../containers/AppEvents';
+import gsap from 'gsap';
 import { withIntersectionObserver } from '@studiometa/js-toolkit';
 import { removeClass } from '@studiometa/js-toolkit/utils';
-import { animate } from 'motion';
 
 export default class WorkCard extends withIntersectionObserver(AppEvents, {
     rootMargin: '0px',
@@ -10,7 +10,7 @@ export default class WorkCard extends withIntersectionObserver(AppEvents, {
     static config = {
         ...AppEvents.config,
         name: 'WorkCard',
-        refs: [...AppEvents.config.refs, 'nameInners[]'],
+        refs: [...AppEvents.config.refs, 'name'],
         options: {
             transitionDelay: {
                 type: Number,
@@ -20,22 +20,23 @@ export default class WorkCard extends withIntersectionObserver(AppEvents, {
     };
 
     isVisible = false;
+    nameTween = null;
 
     onMouseenter() {
-        [...this.$refs.nameInners].forEach(nameInner => {
-            animate(nameInner,
-                { transform: 'translate3d(0, -100%, 0)' },
-                { duration: 1.4, easing: [.12, .82, 0, .99] },
-            );
+        if (this.nameTween) this.nameTween.kill();
+        this.nameTween = gsap.to(this.$refs.name, {
+            translateY: -6,
+            duration: 0.6,
+            ease: 'power4.out',
         });
     }
 
     onMouseleave() {
-        [...this.$refs.nameInners].forEach(nameInner => {
-            animate(nameInner,
-                { transform: 'translate3d(0, 0, 0)' },
-                { duration: 0.8, easing: [.12, .82, 0, .99] },
-            );
+        if (this.nameTween) this.nameTween.kill();
+        this.nameTween = gsap.to(this.$refs.name, {
+            translateY: 0,
+            duration: 0.4,
+            ease: 'power4.out',
         });
     }
 

@@ -1,19 +1,14 @@
 .component-footer {
     position: relative;
-    width: calc(100% + 2 * 24px);
-    margin-left: -24px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: $beige;
     color: $black;
+    overflow: hidden;
 
     @include index-layer(content, base);
-
-    @include respond-to('large') {
-        width: 108%;
-        margin-left: -4%;
-    }
 
     &-overlay {
         position: relative;
@@ -26,6 +21,7 @@
             position: relative;
             top: 0;
             height: 10vh;
+            transform: translateY(-1px);
             will-change: height;
             overflow: hidden;
         }
@@ -35,7 +31,7 @@
             content: "";
             display: block;
             position: absolute;
-            background: $black;
+            background-color: $black;
             height: 750%;
             left: 50%;
             border-radius: 50%;
@@ -60,14 +56,14 @@
         padding-top: 75px;
         box-shadow: 0 5px 0 5px $black;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             padding-top: 100px;
         }
     }
 
     &-top {
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -79,7 +75,7 @@
         max-width: 50%;
         margin-bottom: 24px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             max-width: 345px;
         }
     }
@@ -89,7 +85,7 @@
         padding-bottom: 42px;
         line-height: 1.42;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             max-width: 405px;
         }
     }
@@ -108,7 +104,7 @@
         align-items: flex-end;
         padding: 24px 0;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             flex-direction: row;
             align-items: center;
             padding: 56px 0;
@@ -121,7 +117,7 @@
         justify-content: space-between;
         gap: 40px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             width: auto;
         }
     }
@@ -136,7 +132,7 @@
         align-items: center;
         margin-top: 60px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             margin-top: 0;
         }
     }
@@ -151,14 +147,14 @@
         position: absolute;
         left: -28px;
 
-        @include respond-to('large') {
+        @include respond-to('medium') {
             left: -64px;
         }
 
         svg {
             width: 37px;
 
-            @include respond-to('large') {
+            @include respond-to('medium') {
                 width: 82px;
             }
         }
