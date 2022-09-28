@@ -153,7 +153,7 @@ export default class Preloader extends Base {
 
         const widthSegments = Math.ceil(overlay.width / 40);
         const t = (1 - this.ratio) * overlay.height;
-        const amplitude = (window.innerWidth / 4) * Math.sin(this.ratio * Math.PI);
+        const amplitude = (window.innerWidth / 5) * Math.sin(this.ratio * Math.PI);
 
         overlay.context.lineTo(0, t);
 

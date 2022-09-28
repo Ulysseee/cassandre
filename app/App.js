@@ -35,6 +35,9 @@ class App extends AppEvents {
     mounted () {
         super.mounted();
 
+        const appOverlay = document.querySelector('.appOverlay');
+        appOverlay.remove();
+
         this.updateCurrentPageInstance();
 
         this.setupListeners();
@@ -158,7 +161,7 @@ const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');
 
 const bootApp = async () => {
-    // await preloader.animateOut();
+    await preloader.animateOut();
     app.showCurrentPage();
 };
 
@@ -166,4 +169,4 @@ const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
 });
 
-Promise.all([appLoaded]).then(bootApp);
+Promise.all([appLoaded, preloader.animateIn()]).then(bootApp);
