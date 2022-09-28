@@ -10,7 +10,6 @@ export default class Paragraph extends Base {
     };
 
     animateIn () {
-        console.log(this.$options.delay);
         gsap.fromTo(this.$el, {
             y: 12,
             opacity: 0,

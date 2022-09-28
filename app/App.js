@@ -35,8 +35,7 @@ class App extends AppEvents {
     mounted () {
         super.mounted();
 
-        const appOverlay = document.querySelector('.appOverlay');
-        appOverlay.remove();
+        this.removeAppOverlay();
 
         this.updateCurrentPageInstance();
 
@@ -44,13 +43,15 @@ class App extends AppEvents {
         this.setupInternalLinks();
 
         this.createLenis().stop();
-
-        this.updateFrame();
     }
 
-    updateFrame(time) {
+    removeAppOverlay() {
+        const appOverlay = document.getElementById('appOverlay');
+        if (appOverlay) appOverlay.remove();
+    }
+
+    ticked({ time }) {
         window.lenis.raf(time);
-        requestAnimationFrame(this.updateFrame.bind(this));
     }
 
     showCurrentPage() {
