@@ -10,6 +10,7 @@ import { getInternalLinks, preloadImages } from './utils/dom';
 import Preloader from './components/Preloader';
 import Parallax from './components/Parallax';
 import Lenis from '@studio-freight/lenis'
+import Title from './components/Title';
 
 class App extends AppEvents {
     static config = {
@@ -22,6 +23,7 @@ class App extends AppEvents {
             About,
             Projects,
             Ui,
+            Title,
         },
         refs: [...AppEvents.config.refs, 'pageContainer'],
     };

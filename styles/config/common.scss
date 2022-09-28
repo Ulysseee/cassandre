@@ -5,6 +5,8 @@ html {
     width: 100%;
     min-height: 100%;
     scroll-behavior: initial;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -13,6 +15,7 @@ body {
     min-height: 100%;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
 }
 
 .app {
@@ -21,7 +24,7 @@ body {
 
     background-color: $beige;
 
-    font-family: $neue-montreal-regular;
+    font-family: $neue-regular;
     font-size: 16px;
     line-height: 1;
     color: $black;
@@ -37,4 +40,13 @@ body {
     padding-top: 140px;
 
     @include index-layer(relative, content);
+}
+
+* {
+    font-kerning: none;
+}
+
+.word {
+    display: inline-flex!important;
+    overflow: hidden;
 }

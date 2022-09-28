@@ -1,11 +1,11 @@
 article.section-work(data-component='Work' class=`is-${ getColorName(work.fields.color) }`)
     .container.section-work__container
         a.section-work__link(href=getLinkUrl(work) data-ref="cursorLink[]" data-cursor-sticky)
-            figure.section-work__cover(data-ref="cover" data-rotate-value=`${ (index % 2 === 0 ? -4 : 3) }`)
+            figure.section-work__cover(data-ref='cover' data-rotate-value=`${ (index % 2 === 0 ? -4 : 3) }`)
                 .section-work__cover-inner
-                    +parallax(work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.description)
+                    +parallax(work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.description, 12, false)
                 .section-work__cover-overlay(data-ref="coverOverlay" data-animation="image-overlay")
-            .section-work__scribble
+            .section-work__scribble(data-ref='scribble')
                 +svg-reveal
                     if index === 0 || (index + 1) % 4 === 0
                         svg(data-ref="svg" width='94' height='108' viewbox='0 0 94 108' fill='none' xmlns='http://www.w3.org/2000/svg')
@@ -18,8 +18,8 @@ article.section-work(data-component='Work' class=`is-${ getColorName(work.fields
                             path(d='M1.00003 34.8546C6.86615 29.9846 10.6176 27.1048 16.4627 22.7054C23.7691 17.2061 34.1355 9.64188 35.4711 9.09195C36.8066 8.54201 37.4351 7.6781 37.9065 8.38503C38.3779 9.09195 36.8852 10.5848 35.4711 11.5276C34.3397 12.2818 14.2313 28.3101 14.9662 29.0471C15.7011 29.784 34.0255 15.7543 36.4138 15.0629C39.3992 14.1987 39.7134 14.1987 39.9491 15.0629C40.1848 15.9271 33.3498 24.0976 32.7999 24.8047C32.25 25.5117 30.6002 27.0044 32.7999 25.9046C34.9997 24.8047 53.7762 11.5276 55.426 10.742C57.0758 9.95633 58.4114 10.1135 57.2329 11.5276C56.2902 12.6589 38.2624 24.2285 39.9491 25.3546C41.6359 26.4808 71.6414 6.76668 73.3383 6.89238C75.4595 7.04951 74.3596 9.01345 73.3383 9.48483C72.5213 9.86193 50.2679 22.4083 51.0265 23.469C51.785 24.5297 81.8231 5.91808 83.3943 5.79238C84.9656 5.66668 84.8347 6.47334 84.5728 6.89238C84.5728 6.89238 59.8595 22.8853 60.1397 23.469C60.42 24.0527 83.0143 11.5342 89.5397 8.33684C96.0652 5.13945 100.766 2.89762 101.825 4.41012C102.685 5.6383 100.955 7.53361 98.9994 9.00469C97.0908 10.4407 80.1506 21.7209 80.5661 22.2905C80.9816 22.86 122.189 5.82407 125.268 5.00686C129.118 3.98535 132.889 2.80691 133.046 3.35685C133.172 3.7968 107.618 14.9712 108.063 16.0055C108.508 17.0398 146.527 1 147.344 1C148.366 1 149.23 2.17839 146.794 3.35685C144.846 4.29961 123.628 13.9628 124.011 14.9841C124.395 16.0055 155.091 2.8701 160.307 5.00686C165.524 7.14362 140.084 19.6617 140.588 20.6407C141.092 21.6196 171.07 10.5061 174.527 13.0201C177.984 15.5341 161.018 24.5711 161.407 25.433C161.797 26.2949 199.589 14.4342 199.589 14.4342' stroke='#F5EDE2' stroke-width='2' stroke-linecap='round')
             .section-work__text
                 header.section-work__header
-                    h2.ui-h4.section-work__name(data-anim-title)=work.fields.name
+                    h2.ui-h4.section-work__name(data-component='Title')=work.fields.name
                     span.ui-p-s.section-work__index(data-anim-text)=`(0${ index + 1 })`
-                ul.section-work__tags(data-anim-text)
+                ul.section-work__tags(data-component='Paragraph' data-option-delay='0.3')
                     each tag in work.metadata.tags
                         li.ui-p-xs.section-work__tag-item=tag.sys.id

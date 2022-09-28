@@ -19,7 +19,7 @@
 }
 
 .ui-h1 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(67px, 163px);
     line-height: 1.14;
 
@@ -30,7 +30,7 @@
 }
 
 .ui-h2 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(56px, 140px);
     line-height: 0.9;
 
@@ -41,7 +41,7 @@
 }
 
 .ui-h3 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(48px, 80px);
     line-height: 0.93;
 
@@ -52,18 +52,18 @@
 }
 
 .ui-h4 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(48px, 80px);
-    line-height: 1.14;
+    line-height: 0.92;
 
     @include respond-to('large') {
         font-size: font-size(48px, 80px, 'desktop');
-        line-height: 0.83;
+        line-height: 0.92;
     }
 }
 
 .ui-h5 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(48px, 80px);
     line-height: 0.9;
 
@@ -74,7 +74,7 @@
 }
 
 .ui-h6 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(40px, 64px);
     line-height: 1;
 
@@ -85,7 +85,7 @@
 }
 
 .ui-h7 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(22px, 40px);
     line-height: 1.05;
 
@@ -96,7 +96,7 @@
 }
 
 .ui-h8 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(22px, 40px);
     line-height: 1.15;
 
@@ -107,7 +107,7 @@
 }
 
 .ui-h9 {
-    font-family: $rebond-grotesque-extralight;
+    font-family: $rebond-extralight;
     font-size: font-size(24px, 32px);
     line-height: 0.9;
 

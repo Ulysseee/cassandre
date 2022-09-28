@@ -89,11 +89,11 @@ module.exports = {
             },
 
             {
-                test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp|otf|ttf|ico)$/,
+                test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp|otf|eot|ttf|ico)$/,
                 loader: 'file-loader',
                 options: {
                     name() {
-                        return '[hash].[ext]';
+                        return '[name].[ext]';
                     },
                 },
             },
