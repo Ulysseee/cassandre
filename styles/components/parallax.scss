@@ -1,15 +1,7 @@
 .component-parallax {
-    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
 
-    &-image {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        @extend %cover-media-container;
-    }
+    @extend %cover-media-container;
 }
