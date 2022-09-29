@@ -1,17 +1,17 @@
 .section-work {
-    @extend .ui-container;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: calc(var(--section-padding) * .8);
+    padding-bottom: calc(var(--section-padding) * .8);
 
-    padding-top: 40px;
-    padding-bottom: 40px;
+    @include index-layer(relative, content, card);
 
-    @include index-layer(content, card);
-
-    @include respond-to('medium') {
-        padding-top: 116px;
-        padding-bottom: 116px;
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        padding-top: calc(var(--section-padding) * .4);
+        padding-bottom: calc(var(--section-padding) * .4);
     }
 
-    // STATES`
+    // STATES
     &.is-visible .section-work {
 
         &__cover {
@@ -50,85 +50,87 @@
     }
 
     // FORMATS & ALIGNMENTS
-    &.is-alignCenter .section-work {
-
-        &__container {
-            justify-content: center;
-        }
+    &.is-alignCenter {
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    &.is-horizontal .section-work, &.is-square .section-work {
+    &.is-horizontal, &.is-square {
+        width: 51vw;
 
-        &__cover {
-            height: 0;
+        .section-work__cover {
             padding-bottom: 61%;
+        }
 
-            @include respond-to('medium') {
-                width: 735px;
-                height: 450px;
-                padding-bottom: 0;
-            }
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+            width: 64vw;
+        }
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 100%;
         }
     }
 
-    &.is-vertical .section-work {
+    &.is-vertical {
+        width: 26.6vw;
 
-        &__cover {
-            width: 67%;
-            height: 0;
-            padding-bottom: 95%;
-            margin-left: 12%;
-
-            @include respond-to('medium') {
-                width: 382px;
-                height: 540px;
-                padding-bottom: 0;
-                margin-left: 0;
-            }
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+            width: 32vw;
         }
 
-        &__scribble {
-            width: 35%;
-            top: 53%;
-            right: -3%;
-
-            @include respond-to('medium') {
-                right: 76%;
-                top: unset;
-                bottom: 6%;
-            }
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 100%;
         }
 
-        &__text {
+        .section-work {
 
-            @include respond-to('medium') {
+            &__cover {
+                padding-bottom: 141%;
+            }
+
+            &__scribble {
+                width: 50%;
+                top: 87%;
+                left: -27%;
+
+                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                    width: 35%;
+                    top: 62%;
+                    right: -5%;
+                    left: unset;
+                }
+            }
+
+            &__text {
                 min-width: 130%;
                 left: 97%;
-            }
-        }
 
-        &__index {
-            flex-basis: 100%;
+                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                    min-width: unset;
+                }
+            }
         }
     }
 
     &.is-horizontal.is-alignLeft .section-work, &.is-square.is-alignLeft .section-work {
 
         &__scribble {
-            width: 11%;
-            top: -10%;
-            left: 3%;
+            width: 13%;
+            top: 93%;
+            left: 4%;
 
-            @include respond-to('medium') {
-                top: 93%;
-                left: 4%;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                width: 11%;
+                top: -10%;
+                left: 3%;
             }
         }
 
         &__text {
+            left: 97%;
 
-            @include respond-to('medium') {
-                left: 97%;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                left: unset;
             }
         }
     }
@@ -136,34 +138,35 @@
     &.is-horizontal.is-alignCenter .section-work, &.is-square.is-alignCenter .section-work {
 
         &__scribble {
-            width: 26%;
+            width: 30%;
             top: -10%;
-            right: 0;
+            left: 90%;
 
-            @include respond-to('medium') {
-                top: -10%;
-                left: 90%;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                width: 26%;
+                top: -6%;
+                left: unset;
+                right: 0;
             }
         }
 
         &__text {
-
-            @include respond-to('medium') {
-                right: 98%;
-            }
+            left: -25%;
         }
 
         &__header {
+            flex-direction: row-reverse;
 
-            @include respond-to('medium') {
-                flex-direction: row-reverse;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                flex-direction: row;
             }
         }
 
         &__index {
+            margin: 4px 16px 0 0;
 
-            @include respond-to('medium') {
-                margin: 4px 16px 0 0;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                margin: 10px 0 0 12px;
             }
         }
     }
@@ -212,21 +215,17 @@
     }
 
     &__container {
+        width: 100%;
         position: relative;
-        display: flex;
-        flex-direction: column;
-
-        @include respond-to('medium') {
-            flex-direction: row;
-        }
     }
 
     &__link {
-        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
 
-        @include respond-to('medium') {
-            display: flex;
-            align-items: center;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            flex-direction: column;
         }
     }
 
@@ -263,19 +262,23 @@
     }
 
     &__text {
-        margin-top: 16px;
 
-        @include index-layer(content, card, raised);
+        @include index-layer(absolute, content, card, raised);
 
-        @include respond-to('medium') {
-            position: absolute;
-            margin-top: 0;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            position: unset;
+            width: 100%;
+            margin-top: 16px;
         }
     }
 
     &__header {
         display: flex;
         align-items: flex-start;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            gap: 11px;
+        }
     }
 
     &__name {
@@ -286,22 +289,19 @@
     &__index {
         font-family: $rebond-extralight;
         color: $beige;
-        margin: 16px 0 0 12px;
-
-        @include respond-to('medium') {
-
-        }
+        margin: 10px 0 0 10px;
     }
 
     &__tags {
         display: flex;
-        gap: 16px;
-        margin-top: 12px;
+        flex-direction: column;
+        gap: 4px;
+        margin: 32px 0 0 40%;
 
-        @include respond-to('medium') {
-            flex-direction: column;
-            gap: 4px;
-            margin: 32px 0 0 122px;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            flex-direction: row;
+            gap: 16px;
+            margin: 12px 0 0 0;
         }
     }
 
@@ -315,10 +315,10 @@
         position: absolute;
 
         svg path {
-            stroke-width: 4px;
+            stroke-width: 3px;
 
             @include respond-to('medium') {
-                stroke-width: 3px;
+                stroke-width: 4px;
             }
         }
     }

@@ -26,7 +26,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 34px 0;
+        padding-top: calc(var(--section-padding) * 0.19);
+        padding-bottom: calc(var(--section-padding) * 0.19);
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            padding-top: calc(var(--section-padding) * 0.22);
+            padding-bottom: calc(var(--section-padding) * 0.22);
+        }
     }
 
     &-entryFigure {

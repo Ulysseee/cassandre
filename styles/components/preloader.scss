@@ -29,10 +29,10 @@
 
         &Frame {
             position: absolute;
-            width: 35%;
+            width: 15%;
 
-            @include respond-to('medium') {
-                width: 12%;
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                width: 40%;
             }
         }
     }

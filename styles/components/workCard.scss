@@ -2,49 +2,49 @@
     display: inline-block;
 
     &.is-horizontal {
-        width: 100%;
-
-        @include respond-to('medium') {
-            width: 507px;
-        }
+        //width: 35.2%;
+        width: min(507px, 46.7%);
 
         .component-workCard-cover {
-            padding-bottom: 98%;
-
-            @include respond-to('medium') {
-                padding-bottom: 79%;
-            }
+            padding-bottom: 79%;
         }
     }
 
     &.is-square {
-        width: 100%;
-
-        @include respond-to('medium') {
-            width: 548px;
-        }
+        //width: 39%;
+        width: min(548px, 46.7%);
 
         .component-workCard-cover {
-            padding-bottom: 98%;
-
-            @include respond-to('medium') {
-                padding-bottom: 98%;
-            }
+            padding-bottom: 98.3%;
         }
     }
 
     &.is-vertical {
-        width: 100%;
-
-        @include respond-to('medium') {
-            width: 568px;
-        }
+        //width: 39%;
+        width: min(568px, 46.7%);
 
         .component-workCard-cover {
-            padding-bottom: 98%;
+            padding-bottom: 125%;
+        }
+    }
 
-            @include respond-to('medium') {
-                padding-bottom: 125%;
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+
+        &.is-horizontal, &.is-vertical, &.is-square {
+            width: 100%;
+
+            .component-workCard-cover {
+                padding-bottom: 64%;
+            }
+        }
+    }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+
+        &.is-horizontal, &.is-vertical, &.is-square {
+
+            .component-workCard-cover {
+                padding-bottom: 98.2%;
             }
         }
     }
@@ -132,12 +132,12 @@
     }
 
     &-content {
-        margin-top: 24px;
+        padding-top: 2.5rem;
         transform-origin: left;
         transition: transform 2s cubic-bezier(.09,.94,0,.99);
 
-        @include respond-to('medium') {
-            margin-top: 40px;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            padding-top: 1.5rem;
         }
     }
 
@@ -154,10 +154,14 @@
         width: 100%;
         height: 1px;
         background-color: $black;
-        margin: 24px 0;
+        margin: 1.5rem 0;
         transform-origin: left;
         transition: transform 1.4s $strong-ease-out;
         transition-delay: 0.7s;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            margin: 0.888rem 0;
+        }
     }
 
     &-details {

@@ -1,5 +1,5 @@
 article.section-work(data-component='Work' class=`is-${ getColorName(work.fields.color) } is-${ getFormat(work.fields.format) } is-${ getAlignment(work.fields.alignment) }`)
-    .container.section-work__container
+    .section-work__container
         a.section-work__link(href=getLinkUrl(work) data-ref="cursorLink[]" data-cursor-sticky)
             figure.section-work__cover(data-ref='cover' data-rotate-value=`${ (index % 2 === 0 ? -4 : 3) }`)
                 .section-work__cover-inner

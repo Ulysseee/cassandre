@@ -6,10 +6,10 @@ block variables
     - var pageShade = 'light'
 
 block page
-    header.page-projects-header
-        h1.ui-h5.page-projects-title(data-component='Title')=projectsPage.title
+    header.ui-container.page-projects-header
+        h1.ui-h5.page-projects-title(data-component='Title')!=projectsPage.title
         .ui-p-m.page-projects-paragraph(data-component='Paragraph' data-option-delay='0.5')!=renderRichText(projectsPage.paragraph)
-    section.page-projects-grid
+    section.ui-container.page-projects-grid
         each row in getWorksRows(projectsPage.works)
             .page-projects-gridRow
                  each work, index in row

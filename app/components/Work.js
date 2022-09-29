@@ -39,7 +39,7 @@ export default class Work extends withScrolledInView(withIntersectionObserver(Ap
     }
 
     scrolledInView ({ progress }) {
-        this.$refs.cover.style.transform = `translateY(${ (progress.y - 0.5) * -100 }px) rotate(${ (progress.y - 0.5) * 5 }deg)`;
+        this.$refs.cover.style.transform = `rotate(${ (progress.y - 0.5) * 5 }deg)`;
         this.$refs.scribble.style.transform = `translateY(${ (progress.y - 0.5) * -100 }px)`;
     }
 }

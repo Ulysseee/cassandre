@@ -1,19 +1,19 @@
 .ui-container {
-    padding-left: 24px;
-    padding-right: 24px;
-
-    @include respond-to('medium') {
-        padding-left: 4%;
-        padding-right: 4%;
-    }
+    margin: 0 auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    max-width: 1600px;
 
     &-large {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding-left: calc(var(--container-padding) * 2);
+        padding-right: calc(var(--container-padding) * 2);
+    }
 
-        @include respond-to('medium') {
-            padding-left: 12%;
-            padding-right: 12%;
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+
+        &, &-large {
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
         }
     }
 }
@@ -53,23 +53,17 @@
 
 .ui-h4 {
     font-family: $rebond-extralight;
-    font-size: font-size(48px, 80px);
+    font-size: clamp(3rem, 4.44vw, 5rem);
     line-height: 0.92;
-
-    @include respond-to('medium') {
-        font-size: font-size(48px, 80px, 'desktop');
-        line-height: 0.92;
-    }
 }
 
 .ui-h5 {
     font-family: $rebond-extralight;
-    font-size: font-size(48px, 80px);
-    line-height: 0.9;
+    font-size: calc(clamp(3.25em, 7vw, 8em) * .83);
+    line-height: 0.937;
 
-    @include respond-to('medium') {
-        font-size: font-size(48px, 80px, 'desktop');
-        line-height: 0.9;
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        font-size: calc(clamp(3.25em, 7vw, 8em) * .92);
     }
 }
 
@@ -97,34 +91,19 @@
 
 .ui-h8 {
     font-family: $rebond-extralight;
-    font-size: font-size(22px, 40px);
-    line-height: 1.15;
-
-    @include respond-to('medium') {
-        font-size: font-size(22px, 40px, 'desktop');
-        line-height: 1.15;
-    }
+    font-size: clamp(1.375rem, 8vw, 2.5rem);
+    line-height: 1;
 }
 
 .ui-h9 {
     font-family: $rebond-extralight;
-    font-size: font-size(24px, 32px);
+    font-size: clamp(1.5rem, 7vw, 2rem);
     line-height: 1;
-
-    @include respond-to('medium') {
-        font-size: font-size(24px, 32px, 'desktop');
-        line-height: 1;
-    }
 }
 
 .ui-p-xl {
-    font-size: font-size(20px, 16px);
-    line-height: 0.875;
-
-    @include respond-to('medium') {
-        font-size: font-size(20px, 16px, 'desktop');
-        line-height: 0.9;
-    }
+    font-size: clamp(1rem, 1.7vw, 1.125rem);
+    line-height: 1;
 }
 
 .ui-p-l {
@@ -138,12 +117,11 @@
 }
 
 .ui-p-m {
-    font-size: font-size(14px, 16px);
+    font-size: calc(clamp(5.5em, 7vw, 8em) * .159);
     line-height: 1.67;
 
-    @include respond-to('medium') {
-        font-size: font-size(14px, 14px, 'desktop');
-        line-height: 1.67;
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        font-size: calc(clamp(6.3em, 7vw, 8em) * .159);
     }
 }
 
@@ -159,7 +137,7 @@
 
 .ui-p-xs {
     font-size: 12px;
-    line-height: 1.42;
+    line-height: 1.22;
 }
 
 .ui-p-xxs {
@@ -169,6 +147,7 @@
 
 .ui-spotLink {
     display: inline-flex;
+    gap: 4px;
     justify-content: center;
     align-items: center;
     white-space: pre;
@@ -183,13 +162,22 @@
     &::before {
         content: '';
         position: absolute;
-        width: 188%;
-        padding-bottom: 188%;
+        width: 155%;
+        padding-bottom: 155%;
         background: url('../assets/images/spot-brown.png') no-repeat;
         background-size: contain;
         transform: scale(0);
         transition: transform 0.8s $strong-ease-out;
         z-index: -1;
+    }
+
+    &-text {
+        margin-top: 3px;
+        line-height: 1;
+    }
+
+    &-icon {
+        transform: rotate(-45deg);
     }
 }
 

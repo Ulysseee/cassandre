@@ -6,10 +6,9 @@ block variables
     - var pageShade = 'dark'
 
 block page
-    h1.ui-h1 Home
-
-    each work, index in homePage.works
-        include ../components/work
+    section.ui-container.page-home-works
+        each work, index in homePage.works
+            include ../components/work
 
     section.page-home-projectsButton
         +circled-button('/projects', 'Tous les projets')

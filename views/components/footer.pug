@@ -16,7 +16,12 @@ footer.component-footer(data-component="Footer")
                     each externalLink in global.externalLinks
                         if externalLink.key !== 'mail'
                             li.component-footer-social-item
-                                a.ui-p-xxs.ui-spotLink.component-footer-social-link(href=externalLink.value class=`is-${externalLink.key}`)=externalLink.key
+                                a.ui-p-xxs.ui-spotLink.component-footer-social-link(href=externalLink.value class=`is-${externalLink.key}`)
+                                    span.ui-spotLink-text=externalLink.key
+                                    svg.ui-spotLink-icon(width='11' height='11' viewbox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg')
+                                        path(d='M5.07031 0.520752C5.07031 3.05133 9.07763 5.54845 10.75 5.54845' stroke='#1C1B1A' stroke-width='0.901802')
+                                        path(d='M5.07031 10.5762C5.07031 8.0456 9.07763 5.54847 10.75 5.54847' stroke='#1C1B1A' stroke-width='0.901802')
+                                        path(d='M10.5765 5.54858L0.106934 5.54858' stroke='#1C1B1A' stroke-width='0.901802')
                 .component-footer-signature
                     .component-footer-signature-figure
                         +svg-reveal
