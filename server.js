@@ -61,6 +61,12 @@ const handleFormat = format => {
     return 'square';
 };
 
+const handleAlignment = alignment => {
+    if (alignment === 'Gauche') return 'alignLeft';
+    if (alignment === 'Centre') return 'alignCenter';
+    return 'alignCenter';
+};
+
 const handleWorksRows = works => {
     return works.reduce((prev, curr, index) => (index % 2 === 0 ? prev.push([curr])
         : prev[prev.length - 1].push(curr)) && prev, []);
@@ -74,6 +80,7 @@ app.use((req, res, next) => {
     res.locals.getLinkUrl = handleLinkResolver;
     res.locals.getMail = handleMail;
     res.locals.getFormat = handleFormat;
+    res.locals.getAlignment = handleAlignment;
     res.locals.getWorksRows = handleWorksRows;
     res.locals.getYear = handleYear;
 

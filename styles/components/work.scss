@@ -11,6 +11,22 @@
         padding-bottom: 116px;
     }
 
+    // STATES`
+    &.is-visible .section-work {
+
+        &__cover {
+            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+        }
+
+        &__cover-inner {
+            transform: translate3d(0, 0, 0);
+        }
+
+        &__cover-overlay {
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+        }
+    }
+
     &.is-visible &__link:hover .section-work {
 
         &__cover {
@@ -21,6 +37,7 @@
             }
         }
     }
+
     &.is-visible &__link:active .section-work {
 
         &__cover {
@@ -32,7 +49,15 @@
         }
     }
 
-    &:nth-of-type(3n+1) .section-work {
+    // FORMATS & ALIGNMENTS
+    &.is-alignCenter .section-work {
+
+        &__container {
+            justify-content: center;
+        }
+    }
+
+    &.is-horizontal .section-work, &.is-square .section-work {
 
         &__cover {
             height: 0;
@@ -44,6 +69,50 @@
                 padding-bottom: 0;
             }
         }
+    }
+
+    &.is-vertical .section-work {
+
+        &__cover {
+            width: 67%;
+            height: 0;
+            padding-bottom: 95%;
+            margin-left: 12%;
+
+            @include respond-to('medium') {
+                width: 382px;
+                height: 540px;
+                padding-bottom: 0;
+                margin-left: 0;
+            }
+        }
+
+        &__scribble {
+            width: 35%;
+            top: 53%;
+            right: -3%;
+
+            @include respond-to('medium') {
+                right: 76%;
+                top: unset;
+                bottom: 6%;
+            }
+        }
+
+        &__text {
+
+            @include respond-to('medium') {
+                min-width: 130%;
+                left: 97%;
+            }
+        }
+
+        &__index {
+            flex-basis: 100%;
+        }
+    }
+
+    &.is-horizontal.is-alignLeft .section-work, &.is-square.is-alignLeft .section-work {
 
         &__scribble {
             width: 11%;
@@ -64,26 +133,7 @@
         }
     }
 
-    &:nth-of-type(3n+2) .section-work {
-
-        &__container {
-            justify-content: center;
-
-            @include respond-to('medium') {
-                margin-right: 140px;
-            }
-        }
-
-        &__cover {
-            height: 0;
-            padding-bottom: 61%;
-
-            @include respond-to('medium') {
-                width: 720px;
-                height: 440px;
-                padding-bottom: 0;
-            }
-        }
+    &.is-horizontal.is-alignCenter .section-work, &.is-square.is-alignCenter .section-work {
 
         &__scribble {
             width: 26%;
@@ -118,47 +168,7 @@
         }
     }
 
-    &:nth-of-type(3n+3) .section-work {
-
-        &__container {
-            justify-content: center;
-        }
-
-        &__text {
-
-            @include respond-to('medium') {
-                width: 480px;
-                left: 97%;
-            }
-        }
-
-        &__cover {
-            width: 67%;
-            height: 0;
-            padding-bottom: 95%;
-            margin-left: 12%;
-
-            @include respond-to('medium') {
-                width: 382px;
-                height: 540px;
-                padding-bottom: 0;
-                margin-left: 0;
-            }
-        }
-
-        &__scribble {
-            width: 35%;
-            top: 53%;
-            right: -3%;
-
-            @include respond-to('medium') {
-                right: 76%;
-                top: unset;
-                bottom: 6%;
-            }
-        }
-    }
-
+    // COLORS
     &.is-beige, .section-work {
 
         &__cover-overlay {
@@ -198,21 +208,6 @@
 
         &__cover-overlay {
             background-color: $orange;
-        }
-    }
-
-    &.is-visible .section-work {
-
-        &__cover {
-            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
-        }
-
-        &__cover-inner {
-            transform: translate3d(0, 0, 0);
-        }
-
-        &__cover-overlay {
-            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
         }
     }
 
