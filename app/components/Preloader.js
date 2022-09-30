@@ -6,7 +6,7 @@ import { removeClass } from '@studiometa/js-toolkit/utils';
 export default class Preloader extends Base {
     static config = {
         name: 'Preloader',
-        refs: ['wrapper', 'logoFrames[]', 'name', 'namePath', 'nameWord', 'overlay'],
+        refs: ['wrapper', 'logoFrames[]', 'name', 'scribblePath', 'nameWord', 'overlay'],
         options: {
             name: {
                 type: String,
@@ -32,10 +32,9 @@ export default class Preloader extends Base {
                 onStart: () => {
                     removeClass(this.$el, 'is-hidden');
                     gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
-                    const namePathLength = this.$refs.namePath.getTotalLength();
-                    gsap.set(this.$refs.namePath, { strokeDasharray: `${namePathLength} ${namePathLength}` });
+                    const scribblePathLength = this.$refs.scribblePath.getTotalLength();
+                    gsap.set(this.$refs.scribblePath, { strokeDasharray: `${scribblePathLength} ${scribblePathLength}` });
                 },
-                onComplete: resolve,
             })
                 .to(this.$refs.logoFrames, {
                     keyframes: [{ autoAlpha: 0, duration: 0 }, {
@@ -48,15 +47,32 @@ export default class Preloader extends Base {
                 })
                 .add(this.animateLogoFrames())
                 .set(this.$refs.name, { autoAlpha: 1 })
-                .call(this.animateName.bind(this), [{ lettersInterval: 30 }])
-                .fromTo(this.$refs.namePath, {
-                    strokeDashoffset: this.$refs.namePath.getTotalLength(),
+                .to(this.$refs.nameWord, {
+                    duration: 0.3,
+                    ease: `step(${this.$options.name.length})`,
+                    onUpdate: function(nameTarget, nameString) {
+                        nameTarget.innerText = nameString.slice(0, Math.round(this.progress() * nameString.length));
+                    },
+                    onUpdateParams: [this.$refs.nameWord, this.$options.name],
+                })
+                .to(this.$refs.nameWord, {
+                    delay: 0.5,
+                    duration: 0.14,
+                    ease: `step(${this.$options.name.length})`,
+                    onUpdate: function(nameTarget, nameString) {
+                        nameTarget.innerText = nameString.slice(0, Math.round((1 -this.progress()) * nameString.length));
+                    },
+                    onUpdateParams: [this.$refs.nameWord, this.$options.name],
+                })
+                .fromTo(this.$refs.scribblePath, {
+                    strokeDashoffset: this.$refs.scribblePath.getTotalLength(),
                 }, {
-                    strokeDashoffset: 0,
-                    duration: 0.7,
-                    ease: 'quint.out',
-                }, '<+=0.32')
-                .set(this.$refs.overlay, { autoAlpha: 1 });
+                    strokeDashoffset: -this.$refs.scribblePath.getTotalLength() + 1,
+                    duration: 1,
+                    ease: 'quart.out',
+                }, '>+=0.1')
+                .set(this.$refs.overlay, { autoAlpha: 1 })
+                .call(resolve, [], '>-=0.7');
         });
     }
 
@@ -69,12 +85,11 @@ export default class Preloader extends Base {
                 },
             })
                 .add(gsap.to(this.overlay, {
-                    duration: 1,
-                    ease: 'expo.inOut',
+                    duration: 0.7,
+                    ease: 'quint.in',
                     onUpdate: this.animateOverlay,
                     onUpdateParams: [this.overlay, this.overlay.height, '#FF6C3C'],
                 }))
-                .set(this.$refs.wrapper, { autoAlpha: 0 })
                 .add(gsap.to(this.overlay, {
                     onStart: () => {
                         gsap.set(this.$refs.wrapper, { autoAlpha: 0 });
@@ -83,7 +98,7 @@ export default class Preloader extends Base {
                         gsap.set(this.$refs.wrapper, { autoAlpha: 1 });
                     },
                     duration: 1,
-                    ease: 'expo.inOut',
+                    ease: 'expo.out',
                     onUpdate: this.animateOverlay,
                     onUpdateParams: [this.overlay, 0, '#FF6C3C'],
                 }));
@@ -101,7 +116,7 @@ export default class Preloader extends Base {
             })
                 .to(this.$el, {
                     autoAlpha: 1,
-                    duration: 0.2,
+                    duration: 0.1,
                 });
         });
     }
@@ -120,16 +135,10 @@ export default class Preloader extends Base {
             })
                 .to(this.$el, {
                     autoAlpha: 0,
-                    duration: 0.4,
+                    duration: 0.3,
                     onComplete: resolve,
                 });
         });
-    }
-
-    async animateName ({ lettersInterval }) {
-        return intervalPromise(callsAmount => {
-            this.$refs.nameWord.innerText = this.$options.name.slice(0, callsAmount);
-        }, this.$options.name.length, lettersInterval);
     }
 
     animateLogoFrames () {
@@ -153,7 +162,7 @@ export default class Preloader extends Base {
 
         const widthSegments = Math.ceil(overlay.width / 40);
         const t = (1 - this.ratio) * overlay.height;
-        const amplitude = (window.innerWidth / 5) * Math.sin(this.ratio * Math.PI);
+        const amplitude = 200 * Math.sin(this.ratio * Math.PI);
 
         overlay.context.lineTo(0, t);
 

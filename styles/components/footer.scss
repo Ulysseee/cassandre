@@ -54,6 +54,10 @@
         letter-spacing: -2px;
         max-width: 350px;
         margin-bottom: 24px;
+
+        .line {
+            overflow: hidden;
+        }
     }
 
     &-paragraph {

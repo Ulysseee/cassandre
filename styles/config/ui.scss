@@ -91,7 +91,7 @@
 
 .ui-h8 {
     font-family: $rebond-extralight;
-    font-size: clamp(1.375rem, 8vw, 2.5rem);
+    font-size: clamp(1.1rem, 8vw, 2rem);
     line-height: 1;
 }
 
@@ -107,13 +107,8 @@
 }
 
 .ui-p-l {
-    font-size: font-size(16px, 18px);
-    line-height: 0.9;
-
-    @include respond-to('medium') {
-        font-size: font-size(16px, 18px, 'desktop');
-        line-height: 0.9;
-    }
+    font-size: clamp(1rem, 1.7vw, 1.125rem);
+    line-height: 1.42;
 }
 
 .ui-p-m {
@@ -162,7 +157,7 @@
         background: url('../assets/images/spot-brown.png') no-repeat;
         background-size: contain;
         transform: scale(0);
-        transition: transform 0.8s $strong-ease-out;
+        transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
         z-index: -1;
     }
 
@@ -181,11 +176,18 @@
     white-space: pre;
     cursor: pointer;
 
-    &:hover::after {
-        transform: translate3d(0, -1px, 0) scaleX(0.97);
+    &:hover {
+
+        &::before {
+            transform: scaleX(1);
+        }
+
+        &::after {
+            transform: scaleX(0);
+        }
     }
 
-    &::after {
+    &::before, &::after {
         content: '';
         position: absolute;
         bottom: -6px;
@@ -193,8 +195,20 @@
         width: 100%;
         height: 1px;
         background-color: $black;
-        transform: translate3d(0, 0, 0);
-        transition: transform 1s $strong-ease-out;
+        transition: .8s;
+        transition-timing-function: cubic-bezier(0,.89,.41,1);
+    }
+
+    &::before {
+        left: 0;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition-delay: .2s;
+    }
+
+    &::after {
+        right: 0;
+        transform-origin: right;
     }
 }
 

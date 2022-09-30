@@ -1,19 +1,28 @@
 import AppEvents from '../containers/AppEvents';
-import { withScrolledInView } from '@studiometa/js-toolkit';
+import { withIntersectionObserver, withScrolledInView } from '@studiometa/js-toolkit';
 import SVGReveal from './SVGReveal';
+import SplitType from 'split-type';
+import gsap from 'gsap';
 
-export default class Footer extends withScrolledInView(AppEvents) {
+export default class Footer extends withIntersectionObserver(withScrolledInView(AppEvents)) {
     static config = {
         ...AppEvents.config,
         name: 'Component',
-        refs: [...AppEvents.config.refs, 'overlay', 'wrapper'],
+        refs: [...AppEvents.config.refs, 'overlay', 'wrapper', 'title'],
         components: {
             SVGReveal,
         }
     };
 
+    splitTitle = null;
+
     mounted() {
         super.mounted();
+
+        this.splitTitle = new SplitType(this.$refs.title, {
+            type: 'lines',
+        });
+        console.log(this.splitTitle);
 
         this.overlay = {
             context: this.$refs.overlay.getContext('2d'),
@@ -33,6 +42,19 @@ export default class Footer extends withScrolledInView(AppEvents) {
 
         for (const SVGReveal of this.$children.SVGReveal) {
             SVGReveal.progressDraw(1 - progress);
+        }
+    }
+
+    intersected ([{ isIntersecting }]) {
+        if (isIntersecting) {
+            if (this.isVisible) return;
+            this.isVisible = true;
+            gsap.from(this.splitTitle.words, {
+                yPercent: 100,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 0.4,
+            });
         }
     }
 

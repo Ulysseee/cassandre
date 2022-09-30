@@ -43,7 +43,7 @@
         align-items: center;
 
         &Word {
-            color: $beige;
+            color: $brown-light;
             text-transform: uppercase;
         }
 
@@ -52,19 +52,18 @@
             top: 0;
             right: -6px;
             width: 2px;
-            height: 100%;
-            background-color: $beige;
+            height: 85%;
+            background-color: $brown-light;
             animation: flash 0.75s infinite reverse;
         }
+    }
 
-        &Figure {
-            position: absolute;
-            right: 0;
-            width: 65%;
+    &-scribble {
+        position: absolute;
+        width: 65%;
 
-            svg {
-                width: 100%;
-            }
+        svg {
+            width: 100%;
         }
     }
 
