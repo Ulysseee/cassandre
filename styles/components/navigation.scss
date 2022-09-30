@@ -2,9 +2,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    max-width: unset;
-
-    @extend .ui-container;
 
     @include index-layer(fixed, nav);
 
@@ -26,21 +23,20 @@
     &-wrapper {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding-top: calc(var(--section-padding) * 0.19);
-        padding-bottom: calc(var(--section-padding) * 0.19);
+        align-items: flex-start;
+        padding: 2.125rem 2.5rem;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            padding-top: calc(var(--section-padding) * 0.22);
-            padding-bottom: calc(var(--section-padding) * 0.22);
+            align-items: center;
+            padding: 1.6rem 1.6rem;
         }
     }
 
     &-entryFigure {
-        width: 48px;
+        width: 58px;
 
-        @include respond-to('medium') {
-            width: 58px;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 48px;
         }
 
         path {
@@ -52,10 +48,10 @@
     &-entries {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 40px;
 
-        @include respond-to('medium') {
-            gap: 40px;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            gap: 24px;
         }
     }
 

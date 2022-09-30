@@ -126,13 +126,8 @@
 }
 
 .ui-p-s {
-    font-size: font-size(12px, 14px);
-    line-height: 1.42;
-
-    @include respond-to('medium') {
-        font-size: font-size(12px, 14px, 'desktop');
-        line-height: 1.42;
-    }
+    font-size: 0.75rem;
+    line-height: 1.4;
 }
 
 .ui-p-xs {
@@ -162,8 +157,8 @@
     &::before {
         content: '';
         position: absolute;
-        width: 155%;
-        padding-bottom: 155%;
+        width: 96px;
+        height: 96px;
         background: url('../assets/images/spot-brown.png') no-repeat;
         background-size: contain;
         transform: scale(0);
@@ -193,7 +188,7 @@
     &::after {
         content: '';
         position: absolute;
-        bottom: -2px;
+        bottom: -6px;
         left: 0;
         width: 100%;
         height: 1px;

@@ -53,15 +53,4 @@
             }
         }
     }
-
-    .component-footer {
-
-        &-overlayRound {
-            background-color: $beige;
-        }
-
-        &-wrapper {
-            @extend .ui-container;
-        }
-    }
 }

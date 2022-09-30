@@ -34,6 +34,7 @@ export default class SVGReveal extends Base {
         delay: 0.6,
         ease: 'power3.out',
     }) {
+        if (this.drawn) return;
         this.drawn = true;
         gsap.fromTo(this.shapes, {
             strokeDashoffset: (i, target) => `${ target.getTotalLength() }`,
@@ -43,6 +44,14 @@ export default class SVGReveal extends Base {
             delay,
             ease,
             clearProps: 'all',
+        });
+    }
+
+    progressDraw (progress) {
+        // if (this.drawn) return;
+        // this.drawn = true;
+        gsap.set(this.shapes,{
+            strokeDashoffset: (i, target) => `${ target.getTotalLength() * progress }`,
         });
     }
 }
