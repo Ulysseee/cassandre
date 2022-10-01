@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const { createClient } = require('contentful');
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer');
+const { BLOCKS, INLINES } = require('@contentful/rich-text-types');
 
 const app = express();
 const path = require('path');
@@ -22,6 +23,17 @@ const getCommon = async CMS => {
     return {
         global: global.fields,
     };
+};
+
+const handleWysiwyg = data => {
+    return documentToHtmlString(data, {
+        renderNode: {
+            [BLOCKS.PARAGRAPH]: (node, next) =>
+                `${ next(node.content) }`,
+            [INLINES.HYPERLINK]: (node, next) =>
+                `<a href="${ node.data.uri }" target="_blank" rel="noopener noreferrer" class="ui-hyperlink">${ next(node.content) }</a>`,
+        },
+    });
 };
 
 const handleColorName = col => {
@@ -75,12 +87,13 @@ const handleWorksRows = works => {
 const handleYear = date => new Date(date).getFullYear();
 
 app.use((req, res, next) => {
-    res.locals.renderRichText = documentToHtmlString;
+    res.locals.getWysiwyg = handleWysiwyg;
     res.locals.getColorName = handleColorName;
     res.locals.getLinkUrl = handleLinkResolver;
     res.locals.getMail = handleMail;
     res.locals.getFormat = handleFormat;
     res.locals.getAlignment = handleAlignment;
+    res.locals.getWorksRows = handleWorksRows;
     res.locals.getWorksRows = handleWorksRows;
     res.locals.getYear = handleYear;
 

@@ -22,8 +22,7 @@ export default class Work extends withScrolledInView(withIntersectionObserver(Ap
     isVisible = false;
 
     intersected ([{ isIntersecting }]) {
-        if (isIntersecting) {
-            if (this.isVisible) return;
+        if (isIntersecting && !this.isVisible) {
             this.isVisible = true;
             addClass(this.$el, 'is-visible');
             for (const SVGReveal of this.$children.SVGReveal) {

@@ -7,6 +7,7 @@ export default class Paragraph extends Base {
         name: 'Paragraph',
         options: {
             delay: Number,
+            opacity: Boolean,
         },
     };
 
@@ -18,13 +19,14 @@ export default class Paragraph extends Base {
         this.split();
         gsap.set(this.splitText.words, {
             yPercent: 100,
+            opacity: this.$options.opacity ? 0 : 1,
         });
     }
 
     split () {
         this.$el.style.fontKerning = 'none';
         this.splitText = new SplitType(this.$el, {
-            types: 'words',
+            types: 'lines, words',
             tagName: 'span',
         });
     }
@@ -32,6 +34,7 @@ export default class Paragraph extends Base {
     animateIn () {
         gsap.to(this.splitText.words, {
             yPercent: 0,
+            opacity: 1,
             duration: 1,
             delay: this.$options.delay,
             ease: 'power3.out',

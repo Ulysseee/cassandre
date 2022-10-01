@@ -3,8 +3,8 @@ footer.component-footer(data-component='Footer')
         .component-footer-wrapper.ui-container-large(data-ref='wrapper')
             .component-footer-top
                 .component-footer-text
-                    .ui-h6.component-footer-title(data-ref='title')!=footer.title
-                    .ui-p-l.component-footer-paragraph!=renderRichText(footer.text)
+                    h4.ui-h6.component-footer-title(data-ref='title')!=footer.title
+                    p.ui-p-l.component-footer-paragraph!=getWysiwyg(footer.text)
                 a.ui-h7.component-footer-mail(href='mailto:' + getMail(global.externalLinks).value data-ref='cursorLink[]')!=getMail(global.externalLinks).value
             .component-footer-divider
             .component-footer-bottom
