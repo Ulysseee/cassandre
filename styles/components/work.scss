@@ -58,16 +58,27 @@
     &.is-horizontal, &.is-square {
         width: 51vw;
 
-        .section-work__cover {
-            padding-bottom: 61%;
-        }
-
         @media screen and #{inspect(map-get($breakpoints, 'large'))} {
             width: 64vw;
         }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             width: 100%;
+        }
+
+        .section-work {
+
+            &__cover {
+                padding-bottom: 61%;
+            }
+
+            &__tags {
+                margin: 24px 0 0 54%;
+
+                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                    margin: 12px 0 0 0;
+                }
+            }
         }
     }
 
@@ -103,12 +114,43 @@
 
             &__text {
                 min-width: 130%;
-                left: 97%;
+                left: 92%;
 
                 @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
                     min-width: unset;
                 }
             }
+
+            &__tags {
+                margin: 24px 0 0 12%;
+
+                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                    margin: 12px 0 0 0;
+                }
+            }
+        }
+    }
+
+    &.is-vertical.is-alignCenter {
+        width: 30vw;
+        padding-right: 1vw;
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+            width: 36vw;
+            padding-right: 3vw;
+        }
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 100%;
+            padding-right: 0;
+        }
+    }
+
+    &.is-vertical.is-alignLeft {
+        margin-left: 8rem;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            margin-left: 0;
         }
     }
 
@@ -273,35 +315,37 @@
     }
 
     &__header {
-        display: flex;
-        align-items: flex-start;
+        position: relative;
+        max-width: 32vw;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            gap: 11px;
+            max-width: unset;
         }
     }
 
     &__name {
+        display: inline;
         color: $beige;
         text-transform: lowercase;
     }
 
     &__index {
+        position: absolute;
         font-family: $rebond-extralight;
         color: $beige;
         margin: 10px 0 0 10px;
+        overflow: hidden;
     }
 
     &__tags {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        margin: 32px 0 0 40%;
+        margin: 24px 0 0 40%;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             flex-direction: row;
             gap: 16px;
-            margin: 12px 0 0 0;
         }
     }
 
@@ -309,6 +353,7 @@
         font-family: $neue-regular;
         color: $beige;
         text-transform: uppercase;
+        overflow: hidden;
     }
 
     &__scribble {

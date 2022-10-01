@@ -8,11 +8,21 @@
     &:hover .component-circledButton {
 
         &-text {
-            transform: translate3d(-18px, 0, 0);
+            transform: translateX(28px);
+            transition-delay: 0.1s;
         }
 
         &-arrow {
-            animation-name: arrow-slide;
+
+            &:nth-of-type(1) {
+                transform: translateX(84px);
+                transition-delay: 0.2s;
+            }
+
+            &:nth-of-type(2) {
+                transform: translateX(100px);
+                transition-delay: 0s;
+            }
         }
 
         &-circle {
@@ -25,24 +35,35 @@
     }
 
     &-content {
-        display: flex;
-        align-items: center;
         position: relative;
+        width: 316px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        overflow: hidden;
     }
 
     &-text {
-        @extend .ui-p-m;
+        font-size: clamp(0.875rem, 4vw, 1rem);
 
         color: $brown-light;
         text-transform: uppercase;
-        padding: 0 14px;
         transition: transform 1s $middle-ease-out;
     }
 
     &-arrow {
-        position: absolute;
-        animation: 0.6s forwards $middle-ease-out;
-        animation-name: arrow-slide-reverse;
+        transition: transform 1s $middle-ease-out;
+
+        &:nth-of-type(1) {
+            position: absolute;
+            right: 100%;
+            transform: translateX(-16px);
+        }
+
+        &:nth-of-type(2) {
+            transition-delay: 0.12s;
+        }
     }
 
     &-circle {
@@ -57,33 +78,5 @@
         path {
             stroke: $brown;
         }
-    }
-}
-
-@keyframes arrow-slide {
-    0% {
-        left: -18px;
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        left: calc(100% - 18px);
-        opacity: 1;
-    }
-}
-
-@keyframes arrow-slide-reverse {
-    0% {
-        left: 100%;
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        left: -18px;
-        opacity: 1;
     }
 }

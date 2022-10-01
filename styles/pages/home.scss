@@ -4,12 +4,12 @@
     &-projectsButton {
         display: flex;
         justify-content: center;
-        margin-top: 60px;
-        margin-bottom: 60px;
+        padding-top: calc(var(--section-padding) * 0.2);
+        padding-bottom: calc(var(--section-padding) * 0.2);
 
-        @include respond-to('medium') {
-            margin-top: 0;
-            margin-bottom: 140px;
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            padding-top: calc(var(--section-padding) * 0.6);
+            padding-bottom: calc(var(--section-padding) * 0.6);
         }
     }
 }

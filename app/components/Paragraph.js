@@ -1,5 +1,6 @@
 import { Base } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
+import SplitType from 'split-type';
 
 export default class Paragraph extends Base {
     static config = {
@@ -14,24 +15,28 @@ export default class Paragraph extends Base {
     mounted() {
         if (this.isVisible) return;
         this.isVisible = true;
-        gsap.set(this.$el, {
-            y: 12,
-            opacity: 0,
+        this.split();
+        gsap.set(this.splitText.words, {
+            yPercent: 100,
+        });
+    }
+
+    split () {
+        this.$el.style.fontKerning = 'none';
+        this.splitText = new SplitType(this.$el, {
+            types: 'words',
+            tagName: 'span',
         });
     }
 
     animateIn () {
-        gsap.fromTo(this.$el, {
-            y: 12,
-            opacity: 0,
-        }, {
-            y: 0,
-            opacity: 1,
+        gsap.to(this.splitText.words, {
+            yPercent: 0,
             duration: 1,
             delay: this.$options.delay,
             ease: 'power3.out',
             clearProps: 'all',
-        })
+        });
     }
 
     animateOut () {

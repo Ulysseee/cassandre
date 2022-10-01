@@ -15,10 +15,5 @@ export default class Home extends Page {
 
     mounted () {
         super.mounted();
-
-        for (const Footer of this.$children.Footer) {
-            Footer.$mount();
-            console.log(Footer);
-        }
     }
 }

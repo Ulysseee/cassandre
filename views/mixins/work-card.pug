@@ -1,6 +1,6 @@
 mixin work-card(format, name, excerpt, date, url, coverUrl, coverAlt, transitionDelay)
     a.component-workCard.is-hidden(class='is-' + getFormat(format) href=url data-component='WorkCard' data-option-transition-delay=transitionDelay)
-        article.component-workCard-wrapper(data-ref='cursorLink[]' data-cursor-sticky)
+        article.component-workCard-wrapper(data-ref='cursorLink[]')
             .component-workCard-cover(data-cursor-target)
                 +parallax(coverUrl, coverAlt, 12, false)
             .component-workCard-content

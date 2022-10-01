@@ -1,6 +1,6 @@
 article.section-work(data-component='Work' class=`is-${ getColorName(work.fields.color) } is-${ getFormat(work.fields.format) } is-${ getAlignment(work.fields.alignment) }`)
     .section-work__container
-        a.section-work__link(href=getLinkUrl(work) data-ref='cursorLink[]' data-cursor-sticky)
+        a.section-work__link(href=getLinkUrl(work) data-ref='cursorLink[]')
             figure.section-work__cover(data-ref='cover' data-rotate-value=`${ (index % 2 === 0 ? -4 : 3) }`)
                 .section-work__cover-inner
                     +parallax(work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.description, 12, false)
@@ -19,7 +19,7 @@ article.section-work(data-component='Work' class=`is-${ getColorName(work.fields
             .section-work__text
                 header.section-work__header
                     h2.ui-h4.section-work__name(data-component='Title')=work.fields.name
-                    span.ui-p-s.section-work__index(data-component='Paragraph' data-option-delay='0.2')=`(0${ index + 1 })`
-                ul.section-work__tags(data-component='Paragraph' data-option-delay='0.3')
-                    each tag in work.metadata.tags
-                        li.ui-p-xs.section-work__tag-item=tag.sys.id
+                    span.ui-p-s.section-work__index(data-component='Paragraph' data-option-delay='0.4')=`(0${ index + 1 })`
+                ul.section-work__tags
+                    each tag, index in work.metadata.tags
+                        li.ui-p-xs.section-work__tag-item(data-component='Paragraph' data-option-delay=`${ 0.3 + index * 0.12 }`)=tag.sys.id
