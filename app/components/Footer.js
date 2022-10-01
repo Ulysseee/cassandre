@@ -1,86 +1,73 @@
 import AppEvents from '../containers/AppEvents';
-import { withIntersectionObserver, withScrolledInView } from '@studiometa/js-toolkit';
+import { withScrolledInView } from '@studiometa/js-toolkit';
 import SVGReveal from './SVGReveal';
 import SplitType from 'split-type';
 import gsap from 'gsap';
+import { expoIn } from '../utils/eases';
 
-export default class Footer extends withIntersectionObserver(withScrolledInView(AppEvents)) {
+export default class Footer extends withScrolledInView(AppEvents) {
     static config = {
         ...AppEvents.config,
-        name: 'Component',
-        refs: [...AppEvents.config.refs, 'overlay', 'wrapper', 'title'],
+        name: 'Footer',
+        refs: [...AppEvents.config.refs, 'mask', 'wrapper', 'title'],
         components: {
             SVGReveal,
-        }
+        },
     };
 
-    splitTitle = null;
+    titleReveal = false;
+    wordsPerLine = null;
 
-    mounted() {
+    mounted () {
         super.mounted();
 
-        this.splitTitle = new SplitType(this.$refs.title, {
+        this.wordsPerLine = new SplitType(this.$refs.title, {
             type: 'lines',
-        });
-        console.log(this.splitTitle);
-
-        this.overlay = {
-            context: this.$refs.overlay.getContext('2d'),
-            width: window.innerWidth * window.devicePixelRatio,
-            height: window.innerHeight * window.devicePixelRatio,
-        };
-        this.$refs.overlay.width = this.overlay.width;
-        this.$refs.overlay.height = this.overlay.height;
+        }).lines.map(line => [line.querySelectorAll('.word')]);
     }
 
-    scrolledInView({ current, start }) {
-        const max = start.y + this.$refs.overlay.offsetHeight;
-        const progress = (current.y - start.y) / (max- start.y);
-        this.animateOverlay(progress);
-        const translateY = (1 - progress) * (-this.$refs.wrapper.getBoundingClientRect().height + 140);
-        this.$refs.wrapper.style.transform = `translate3d(0, ${translateY}px, 0)`;
+    scrolledInView ({ current, start }) {
+        const max = start.y + this.$el.offsetHeight;
+        const progress = (current.y - start.y) / (max - start.y);
+
+        this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(progress) })`;
+
+        const translateY = - (1 - progress) * (this.$refs.wrapper.offsetHeight + 140);
+        this.$refs.wrapper.style.transform = `translate3d(0, ${ translateY }px, 0)`;
 
         for (const SVGReveal of this.$children.SVGReveal) {
-            SVGReveal.progressDraw(1 - progress);
+            SVGReveal.progressDraw(1 - expoIn(progress));
         }
-    }
 
-    intersected ([{ isIntersecting }]) {
-        if (isIntersecting) {
-            if (this.isVisible) return;
-            this.isVisible = true;
-            gsap.from(this.splitTitle.words, {
-                yPercent: 100,
-                duration: 1,
-                ease: 'power4.out',
-                delay: 0.4,
+        if (!this.titleReveal && progress > 0.5) {
+            this.titleReveal = true;
+            this.wordsPerLine.forEach((wordsLine, index) => {
+                gsap.from(wordsLine, {
+                    yPercent: 100,
+                    duration: 1,
+                    ease: 'quint.out',
+                    delay: 0.2 + index * 0.07,
+                });
             });
         }
     }
 
-    animateOverlay (progress) {
-        this.overlay.context.clearRect(0, 0, this.overlay.width, this.overlay.height);
-        this.overlay.context.save();
-        this.overlay.context.beginPath();
+    getPolygonPath (progress) {
+        let clipPath = '100% 100%, 0% 100%, ';
 
-        const widthSegments = Math.ceil(this.overlay.width / 40);
-        this.overlay.context.moveTo(this.overlay.width, this.overlay.height);
-        this.overlay.context.lineTo(0, this.overlay.height);
+        const widthSegments = Math.ceil(this.$refs.wrapper.offsetWidth / 40);
+        const baseY = (1 - progress) * 100;
+        const amplitude = (0.02 * this.$refs.wrapper.offsetWidth) * Math.sin(progress * Math.PI);
 
-        const t = (1 - progress) * this.overlay.height;
-        const amplitude = 250 * Math.sin(progress * Math.PI);
-
-        this.overlay.context.lineTo(0, t);
+        clipPath += `0% ${ baseY }%, `;
 
         for (let index = 0; index <= widthSegments; index++) {
-            const n = 40 * index;
-            const r = t - Math.sin((n / this.overlay.width) * Math.PI) * amplitude;
+            const x = ((40 * index) / this.$refs.wrapper.offsetWidth) * 100;
+            const y = baseY - Math.sin(((40 * index) / this.$refs.wrapper.offsetWidth) * Math.PI) * amplitude;
 
-            this.overlay.context.lineTo(n, r);
+            clipPath += `${ x }% ${ y }%, `;
         }
 
-        this.overlay.context.fillStyle = '#F5EDE2';
-        this.overlay.context.fill();
-        this.overlay.context.restore();
+        return clipPath.slice(0, -2);
     }
 }

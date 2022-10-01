@@ -2,7 +2,7 @@ import Page from '../containers/Page';
 import Work from '../components/Work';
 import Footer from '../components/Footer';
 
-export default class Projects extends Page {
+export default class Home extends Page {
     static config = {
         ...Page.config,
         name: 'Home',
@@ -12,4 +12,13 @@ export default class Projects extends Page {
             Footer,
         },
     };
+
+    mounted () {
+        super.mounted();
+
+        for (const Footer of this.$children.Footer) {
+            Footer.$mount();
+            console.log(Footer);
+        }
+    }
 }

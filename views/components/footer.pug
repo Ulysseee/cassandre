@@ -1,7 +1,6 @@
-footer.component-footer(data-component="Footer")
-    canvas.component-footer-overlay(data-ref="overlay")
-    .component-footer-wrapper.ui-container-large(data-ref='wrapper')
-        .container
+footer.component-footer(data-component='Footer')
+    .component-footer-mask(data-ref='mask')
+        .component-footer-wrapper.ui-container-large(data-ref='wrapper')
             .component-footer-top
                 .component-footer-text
                     .ui-h6.component-footer-title(data-ref='title')!=footer.title
@@ -13,7 +12,7 @@ footer.component-footer(data-component="Footer")
                     each externalLink in global.externalLinks
                         if externalLink.key !== 'mail'
                             li.component-footer-social-item
-                                a.ui-p-xxs.ui-spotLink.component-footer-social-link(href=externalLink.value class=`is-${externalLink.key}`)
+                                a.ui-p-xxs.ui-spotLink.component-footer-social-link(href=externalLink.value class=`is-${ externalLink.key }`)
                                     span.ui-spotLink-text=externalLink.key
                                     svg.ui-spotLink-icon(width='11' height='11' viewbox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg')
                                         path(d='M5.07031 0.520752C5.07031 3.05133 9.07763 5.54845 10.75 5.54845' stroke='#1C1B1A' stroke-width='0.901802')
@@ -22,7 +21,7 @@ footer.component-footer(data-component="Footer")
                 .component-footer-signature
                     .component-footer-signature-figure
                         +svg-reveal
-                            svg(data-ref="svg" width='82' height='76' viewbox='0 0 82 76' fill='none' xmlns='http://www.w3.org/2000/svg')
-                                path(d='M2.03201 67.0691C3.74933 64.8369 6.10508 61.8099 8.78388 57.772M8.78388 57.772C14.0684 49.8064 20.6101 37.907 25.9878 20.4165C27.6508 15.0078 30.5472 3.8165 26.8151 2.77664C23.0831 1.73678 15.8819 16.3091 12.749 30.5941C10.3248 41.6481 9.24442 50.748 8.78388 57.772ZM8.78388 57.772C8.64927 59.8251 8.56763 61.7008 8.52085 63.3961C8.40071 67.7505 9.19391 73.2655 12.466 74.1772C17.0942 75.4667 23.2657 68.1609 28.7592 58.9518M28.7592 58.9518C33.5858 50.8605 37.889 41.3001 40.1622 34.8091C45.0227 20.9303 47.2184 8.29601 45.7447 4.07714C44.2709 -0.141728 41.0683 3.72164 39.9541 6.43756C38.47 10.0553 29.2905 35.4939 28.3096 48.2297C27.9336 53.1107 28.1601 56.5268 28.7592 58.9518ZM28.7592 58.9518C29.7233 62.8542 31.6526 64.19 33.5898 64.934C36.7308 66.1403 43.0251 63.7546 47.1982 55.314C48.2305 53.2261 49.1972 50.9374 50.0663 48.5896M50.0663 48.5896C52.7104 41.4463 54.4513 33.7552 54.3904 29.5012C54.3095 23.8491 50.81 22.8164 48.7055 27.9172C46.043 34.37 47.4469 43.1307 49.4244 47.3243C49.6342 47.7693 49.8481 48.193 50.0663 48.5896ZM50.0663 48.5896C51.9043 51.9311 54.0478 53.3488 56.6458 49.3364C58.5065 46.4628 60.1833 41.57 61.3671 37.4826M61.3671 37.4826C62.0325 35.1855 62.5421 33.1427 62.8411 31.8558C63.6721 28.2791 59.8133 27.8662 59.4608 30.914C59.2922 32.3717 59.8884 35.0275 61.3671 37.4826ZM61.3671 37.4826C62.98 40.1605 65.643 42.5999 69.5089 42.986C75.4371 43.578 79.1187 40.5858 80.2185 39.0158' stroke='#FF6C3C' stroke-width='3' stroke-linecap='round')
+                            svg(data-ref='svg' width='95' height='107' viewbox='0 0 95 107' fill='none' xmlns='http://www.w3.org/2000/svg')
+                                path(d='M2.32422 100.536C2.32422 100.536 12.3026 79.794 14.5289 60.4335C16.7551 41.073 18.1465 30.0709 16.6856 18.0849C15.2246 6.09894 10.0962 5.51257 6.9755 16.2761C3.85477 27.0397 2.37391 45.3367 5.14679 63.753C7.91967 82.1693 10.2751 104.849 19.0609 104.879C27.8466 104.909 33.8893 84.0775 38.2922 61.8448C42.695 39.612 40.8663 15.491 39.4749 8.41465C37.994 0.861282 32.2395 -1.3451 29.7549 8.62336C26.0776 23.4121 27.4491 52.1745 29.3573 61.8448C31.2655 71.5151 32.9949 85.5981 42.695 85.5981C52.3951 85.5981 57.1557 71.4455 57.7222 60.7515C58.2887 50.0576 58.7757 41.5898 56.5892 33.4998C53.9853 23.8593 47.9625 27.4571 48.6383 36.0043C49.175 42.6632 50.626 49.1233 55.2674 55.812C58.3285 60.2148 63.0891 65.0848 66.0011 58.9129C67.7702 55.166 68.3168 46.9865 68.3963 40.268C68.3963 36.9982 68.6348 33.957 68.0683 32.0388C66.995 28.441 62.4828 29.733 63.8146 34.0762C67.0425 44.5597 83.1244 51.1997 92.6906 36.3115' stroke='#FF6C3C' stroke-width='3' stroke-linecap='square')
                     span.ui-p-m.component-footer-signature-link(href=footer.developerLink)=footer.developerSignature + ' '
                         a.ui-underlineLink='Tibère Debizet'
