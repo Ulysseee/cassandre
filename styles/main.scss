@@ -14,6 +14,7 @@
 @import 'pages/ui';
 @import 'pages/home';
 @import 'pages/projects';
+@import 'pages/project';
 
 // Components
 @import 'components/circledButton';
@@ -26,3 +27,10 @@
 @import 'components/parallax';
 @import 'components/workCard';
 @import 'components/work';
+
+// Sections
+@import 'components/sections/horizontalTextImage';
+@import 'components/sections/infiniteSlider';
+@import 'components/sections/projectHeader';
+@import 'components/sections/nextProject';
+@import 'components/sections/verticalTextImage';

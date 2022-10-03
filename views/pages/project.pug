@@ -1,0 +1,28 @@
+extends ../base.pug
+
+include ../mixins/sections/horizontal-text-image
+include ../mixins/sections/slider
+include ../mixins/sections/project-header
+include ../mixins/sections/next-project
+include ../mixins/sections/vertical-text-image
+
+block variables
+    - var pageName = 'project'
+    - var pageComponent = 'Project'
+    - var pageShade = 'light'
+
+block page
+
+    +project-header(name, getYear(date), coverImage.fields.file, tags, getFormat(format))
+
+    .page-project-separator
+
+    +vertical-text-image(verticalTextImageTitle, verticalTextImageImage.fields.file)
+
+    +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage.fields.file, false)
+
+    +slider(infiniteSliderImages)
+
+    +horizontal-text-image(horizontalTextImageReverseTitle, getWysiwyg(horizontalTextImageReverseText), horizontalTextImageReverseImage.fields.file, true)
+
+    +next-project('projet', 'suivant', nextWork)

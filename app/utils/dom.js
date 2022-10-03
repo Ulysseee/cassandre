@@ -14,11 +14,19 @@ export const getInternalLinks = () => {
 export const preloadImages = (targetElement = document, selector = 'img') => {
     const images = [...targetElement.querySelectorAll(selector)].filter(image => image.getAttribute('loading') !== 'lazy');
     return [...images].map(imageElement => (
-        new Promise(res => {
-            const image = new Image();
-            image.onload = () => res(imageElement);
-            image.onerror = () => res(imageElement);
-            image.src = imageElement.getAttribute('src');
+        new Promise(resolve => {
+            imageElement.onload = () => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        document.body.offsetWidth // force repaint
+                        requestAnimationFrame(() => {
+                            resolve();
+                        })
+                    })
+                })
+            }
+            imageElement.onerror = () => resolve();
+            imageElement.src = imageElement.getAttribute('data-src');
         })
     ));
 };

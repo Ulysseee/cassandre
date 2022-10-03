@@ -1,5 +1,5 @@
 import AppEvents from './containers/AppEvents';
-import { getInstanceFromElement } from '@studiometa/js-toolkit';
+import { getDirectChildren, getInstanceFromElement } from '@studiometa/js-toolkit';
 import Cursor from './components/Cursor';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,21 +9,28 @@ import ScribbleLink from './components/ScribbleLink';
 import { getInternalLinks, preloadImages } from './utils/dom';
 import Preloader from './components/Preloader';
 import Parallax from './components/Parallax';
-import Lenis from '@studio-freight/lenis'
+import Lenis from '@studio-freight/lenis';
 import Title from './components/Title';
+import Project from './pages/Project';
 
 class App extends AppEvents {
     static config = {
         name: 'App',
         components: {
+            // Shared Components
             Cursor,
-            ScribbleLink,
+
+            // Global Components
             Parallax,
-            Home,
-            About,
-            Projects,
-            Ui,
+            ScribbleLink,
             Title,
+
+            // Pages
+            Home,
+            Projects,
+            Project,
+            About,
+            Ui,
         },
         refs: [...AppEvents.config.refs, 'pageContainer'],
     };
@@ -45,16 +52,16 @@ class App extends AppEvents {
         this.createLenis().stop();
     }
 
-    removeAppOverlay() {
+    removeAppOverlay () {
         const appOverlay = document.getElementById('appOverlay');
         if (appOverlay) appOverlay.remove();
     }
 
-    ticked({ time }) {
+    ticked ({ time }) {
         window.lenis.raf(time);
     }
 
-    showCurrentPage() {
+    showCurrentPage () {
         window.lenis.start();
         this.currentPageInstance.animateIn();
     }
@@ -66,12 +73,12 @@ class App extends AppEvents {
         }));
     }
 
-    setupInternalLinks() {
+    setupInternalLinks () {
         this.internalLinks = getInternalLinks();
         this.addInternalLinkListeners();
     }
 
-    async onUrlChange({ url, push = true }) {
+    async onUrlChange ({ url, push = true }) {
         const preloaderAnimateIn = preloader.animatePageTransitionIn().then(() => {
             window.lenis.destroy();
         });
@@ -81,7 +88,7 @@ class App extends AppEvents {
         const request = await window.fetch(url);
 
         if (request.status !== 200) {
-            console.error('Handle request error.')
+            console.error('Handle request error.');
             return;
         }
 
@@ -90,20 +97,19 @@ class App extends AppEvents {
         let pageDocument = await request.text();
         pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
 
-        const preloadedImages = preloadImages(pageDocument);
+        this.replacePage(pageDocument);
 
         await Promise.all([
             new Promise(resolve => {
                 setTimeout(resolve, 200);
             }),
-            ...preloadedImages,
+            ...preloadImages(),
         ]);
 
         this.currentPageInstance.$destroy();
 
         window.scrollTo(0, 0);
 
-        this.replacePage(pageDocument);
         this.$update();
         this.updateCurrentPageInstance();
 
@@ -116,7 +122,7 @@ class App extends AppEvents {
         preloader.animatePageTransitionOut();
     }
 
-    replacePage(pageDocument) {
+    replacePage (pageDocument) {
         const pageElement = pageDocument.getElementById('page');
         this.$refs.pageContainer.replaceChildren(pageElement);
     }
@@ -129,11 +135,11 @@ class App extends AppEvents {
                 this.onUrlChange({
                     url: internalLink.href,
                 });
-            }
+            };
         }
     }
 
-    createLenis() {
+    createLenis () {
         if (window.lenis) window.lenis.destroy();
         return window.lenis = new Lenis({
             duration: 1.2,
@@ -170,4 +176,4 @@ const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
 });
 
-Promise.all([appLoaded, preloader.animateIn()]).then(bootApp);
+Promise.all([appLoaded, preloader.animateIn(), ...preloadImages()]).then(bootApp);

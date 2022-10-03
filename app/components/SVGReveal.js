@@ -7,6 +7,9 @@ export default class SVGReveal extends Base {
         name: 'SVGReveal',
         refs: ['svg'],
         log: true,
+        options: {
+            reverse: Boolean,
+        }
     };
 
     shapes = [];
@@ -21,7 +24,7 @@ export default class SVGReveal extends Base {
     hideShapes () {
         gsap.set(this.shapes, {
             strokeDasharray: (i, target) => `${ target.getTotalLength() } ${ target.getTotalLength() }`,
-            strokeDashoffset: (i, target) => `${ target.getTotalLength() }`,
+            strokeDashoffset: (i, target) => `${ (this.$options.reverse ? -1 : 1) * target.getTotalLength() }`,
         });
     }
 
@@ -49,7 +52,7 @@ export default class SVGReveal extends Base {
 
     progressDraw (progress) {
         gsap.set(this.shapes,{
-            strokeDashoffset: (i, target) => `${ target.getTotalLength() * progress }`,
+            strokeDashoffset: (_, target) => `${ (this.$options.reverse ? -target.getTotalLength() : 0) + target.getTotalLength() * progress }`,
         });
     }
 }

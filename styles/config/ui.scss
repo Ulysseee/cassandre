@@ -31,33 +31,28 @@
 
 .ui-h2 {
     font-family: $rebond-extralight;
-    font-size: font-size(56px, 140px);
+    font-size: clamp(3.5rem, 9.7vw, 8.75rem);
     line-height: 0.9;
-
-    @include respond-to('medium') {
-        font-size: font-size(56px, 140px, 'desktop');
-        line-height: 0.8;
-    }
 }
+
+//.ui-h3 {
+//    font-family: $rebond-extralight;
+//    font-size: font-size(48px, 80px);
+//    line-height: 0.93;
+//
+//    @include respond-to('medium') {
+//        font-size: font-size(48px, 80px, 'desktop');
+//        line-height: 0.93;
+//    }
+//}
 
 .ui-h3 {
-    font-family: $rebond-extralight;
-    font-size: font-size(48px, 80px);
-    line-height: 0.93;
-
-    @include respond-to('medium') {
-        font-size: font-size(48px, 80px, 'desktop');
-        line-height: 0.93;
-    }
-}
-
-.ui-h4 {
     font-family: $rebond-extralight;
     font-size: clamp(3rem, 6vw, 5rem);
     line-height: 0.92;
 }
 
-.ui-h5 {
+.ui-h4 {
     font-family: $rebond-extralight;
     font-size: calc(clamp(3.25em, 7vw, 8em) * .83);
     line-height: 0.937;
@@ -67,7 +62,7 @@
     }
 }
 
-.ui-h6 {
+.ui-h5 {
     font-family: $rebond-extralight;
     font-size: font-size(40px, 64px);
     line-height: 1;
@@ -76,6 +71,12 @@
         font-size: font-size(40px, 64px, 'desktop');
         line-height: 0.95;
     }
+}
+
+.ui-h6 {
+    font-family: $rebond-extralight;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    line-height: 1.2;
 }
 
 .ui-h7 {

@@ -3,9 +3,11 @@ import { withScrolledInView } from '@studiometa/js-toolkit';
 import SVGReveal from './SVGReveal';
 import SplitType from 'split-type';
 import gsap from 'gsap';
-import { expoIn } from '../utils/eases';
+import { easeInExpo } from '@studiometa/js-toolkit/utils';
 
-export default class Footer extends withScrolledInView(AppEvents) {
+export default class Footer extends withScrolledInView(AppEvents, {
+    rootMargin: '100%',
+}) {
     static config = {
         ...AppEvents.config,
         name: 'Footer',
@@ -20,6 +22,8 @@ export default class Footer extends withScrolledInView(AppEvents) {
 
     mounted () {
         super.mounted();
+
+        this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(0) })`;
 
         this.wordsPerLine = new SplitType(this.$refs.title, {
             type: 'lines',
@@ -36,7 +40,7 @@ export default class Footer extends withScrolledInView(AppEvents) {
         this.$refs.wrapper.style.transform = `translate3d(0, ${ translateY }px, 0)`;
 
         for (const SVGReveal of this.$children.SVGReveal) {
-            SVGReveal.progressDraw(1 - expoIn(progress));
+            SVGReveal.progressDraw(1 - easeInExpo(progress));
         }
 
         if (!this.titleReveal && progress > 0.5) {

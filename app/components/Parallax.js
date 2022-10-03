@@ -1,7 +1,8 @@
 import { Base, withScrolledInView } from '@studiometa/js-toolkit';
-import { map } from '@studiometa/js-toolkit/utils';
 
-export default class Parallax extends withScrolledInView(Base) {
+export default class Parallax extends withScrolledInView(Base, {
+    rootMargin: '100%',
+}) {
 
     static config = {
         name: 'Parallax',

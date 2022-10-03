@@ -48,16 +48,16 @@ const handleColorName = col => {
     return 'beige';
 };
 
-const handleLinkResolver = data => {
-    if (data.sys.contentType.sys.id === 'work') {
-        return `/creation/${ data.fields.slug }`;
+const handleLinkResolver = content => {
+    if (content.sys.contentType.sys.id === 'work') {
+        return `/project/${ content.fields.slug }`;
     }
 
-    if (data.sys.contentType.sys.id === 'contact') {
+    if (content.sys.contentType.sys.id === 'contact') {
         return '/about';
     }
 
-    if (data.sys.contentType.sys.id === 'home') {
+    if (content.sys.contentType.sys.id === 'home') {
         return '/';
     }
 
@@ -94,7 +94,6 @@ app.use((req, res, next) => {
     res.locals.getFormat = handleFormat;
     res.locals.getAlignment = handleAlignment;
     res.locals.getWorksRows = handleWorksRows;
-    res.locals.getWorksRows = handleWorksRows;
     res.locals.getYear = handleYear;
 
     next();
@@ -130,6 +129,44 @@ app.get('/projects', async (req, res) => {
         ...common,
         projectsPage: projectsPage.fields,
         footer: footer.fields,
+    });
+});
+
+app.get('/project/:uid', async (req, res) => {
+    const CMS = await initCMS();
+    const common = await getCommon(CMS);
+
+    const { items: [work] } = await CMS.getEntries({
+        content_type: 'work',
+        'fields.slug': req.params.uid,
+        limit: 1,
+    });
+
+    const currentWorkDate = work.fields.date;
+    const currentWorkSlug = work.fields.slug;
+
+    let nextWork = await CMS.getEntries({
+        content_type: 'work',
+        'fields.date[gte]': currentWorkDate,
+        'fields.slug[nin]': currentWorkSlug,
+        order: 'fields.date',
+        limit: 1,
+    })
+
+    if (nextWork.total === 0) {
+        nextWork = await CMS.getEntries({
+            content_type: 'work',
+            order: 'fields.date',
+            limit: 1,
+        });
+    }
+    [nextWork] = nextWork.items;
+
+    res.render('pages/project', {
+        ...common,
+        ...work.fields,
+        tags: work.metadata.tags,
+        nextWork: nextWork,
     });
 });
 

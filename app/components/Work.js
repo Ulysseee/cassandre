@@ -7,7 +7,9 @@ import Paragraph from './Paragraph';
 
 export default class Work extends withScrolledInView(withIntersectionObserver(AppEvents, {
     rootMargin: '0px 0px -25% 0px',
-})) {
+}), {
+    rootMargin: '100%',
+}) {
     static config = {
         ...AppEvents.config,
         name: 'Work',

@@ -1,0 +1,9 @@
+mixin horizontal-text-image(title, text, image, reverse)
+    section.section-horizontalTextImage(class=reverse ? 'is-reverse' : '')
+        .ui-container.section-horizontalTextImage-container
+            .section-horizontalTextImage-text
+                h2.ui-h3.section-horizontalTextImage-title!=title
+                p.section-horizontalTextImage-wysiwyg!=text
+            .section-horizontalTextImage-image
+                figure.section-verticalTextImage-imageFigure
+                    img.section-verticalTextImage-imageMedia(data-component="ScrollParallax" data-src=image.url alt=image.description)

@@ -1,0 +1,9 @@
+mixin slider(images)
+    section.section-infiniteSlider(data-component='Slider' data-option-infinite='true' data-option-speed='0.08' data-option-lerp='0.04')
+        .section-infiniteSlider-container
+            .section-infiniteSlider-sliderContainer(data-ref='cursorSlider[]')
+                .section-infiniteSlider-sliderWrapper(data-ref='wrapper')
+                    each image in images
+                        figure.section-infiniteSlider-slide(data-ref='slides[]')
+                            img.section-infiniteSlider-slideImage(data-ref='images[]' data-src=image.fields.file.url width=image.fields.file.details.image.width height=image.fields.file.details.image.height alt=image.fields.file.description)
+
