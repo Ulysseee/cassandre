@@ -36,7 +36,7 @@ export default class Footer extends withScrolledInView(AppEvents, {
 
         this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(progress) })`;
 
-        const translateY = - (1 - progress) * (this.$refs.wrapper.offsetHeight + 140);
+        const translateY = - (1 - progress) * (this.$refs.wrapper.offsetHeight);
         this.$refs.wrapper.style.transform = `translate3d(0, ${ translateY }px, 0)`;
 
         for (const SVGReveal of this.$children.SVGReveal) {

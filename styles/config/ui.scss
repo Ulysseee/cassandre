@@ -119,13 +119,6 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
         font-size: calc(clamp(6.3em, 7vw, 8em) * .159);
     }
-
-    .ui-underlineLink {
-
-        &::before, &::after {
-            bottom: 3px;
-        }
-    }
 }
 
 .ui-p-s {

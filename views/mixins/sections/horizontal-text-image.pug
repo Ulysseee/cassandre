@@ -1,9 +1,8 @@
 mixin horizontal-text-image(title, text, image, reverse)
-    section.section-horizontalTextImage(class=reverse ? 'is-reverse' : '')
+    section.section-horizontalTextImage(data-component='HorizontalTextImage' data-option-parallax-amount='120' class=reverse ? 'is-reverse' : '')
         .ui-container.section-horizontalTextImage-container
-            .section-horizontalTextImage-text
+            .section-horizontalTextImage-text(data-ref='text')
                 h2.ui-h3.section-horizontalTextImage-title!=title
                 p.section-horizontalTextImage-wysiwyg!=text
-            .section-horizontalTextImage-image
-                figure.section-verticalTextImage-imageFigure
-                    img.section-verticalTextImage-imageMedia(data-component="ScrollParallax" data-src=image.url alt=image.description)
+            .section-horizontalTextImage-image(data-ref='image')
+                +parallax(image.url, image.description, 12, false)
