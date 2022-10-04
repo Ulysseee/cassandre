@@ -1,22 +1,35 @@
-import { Base } from '@studiometa/js-toolkit';
+import { Base, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
 import SplitType from 'split-type';
 
-export default class Title extends Base {
+export default class Title extends withIntersectionObserver(Base, {
+    rootMargin: '0px 0px -25% 0px',
+}) {
     static config = {
         name: 'Title',
+        options: {
+            auto: {
+                type: Boolean,
+                default: true,
+            },
+        },
     };
 
     splitText = null;
-    isVisible = false;
+    hasBeenReveal = false;
 
     mounted() {
-        if (this.isVisible) return;
-        this.isVisible = true;
+        if (this.hasBeenReveal) return;
         this.split();
         gsap.set(this.splitText.chars, {
             yPercent: 100,
         });
+    }
+
+    intersected([{ isIntersecting }]) {
+        if (isIntersecting && this.$options.auto && !this.hasBeenReveal) {
+            this.animateIn();
+        }
     }
 
     split () {
@@ -27,12 +40,13 @@ export default class Title extends Base {
         });
     }
 
-    revert () {
+    revertSplit () {
         this.$el.style.fontKerning = '';
         this.splitText.revert();
     }
 
     animateIn () {
+        this.hasBeenReveal = true;
         gsap.fromTo(this.splitText.chars, {
             yPercent: 100,
         }, {
@@ -40,20 +54,13 @@ export default class Title extends Base {
             duration: 0.6,
             ease: 'power2.out',
             stagger: 0.025,
-            onComplete: () => {
-                this.revert();
-            },
         });
     }
 
     animateOut () {
-        this.split();
         gsap.to(this.splitText.chars, {
             yPercent: -100,
             duration: 0.3,
-            onComplete: () => {
-                this.revert();
-            },
         });
     }
 }

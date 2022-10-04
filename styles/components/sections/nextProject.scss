@@ -31,9 +31,5 @@
         gap: 5vw;
 
         @include index-layer(relative, content, raised);
-
-        .line {
-            overflow: hidden;
-        }
     }
 }

@@ -2,8 +2,9 @@ import AppEvents from '../containers/AppEvents';
 import Hammer from 'hammerjs';
 import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
+import { withFreezedOptions } from '@studiometa/js-toolkit';
 
-export default class Slider extends AppEvents {
+export default class Slider extends withFreezedOptions(AppEvents) {
 
     static config = {
         ...AppEvents.config,
@@ -101,9 +102,12 @@ export default class Slider extends AppEvents {
         const containerBox = this.$el.getBoundingClientRect();
         const wrapperBox = this.$refs.wrapper.getBoundingClientRect();
 
-        const lengthOverflowX = containerBox.right - wrapperBox.right;
+        const lengthOverflowX = containerBox.width - wrapperBox.width;
 
+        console.log(wrapperBox);
+        console.log(lengthOverflowX);
         if (lengthOverflowX >= 0) {
+            console.log(this);
             this.state.isEnabled = false;
             this.setDisableStyle();
             return;
@@ -187,8 +191,8 @@ export default class Slider extends AppEvents {
     }
 
     setDisableStyle () {
-        this.$refs.wrapper.style.width = '100%';
-        this.$refs.wrapper.style.justifyContent = 'center';
-        this.$refs.wrapper.style.cursor = 'default';
+        // this.$refs.wrapper.style.width = '100%';
+        // this.$refs.wrapper.style.justifyContent = 'center';
+        // this.$refs.wrapper.style.cursor = 'default';
     }
 }

@@ -29,7 +29,7 @@ export default class Cursor extends withBreakpointObserver(Base) {
         box: null,
     };
 
-    moved ({ x, y, last, isDown }) {
+    moved ({ x, y, last, isDown, delta }) {
         toggleClass(this.$el, 'is-down', isDown);
         this.scroll.isActive = false;
         this.scroll.deltaY = 0;
@@ -39,8 +39,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
         this.setVariables({
             translateX: this.position.x,
             translateY: this.position.y,
-            skewX: clamp(x - last.x, -10, 10),
-            skewY: clamp(y - last.y, -10, 10),
+            skewX: clamp(delta.x, -10, 10),
+            skewY: clamp(delta.y, -10, 10),
         });
     }
 

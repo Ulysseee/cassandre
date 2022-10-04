@@ -1,8 +1,8 @@
 mixin horizontal-text-image(title, text, image, reverse)
-    section.section-horizontalTextImage(data-component='HorizontalTextImage' data-option-parallax-amount='120' class=reverse ? 'is-reverse' : '')
+    section.section-horizontalTextImage(data-component='HorizontalTextImage' data-option-parallax-amount:xxs:xs:s='0' data-option-parallax-amount='120' class=reverse ? 'is-reverse' : '')
         .ui-container.section-horizontalTextImage-container
             .section-horizontalTextImage-text(data-ref='text')
-                h2.ui-h3.section-horizontalTextImage-title!=title
-                p.section-horizontalTextImage-wysiwyg!=text
-            .section-horizontalTextImage-image(data-ref='image')
+                h2.ui-h3.section-horizontalTextImage-title(data-component='Title' data-option-auto='true')!=title
+                p.section-horizontalTextImage-wysiwyg(data-component='Paragraph' data-option-delay='0.3' data-option-opacity)!=text
+            .section-horizontalTextImage-image(data-component='Image')
                 +parallax(image.url, image.description, 12, false)

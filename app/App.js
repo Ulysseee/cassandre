@@ -1,5 +1,6 @@
 import AppEvents from './containers/AppEvents';
-import { getDirectChildren, getInstanceFromElement } from '@studiometa/js-toolkit';
+import gsap from 'gsap';
+import { getInstanceFromElement } from '@studiometa/js-toolkit';
 import Cursor from './components/Cursor';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -12,6 +13,8 @@ import Parallax from './components/Parallax';
 import Lenis from '@studio-freight/lenis';
 import Title from './components/Title';
 import Project from './pages/Project';
+import Paragraph from './components/Paragraph';
+import Image from './components/Image';
 
 class App extends AppEvents {
     static config = {
@@ -21,9 +24,11 @@ class App extends AppEvents {
             Cursor,
 
             // Global Components
+            Title,
+            Paragraph,
+            Image,
             Parallax,
             ScribbleLink,
-            Title,
 
             // Pages
             Home,
@@ -38,6 +43,7 @@ class App extends AppEvents {
     currentPageInstance = null;
     DOMParser = new DOMParser();
     internalLinks = [];
+    appColor = null;
 
     mounted () {
         super.mounted();
@@ -78,10 +84,13 @@ class App extends AppEvents {
         this.addInternalLinkListeners();
     }
 
-    async onUrlChange ({ url, push = true }) {
-        const preloaderAnimateIn = preloader.animatePageTransitionIn().then(() => {
+    async onUrlChange ({ url, push = true, from = undefined, to = undefined }) {
+        const isProjectTransition = from === 'project' && to === 'project';
+
+        if (!isProjectTransition) {
+            await preloader.animatePageTransitionIn();
             window.lenis.destroy();
-        });
+        }
 
         if (this.cursor) this.cursor.disable();
 
@@ -97,7 +106,18 @@ class App extends AppEvents {
         let pageDocument = await request.text();
         pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
 
-        this.replacePage(pageDocument);
+        this.currentPageInstance.$destroy();
+        this.replacePage(pageDocument, {
+            hideFirst: isProjectTransition,
+            noIntersect: true,
+        });
+        this.$update();
+        this.updateCurrentPageInstance();
+
+        this.updateAppColor();
+        this.setupInternalLinks();
+
+        this.createLenis();
 
         await Promise.all([
             new Promise(resolve => {
@@ -106,24 +126,18 @@ class App extends AppEvents {
             ...preloadImages(),
         ]);
 
-        this.currentPageInstance.$destroy();
-
-        window.scrollTo(0, 0);
-
-        this.$update();
-        this.updateCurrentPageInstance();
-
-        this.updateNavigationColor();
-        this.setupInternalLinks();
-
-        this.createLenis();
-
-        this.showCurrentPage();
-        preloader.animatePageTransitionOut();
+        if (isProjectTransition) {
+            this.showCurrentPage();
+        } else {
+            await preloader.animatePageTransitionOut();
+            this.showCurrentPage();
+        }
     }
 
-    replacePage (pageDocument) {
+    replacePage (pageDocument, { hideFirst = false, noIntersect = false }) {
         const pageElement = pageDocument.getElementById('page');
+        if (hideFirst) gsap.set(pageElement, { autoAlpha: 0 });
+        if (noIntersect) gsap.set(pageElement, { y: '101vw' });
         this.$refs.pageContainer.replaceChildren(pageElement);
     }
 
@@ -134,13 +148,19 @@ class App extends AppEvents {
                 if (internalLink.href === window.location.href) return;
                 this.onUrlChange({
                     url: internalLink.href,
+                    from: internalLink.getAttribute('data-from'),
+                    to: internalLink.getAttribute('data-to'),
                 });
             };
         }
     }
 
     createLenis () {
-        if (window.lenis) window.lenis.destroy();
+        window.scrollTo(0, 0);
+        if (window.lenis) {
+            window.lenis.scrollTo(0);
+            window.lenis.destroy();
+        }
         return window.lenis = new Lenis({
             duration: 1.2,
             easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
@@ -157,10 +177,11 @@ class App extends AppEvents {
         this.currentPageInstance = getInstanceFromElement(pageElement, App.config.components[pageClass]);
     }
 
-    updateNavigationColor () {
+    updateAppColor () {
         const isDarkPage = this.currentPageInstance.$el.classList.contains('is-dark');
-        const navigation = document.querySelector('.component-navigation');
-        navigation.classList.toggle('of-dark-page', isDarkPage);
+        const app = document.getElementById('app');
+        app.classList.remove('is-dark', 'is-light');
+        app.classList.add(isDarkPage ? 'is-dark' : 'is-light');
     }
 }
 

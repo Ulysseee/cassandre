@@ -1,8 +1,8 @@
-import { Base, withScrolledInView } from '@studiometa/js-toolkit';
+import { Base, withFreezedOptions, withScrolledInView } from '@studiometa/js-toolkit';
 
-export default class Parallax extends withScrolledInView(Base, {
+export default class Parallax extends withFreezedOptions(withScrolledInView(Base, {
     rootMargin: '100%',
-}) {
+})) {
 
     static config = {
         name: 'Parallax',

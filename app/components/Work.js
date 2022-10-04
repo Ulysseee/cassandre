@@ -2,8 +2,9 @@ import { withIntersectionObserver, withScrolledInView } from '@studiometa/js-too
 import AppEvents from '../containers/AppEvents';
 import SVGReveal from './SVGReveal';
 import { addClass } from '@studiometa/js-toolkit/utils';
-import Title from './Title';
 import Paragraph from './Paragraph';
+import { triggerChildrenAnimateIn } from '../utils/triggerChildrenAnimateIn';
+import Title from './Title';
 
 export default class Work extends withScrolledInView(withIntersectionObserver(AppEvents, {
     rootMargin: '0px 0px -25% 0px',
@@ -30,12 +31,7 @@ export default class Work extends withScrolledInView(withIntersectionObserver(Ap
             for (const SVGReveal of this.$children.SVGReveal) {
                 SVGReveal.drawStrokes();
             }
-            for (const Title of this.$children.Title) {
-                Title.animateIn();
-            }
-            for (const Paragraph of this.$children.Paragraph) {
-                Paragraph.animateIn();
-            }
+            triggerChildrenAnimateIn(this, 'Work', ['Paragraph', 'Title']);
         }
     }
 

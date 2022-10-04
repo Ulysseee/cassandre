@@ -15,16 +15,6 @@ export default class Projects extends Page {
             WorkCard,
             Footer,
         },
-    }
-
-    mounted () {
-        super.mounted();
-        for (const Title of this.$children.Title) {
-            Title.animateIn();
-        }
-        for (const Paragraph of this.$children.Paragraph) {
-            Paragraph.animateIn();
-        }
-    }
+    };
 
 }

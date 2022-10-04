@@ -1,5 +1,4 @@
 import { Base } from '@studiometa/js-toolkit';
-import { intervalPromise } from '../utils/intervalPromise';
 import gsap from 'gsap';
 import { removeClass } from '@studiometa/js-toolkit/utils';
 

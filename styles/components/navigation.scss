@@ -1,11 +1,6 @@
-.component-navigation {
-    top: 0;
-    left: 0;
-    width: 100%;
+.app.is-dark {
 
-    @include index-layer(fixed, nav);
-
-    &.of-dark-page .component-navigation {
+    .component-navigation {
 
         &-entryFigure path {
             stroke: $beige;
@@ -19,6 +14,14 @@
             }
         }
     }
+}
+
+.component-navigation {
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    @include index-layer(fixed, nav);
 
     &-wrapper {
         display: flex;

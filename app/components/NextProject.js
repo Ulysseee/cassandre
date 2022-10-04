@@ -47,7 +47,20 @@ export default class NextProject extends withScrolledInView(AppEvents, {
 
         if (!this.reachEnd && Math.round(progressCubicIn * 100) / 100 === 1) {
             this.reachEnd = true;
-            this.$refs.content.click();
+            gsap.timeline({
+                onComplete: () => {
+                    this.$refs.content.click();
+                }
+            })
+                .to(this.splitTitle.words, {
+                    yPercent: i =>  (i % 2 === 0 ? 1 : -1) * 100,
+                    duration: 0.4,
+                })
+                .to(this.$refs.content, {
+                    clipPath: 'inset(100% 0 0 0)',
+                    duration: 0.7,
+                    ease: 'power4.out',
+                }, '>-=0.2');
         }
     }
 }

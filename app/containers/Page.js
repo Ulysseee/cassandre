@@ -1,5 +1,5 @@
 import AppEvents from './AppEvents';
-import { timeline } from 'motion';
+import gsap from 'gsap';
 
 export default class Page extends AppEvents {
 
@@ -19,16 +19,29 @@ export default class Page extends AppEvents {
     }
 
     animateIn() {
-        return timeline([
-        ]).finished;
+        return new Promise(resolve => {
+            gsap.timeline({
+                onStart: () => {
+                    gsap.set(this.$el, { y: 0 });
+                },
+                onComplete: resolve,
+            })
+                .to(this.$el, {
+                    autoAlpha: 1,
+                    duration: 0.01,
+                });
+        });
     }
 
     animateOut() {
-        return timeline([
-            [this.$el, { pointerEvents: 'none' }, { duration: 0 }],
-            [this.$el, { opacity: 0 }, { duration: 0.5, easing: 'ease-out' }],
-            [this.$el, { pointerEvents: 'auto' }, { duration: 0 }],
-        ]).finished;
+        return new Promise(resolve => {
+            gsap.timeline({
+                onComplete: resolve,
+            })
+                .to(this.$el, {
+                    autoAlpha: 0,
+                });
+        })
     }
 
 }

@@ -1,7 +1,7 @@
 mixin next-project(titleFirstPart, titleSecondPart, nextWork)
     section.section-nextProject(data-component='NextProject' class=`is-${getColorName(nextWork.fields.color)}`)
         .section-nextProject-container(data-ref='container')
-            a.section-nextProject-content(href=getLinkUrl(nextWork) data-ref='content')
+            a.section-nextProject-content(href=getLinkUrl(nextWork) data-ref='content' data-from='project' data-to='project')
                 .section-nextProject-scribble
                     +svg-reveal(1.8, true)
                         svg(data-ref='svg' width='149' height='130' viewbox='0 0 149 130' fill='none' xmlns='http://www.w3.org/2000/svg')
