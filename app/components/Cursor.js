@@ -1,5 +1,5 @@
 import { Base, withBreakpointObserver } from '@studiometa/js-toolkit';
-import { addClass, clamp, getOffsetSizes, removeClass, toggleClass } from '@studiometa/js-toolkit/utils';
+import { addClass, getOffsetSizes, removeClass, toggleClass } from '@studiometa/js-toolkit/utils';
 import { isTouchDevice } from '../utils/detector';
 
 export default class Cursor extends withBreakpointObserver(Base) {
