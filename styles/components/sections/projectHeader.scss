@@ -1,5 +1,6 @@
 .section-projectHeader {
     position: relative;
+    overflow-y: hidden;
 
     // FORMATS
     &.is-vertical .section-projectHeader {
@@ -30,6 +31,10 @@
         position: absolute;
         top: 0;
         right: -3vw;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            display: none;
+        }
     }
 
     &-container {
