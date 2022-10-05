@@ -50,7 +50,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     mounted () {
         super.mounted();
 
-        this.lerp = isTouchDevice() ? 0 : this.$options.lerp;
+        this.lerp = isTouchDevice() ? 1 : this.$options.lerp;
 
         this.init();
 
