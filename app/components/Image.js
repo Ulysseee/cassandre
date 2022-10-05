@@ -13,7 +13,7 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
             },
             clipPath: {
                 type: String,
-                default: 'inset(0% 100% 0% 0%)',
+                default: 'inset(100% 0% 0% 0%)',
             },
         },
     };

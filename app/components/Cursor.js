@@ -16,18 +16,16 @@ export default class Cursor extends withBreakpointObserver(Base) {
         x: 0,
         y: 0,
     };
-    scroll = {
-        isActive: false,
-        deltaY: 0,
-    };
     color = null;
     sticky = {
         isActive: false,
         side: null,
+        enable: false,
     };
     currentTarget = {
         element: null,
         box: null,
+        type: null,
     };
 
     mounted() {
@@ -36,10 +34,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
 
     moved ({ x, y, last, isDown, delta }) {
         toggleClass(this.$el, 'is-down', isDown);
-        this.scroll.isActive = false;
-        this.scroll.deltaY = 0;
 
-        if (this.sticky.isActive) return;
+        if (this.sticky.enable && this.sticky.isActive) return;
         this.position = { x, y };
         this.setVariables({
             translateX: this.position.x,
@@ -47,20 +43,6 @@ export default class Cursor extends withBreakpointObserver(Base) {
             skewX: 0,
             skewY: 0,
         });
-    }
-
-    scrolled ({ delta }) {
-        if (!this.currentTarget.element) return;
-
-        this.scroll.isActive = true;
-        this.scroll.deltaY += delta.y;
-
-        if (this.position.y + this.scroll.deltaY < this.currentTarget.box.top || this.position.y + this.scroll.deltaY > this.currentTarget.box.bottom) {
-            this.onLeaveLink({ ...this.currentTarget.element });
-            this.onLeaveSlider({ ...this.currentTarget.element });
-        } else if (this.sticky.isActive) {
-            this.setSticky(this.currentTarget.element, true, this.sticky.side);
-        }
     }
 
     setColor (newCursorColor) {
@@ -75,6 +57,7 @@ export default class Cursor extends withBreakpointObserver(Base) {
     }
 
     setSticky (target, isSticky, cursorStickySide = 'center') {
+        if (!this.sticky.enable) return;
         if (isSticky === undefined || isSticky === false) {
             this.sticky.isActive = false;
         } else {
@@ -97,8 +80,10 @@ export default class Cursor extends withBreakpointObserver(Base) {
     onEnterLink ({ target }) {
         if (!this.isListening) return;
         this.isOnLink = true;
+        target.style.cursor = 'none';
         this.currentTarget.element = target;
         this.currentTarget.box = target.getBoundingClientRect();
+        this.currentTarget.type = 'link';
         const { cursorColor, cursorSticky, cursorStickySide } = this.currentTarget.element.dataset;
         this.setColor(cursorColor);
         this.setSticky(target, cursorSticky, cursorStickySide);
@@ -107,8 +92,10 @@ export default class Cursor extends withBreakpointObserver(Base) {
 
     onLeaveLink ({ target }) {
         this.isOnLink = false;
+        if (target) target.style.cursor = '';
         this.currentTarget.element = null;
         this.currentTarget.box = null;
+        this.currentTarget.type = null;
         this.setSticky(target, false);
         removeClass(this.$el, 'on-link');
     }
@@ -116,16 +103,20 @@ export default class Cursor extends withBreakpointObserver(Base) {
     onEnterSlider ({ target }) {
         if (!this.isListening) return;
         this.isOnSlider = true;
+        target.style.cursor = 'none';
         this.currentTarget.element = target;
         this.currentTarget.box = target.getBoundingClientRect();
+        this.currentTarget.type = 'slider';
         this.setColor(target);
         addClass(this.$el, 'on-slider');
     }
 
     onLeaveSlider ({ target }) {
         this.isOnSlider = false;
+        if (target) target.style.cursor = '';
         this.currentTarget.element = null;
         this.currentTarget.box = null;
+        this.currentTarget.type = null;
         removeClass(this.$el, 'on-slider');
     }
 
@@ -138,8 +129,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
 
     disable() {
         this.isListening = false;
-        this.onLeaveLink({ ...this.currentTarget.element });
-        this.onLeaveSlider({ ...this.currentTarget.element });
+        this.onLeaveLink({ target: this.currentTarget.element });
+        this.onLeaveSlider({ target: this.currentTarget.element });
     }
 
     enable() {

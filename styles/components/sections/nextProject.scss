@@ -1,7 +1,7 @@
 
 .section-nextProject {
     width: 100%;
-    height: calc(200vh + clamp(422px, 68vh, 500px));
+    height: calc(#{vh(200)} + clamp(422px, vh(68), 500px));
 
     &-container {
         position: sticky;
@@ -9,13 +9,13 @@
         display: flex;
         align-items: flex-end;
         width: 100%;
-        height: 100vh;
+        height: vh(100);
     }
 
     &-content {
         position: relative;
         width: 100%;
-        height: clamp(422px, 68vh, 500px);
+        height: clamp(422px, vh(68), 500px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,7 +28,7 @@
 
     &-title {
         display: inline-flex;
-        gap: 5vw;
+        gap: vw(5);
 
         @include index-layer(relative, content, raised);
     }

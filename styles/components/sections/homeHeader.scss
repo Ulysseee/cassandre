@@ -1,7 +1,8 @@
 .section-homeHeader {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: calc(#{vh(100)} + #{vw(2.8)});
+    min-height: -webkit-fill-available;
 
     @include index-layer(relative, content, base);
 
@@ -38,14 +39,18 @@
         color: $brown-light;
 
         &Char {
-            max-width: 11.11vw;
-            margin-left: -1vw;
+            max-width: vw(11.11);
+            margin-left: vw(-1);
+
+            &:nth-of-type(3) {
+                margin-left: vw(-2.4);
+            }
         }
 
         &Shape {
-            max-width: 11.11vw;
-            width: clamp(2.6rem, 7.6vw, 11.11vw);
-            margin-left: -2.5vw;
+            max-width: vw(22.22);
+            width: clamp(5.2rem, vw(15.2), vw(22.22));
+            margin-left: vw(-2.5);
 
             svg {
                 width: 100%;
@@ -55,7 +60,7 @@
     }
 
     &-baseline {
-        font-size: clamp(0.875rem, 1.1vw, 1rem);
+        font-size: clamp(0.875rem, vw(1.1), 1rem);
         line-height: 1rem;
         text-transform: uppercase;
         color: $brown-light;

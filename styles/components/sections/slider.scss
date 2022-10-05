@@ -44,7 +44,7 @@
         overflow: hidden;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            max-width: 80vw;
+            max-width: vw(80);
         }
     }
 

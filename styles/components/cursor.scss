@@ -60,7 +60,7 @@
 
         &-inner {
             opacity: 1;
-            transform: scale(1) rotate(-40deg);
+            transform: scale(1) rotate(-40deg) translate(-50%, -50%);
         }
     }
 
@@ -68,7 +68,7 @@
 
         &-inner {
             opacity: 1;
-            transform: scale(1) rotate(0deg);
+            transform: scale(1) rotate(0deg) translate(-50%, -50%);
         }
 
         &-background {
@@ -102,7 +102,7 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
-        transform: scale(0);
+        transform: scale(0) translate(-50%, -50%);
         transition: transform 0.7s $middle-ease-out, opacity 0.6s $middle-ease-out;
     }
 

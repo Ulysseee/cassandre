@@ -79,6 +79,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         this.calculateBounds();
         if (!this.state.isEnabled) return;
         if (this.$options.infinite) this.cloneSlides();
+        this.addEvents();
     }
 
     cloneSlides () {
@@ -117,11 +118,12 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         this.state.targetTranslateX += distance.x * this.$options.speed;
     }
 
-    onPanEnd () {
-        this.onPressUp();
+    addEvents() {
+        this.$refs.wrapper.addEventListener('mousedown', this.onMouseDown.bind(this));
+        this.$refs.wrapper.addEventListener('mouseup', this.onMouseUp.bind(this));
     }
 
-    onPressDown () {
+    onMouseDown () {
         this.state.isPressed = true;
         gsap.killTweensOf([this.$refs.slides, this.$refs.images]);
         gsap.to(this.$refs.slides, {
@@ -136,7 +138,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         });
     }
 
-    onPressUp () {
+    onMouseUp () {
         this.state.isPressed = false;
         gsap.killTweensOf([this.$refs.slides, this.$refs.images]);
         gsap.to(this.$refs.slides, {

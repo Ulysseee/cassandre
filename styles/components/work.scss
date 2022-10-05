@@ -56,10 +56,10 @@
     }
 
     &.is-horizontal, &.is-square {
-        width: 51vw;
+        width: vw(51);
 
         @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-            width: 64vw;
+            width: vw(64);
         }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
@@ -83,10 +83,10 @@
     }
 
     &.is-vertical {
-        width: 26.6vw;
+        width: vw(26.6);
 
         @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-            width: 32vw;
+            width: vw(32);
         }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
@@ -132,12 +132,12 @@
     }
 
     &.is-vertical.is-alignCenter {
-        width: 30vw;
-        padding-right: 1vw;
+        width: vw(30);
+        padding-right: vw(1);
 
         @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-            width: 36vw;
-            padding-right: 3vw;
+            width: vw(36);
+            padding-right: vw(3);
         }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
@@ -316,7 +316,7 @@
 
     &__header {
         position: relative;
-        max-width: 32vw;
+        max-width: vw(32);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             max-width: unset;

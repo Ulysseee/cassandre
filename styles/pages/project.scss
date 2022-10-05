@@ -2,7 +2,7 @@
 
     &-separator {
         width: 1px;
-        height: min(32vh, 235px);
+        height: min(#{32vh}, 235px);
         margin: 2.875rem auto 1.5rem auto;
         background-color: $black;
     }

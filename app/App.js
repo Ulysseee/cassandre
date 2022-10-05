@@ -77,11 +77,18 @@ class App extends AppEvents {
             url: window.location.pathname,
             push: false,
         }));
+        window.addEventListener('resize', () => this.onResize());
     }
 
     setupInternalLinks () {
         this.internalLinks = getInternalLinks();
         this.addInternalLinkListeners();
+    }
+
+    onResize () {
+        console.log(window.innerHeight * 0.01);
+        document.documentElement.style.setProperty('--vh', `${ window.innerHeight * 0.01 }px`);
+        document.documentElement.style.setProperty('--vw', `${ window.innerWidth * 0.01 }px`);
     }
 
     async onUrlChange ({ url, push = true, from = undefined, to = undefined }) {

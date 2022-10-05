@@ -30,7 +30,7 @@
     &-background {
         position: absolute;
         top: 0;
-        right: -3vw;
+        right: vw(-3);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             display: none;
@@ -41,11 +41,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 12vh;
+        padding-top: vh(12);
     }
 
     &-text {
-        height: 55vh;
+        height: vh(55);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -55,7 +55,7 @@
         @include index-layer(relative, content, raised);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            height: 14vh;
+            height: vh(14);
         }
     }
 
@@ -76,7 +76,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: -4.5vw;
+        margin-top: -4.5(vw);
     }
 
     &-cover {

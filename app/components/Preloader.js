@@ -67,11 +67,11 @@ export default class Preloader extends Base {
                     strokeDashoffset: this.$refs.scribblePath.getTotalLength(),
                 }, {
                     strokeDashoffset: -this.$refs.scribblePath.getTotalLength() + 1,
-                    duration: 1,
+                    duration: 1.4,
                     ease: 'quart.out',
                 }, '>+=0.1')
                 .set(this.$refs.overlay, { autoAlpha: 1 })
-                .call(resolve, [], '>-=0.7');
+                .call(resolve, [], '>-=0.9');
         });
     }
 
@@ -84,8 +84,8 @@ export default class Preloader extends Base {
                 },
             })
                 .add(gsap.to(this.overlay, {
-                    duration: 0.7,
-                    ease: 'quint.in',
+                    duration: 1,
+                    ease: 'expo.in',
                     onUpdate: this.animateOverlay,
                     onUpdateParams: [this.overlay, this.overlay.height, '#FF6C3C'],
                 }))
