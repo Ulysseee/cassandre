@@ -2,7 +2,6 @@ import AppEvents from '../containers/AppEvents';
 import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
 import { withDrag, withFreezedOptions } from '@studiometa/js-toolkit';
-import { isTouchDevice } from '../utils/detector';
 
 export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     target: instance => instance.$refs.wrapper,
@@ -27,7 +26,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             },
             lerp: {
                 type: Number,
-                default: isTouchDevice() ? 0 : 0.08,
+                default: 0,
             },
             scaleOnPress: {
                 type: Number,
@@ -167,8 +166,8 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     }
 
     setDisableStyle () {
-        // this.$refs.wrapper.style.width = '100%';
-        // this.$refs.wrapper.style.justifyContent = 'center';
-        // this.$refs.wrapper.style.cursor = 'default';
+        this.$refs.wrapper.style.width = '100%';
+        this.$refs.wrapper.style.justifyContent = 'center';
+        this.$refs.wrapper.style.cursor = 'default';
     }
 }
