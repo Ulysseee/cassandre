@@ -1,11 +1,16 @@
 extends ../base.pug
 
+include ../mixins/sections/home-header
+
 block variables
     - var pageName = 'home'
     - var pageComponent = 'Home'
     - var pageShade = 'dark'
 
 block page
+
+    +home-header('interactive &<br>brand designer')
+
     section.ui-container.page-home-works
         each work, index in homePage.works
             include ../components/work

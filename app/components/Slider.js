@@ -104,10 +104,7 @@ export default class Slider extends withFreezedOptions(AppEvents) {
 
         const lengthOverflowX = containerBox.width - wrapperBox.width;
 
-        console.log(wrapperBox);
-        console.log(lengthOverflowX);
         if (lengthOverflowX >= 0) {
-            console.log(this);
             this.state.isEnabled = false;
             this.setDisableStyle();
             return;

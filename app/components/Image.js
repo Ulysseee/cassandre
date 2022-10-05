@@ -28,14 +28,12 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
     }
 
     intersected([{ isIntersecting }]) {
-        console.log(isIntersecting);
         if (isIntersecting && this.$options.auto && !this.hasBeenReveal) {
             this.animateIn();
         }
     }
 
     animateIn() {
-        console.log('animateIn');
         this.hasBeenReveal = true;
         gsap.fromTo(this.$el, {
             clipPath: this.$options.clipPath,

@@ -129,7 +129,7 @@ class App extends AppEvents {
         if (isProjectTransition) {
             this.showCurrentPage();
         } else {
-            await preloader.animatePageTransitionOut();
+            preloader.animatePageTransitionOut();
             this.showCurrentPage();
         }
     }

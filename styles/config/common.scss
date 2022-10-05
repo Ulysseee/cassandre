@@ -62,6 +62,10 @@ body {
     }
 
     @include index-layer(relative, content);
+
+    &-home {
+        padding-top: 0;
+    }
 }
 
 * {

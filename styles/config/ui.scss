@@ -20,13 +20,8 @@
 
 .ui-h1 {
     font-family: $rebond-extralight;
-    font-size: font-size(67px, 163px);
-    line-height: 1.14;
-
-    @include respond-to('medium') {
-        font-size: font-size(67px, 163px, 'desktop');
-        line-height: 1.14;
-    }
+    font-size: clamp(4.125rem, 11.11vw, 11.11vw);
+    line-height: 0.94;
 }
 
 .ui-h2 {
