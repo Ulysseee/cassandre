@@ -56,6 +56,8 @@ class App extends AppEvents {
         this.setupInternalLinks();
 
         this.createLenis().stop();
+
+        this.onResize();
     }
 
     removeAppOverlay () {
@@ -86,7 +88,6 @@ class App extends AppEvents {
     }
 
     onResize () {
-        console.log(window.innerHeight * 0.01);
         document.documentElement.style.setProperty('--vh', `${ window.innerHeight * 0.01 }px`);
         document.documentElement.style.setProperty('--vw', `${ window.innerWidth * 0.01 }px`);
     }
@@ -191,6 +192,9 @@ class App extends AppEvents {
         app.classList.add(isDarkPage ? 'is-dark' : 'is-light');
     }
 }
+
+const pageElement = document.getElementById('page-container');
+gsap.set(pageElement, { y: '101vw' });
 
 const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');

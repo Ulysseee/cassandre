@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import SplitType from 'split-type';
 
 export default class Paragraph extends withIntersectionObserver(Base, {
-    rootMargin: '0px 0px -25% 0px',
+    rootMargin: '0px 0px 25% 0px',
 }) {
     static config = {
         name: 'Paragraph',
@@ -30,7 +30,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     }
 
     intersected([{ isIntersecting }]) {
-        if (isIntersecting && this.$options.auto && !this.hasBeenReveal) {
+        if (window.readyForAnimations && isIntersecting && this.$options.auto && !this.hasBeenReveal) {
             this.animateIn();
         }
     }

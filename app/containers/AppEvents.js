@@ -10,13 +10,11 @@ export default class AppEvents extends Base {
     cursor;
 
     mounted () {
-        this.$log('Mounted');
         const cursorElement = document.querySelector('[data-component="Cursor"]');
         this.cursor = getInstanceFromElement(cursorElement, Cursor);
     }
 
     destroyed () {
-        this.$log('Destroyed');
     }
 
     onCursorLinkMouseenter (e) {

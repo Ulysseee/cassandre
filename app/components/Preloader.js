@@ -91,7 +91,10 @@ export default class Preloader extends Base {
                 }))
                 .add(gsap.to(this.overlay, {
                     onStart: () => {
+                        window.readyForAnimations = true;
                         gsap.set(this.$refs.wrapper, { autoAlpha: 0 });
+                        gsap.set(document.getElementById('page-container'), { y: 0 });
+                        window.scrollTo(0, 0);
                     },
                     onComplete: () => {
                         gsap.set(this.$refs.wrapper, { autoAlpha: 1 });

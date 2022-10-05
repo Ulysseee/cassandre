@@ -1,6 +1,5 @@
 .section-projectHeader {
     position: relative;
-    overflow-y: hidden;
 
     // FORMATS
     &.is-vertical .section-projectHeader {
@@ -41,22 +40,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: vh(12);
+        padding-top: vh(24);
     }
 
     &-text {
-        height: vh(55);
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
         align-items: center;
         text-align: center;
 
         @include index-layer(relative, content, raised);
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            height: vh(14);
-        }
     }
 
     &-year {
@@ -76,7 +69,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: -4.5(vw);
+        margin-top: vw(-4.5);
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            margin-top: vw(-7);
+        }
     }
 
     &-cover {
