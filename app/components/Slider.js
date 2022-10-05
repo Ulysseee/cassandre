@@ -27,7 +27,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             },
             lerp: {
                 type: Number,
-                default: isTouchDevice() ? 1 : 0.04,
+                default: 0.04,
             },
             scaleOnPress: {
                 type: Number,
@@ -49,6 +49,8 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
 
     mounted () {
         super.mounted();
+
+        this.lerp = isTouchDevice() ? 0 : this.$options.lerp;
 
         this.init();
 
@@ -158,7 +160,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             this.state.currentTranslateX = this.state.baseTranslateX + this.state.currentTranslateX;
         } else {
             this.state.targetTranslateX = clamp(this.state.targetTranslateX, this.state.minTranslateX, this.state.maxTranslateX);
-            this.state.currentTranslateX = damp(this.state.targetTranslateX, this.state.currentTranslateX, this.$options.lerp, 0.01);
+            this.state.currentTranslateX = damp(this.state.targetTranslateX, this.state.currentTranslateX, this.lerp, 0.01);
         }
 
         gsap.set(this.$refs.wrapper, { x: this.state.currentTranslateX });
