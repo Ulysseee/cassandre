@@ -1,5 +1,6 @@
 import { Base, withBreakpointObserver } from '@studiometa/js-toolkit';
 import { addClass, clamp, getOffsetSizes, removeClass, toggleClass } from '@studiometa/js-toolkit/utils';
+import { isTouchDevice } from '../utils/detector';
 
 export default class Cursor extends withBreakpointObserver(Base) {
     static config = {
@@ -29,6 +30,10 @@ export default class Cursor extends withBreakpointObserver(Base) {
         box: null,
     };
 
+    mounted() {
+        if (isTouchDevice()) this.$destroy();
+    }
+
     moved ({ x, y, last, isDown, delta }) {
         toggleClass(this.$el, 'is-down', isDown);
         this.scroll.isActive = false;
@@ -39,8 +44,8 @@ export default class Cursor extends withBreakpointObserver(Base) {
         this.setVariables({
             translateX: this.position.x,
             translateY: this.position.y,
-            skewX: clamp(delta.x, -10, 10),
-            skewY: clamp(delta.y, -10, 10),
+            skewX: 0,
+            skewY: 0,
         });
     }
 

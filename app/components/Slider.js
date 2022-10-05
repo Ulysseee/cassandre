@@ -2,9 +2,12 @@ import AppEvents from '../containers/AppEvents';
 import Hammer from 'hammerjs';
 import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
-import { withFreezedOptions } from '@studiometa/js-toolkit';
+import { withDrag, withFreezedOptions } from '@studiometa/js-toolkit';
 
-export default class Slider extends withFreezedOptions(AppEvents) {
+export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
+    target: instance => instance.$refs.wrapper,
+    // dampFactor: 0.5,
+}) {
 
     static config = {
         ...AppEvents.config,
@@ -21,7 +24,7 @@ export default class Slider extends withFreezedOptions(AppEvents) {
             },
             speed: {
                 type: Number,
-                default: 0.1,
+                default: 1,
             },
             lerp: {
                 type: Number,
@@ -124,16 +127,18 @@ export default class Slider extends withFreezedOptions(AppEvents) {
     }
 
     addEvents () {
-        this.hammerManager.on('pan', this.onPanStart.bind(this));
-        this.hammerManager.on('panend', this.onPanEnd.bind(this));
-        this.hammerManager.on('press', this.onPressDown.bind(this));
-        this.hammerManager.on('pressup', this.onPressUp.bind(this));
+        // this.hammerManager.on('pan', this.onPanStart.bind(this));
+        // this.hammerManager.on('panend', this.onPanEnd.bind(this));
+        // this.hammerManager.on('press', this.onPressDown.bind(this));
+        // this.hammerManager.on('pressup', this.onPressUp.bind(this));
     }
 
-    onPanStart (e) {
-        const { deltaX, direction } = e;
-        this.state.forward = direction === 2;
-        this.state.targetTranslateX += deltaX * this.$options.speed;
+    dragged ({ delta }) {
+        // const { deltaX, direction } = e;
+        console.log(delta.x);
+        this.state.forward = delta.x < 0;
+        this.state.targetTranslateX += delta.x * this.$options.speed;
+        console.log(this.state.targetTranslateX);
     }
 
     onPanEnd () {

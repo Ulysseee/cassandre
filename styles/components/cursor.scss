@@ -59,6 +59,7 @@
     &.on-link .component-cursor {
 
         &-inner {
+            opacity: 1;
             transform: scale(1) rotate(-40deg);
         }
     }
@@ -66,6 +67,7 @@
     &.on-slider .component-cursor {
 
         &-inner {
+            opacity: 1;
             transform: scale(1) rotate(0deg);
         }
 
@@ -99,8 +101,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        opacity: 0;
         transform: scale(0);
-        transition: transform 0.7s $middle-ease-out;
+        transition: transform 0.7s $middle-ease-out, opacity 0.6s $middle-ease-out;
     }
 
     &-backgroundContainer {

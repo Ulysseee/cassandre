@@ -20,6 +20,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    pointer-events: none;
 
     @include index-layer(fixed, nav);
 
@@ -61,6 +62,7 @@
     &-entry {
         color: $black;
         text-transform: uppercase;
+        pointer-events: auto;
 
         path {
             stroke: $black;

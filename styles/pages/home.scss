@@ -1,6 +1,10 @@
 .page-home {
     background-color: $black;
 
+    &-works {
+        overflow: hidden;
+    }
+
     &-projectsButton {
         display: flex;
         justify-content: center;
