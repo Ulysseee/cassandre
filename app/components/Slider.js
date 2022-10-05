@@ -1,12 +1,10 @@
 import AppEvents from '../containers/AppEvents';
-import Hammer from 'hammerjs';
 import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
 import { withDrag, withFreezedOptions } from '@studiometa/js-toolkit';
 
 export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     target: instance => instance.$refs.wrapper,
-    // dampFactor: 0.5,
 }) {
 
     static config = {
@@ -24,7 +22,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             },
             speed: {
                 type: Number,
-                default: 1,
+                default: 0.08,
             },
             lerp: {
                 type: Number,
@@ -36,8 +34,6 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             },
         },
     };
-
-    hammerManager = null;
 
     state = {
         isEnabled: true,
@@ -53,14 +49,12 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     mounted () {
         super.mounted();
 
-        this.setHammerManager();
         this.init();
 
         this.raq = requestAnimationFrame(this.update.bind(this));
     }
 
     destroyed() {
-        this.hammerManager.destroy();
         cancelAnimationFrame(this.raq);
     }
 
@@ -75,24 +69,13 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             minTranslateX: null,
             maxTranslateX: null,
         };
-        this.setHammerManager();
         this.calculateBounds();
-    }
-
-    setHammerManager () {
-        this.hammerManager = new Hammer.Manager(this.$el, {
-            recognizers: [
-                [Hammer.Pan, { event: 'pan', direction: Hammer.DIRECTION_HORIZONTAL }],
-                [Hammer.Press, { event: 'press', time: 0 }],
-            ],
-        });
     }
 
     init () {
         this.calculateBounds();
         if (!this.state.isEnabled) return;
         if (this.$options.infinite) this.cloneSlides();
-        this.addEvents();
     }
 
     cloneSlides () {
@@ -126,19 +109,9 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         }
     }
 
-    addEvents () {
-        // this.hammerManager.on('pan', this.onPanStart.bind(this));
-        // this.hammerManager.on('panend', this.onPanEnd.bind(this));
-        // this.hammerManager.on('press', this.onPressDown.bind(this));
-        // this.hammerManager.on('pressup', this.onPressUp.bind(this));
-    }
-
-    dragged ({ delta }) {
-        // const { deltaX, direction } = e;
-        console.log(delta.x);
-        this.state.forward = delta.x < 0;
-        this.state.targetTranslateX += delta.x * this.$options.speed;
-        console.log(this.state.targetTranslateX);
+    dragged ({ distance }) {
+        this.state.forward = distance.x < 0;
+        this.state.targetTranslateX += distance.x * this.$options.speed;
     }
 
     onPanEnd () {
