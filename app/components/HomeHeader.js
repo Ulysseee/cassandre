@@ -3,9 +3,6 @@ import Matter from 'matter-js';
 import { withFreezedOptions } from '@studiometa/js-toolkit';
 import { COLORS } from '../constants/colors';
 import { clamp, map } from '@studiometa/js-toolkit/utils';
-import bubbleSprite01 from '../../assets/images/bubble-01.png';
-import bubbleSprite02 from '../../assets/images/bubble-02.png';
-import bubbleSprite03 from '../../assets/images/bubble-03.png';
 import { isTouchDevice } from '../utils/detector';
 import gsap from 'gsap';
 
@@ -34,6 +31,9 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
                 type: Number,
                 default: window.innerHeight,
             },
+            bubbleImages: {
+                type: Array,
+            },
             numberOfBubbles: {
                 type: Number,
                 default: 8,
@@ -50,10 +50,6 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
                     COLORS.orange,
                     COLORS.brownLight,
                 ]),
-            },
-            direction: {
-                type: Array,
-                default: () => (Array(8)),
             },
             positions: {
                 type: Array,
@@ -85,14 +81,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
             fillStyle: COLORS.beige,
         },
     };
-    sprites = [
-        '',
-        bubbleSprite01,
-        '',
-        bubbleSprite02,
-        '',
-        bubbleSprite03,
-    ];
+    sprites = [];
     maxTranslateX = 0;
 
     static calculatePosition(x, y, width, height) {
@@ -104,6 +93,14 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
 
     mounted() {
         this.maxTranslateX = this.$el.offsetWidth - this.$refs.content.getBoundingClientRect().right;
+        this.sprites = this.$options.bubbleImages;
+        for (let i = 0; i < this.$options.numberOfBubbles; i++) {
+            if (!this.sprites[i]) {
+                this.sprites[i] = '';
+            }
+        }
+        this.sprites = this.sprites.sort(() => 0.5 - Math.random());
+
         if (!this.bubblesCreated) this.createWorldBubbles();
     }
 

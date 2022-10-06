@@ -86,6 +86,8 @@ const handleWorksRows = works => {
 
 const handleYear = date => new Date(date).getFullYear();
 
+const handleBubbleImages = bubbleImages => bubbleImages.map(image => image.fields.file.url);
+
 app.use((req, res, next) => {
     res.locals.getWysiwyg = handleWysiwyg;
     res.locals.getColorName = handleColorName;
@@ -95,6 +97,7 @@ app.use((req, res, next) => {
     res.locals.getAlignment = handleAlignment;
     res.locals.getWorksRows = handleWorksRows;
     res.locals.getYear = handleYear;
+    res.locals.getBubbleImages = handleBubbleImages;
 
     next();
 });

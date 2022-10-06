@@ -1,5 +1,5 @@
-mixin home-header(baseline)
-    header.section-homeHeader(data-component='HomeHeader')
+mixin home-header(baseline, bubbleImages)
+    header.section-homeHeader(data-component='HomeHeader' data-option-bubble-images=getBubbleImages(bubbleImages))
         .section-homeHeader-canvas(data-ref='canvas')
         .ui-container-large.section-homeHeader-container
             .section-homeHeader-content(data-ref='content')
