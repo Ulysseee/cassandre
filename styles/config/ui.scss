@@ -51,9 +51,8 @@
     font-size: font-size(40px, 64px);
     line-height: 1;
 
-    @include respond-to('medium') {
-        font-size: font-size(40px, 64px, 'desktop');
-        line-height: 0.95;
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        line-height: 3rem;
     }
 }
 
@@ -93,7 +92,10 @@
 
 .ui-p-l {
     font-size: clamp(1rem, vw(1.7), 1.125rem);
-    line-height: 1.42;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        line-height: 1.6;
+    }
 }
 
 .ui-p-m {
@@ -219,5 +221,7 @@
 }
 
 .ui-hyperlink {
-    font-weight: bolder;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.4rem
 }

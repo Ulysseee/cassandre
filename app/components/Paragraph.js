@@ -14,10 +14,12 @@ export default class Paragraph extends withIntersectionObserver(Base, {
             },
             delay: Number,
             opacity: Boolean,
+            staggerLines: Boolean,
         },
     };
 
     splitText = null;
+    wordsPerLine = null;
     hasBeenReveal = false;
 
     mounted() {
@@ -41,6 +43,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
             types: 'lines, words',
             tagName: 'span',
         });
+        this.wordsPerLine = this.splitText.lines.map(line => [line.querySelectorAll('.word')]);
     }
 
     revertSplit () {
@@ -50,20 +53,23 @@ export default class Paragraph extends withIntersectionObserver(Base, {
 
     animateIn () {
         this.hasBeenReveal = true;
-        gsap.to(this.splitText.words, {
-            yPercent: 0,
-            opacity: 1,
-            duration: 1,
-            delay: this.$options.delay,
-            ease: 'power3.out',
-            clearProps: 'all',
+        this.wordsPerLine.forEach((wordsLine, index) => {
+            gsap.to(wordsLine, {
+                yPercent: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                delay: this.$options.delay + (this.$options.staggerLines ? index * 0.12 : 0),
+            });
         });
     }
 
     animateOut () {
-        gsap.to(this.splitText.words, {
-            yPercent: -100,
-            duration: 0.3,
+        this.wordsPerLine.forEach(wordsLine => {
+            gsap.to(wordsLine, {
+                yPercent: -100,
+                duration: 0.3,
+            });
         });
     }
 }

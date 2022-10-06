@@ -30,6 +30,7 @@
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             flex-direction: column-reverse;
+            gap: 1rem;
         }
     }
 
@@ -51,6 +52,15 @@
             max-width: vw(22.22);
             width: clamp(5.2rem, vw(15.2), vw(22.22));
             margin-left: vw(-2.5);
+            transform: translateY(-6px);
+
+            @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+                transform: translateY(-4px);
+            }
+
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                transform: translateY(1px);
+            }
 
             svg {
                 width: 100%;
@@ -61,10 +71,14 @@
 
     &-baseline {
         font-size: clamp(0.875rem, vw(1.1), 1rem);
-        line-height: 1rem;
+        line-height: 1.375rem;
         text-transform: uppercase;
         color: $brown-light;
         margin-top: 4px;
         opacity: 0.6;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            line-height: 1rem;
+        }
     }
 }

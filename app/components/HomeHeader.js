@@ -15,6 +15,7 @@ const Engine = Matter.Engine,
     Events = Matter.Events,
     Mouse = Matter.Mouse,
     Query = Matter.Query,
+    Body = Matter.Body,
     Composite = Matter.Composite;
 
 export default class HomeHeader extends withFreezedOptions(AppEvents) {
@@ -101,13 +102,31 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
         }
         this.sprites = this.sprites.sort(() => 0.5 - Math.random());
 
-        if (!this.bubblesCreated) this.createWorldBubbles();
+        if (!this.bubblesCreated) {
+            this.createWorldBubbles();
+            this.applyRandomForces(window.innerWidth < 700 ? 60 : 120);
+            this.bubbles.forEach((bubble, index) => {
+                Body.setPosition(bubble, { x: this.$options.positions[index].x , y: -(window.innerWidth < 700 ? 72 : 108) });
+                gsap.to(bubble, {
+                    duration: 1,
+                    ease: 'elastic.out(1, 0.4)',
+                    onUpdate: function(positions) {
+                        const y = this.ratio * positions[index].y;
+                        Body.setPosition(bubble, { x: positions[index].x , y });
+                    },
+                    onUpdateParams: [this.$options.positions],
+                    delay: 4 + 0.07 * index,
+                });
+            });
+        }
     }
 
     scrolled ({ y, progress, max }) {
         const progressOutOfView = clamp(y / window.innerHeight, 0, 1);
         const maxTranslateY = max.y - window.innerHeight - window.innerHeight / 10;
         const maxRotate = -8;
+
+        this.engine.gravity.y = progressOutOfView;
 
         gsap.set(this.$refs.content, {
             y: maxTranslateY * progress.y,
@@ -122,7 +141,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
         this.engine = Engine.create({
             gravity: {
                 x: 0,
-                y: 0,
+                y: 0.01,
             },
         });
 
@@ -142,7 +161,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
             },
         });
 
-        if (!isTouchDevice()) this.setupMouse();
+        this.setupEvents();
         this.createWalls(this.$options.numberOfBubbles);
         this.createBubbles(this.$options.numberOfBubbles);
         this.applyRandomForces();
@@ -192,17 +211,17 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
         }
     }
 
-    applyRandomForces () {
+    applyRandomForces (force = 10) {
         for (const bubble of this.bubbles) {
             Matter.Body.applyForce(bubble, {
                 x: 0, y: 0,
             }, {
-                x: (Math.random() - 0.5) * 10, y: (Math.random() - 0.5) * 10,
+                x: (Math.random() - 0.5) * force, y: (Math.random() - 0.5) * force,
             });
         }
     }
 
-    setupMouse () {
+    setupEvents () {
         const mouse = Mouse.create(document.body);
         const mouseConstraint = MouseConstraint.create(this.engine, {
             mouse: mouse,
@@ -213,7 +232,6 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
             },
         });
         World.add(this.engine.world, mouseConstraint);
-        Events.on(mouseConstraint, 'mousemove', this.handleMouseMove.bind(this));
     }
 
     handleMouseMove (e) {
