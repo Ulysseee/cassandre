@@ -22,3 +22,11 @@
         z-index: z-number($keys);
     }
 }
+
+@mixin hover() {
+    @media (any-hover: hover) {
+        &:not([disabled]):hover {
+            @content;
+        }
+    }
+}

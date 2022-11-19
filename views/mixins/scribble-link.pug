@@ -1,5 +1,5 @@
 mixin scribble-link(url, text)
-    a.component-scribbleLink(href=url data-component="ScribbleLink")
-        span.component-scribbleLink-text&attributes(attributes)=text
+    .component-scribbleLink(data-component="ScribbleLink")
+        a.component-scribbleLink-text(href=url)&attributes(attributes)=text
         svg.component-scribbleLink-scribble(data-ref="scribble" width='71' height='8' viewbox='0 0 71 8' fill='none' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio="none")
             path(d='M1 6.86925C5.5 5.89529 20.803 1.24204 22.5 1.30925C24.6212 1.39327 20.5 3.73409 19.5 4.26879C18.8637 4.60904 14.9682 6.39753 15.7268 6.96472C16.4853 7.5319 34.2503 1.07424 35.8216 1.00703C37.3928 0.939816 37.2619 1.37115 37 1.59522C37 1.59522 24.5598 6.65262 24.84 6.96472C25.1202 7.27681 39.3546 4.85181 45.5 3.73407C51.6454 2.61634 61.4661 1.31205 62.525 2.12081C63.3849 2.77753 57.6549 3.25627 55.6997 4.04288C48.4368 6.96472 69.5845 5.83575 70 6.14029' stroke='#1C1B1A' stroke-linecap='round')

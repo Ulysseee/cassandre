@@ -1,0 +1,46 @@
+.page-about {
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-content {
+        padding-top: 3rem;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &-title {
+        position: relative;
+        max-width: 620px;
+        font-family: $rebond-extralight;
+        font-size: clamp(3rem, vw(5), 4.5rem);
+        line-height: 0.9;
+    }
+
+    &-scribble .component-svgReveal {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &-description {
+        max-width: 470px;
+        font-size: 1rem;
+        line-height: 1.67;
+        margin-top: 48px;
+    }
+
+    .component-contactMe {
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            margin: auto auto 0 auto;
+            padding-bottom: 2.8rem;
+        }
+    }
+}

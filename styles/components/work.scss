@@ -27,24 +27,15 @@
         }
     }
 
-    &.is-visible &__link:hover .section-work {
+    &.is-visible &__link {
 
-        &__cover {
-            transform: scale(0.95);
+        @include hover() {
+            .section-work__cover {
+                transform: scale(0.95);
 
-            &-inner .component-parallax {
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    &.is-visible &__link:active .section-work {
-
-        &__cover {
-            transform: scale(0.93);
-
-            &-inner .component-parallax {
-                transform: scale(1.2);
+                &-inner .component-parallax {
+                    transform: scale(1.1);
+                }
             }
         }
     }

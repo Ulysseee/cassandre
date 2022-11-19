@@ -22,7 +22,7 @@ export default class Page extends AppEvents {
         return new Promise(resolve => {
             gsap.timeline({
                 onStart: () => {
-                    gsap.set(this.$el, { y: 0 });
+                    gsap.set(this.$el, { clearProps: 'display' });
                 },
                 onComplete: resolve,
             })

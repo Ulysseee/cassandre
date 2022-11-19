@@ -1,0 +1,12 @@
+mixin contact-me(links, buttonLabel)
+    aside.component-contactMe(data-component='ContactMe')
+        .component-contactMe-content(data-ref='content')
+            .component-contactMe-mailContainer(data-ref='cursorLink[]' data-cursor-color='brown')
+                a.ui-h-small.component-contactMe-mail(data-component='Title' data-option-no-auto data-option-repeat data-ref='mail' href='mailto:' + getMail(links).value data-cursor-link)!=getMail(links).value
+            ul.component-contactMe-social
+                each link in links
+                    if link.key !== 'mail'
+                        li.component-contactMe-socialItem
+                            a.ui-p-s.component-contactMe-socialLink(data-ref='socialLinks[]' href=link.value)=link.key
+                                span.component-contactMe-socialLinkBar
+        button(data-ref='button').component-contactMe-button!=getWysiwyg(buttonLabel)

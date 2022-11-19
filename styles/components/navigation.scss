@@ -60,6 +60,7 @@
     }
 
     &-entry {
+        display: block;
         color: $black;
         text-transform: uppercase;
         pointer-events: auto;

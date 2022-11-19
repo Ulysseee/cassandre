@@ -20,10 +20,10 @@ export default class Paragraph extends withIntersectionObserver(Base, {
 
     splitText = null;
     wordsPerLine = null;
-    hasBeenReveal = false;
+    animateInTriggered = false;
 
     mounted() {
-        if (this.hasBeenReveal) return;
+        if (this.animateInTriggered) return;
         this.split();
         gsap.set(this.splitText.words, {
             yPercent: 100,
@@ -32,7 +32,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     }
 
     intersected([{ isIntersecting }]) {
-        if (window.readyForAnimations && isIntersecting && this.$options.auto && !this.hasBeenReveal) {
+        if (window.readyForAnimations && isIntersecting && this.$options.auto && !this.animateInTriggered) {
             this.animateIn();
         }
     }
@@ -52,7 +52,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     }
 
     animateIn () {
-        this.hasBeenReveal = true;
+        this.animateInTriggered = true;
         this.wordsPerLine.forEach((wordsLine, index) => {
             gsap.to(wordsLine, {
                 yPercent: 0,

@@ -12,14 +12,22 @@ export default class Title extends withIntersectionObserver(Base, {
                 type: Boolean,
                 default: true,
             },
+            repeat: {
+                type: Boolean,
+                default: false,
+            }
         },
     };
 
+    tweenIn = null;
+    tweenOut = null;
     splitText = null;
-    hasBeenReveal = false;
+    animateInTriggered = false;
+    onAnimateInStart = null;
+    onAnimateInComplete = null;
 
     mounted() {
-        if (this.hasBeenReveal) return;
+        if (this.animateInTriggered && !this.$options.repeat) return;
         this.split();
         gsap.set(this.splitText.chars, {
             yPercent: 100,
@@ -27,7 +35,7 @@ export default class Title extends withIntersectionObserver(Base, {
     }
 
     intersected([{ isIntersecting }]) {
-        if (isIntersecting && this.$options.auto && !this.hasBeenReveal) {
+        if (isIntersecting && this.$options.auto && (!this.animateInTriggered || this.$options.repeat)) {
             this.animateIn();
         }
     }
@@ -46,19 +54,24 @@ export default class Title extends withIntersectionObserver(Base, {
     }
 
     animateIn () {
-        this.hasBeenReveal = true;
-        gsap.fromTo(this.splitText.chars, {
+        this.animateInTriggered = true;
+        gsap.killTweensOf(this.splitText.chars);
+        this.tweenIn = gsap.fromTo(this.splitText.chars, {
             yPercent: 100,
         }, {
             yPercent: 0,
             duration: 0.6,
             ease: 'power2.out',
-            stagger: 0.025,
+            stagger: 0.018,
+            onStart: this.onAnimateInStart,
+            onComplete: this.onAnimateInComplete,
         });
     }
 
     animateOut () {
-        gsap.to(this.splitText.chars, {
+        this.animateInTriggered = false;
+        gsap.killTweensOf(this.splitText.chars);
+        this.tweenOut = gsap.to(this.splitText.chars, {
             yPercent: -100,
             duration: 0.3,
         });

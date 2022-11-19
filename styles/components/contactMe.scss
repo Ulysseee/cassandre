@@ -1,0 +1,90 @@
+.component-contactMe {
+    pointer-events: none;
+
+    &-content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: vw(100);
+        height: vh(100);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 4rem 7.6rem;
+        clip-path: circle(0 at 90% 81%);
+        background-color: $orange;
+        pointer-events: auto;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            padding: 1.7rem 1.7rem;
+        }
+    }
+
+    &-mail {
+        display: block;
+        font-family: $rebond-extralight;
+        font-size: clamp(1.375rem, vw(3), 2.5rem);
+        line-height: 1.31;
+        
+        &Mask {
+            overflow: hidden;
+        }
+    }
+
+    &-social {
+        display: flex;
+        gap: 70px;
+        margin-top: 6rem;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            margin-top: 5rem;
+        }
+    }
+
+    &-socialItem {
+        overflow: hidden;
+    }
+
+    &-socialLink {
+        position: relative;
+        display: block;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+
+        &Bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: $white;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+    }
+
+    &-button {
+        position: absolute;
+        right: 4.5rem;
+        bottom: 4.5rem;
+        width: 8rem;
+        height: 8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('../assets/images/spot-orange.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: $neue-thin;
+        font-size: 1.25rem;
+        line-height: 0.85;
+        color: $white;
+        pointer-events: all;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            position: static;
+        }
+    }
+}

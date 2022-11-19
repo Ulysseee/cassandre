@@ -111,7 +111,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
                     duration: 1,
                     ease: 'elastic.out(1, 0.4)',
                     onUpdate: function(positions) {
-                        const y = this.ratio * positions[index].y;
+                        const y = map(this.ratio, 0, 1, window.innerHeight, positions[index].y);
                         Body.setPosition(bubble, { x: positions[index].x , y });
                     },
                     onUpdateParams: [this.$options.positions],
@@ -222,16 +222,16 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
     }
 
     setupEvents () {
-        const mouse = Mouse.create(document.body);
-        const mouseConstraint = MouseConstraint.create(this.engine, {
-            mouse: mouse,
-            constraint: {
-                render: {
-                    visible: false,
-                },
-            },
-        });
-        World.add(this.engine.world, mouseConstraint);
+        // const mouse = Mouse.create(document.body);
+        // const mouseConstraint = MouseConstraint.create(this.engine, {
+        //     mouse: mouse,
+        //     constraint: {
+        //         render: {
+        //             visible: false,
+        //         },
+        //     },
+        // });
+        // World.add(this.engine.world, mouseConstraint);
     }
 
     handleMouseMove (e) {

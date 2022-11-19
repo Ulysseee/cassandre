@@ -11,6 +11,7 @@
 @import 'config/ui';
 
 // Pages
+@import 'pages/about';
 @import 'pages/ui';
 @import 'pages/home';
 @import 'pages/projects';
@@ -18,6 +19,7 @@
 
 // Components
 @import 'components/circledButton';
+@import 'components/contactMe';
 @import 'components/cursor';
 @import 'components/footer';
 @import 'components/navigation';

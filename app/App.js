@@ -145,7 +145,7 @@ class App extends AppEvents {
     replacePage (pageDocument, { hideFirst = false, noIntersect = false }) {
         const pageElement = pageDocument.getElementById('page');
         if (hideFirst) gsap.set(pageElement, { autoAlpha: 0 });
-        if (noIntersect) gsap.set(pageElement, { y: '101vw' });
+        if (noIntersect) gsap.set(pageElement, { display: 'none' });
         this.$refs.pageContainer.replaceChildren(pageElement);
     }
 
@@ -194,7 +194,7 @@ class App extends AppEvents {
 }
 
 const pageElement = document.getElementById('page-container');
-gsap.set(pageElement, { y: '101vw' });
+gsap.set(pageElement, { display: 'none' });
 
 const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');

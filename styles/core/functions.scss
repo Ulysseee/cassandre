@@ -51,5 +51,5 @@
         $base-value: strip-unit($max);
     }
     $strip-viewport: strip-unit(map-get($viewports, $viewport));
-    @return min(#{$max}, max(#{$min}, #{vw(($base-value / $strip-viewport) * 100)}));
+    @return min(#{$max}, max(#{$min}, #{vw(math.div($base-value, $strip-viewport) * 100)}));
 }

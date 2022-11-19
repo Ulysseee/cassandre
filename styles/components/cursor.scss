@@ -49,7 +49,7 @@
         }
     }
 
-    &.is-white .component-cursor {
+    &.is-brown .component-cursor {
 
         &-background {
             background-image: url('../assets/images/spot-brown.png');
@@ -60,7 +60,7 @@
 
         &-inner {
             opacity: 1;
-            transform: scale(1) rotate(-40deg) translate(-50%, -50%);
+            transform: scale(1) rotate(-40deg);
         }
     }
 
@@ -68,7 +68,7 @@
 
         &-inner {
             opacity: 1;
-            transform: scale(1) rotate(0deg) translate(-50%, -50%);
+            transform: scale(1) rotate(0deg);
         }
 
         &-background {
@@ -90,7 +90,7 @@
 
     &-wrapper {
         display: inline-block;
-        transform: translate3d(var(--translateX), var(--translateY), 0) skewX(var(--skewX)) skewY(var(--skewX));
+        transform: translate3d(calc( var(--translateX) - 50%), calc(var(--translateY) - 50%), 0) skewX(var(--skewX)) skewY(var(--skewX));
         transition: transform $middle-ease-out 0.8s;
     }
 
@@ -102,8 +102,8 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
-        transform: scale(0) translate(-50%, -50%);
-        transition: transform 0.7s $middle-ease-out, opacity 0.6s $middle-ease-out;
+        transform: scale(0);
+        transition: transform 0.7s $middle-ease-out, opacity 0.15s linear;
     }
 
     &-backgroundContainer {

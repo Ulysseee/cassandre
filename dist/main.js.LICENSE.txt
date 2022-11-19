@@ -66,6 +66,8 @@
 
 /*! ../Base/managers/ResponsiveOptionsManager.js */
 
+/*! ../components/ContactMe */
+
 /*! ../components/Cursor */
 
 /*! ../components/Footer */
@@ -79,6 +81,8 @@
 /*! ../components/Paragraph */
 
 /*! ../components/ProjectHeader */
+
+/*! ../components/SVGReveal */
 
 /*! ../components/Slider */
 
@@ -377,6 +381,10 @@
 /*!************************************!*\
   !*** ./node_modules/gsap/index.js ***!
   \************************************/
+
+/*!*************************************!*\
+  !*** ./app/components/ContactMe.js ***!
+  \*************************************/
 
 /*!*************************************!*\
   !*** ./app/components/Paragraph.js ***!
