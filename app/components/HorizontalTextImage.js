@@ -15,6 +15,10 @@ export default class HorizontalTextImage extends withResponsiveOptions(withScrol
                 default: 100,
                 responsive: true,
             },
+            label: {
+                type: String,
+                responsive: true,
+            },
         }
     }
 

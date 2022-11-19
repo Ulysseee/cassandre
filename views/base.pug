@@ -27,7 +27,7 @@ html(lang="fr")
 
     body
 
-        #app.app(data-component="App" class='is-' + pageShade)
+        #app.app(data-component="App" data-breakpoint class='is-' + pageShade)
             include components/navigation
             main#page-container(data-ref="pageContainer")
                 #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent)

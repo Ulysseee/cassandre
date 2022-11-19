@@ -1,6 +1,5 @@
 import { Base, withBreakpointObserver } from '@studiometa/js-toolkit';
 import { addClass, getOffsetSizes, removeClass, toggleClass } from '@studiometa/js-toolkit/utils';
-import { isTouchDevice } from '../utils/detector';
 
 export default class Cursor extends withBreakpointObserver(Base) {
     static config = {
@@ -27,10 +26,6 @@ export default class Cursor extends withBreakpointObserver(Base) {
         box: null,
         type: null,
     };
-
-    mounted() {
-        if (isTouchDevice()) this.$destroy();
-    }
 
     moved ({ x, y, last, isDown, delta }) {
         toggleClass(this.$el, 'is-down', isDown);

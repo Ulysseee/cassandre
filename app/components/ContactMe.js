@@ -55,12 +55,10 @@ export default class ContactMe extends AppEvents {
     }
 
     onContentClick () {
-        console.log('content click');
         this.toggleOpen();
     }
 
     onButtonClick () {
-        console.log('button click');
         this.toggleOpen();
     }
 

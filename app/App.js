@@ -15,20 +15,21 @@ import Title from './components/Title';
 import Project from './pages/Project';
 import Paragraph from './components/Paragraph';
 import Image from './components/Image';
+import { isTouchDevice } from './utils/detector';
 
 class App extends AppEvents {
     static config = {
         name: 'App',
         components: {
             // Shared Components
-            Cursor,
+            ...(!isTouchDevice() && { Cursor }),
 
             // Global Components
             Title,
             Paragraph,
             Image,
             Parallax,
-            ScribbleLink,
+            ...(!isTouchDevice() && { ScribbleLink }),
 
             // Pages
             Home,

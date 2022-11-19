@@ -37,6 +37,26 @@ body {
         background-color: $beige;
         color: $black;
     }
+
+    &::before {
+        content: 'xs';
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        @media screen and (min-width: 540px) {
+            content: 's';
+        }
+
+        @media screen and (min-width: 720px) {
+            content: 'm';
+        }
+
+        @media screen and (min-width: 1200px) {
+            content: 'l';
+        }
+    }
 }
 
 .appOverlay {

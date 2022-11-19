@@ -1,7 +1,6 @@
 import { Base } from '@studiometa/js-toolkit';
 import SVG from '../utils/Svg';
-import { easeOutQuad, map, tween } from '@studiometa/js-toolkit/utils';
-import { isTouchDevice } from '../utils/detector';
+import { addStyle, easeOutQuad, map, tween } from '@studiometa/js-toolkit/utils';
 
 export default class ScribbleLink extends Base {
 
@@ -18,17 +17,16 @@ export default class ScribbleLink extends Base {
         this.shapes = SVG.getShapes(this.$refs.scribble);
         SVG.setInitialAttributesShapes(this.shapes);
         this.setupTweens();
+        addStyle(this.$refs.scribble, { visibility: 'visible' });
     }
 
     onMouseenter () {
-        if (isTouchDevice()) return;
         this.tweenOut.finish();
         if (this.tweenIn.progress() === 1) this.tweenIn.progress(0);
         this.tweenIn.play();
     }
 
     onMouseleave () {
-        if (isTouchDevice()) return;
         this.tweenIn.finish();
         if (this.tweenOut.progress() === 1) this.tweenOut.progress(0);
         this.tweenOut.play();
