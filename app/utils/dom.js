@@ -26,7 +26,7 @@ export const preloadImages = (targetElement = document, selector = 'img') => {
                 })
             }
             imageElement.onerror = () => resolve();
-            imageElement.src = imageElement.getAttribute('data-src');
+            imageElement.src = imageElement.getAttribute('data-load-src');
         })
     ));
 };
