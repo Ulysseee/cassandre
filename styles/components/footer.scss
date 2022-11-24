@@ -105,10 +105,12 @@
 
     &-signature-figure {
         position: absolute;
-        left: -64px;
+        left: -68px;
+        transform: rotate(19deg);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            left: -28px;
+            left: -31px;
+            transform: rotate(13deg);
         }
 
         .component-svgReveal svg {

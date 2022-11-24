@@ -1,14 +1,12 @@
 mixin project-header(name, year, cover, tags, format)
-    header.section-projectHeader(data-component='ProjectHeader' class='is-' + format)
+    header.section-projectHeader(class='is-' + format)
         .section-projectHeader-background
             svg(width='1236' height='1273' viewbox='0 0 1236 1273' fill='none' xmlns='http://www.w3.org/2000/svg')
                 path(opacity='0.11' d='M1443.65 10.4419C834.12 -29.6994 684.79 212.862 778.504 309.876C978.653 517.07 1537.49 419.445 1558.04 285.527C1578.58 151.608 1225.2 127.259 978.652 309.876C732.106 492.492 749.166 692.064 921.061 786.624C1075.98 871.845 1657.03 823.148 1648.81 656.764C1640.6 490.38 1306.55 530.792 1097.59 612.627C947.712 671.325 772.377 792.056 546.376 844.812C320.375 897.567 6.90055 845.868 6.90039 712.627C6.90023 579.385 317.938 578.369 524.422 646.341C730.905 714.313 890.243 798.208 793.122 1082.76C760.698 1167.49 676.577 1245.82 587.55 1265' stroke='#DACAB5' stroke-width='12' stroke-linecap='square')
         .ui-container.section-projectHeader-container
             .section-projectHeader-text
-                .section-projectHeader-yearContainer(data-ref='year')
-                    span.section-projectHeader-year(data-component='Paragraph' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}')=year
-                .section-projectHeader-titleContainer(data-ref='title')
-                    h1.ui-h2.section-projectHeader-title(data-component='Title' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}')=name
+                span.section-projectHeader-year(data-component='Paragraph' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}')=year
+                h1.ui-h2.section-projectHeader-title(data-component='Title' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}')=name
             .section-projectHeader-bottom
                 .section-projectHeader-cover(data-component='Image' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}' data-option-clip-path='inset(0% 20% 100% 20%)')
                     +parallax(cover.url, cover.description, 15, false)

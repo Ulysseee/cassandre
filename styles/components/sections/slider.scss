@@ -1,50 +1,38 @@
 .section-slider {
     width: 100%;
-    padding-top: calc(var(--section-padding) * 0.7);
-    padding-bottom: calc(var(--section-padding) * .7);
     overflow: hidden;
-
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        padding-top: calc(var(--section-padding) * .34);
-        padding-bottom: calc(var(--section-padding) * .34);
-    }
 
     &-container {
         width: 100%;
-    }
-
-    &-sliderContainer {
         display: inline-flex;
         justify-content: left;
         align-items: center;
         cursor: grab;
         overflow: visible;
-        height: 549px;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            height: 275px;
-        }
     }
 
-    &-sliderWrapper {
+    &-wrapper {
         flex-shrink: 0;
-        height: 100%;
-        //display: flex;
-        //justify-content: flex-start;
-        //align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     &-slide {
         flex-shrink: 0;
         display: inline-block;
-        min-width: 200px;
-        max-width: 700px;
-        height: 100%;
         margin: 0 12px;
         overflow: hidden;
 
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            max-width: vw(80);
+        img {
+            max-width: vw(60);
+            max-height: vh(60);
+            width: auto;
+            height: auto;
+
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                max-width: vw(80);
+            }
         }
     }
 

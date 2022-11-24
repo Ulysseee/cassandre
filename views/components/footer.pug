@@ -6,7 +6,7 @@ footer.component-footer(data-component='Footer')
                     h4.ui-h5.component-footer-title(data-ref='title')!=footer.title
                     p.ui-p-l.component-footer-paragraph!=getWysiwyg(footer.text)
                 a.ui-h7.component-footer-mail(href='mailto:' + getMail(common.externalLinks).value data-ref='cursorLink[]')!=getMail(common.externalLinks).value
-            .component-footer-divider
+            .component-footer-divider(data-component='Divider' data-option-delay=0.4 data-option-intersection-observer='{"rootMargin": "0px 0px 8% 0px"}')
             .component-footer-bottom
                 ul.component-footer-social-list
                     each externalLink in common.externalLinks

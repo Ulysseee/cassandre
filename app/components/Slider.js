@@ -47,14 +47,15 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         maxTranslateX: null,
     };
 
+    lerp = 1.3;
+
     mounted () {
         super.mounted();
 
-        this.lerp = isTouchDevice() ? 1 : this.$options.lerp;
+        this.lerp = isTouchDevice() ? 0.07 : this.$options.lerp;
 
-        this.init();
-
-        this.raq = requestAnimationFrame(this.update.bind(this));
+        this.init = this.init.bind(this);
+        window.addEventListener('imagesRendered', this.init);
     }
 
     destroyed() {
@@ -80,6 +81,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         if (!this.state.isEnabled) return;
         if (this.$options.infinite) this.cloneSlides();
         this.addEvents();
+        this.raq = requestAnimationFrame(this.update.bind(this));
     }
 
     cloneSlides () {
@@ -115,7 +117,8 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
 
     dragged ({ distance }) {
         this.state.forward = distance.x < 0;
-        this.state.targetTranslateX += distance.x * this.$options.speed;
+        const clampDistanceX = clamp(distance.x, -400, 400);
+        this.state.targetTranslateX += clampDistanceX * this.$options.speed;
     }
 
     addEvents() {

@@ -4,6 +4,7 @@ import SVGReveal from './SVGReveal';
 import SplitType from 'split-type';
 import gsap from 'gsap';
 import { easeInExpo } from '@studiometa/js-toolkit/utils';
+import Divider from './Divider';
 
 export default class Footer extends withScrolledInView(AppEvents, {
     rootMargin: '100%',
@@ -14,6 +15,7 @@ export default class Footer extends withScrolledInView(AppEvents, {
         refs: [...AppEvents.config.refs, 'mask', 'wrapper', 'title'],
         components: {
             SVGReveal,
+            Divider,
         },
     };
 
@@ -41,7 +43,7 @@ export default class Footer extends withScrolledInView(AppEvents, {
 
         this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(progress) })`;
 
-        const translateY = - (1 - progress) * this.height;
+        const translateY = - (1 - progress) * (this.height - 100);
         this.$refs.wrapper.style.transform = `translate3d(0, ${ translateY }px, 0)`;
 
         for (const SVGReveal of this.$children.SVGReveal) {

@@ -60,7 +60,9 @@ export default class Title extends withIntersectionObserver(Base, {
             yPercent: 100,
         }, {
             yPercent: 0,
-            duration: 0.6,
+            duration: index => {
+                return 0.6 + (this.splitText.chars.length - index) * 0.018;
+            },
             ease: 'power2.out',
             stagger: 0.018,
             onStart: this.onAnimateInStart,

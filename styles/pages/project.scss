@@ -1,10 +1,30 @@
 .page-project {
 
-    &-separator {
+    &-divider {
         width: 1px;
         height: min(#{32vh}, 235px);
         margin: 2.875rem auto 1.5rem auto;
         background-color: $black;
+    }
+
+    &-sliderSection {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding-top: calc(var(--section-padding) * 0.7);
+        padding-bottom: calc(var(--section-padding) * .7);
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            padding-top: calc(var(--section-padding) * .05);
+            padding-bottom: calc(var(--section-padding) * .05);
+        }
+
+        &-figure {
+            position: absolute;
+            left: -40%;
+            width: 100%;
+            height: auto;
+        }
     }
 
 }

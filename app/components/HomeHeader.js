@@ -3,7 +3,6 @@ import Matter from 'matter-js';
 import { withFreezedOptions } from '@studiometa/js-toolkit';
 import { COLORS } from '../constants/colors';
 import { clamp, map } from '@studiometa/js-toolkit/utils';
-import { isTouchDevice } from '../utils/detector';
 import gsap from 'gsap';
 
 const Engine = Matter.Engine,

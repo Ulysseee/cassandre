@@ -30,6 +30,7 @@
         &Frame {
             position: absolute;
             width: 15%;
+            height: auto;
 
             @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
                 width: 40%;

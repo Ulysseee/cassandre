@@ -93,7 +93,7 @@ export default class Preloader extends Base {
                     onStart: () => {
                         window.readyForAnimations = true;
                         gsap.set(this.$refs.wrapper, { autoAlpha: 0 });
-                        gsap.set(document.getElementById('page-container'), { clearProps: 'display' });
+                        gsap.set(document.getElementById('page-container'), { clearProps: 'transform' });
                         window.scrollTo(0, 0);
                     },
                     onComplete: () => {

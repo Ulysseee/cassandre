@@ -1,16 +1,16 @@
 import Page from '../containers/Page';
-import ProjectHeader from '../components/ProjectHeader';
 import HorizontalTextImage from '../components/HorizontalTextImage';
 import Slider from '../components/Slider';
 import NextProject from '../components/NextProject';
+import Divider from '../components/Divider';
 
 export default class Project extends Page {
     static config = {
         ...Page.config,
         name: 'Project',
-        refs: [...Page.config.refs],
+        refs: [...Page.config.refs, 'divider'],
         components: {
-            ProjectHeader,
+            Divider,
             Slider,
             HorizontalTextImage,
             NextProject,

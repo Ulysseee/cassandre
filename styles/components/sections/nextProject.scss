@@ -1,7 +1,6 @@
-
 .section-nextProject {
     width: 100%;
-    height: calc(#{vh(200)} + clamp(422px, #{vh(68)}, 500px));
+    height: calc(#{vh(100)} + clamp(422px, #{vh(68)}, 500px));
 
     &-container {
         position: sticky;

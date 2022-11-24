@@ -157,7 +157,12 @@
     }
 
     &-icon {
+        display: none;
         transform: rotate(-45deg);
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+            display: inline;
+        }
     }
 }
 

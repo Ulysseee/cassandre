@@ -13,7 +13,7 @@ export const getInternalLinks = () => {
 
 export const preloadImages = (targetElement = document, selector = 'img') => {
     const images = [...targetElement.querySelectorAll(selector)].filter(image => image.getAttribute('loading') !== 'lazy');
-    return [...images].map(imageElement => (
+    const promises = [...images].map(imageElement => (
         new Promise(resolve => {
             imageElement.onload = () => {
                 requestAnimationFrame(() => {
@@ -29,4 +29,7 @@ export const preloadImages = (targetElement = document, selector = 'img') => {
             imageElement.src = imageElement.getAttribute('data-load-src');
         })
     ));
+    return Promise.all(promises).then(() => {
+        window.dispatchEvent(new Event('imagesRendered'));
+    });
 };

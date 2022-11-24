@@ -132,7 +132,7 @@ class App extends AppEvents {
             new Promise(resolve => {
                 setTimeout(resolve, 200);
             }),
-            ...preloadImages(),
+            preloadImages(),
         ]);
 
         if (isProjectTransition) {
@@ -146,7 +146,7 @@ class App extends AppEvents {
     replacePage (pageDocument, { hideFirst = false, noIntersect = false }) {
         const pageElement = pageDocument.getElementById('page');
         if (hideFirst) gsap.set(pageElement, { autoAlpha: 0 });
-        if (noIntersect) gsap.set(pageElement, { display: 'none' });
+        if (noIntersect) gsap.set(pageDocument, { translateY: '101vh' });
         this.$refs.pageContainer.replaceChildren(pageElement);
     }
 
@@ -194,8 +194,8 @@ class App extends AppEvents {
     }
 }
 
-const pageElement = document.getElementById('page-container');
-gsap.set(pageElement, { display: 'none' });
+const pageContainer = document.getElementById('page-container');
+gsap.set(pageContainer, { translateY: '101vh' });
 
 const [preloader] = Preloader.$factory('Preloader');
 const [app] = App.$factory('App');
@@ -209,4 +209,4 @@ const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
 });
 
-Promise.all([appLoaded, preloader.animateIn(), ...preloadImages()]).then(bootApp);
+Promise.all([appLoaded, preloader.animateIn(), preloadImages()]).then(bootApp);

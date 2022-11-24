@@ -1,8 +1,7 @@
-mixin slider(images)
-    section.section-slider(data-component='Slider' data-option-infinite='true')
-        .section-slider-container
-            .section-slider-sliderContainer(data-ref='cursorSlider[]')
-                .section-slider-sliderWrapper(data-ref='wrapper')
-                    each image in images
-                        figure.section-slider-slide(data-ref='slides[]')
-                            +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, alt=image.fields.description)(data-ref='images[]')
+mixin slider(images, infinite)
+    .section-slider(data-component='Slider' data-option-infinite=infinite)
+        .section-slider-container(data-ref='cursorSlider[]')
+            .section-slider-wrapper(data-ref='wrapper')
+                each image in images
+                    figure.section-slider-slide(data-ref='slides[]')
+                        +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, alt=image.fields.description)(data-ref='images[]')
