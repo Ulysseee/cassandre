@@ -2,7 +2,7 @@
     padding-top: calc(var(--section-padding) * 0.7);
     padding-bottom: calc(var(--section-padding) * .7);
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
         padding-top: calc(var(--section-padding) * .54);
         padding-bottom: calc(var(--section-padding) * .84);
     }
@@ -12,7 +12,7 @@
         &-container {
             flex-direction: row-reverse;
 
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            @media screen and #{inspect(map-get($breakpoints, 'large'))} {
                 flex-direction: column;
             }
         }
@@ -23,13 +23,17 @@
         justify-content: space-between;
         gap: vw(10);
 
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
             flex-direction: column;
         }
     }
 
     &-text {
         max-width: 410px;
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+            max-width: 100%;
+        }
     }
 
     &-title {
@@ -53,7 +57,7 @@
         height: 0;
         padding-bottom: 33.2%;
 
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
             padding-bottom: 61.2%;
         }
     }

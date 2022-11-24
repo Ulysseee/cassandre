@@ -8,6 +8,7 @@
     }
 
     &-sliderSection {
+        position: relative;
         display: flex;
         align-items: center;
         width: 100%;
@@ -15,15 +16,21 @@
         padding-bottom: calc(var(--section-padding) * .7);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            padding-top: calc(var(--section-padding) * .05);
-            padding-bottom: calc(var(--section-padding) * .05);
+            padding-top: calc(var(--section-padding) * .15);
+            padding-bottom: calc(var(--section-padding) * .15);
         }
 
         &-figure {
             position: absolute;
-            left: -40%;
+            left: -35%;
             width: 100%;
             height: auto;
+            z-index: -1;
+
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                width: 110%;
+                top: -60%;
+            }
         }
     }
 
