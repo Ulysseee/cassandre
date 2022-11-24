@@ -52,7 +52,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
     mounted () {
         super.mounted();
 
-        this.lerp = isTouchDevice() ? 0.07 : this.$options.lerp;
+        this.lerp = isTouchDevice() ? 0.08 : this.$options.lerp;
 
         this.init = this.init.bind(this);
         window.addEventListener('imagesRendered', this.init);
@@ -115,7 +115,9 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         }
     }
 
-    dragged ({ distance }) {
+    dragged ({ mode, distance }) {
+        if (mode === 'start') window.lenis.stop();
+        if (mode === 'drop') window.lenis.start();
         this.state.forward = distance.x < 0;
         const clampDistanceX = clamp(distance.x, -400, 400);
         this.state.targetTranslateX += clampDistanceX * this.$options.speed;
