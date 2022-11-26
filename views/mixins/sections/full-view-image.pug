@@ -1,0 +1,5 @@
+mixin full-view-image(image, parallaxAmount, reverse)
+    section.section-fullViewImage(data-component='FullViewImage')
+        .ui-container-large.section-fullViewImage-container
+            .section-fullViewImage-image(data-component='Image')
+                +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, parallaxAmount, reverse)

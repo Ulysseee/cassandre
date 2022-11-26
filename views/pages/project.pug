@@ -1,5 +1,6 @@
 extends ../base.pug
 
+include ../mixins/sections/full-view-image
 include ../mixins/sections/horizontal-text-image
 include ../mixins/sections/slider
 include ../mixins/sections/project-header
@@ -13,19 +14,21 @@ block variables
 
 block page
 
-    +project-header(name, getYear(date), coverImage.fields.file, tags, getFormat(format))
+    +project-header(name, getYear(date), coverImage, tags, getFormat(format))
 
     .page-project-divider(data-component='Divider' data-option-direction='vertical')
 
-    +vertical-text-image(verticalTextImageTitle, verticalTextImageImage.fields)
+    +vertical-text-image(verticalTextImageTitle, verticalTextImageImage)
 
-    +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage.fields.file, false)
+    +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage, false)
 
     section.page-project-sliderSection
         svg.page-project-sliderSection-figure(viewbox='0 0 1654 1273' fill='none' xmlns='http://www.w3.org/2000/svg')
             path(opacity='0.11' d='M1442.75 10.4419C833.22 -29.6994 683.889 212.862 777.603 309.876C977.752 517.07 1536.59 419.445 1557.14 285.527C1577.68 151.608 1224.3 127.259 977.752 309.876C731.206 492.492 748.265 692.064 920.16 786.624C1075.08 871.845 1656.13 823.148 1647.91 656.764C1639.7 490.38 1305.65 530.792 1096.69 612.627C946.812 671.325 771.476 792.056 545.476 844.812C319.475 897.567 6.00016 845.868 6 712.627C5.99984 579.385 317.037 578.369 523.521 646.341C730.005 714.313 889.342 798.208 792.222 1082.76C759.798 1167.49 675.677 1245.82 586.65 1265' stroke='#DACAB5' stroke-width='12' stroke-linecap='square')
         +slider(infiniteSliderImages, 'true')
 
-    +horizontal-text-image(horizontalTextImageReverseTitle, getWysiwyg(horizontalTextImageReverseText), horizontalTextImageReverseImage.fields.file, true)
+    +horizontal-text-image(horizontalTextImageReverseTitle, getWysiwyg(horizontalTextImageReverseText), horizontalTextImageReverseImage, true)
+
+    +full-view-image(fullViewImage, 16, false)
 
     +next-project('projet', 'suivant', nextWork)

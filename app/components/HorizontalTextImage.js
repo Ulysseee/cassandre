@@ -8,7 +8,7 @@ export default class HorizontalTextImage extends withResponsiveOptions(withScrol
     static config = {
         ...AppEvents.config,
         name: 'HorizontalTextImage',
-        refs: [...AppEvents.config.refs, 'text'],
+        refs: [...AppEvents.config.refs, 'text', 'image'],
         options: {
             parallaxAmount: {
                 type: Number,
@@ -23,8 +23,8 @@ export default class HorizontalTextImage extends withResponsiveOptions(withScrol
     }
 
     scrolledInView({ progress }) {
-        gsap.set(this.$refs.text, {
-            y: this.$options.parallaxAmount * (progress.y - 0.5),
+        gsap.set(this.$refs.image, {
+            y: -this.$options.parallaxAmount * (progress.y - 0.5),
         });
     }
 }

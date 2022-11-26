@@ -1,0 +1,19 @@
+.section-fullViewImage {
+    width: 100%;
+    padding-top: calc(var(--section-padding) * .5);
+    padding-bottom: calc(var(--section-padding) * .5);
+
+    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+        padding-top: calc(var(--section-padding) * .42);
+        padding-bottom: calc(var(--section-padding) * .42);
+    }
+
+    &-container {
+        position: relative;
+    }
+
+    &-image {
+        width: 100%;
+        padding-bottom: min(60%, 90vh);
+    }
+}

@@ -4,4 +4,4 @@ mixin slider(images, infinite)
             .section-slider-wrapper(data-ref='wrapper')
                 each image in images
                     figure.section-slider-slide(data-ref='slides[]')
-                        +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, alt=image.fields.description)(data-ref='images[]')
+                        +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description)(data-ref='images[]')

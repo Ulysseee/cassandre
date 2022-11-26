@@ -4,4 +4,4 @@ mixin vertical-text-image(title, image)
             header.section-verticalTextImage-header
                 h2.ui-h3.section-verticalTextImage-title(data-component='Title' data-option-auto='true')!=title
             .section-verticalTextImage-image(data-component='Image')
-                +parallax(image.file.url, image.file.details.image.width, image.file.details.image.height, image.description, 12, false)
+                +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 12, false)

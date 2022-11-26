@@ -24,15 +24,14 @@
 
     @include index-layer(fixed, nav);
 
-    &-wrapper {
+    &-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 2.125rem 2.5rem;
+        padding-top: 2.125rem;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             align-items: center;
-            padding: 1.6rem 1.6rem;
         }
     }
 

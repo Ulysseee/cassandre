@@ -9,7 +9,7 @@ block page
     header.ui-container.page-projects-header
         h1.ui-h4.page-projects-title(data-component='Title')!=projectsPage.title
         p.ui-p-m.page-projects-paragraph(data-component='Paragraph' data-option-delay='0.5' data-option-opacity='true')!=getWysiwyg(projectsPage.paragraph)
-    section.ui-container.page-projects-grid
+    section.ui-container-large.page-projects-grid
         each row in getWorksRows(projectsPage.works)
             .page-projects-gridRow
                  each work, index in row
