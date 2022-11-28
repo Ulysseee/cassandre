@@ -58,10 +58,6 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         window.addEventListener('imagesRendered', this.init);
     }
 
-    destroyed() {
-        cancelAnimationFrame(this.raq);
-    }
-
     handleResize () {
         this.state = {
             isEnabled: true,
@@ -81,7 +77,6 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         if (!this.state.isEnabled) return;
         if (this.$options.infinite) this.cloneSlides();
         this.addEvents();
-        this.raq = requestAnimationFrame(this.update.bind(this));
     }
 
     cloneSlides () {
@@ -158,7 +153,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         });
     }
 
-    update () {
+    ticked () {
         if (this.$options.infinite && this.state.forward && this.state.currentTranslateX <= this.state.baseTranslateX) {
             this.state.targetTranslateX = this.state.maxTranslateX + this.state.targetTranslateX - this.state.currentTranslateX;
             this.state.currentTranslateX = this.state.maxTranslateX;
@@ -171,8 +166,6 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         }
 
         gsap.set(this.$refs.wrapper, { x: this.state.currentTranslateX });
-
-        requestAnimationFrame(this.update.bind(this));
     }
 
     setDisableStyle () {

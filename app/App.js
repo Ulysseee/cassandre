@@ -16,6 +16,9 @@ import Project from './pages/Project';
 import Paragraph from './components/Paragraph';
 import Image from './components/Image';
 import { isTouchDevice } from './utils/detector';
+import CustomEase from 'gsap/CustomEase';
+
+gsap.registerPlugin(CustomEase);
 
 class App extends AppEvents {
     static config = {

@@ -1,5 +1,5 @@
 /*!
- * CSSPlugin 3.11.0
+ * CSSPlugin 3.11.3
  * https://greensock.com
  *
  * Copyright 2008-2022, GreenSock. All rights reserved.
@@ -9,7 +9,17 @@
 */
 
 /*!
- * GSAP 3.11.0
+ * CustomEase 3.11.3
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
+/*!
+ * GSAP 3.11.3
  * https://greensock.com
  *
  * @license Copyright 2008-2022, GreenSock. All rights reserved.
@@ -45,6 +55,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/*!
+ * paths 3.11.3
+ * https://greensock.com
+ *
+ * Copyright 2008-2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
 
 /*! ../../services/index.js */
 
@@ -224,6 +244,8 @@
 
 /*! ./utils/log */
 
+/*! ./utils/paths.js */
+
 /*! ./utils/reloadApp */
 
 /*! ./utils/sendMessage */
@@ -251,6 +273,8 @@
 /*! events */
 
 /*! gsap */
+
+/*! gsap/CustomEase */
 
 /*! html-entities */
 
@@ -419,8 +443,16 @@
   \****************************************/
 
 /*!*****************************************!*\
+  !*** ./node_modules/gsap/CustomEase.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
   !*** ./node_modules/webpack/hot/log.js ***!
   \*****************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/gsap/utils/paths.js ***!
+  \******************************************/
 
 /*!*******************************************!*\
   !*** ./node_modules/querystring/index.js ***!
@@ -644,6 +676,10 @@
 
 /*!********************************************************************!*\
   !*** ./node_modules/@studiometa/js-toolkit/decorators/withDrag.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@studiometa/js-toolkit/utils/css/transform.js ***!
   \********************************************************************/
 
 /*!*********************************************************************!*\

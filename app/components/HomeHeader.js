@@ -82,7 +82,11 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
         },
     };
     sprites = [];
+    scrollProgressY = 0;
     maxTranslateX = 0;
+    maxTranslateY = 0;
+    maxRotate = -8;
+    progressOutOfView = 0;
 
     static calculatePosition(x, y, width, height) {
         return {
@@ -121,18 +125,21 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
     }
 
     scrolled ({ y, progress, max }) {
-        const progressOutOfView = clamp(y / window.innerHeight, 0, 1);
-        const maxTranslateY = max.y - window.innerHeight - window.innerHeight / 10;
-        const maxRotate = -8;
+        this.scrollProgressY = progress.y;
+        this.progressOutOfView = clamp(y / window.innerHeight, 0, 1);
+        this.maxTranslateY = max.y - window.innerHeight - window.innerHeight / 10;
+    }
 
-        this.engine.gravity.y = progressOutOfView;
-
-        gsap.set(this.$refs.content, {
-            y: maxTranslateY * progress.y,
-            x: this.maxTranslateX * progress.y,
-            opacity: 1 - progressOutOfView + 0.1,
-            rotate: `${ maxRotate * progress.y }deg`,
-        });
+    ticked () {
+        return () => {
+            this.engine.gravity.y = this.progressOutOfView;
+            gsap.set(this.$refs.content, {
+                x: this.maxTranslateX * this.scrollProgressY,
+                y: this.maxTranslateY * this.scrollProgressY,
+                opacity: 1 - this.progressOutOfView + 0.1,
+                rotate: `${ this.maxRotate * this.scrollProgressY }deg`,
+            });
+        }
     }
 
     createWorldBubbles () {

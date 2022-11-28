@@ -1,9 +1,7 @@
 import AppEvents from '../containers/AppEvents';
 import { withScrolledInView } from '@studiometa/js-toolkit';
 import SVGReveal from './SVGReveal';
-import SplitType from 'split-type';
-import gsap from 'gsap';
-import { easeInExpo } from '@studiometa/js-toolkit/utils';
+import { easeInExpo, transform } from '@studiometa/js-toolkit/utils';
 import Divider from './Divider';
 
 export default class Footer extends withScrolledInView(AppEvents, {
@@ -19,48 +17,34 @@ export default class Footer extends withScrolledInView(AppEvents, {
         },
     };
 
-    titleReveal = false;
     wordsPerLine = null;
     width = window.innerWidth;
     height = window.innerHeight;
+    scrollProgressY = 0;
 
     mounted () {
         super.mounted();
 
         this.width = this.$refs.wrapper.offsetWidth;
         this.height = this.$refs.wrapper.offsetHeight;
-
-        this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(0) })`;
-
-        this.wordsPerLine = new SplitType(this.$refs.title, {
-            type: 'lines',
-        }).lines.map(line => [line.querySelectorAll('.word')]);
     }
 
     scrolledInView ({ current, start }) {
         const max = start.y + this.height;
-        const progress = (current.y - start.y) / (max - start.y);
+        this.scrollProgressY = (current.y - start.y) / (max - start.y);
+    }
 
-        this.$refs.mask.style.clipPath = `polygon(${ this.getPolygonPath(progress) })`;
+    ticked () {
+        const translateY = - (1 - this.scrollProgressY) * (this.height - 100);
+        const polygonPath = this.getPolygonPath(this.scrollProgressY);
 
-        const translateY = - (1 - progress) * (this.height - 100);
-        this.$refs.wrapper.style.transform = `translate3d(0, ${ translateY }px, 0)`;
-
-        for (const SVGReveal of this.$children.SVGReveal) {
-            SVGReveal.progressDraw(1 - easeInExpo(progress));
-        }
-
-        if (!this.titleReveal && progress > 0.5) {
-            this.titleReveal = true;
-            this.wordsPerLine.forEach((wordsLine, index) => {
-                gsap.from(wordsLine, {
-                    yPercent: 100,
-                    duration: 1,
-                    ease: 'quint.out',
-                    delay: 0.2 + index * 0.07,
-                });
-            });
-        }
+        return () => {
+            transform(this.$refs.wrapper, { y: translateY });
+            this.$refs.mask.style.clipPath = `polygon(${ polygonPath })`;
+            for (const SVGReveal of this.$children.SVGReveal) {
+                SVGReveal.progressDraw(1 - easeInExpo(this.scrollProgressY));
+            }
+        };
     }
 
     getPolygonPath (progress) {
@@ -68,7 +52,7 @@ export default class Footer extends withScrolledInView(AppEvents, {
 
         const widthSegments = Math.ceil(this.width / 80);
         const baseY = (1 - progress) * 100;
-        const amplitude = (0.02 * this.width) * Math.sin(progress * Math.PI);
+        const amplitude = (0.016 * this.width) * Math.sin(progress * Math.PI);
 
         clipPath += `0% ${ baseY }%, `;
 
