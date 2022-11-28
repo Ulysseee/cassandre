@@ -1,9 +1,10 @@
 import { Base, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
 import SplitType from 'split-type';
+import { ANIMATIONS } from '../constants/animations';
 
 export default class Title extends withIntersectionObserver(Base, {
-    rootMargin: '0px 0px -25% 0px',
+    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
 }) {
     static config = {
         name: 'Title',
@@ -15,12 +16,11 @@ export default class Title extends withIntersectionObserver(Base, {
             repeat: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            delay: Number,
         },
     };
 
-    tweenIn = null;
-    tweenOut = null;
     splitText = null;
     animateInTriggered = false;
     onAnimateInStart = null;
@@ -56,14 +56,13 @@ export default class Title extends withIntersectionObserver(Base, {
     animateIn () {
         this.animateInTriggered = true;
         gsap.killTweensOf(this.splitText.chars);
-        this.tweenIn = gsap.fromTo(this.splitText.chars, {
+        gsap.fromTo(this.splitText.chars, {
             yPercent: 100,
         }, {
             yPercent: 0,
-            duration: index => {
-                return 0.6 + (this.splitText.chars.length - index) * 0.018;
-            },
+            duration: index => 0.6 + (this.splitText.chars.length - index) * 0.018,
             ease: 'power2.out',
+            delay: this.$options.delay,
             stagger: 0.018,
             onStart: this.onAnimateInStart,
             onComplete: this.onAnimateInComplete,
@@ -73,7 +72,7 @@ export default class Title extends withIntersectionObserver(Base, {
     animateOut () {
         this.animateInTriggered = false;
         gsap.killTweensOf(this.splitText.chars);
-        this.tweenOut = gsap.to(this.splitText.chars, {
+        gsap.to(this.splitText.chars, {
             yPercent: -100,
             duration: 0.3,
         });

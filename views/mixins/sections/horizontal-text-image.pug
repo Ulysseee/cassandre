@@ -3,7 +3,7 @@ mixin horizontal-text-image(title, text, image, reverse)
         .ui-container.section-horizontalTextImage-container
             .section-horizontalTextImage-text(data-ref='text')
                 h2.ui-h3.section-horizontalTextImage-title(data-component='Title' data-option-auto='true')!=title
-                p.section-horizontalTextImage-wysiwyg(data-component='Paragraph' data-option-delay='0.6' data-option-opacity='true')!=text
+                p.section-horizontalTextImage-wysiwyg(data-component='Paragraph' data-option-delay='0.3' data-option-opacity='true')!=text
             .section-horizontalTextImage-imageContainer(data-ref='image')
                 .section-horizontalTextImage-image(data-component='Image')
                     +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 12, false)

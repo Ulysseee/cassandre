@@ -1,14 +1,12 @@
-mixin work-card(format, name, excerpt, date, url, coverUrl, coverAlt, transitionDelay)
-    a.component-workCard.is-hidden(class='is-' + getFormat(format) href=url data-component='WorkCard' data-option-transition-delay=transitionDelay)
+mixin work-card(format, name, excerpt, date, url, cover)
+    a.component-workCard(class='is-' + getFormat(format) href=url)
         article.component-workCard-wrapper(data-ref='cursorLink[]')
-            .component-workCard-cover(data-cursor-target)
+            .component-workCard-cover(data-component='Image')
                 .component-workCard-coverInner
-                    +parallax(coverUrl, coverAlt, 12, false)
+                    +parallax(cover.fields.file.url, cover.fields.file.details.image.width, cover.fields.file.details.image.height, cover.fields.description, 12, false)
             .component-workCard-content
-                h2.ui-h9.ui-wordMask.component-workCard-name(data-ref='name')
-                    span.component-workCard-nameInner=name
-                    span.component-workCard-nameInner=name
-                .component-workCard-separator
+                h2.ui-h9.ui-wordMask.component-workCard-name(data-component='Title')=name
+                .component-workCard-separator(data-component='Divider' data-option-delay='0.3')
                 .component-workCard-details
-                    p.ui-p-xl.component-workCard-excerpt= excerpt
-                    span.ui-p-xl.component-workCard-date=date
+                    p.ui-p-xl.component-workCard-excerpt(data-component='Paragraph' data-option-delay='0.9')=excerpt
+                    span.ui-p-xl.component-workCard-date(data-component='Paragraph' data-option-delay='1.1')=date

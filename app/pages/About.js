@@ -36,7 +36,7 @@ export default class About extends Page {
 
     onTitleAnimateInComplete () {
         this.scribble.drawStrokes({
-            ease: 'cubit.out',
+            ease: 'cubic.out',
             delay: 0,
         });
     }

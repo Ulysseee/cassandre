@@ -1,9 +1,10 @@
 import { Base, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
 import SplitType from 'split-type';
+import { ANIMATIONS } from '../constants/animations';
 
 export default class Paragraph extends withIntersectionObserver(Base, {
-    rootMargin: '0px 0px 25% 0px',
+    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
 }) {
     static config = {
         name: 'Paragraph',
@@ -24,6 +25,11 @@ export default class Paragraph extends withIntersectionObserver(Base, {
 
     mounted() {
         if (this.animateInTriggered) return;
+        this.animateIn = this.animateIn.bind(this);
+        this.setup();
+    }
+
+    setup () {
         this.split();
         gsap.set(this.splitText.words, {
             yPercent: 100,

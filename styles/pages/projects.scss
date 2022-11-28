@@ -27,10 +27,10 @@
     }
 
     &-grid {
-        @extend .ui-container;
 
         &Row {
             display: flex;
+            align-items: flex-start;
             flex-wrap: wrap;
             gap: 3.3%;
             padding-bottom: calc(var(--section-padding) * .82);

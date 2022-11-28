@@ -17,6 +17,7 @@ import Paragraph from './components/Paragraph';
 import Image from './components/Image';
 import { isTouchDevice } from './utils/detector';
 import CustomEase from 'gsap/CustomEase';
+import Divider from './components/Divider';
 
 gsap.registerPlugin(CustomEase);
 
@@ -32,6 +33,7 @@ class App extends AppEvents {
             Paragraph,
             Image,
             Parallax,
+            Divider,
             ...(!isTouchDevice() && { ScribbleLink }),
 
             // Pages

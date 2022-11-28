@@ -1,12 +1,12 @@
 import AppEvents from '../containers/AppEvents';
 import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
-import { withDrag, withFreezedOptions } from '@studiometa/js-toolkit';
+import { withDrag, withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import { isTouchDevice } from '../utils/detector';
 
-export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
+export default class Slider extends withIntersectionObserver(withDrag(withFreezedOptions(AppEvents), {
     target: instance => instance.$refs.wrapper,
-}) {
+})) {
 
     static config = {
         ...AppEvents.config,
@@ -47,7 +47,9 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         maxTranslateX: null,
     };
 
+    hasBeenReveal = false;
     lerp = 1.3;
+    raf = null;
 
     mounted () {
         super.mounted();
@@ -56,6 +58,10 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
 
         this.init = this.init.bind(this);
         window.addEventListener('imagesRendered', this.init);
+    }
+
+    destroyed () {
+        cancelAnimationFrame(this.raq);
     }
 
     handleResize () {
@@ -77,6 +83,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         if (!this.state.isEnabled) return;
         if (this.$options.infinite) this.cloneSlides();
         this.addEvents();
+        this.raq = requestAnimationFrame(this.update.bind(this));
     }
 
     cloneSlides () {
@@ -110,6 +117,27 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         }
     }
 
+    intersected ([{ isIntersecting }]) {
+        if (isIntersecting && !this.hasBeenReveal) {
+            this.hasBeenReveal = true;
+            this.animateIn();
+        }
+    }
+
+    animateIn () {
+        gsap.fromTo(this.$el.querySelectorAll('[data-ref="slides[]"]'), {
+            opacity: 0,
+        }, {
+            opacity: 1,
+            duration: 1.2,
+            stagger: {
+                each: 0.1,
+                from: 'center',
+                grid: 'auto',
+            },
+        });
+    }
+
     dragged ({ mode, distance }) {
         if (mode === 'start') window.lenis.stop();
         if (mode === 'drop') window.lenis.start();
@@ -118,14 +146,14 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         this.state.targetTranslateX += clampDistanceX * this.$options.speed;
     }
 
-    addEvents() {
+    addEvents () {
         this.$refs.wrapper.addEventListener('mousedown', this.onMouseDown.bind(this));
         this.$refs.wrapper.addEventListener('mouseup', this.onMouseUp.bind(this));
     }
 
     onMouseDown () {
         this.state.isPressed = true;
-        gsap.killTweensOf([this.$refs.slides, this.$refs.images]);
+        gsap.killTweensOf([this.$refs.slides, this.$refs.images], 'scale');
         gsap.to(this.$refs.slides, {
             scale: this.$options.scaleOnPress,
             duration: 0.7,
@@ -140,7 +168,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
 
     onMouseUp () {
         this.state.isPressed = false;
-        gsap.killTweensOf([this.$refs.slides, this.$refs.images]);
+        gsap.killTweensOf([this.$refs.slides, this.$refs.images], 'scale');
         gsap.to(this.$refs.slides, {
             scale: 1,
             duration: 0.5,
@@ -153,7 +181,7 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
         });
     }
 
-    ticked () {
+    update () {
         if (this.$options.infinite && this.state.forward && this.state.currentTranslateX <= this.state.baseTranslateX) {
             this.state.targetTranslateX = this.state.maxTranslateX + this.state.targetTranslateX - this.state.currentTranslateX;
             this.state.currentTranslateX = this.state.maxTranslateX;
@@ -164,8 +192,8 @@ export default class Slider extends withDrag(withFreezedOptions(AppEvents), {
             this.state.targetTranslateX = clamp(this.state.targetTranslateX, this.state.minTranslateX, this.state.maxTranslateX);
             this.state.currentTranslateX = damp(this.state.targetTranslateX, this.state.currentTranslateX, this.lerp, 0.01);
         }
-
         gsap.set(this.$refs.wrapper, { x: this.state.currentTranslateX });
+        this.raq = requestAnimationFrame(this.update.bind(this));
     }
 
     setDisableStyle () {

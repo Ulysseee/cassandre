@@ -1,8 +1,8 @@
 .section-work {
     display: flex;
     justify-content: flex-start;
-    margin-top: calc(var(--section-padding) * .8);
-    margin-bottom: calc(var(--section-padding) * .8);
+    margin-top: calc(var(--section-padding) * 1.6);
+    margin-bottom: calc(var(--section-padding) * 1.6);
 
     @include index-layer(relative, content, card);
 
@@ -275,7 +275,7 @@
         transition: transform 1.8s $strong-ease-out 0.4s;
 
         .component-parallax {
-            transition: transform 0.9s $strong-ease-out;
+            transition: transform 1.4s $strong-ease-out;
         }
     }
 

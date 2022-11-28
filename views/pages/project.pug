@@ -29,6 +29,7 @@ block page
 
     +horizontal-text-image(horizontalTextImageReverseTitle, getWysiwyg(horizontalTextImageReverseText), horizontalTextImageReverseImage, true)
 
-    +full-view-image(fullViewImage, 16, false)
+    if fullViewImage
+        +full-view-image(fullViewImage, 16, false)
 
     +next-project('projet', 'suivant', nextWork)

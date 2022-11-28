@@ -2,8 +2,8 @@
     display: inline-block;
 
     &.is-horizontal {
-        //width: 35.2%;
-        width: min(507px, 46.7%);
+        width: 36.7%;
+        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
 
         .component-workCard-cover {
             padding-bottom: 79%;
@@ -11,8 +11,8 @@
     }
 
     &.is-square {
-        //width: 39%;
-        width: min(548px, 46.7%);
+        width: 36.7%;
+        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
 
         .component-workCard-cover {
             padding-bottom: 98.3%;
@@ -20,8 +20,8 @@
     }
 
     &.is-vertical {
-        //width: 39%;
-        width: min(568px, 46.7%);
+        width: 36.7%;
+        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
 
         .component-workCard-cover {
             padding-bottom: 125%;
@@ -49,55 +49,7 @@
         }
     }
 
-    &.is-hidden {
-        pointer-events: none;
-        transition-duration: 0s;
-        transition-delay: 0s;
-
-        * {
-            pointer-events: none;
-            transition-duration: 0s;
-            transition-delay: 0s;
-        }
-
-        .component-workCard {
-
-            &-cover {
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-
-                &Image {
-                    transform: scale(1.2) translate3d(0, 100px, 0);
-                }
-            }
-
-            &-content {
-                transform: rotate(8deg);
-            }
-
-            &-name {
-
-                &Inner {
-                    transform: translate3d(0, 100%, 0) scaleY(2);
-                }
-            }
-
-            &-separator {
-                transform: scaleX(0);
-            }
-
-            &-excerpt, &-date {
-                opacity: 0;
-                transform: translate3d(0, 16px, 0);
-            }
-        }
-    }
-
     @include hover() {
-        transition-delay: 0s!important;
-
-        * {
-            transition-delay: 0s!important;
-        }
 
         .component-workCard {
 
@@ -118,34 +70,21 @@
     &-cover {
         position: relative;
         width: 100%;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        transition: width 0.7s $strong-ease-out, clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        overflow: hidden;
 
         &Inner {
             position: absolute;
             width: 100%;
             height: 100%;
-            transition: transform 1.6s $strong-ease-out;
-            will-change: transform;
+            transition: transform 1.4s $strong-ease-out;
         }
     }
 
     &-content {
         padding-top: 2.5rem;
-        transform-origin: left;
-        transition: transform 2s cubic-bezier(.09,.94,0,.99);
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             padding-top: 1.5rem;
-        }
-    }
-
-    &-name {
-
-        &Inner {
-            transform-origin: top;
-            transition: transform 1.4s $strong-ease-out;
-            transition-delay: 0.4s;
         }
     }
 
@@ -154,9 +93,6 @@
         height: 1px;
         background-color: $black;
         margin: 1.5rem 0;
-        transform-origin: left;
-        transition: transform 1.4s $strong-ease-out;
-        transition-delay: 0.7s;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
             margin: 0.888rem 0;
@@ -166,17 +102,5 @@
     &-details {
         display: flex;
         justify-content: space-between;
-    }
-
-    &-excerpt {
-        transition: 1.7s $soft-ease-out;
-        transition-property: transform, opacity;
-        transition-delay: 0.8s;
-    }
-
-    &-date {
-        transition: 2.2s $soft-ease-out;
-        transition-property: transform, opacity;
-        transition-delay: 0.8s;
     }
 }

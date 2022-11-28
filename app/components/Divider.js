@@ -1,8 +1,9 @@
 import { Base, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
+import { ANIMATIONS } from '../constants/animations';
 
 export default class Divider extends withIntersectionObserver(Base, {
-    rootMargin: '0px 0px -25% 0px',
+    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
 }) {
     static config = {
         name: 'Divider',
@@ -11,10 +12,7 @@ export default class Divider extends withIntersectionObserver(Base, {
                 type: String,
                 default: 'horizontal',
             },
-            delay: {
-                type: Number,
-                default: 0,
-            },
+            delay: Number,
         },
     };
 

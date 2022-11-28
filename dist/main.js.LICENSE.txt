@@ -78,8 +78,6 @@
 
 /*! ../components/Cursor */
 
-/*! ../components/Divider */
-
 /*! ../components/Footer */
 
 /*! ../components/HomeHeader */
@@ -98,7 +96,7 @@
 
 /*! ../components/Work */
 
-/*! ../components/WorkCard */
+/*! ../constants/animations */
 
 /*! ../constants/colors */
 
@@ -142,8 +140,6 @@
 
 /*! ./CSSPlugin.js */
 
-/*! ./Divider */
-
 /*! ./OptionsManager.js */
 
 /*! ./Paragraph */
@@ -161,6 +157,8 @@
 /*! ./clients/SockJSClient */
 
 /*! ./components/Cursor */
+
+/*! ./components/Divider */
 
 /*! ./components/Image */
 
@@ -391,10 +389,6 @@
   \************************************/
 
 /*!************************************!*\
-  !*** ./app/components/WorkCard.js ***!
-  \************************************/
-
-/*!************************************!*\
   !*** ./node_modules/gsap/index.js ***!
   \************************************/
 
@@ -412,6 +406,10 @@
 
 /*!*************************************!*\
   !*** ./app/components/SVGReveal.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./app/constants/animations.js ***!
   \*************************************/
 
 /*!*************************************!*\

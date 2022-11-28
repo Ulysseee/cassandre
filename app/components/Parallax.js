@@ -1,9 +1,6 @@
 import { Base, withFreezedOptions, withScrolledInView } from '@studiometa/js-toolkit';
-import { transform } from '@studiometa/js-toolkit/utils';
 
-export default class Parallax extends withFreezedOptions(withScrolledInView(Base, {
-    rootMargin: '100%',
-})) {
+export default class Parallax extends withFreezedOptions(withScrolledInView(Base)) {
 
     static config = {
         name: 'Parallax',
@@ -33,10 +30,10 @@ export default class Parallax extends withFreezedOptions(withScrolledInView(Base
     }
 
     ticked () {
-        const y = this.scrollProgressY * this.$options.percent * (this.$options.reverse ? -1 : 1);
+        const percentY = this.scrollProgressY * this.$options.percent * (this.$options.reverse ? -1 : 1);
 
         return () => {
-            transform(this.$refs.image, { y });
+            this.$refs.image.style.transform = `translateY(${ percentY }%)`;
         };
     }
 }

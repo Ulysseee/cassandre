@@ -2,7 +2,6 @@ import AppEvents from '../containers/AppEvents';
 import { withScrolledInView } from '@studiometa/js-toolkit';
 import SVGReveal from './SVGReveal';
 import { easeInExpo, transform } from '@studiometa/js-toolkit/utils';
-import Divider from './Divider';
 
 export default class Footer extends withScrolledInView(AppEvents, {
     rootMargin: '100%',
@@ -13,7 +12,6 @@ export default class Footer extends withScrolledInView(AppEvents, {
         refs: [...AppEvents.config.refs, 'mask', 'wrapper', 'title'],
         components: {
             SVGReveal,
-            Divider,
         },
     };
 

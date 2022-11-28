@@ -1,8 +1,9 @@
 import { Base, withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
+import { ANIMATIONS } from '../constants/animations';
 
 export default class Image extends withFreezedOptions(withIntersectionObserver(Base, {
-    rootMargin: '0px 0px -25% 0px',
+    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
 })) {
     static config = {
         name: 'Image',
@@ -40,7 +41,7 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
         }, {
             clipPath: 'inset(0% 0% 0% 0%)',
             duration: 1.2,
-            ease: 'power4.out',
+            ease: 'cubic.out',
         });
     }
 
@@ -50,7 +51,7 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
         }, {
             clipPath: 'inset(0% 0% 100% 0%)',
             duration: 1,
-            ease: 'power4.out',
+            ease: 'cubic.out',
         });
     }
 }
