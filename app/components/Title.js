@@ -4,7 +4,7 @@ import SplitType from 'split-type';
 import { ANIMATIONS } from '../constants/animations';
 
 export default class Title extends withIntersectionObserver(Base, {
-    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
+    ...ANIMATIONS.intersectionObserver,
 }) {
     static config = {
         name: 'Title',
@@ -64,8 +64,13 @@ export default class Title extends withIntersectionObserver(Base, {
             ease: 'power2.out',
             delay: this.$options.delay,
             stagger: 0.018,
-            onStart: this.onAnimateInStart,
-            onComplete: this.onAnimateInComplete,
+            onStart: () => {
+                if (this.onAnimateInStart) this.onAnimateInStart();
+            },
+            onComplete: () => {
+                this.revertSplit();
+                if (this.onAnimateInComplete) this.onAnimateInComplete();
+            },
         });
     }
 

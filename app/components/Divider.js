@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ANIMATIONS } from '../constants/animations';
 
 export default class Divider extends withIntersectionObserver(Base, {
-    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
+    ...ANIMATIONS.intersectionObserver,
 }) {
     static config = {
         name: 'Divider',

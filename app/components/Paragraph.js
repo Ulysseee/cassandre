@@ -4,7 +4,7 @@ import SplitType from 'split-type';
 import { ANIMATIONS } from '../constants/animations';
 
 export default class Paragraph extends withIntersectionObserver(Base, {
-    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
+    ...ANIMATIONS.intersectionObserver,
 }) {
     static config = {
         name: 'Paragraph',
@@ -38,7 +38,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     }
 
     intersected([{ isIntersecting }]) {
-        if (window.readyForAnimations && isIntersecting && this.$options.auto && !this.animateInTriggered) {
+        if (isIntersecting && this.$options.auto && !this.animateInTriggered) {
             this.animateIn();
         }
     }
@@ -63,7 +63,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
             gsap.to(wordsLine, {
                 yPercent: 0,
                 opacity: 1,
-                duration: 1,
+                duration: 1.3,
                 ease: 'power3.out',
                 delay: this.$options.delay + (this.$options.staggerLines ? index * 0.12 : 0),
             });

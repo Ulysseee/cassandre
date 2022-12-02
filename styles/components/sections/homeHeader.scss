@@ -14,6 +14,14 @@
         height: 100%;
         -ms-touch-action: pan-y;
         touch-action: pan-y;
+
+        > canvas {
+            display: none;
+
+            &:last-of-type {
+                display: block;
+            }
+        }
     }
 
     &-container {

@@ -1,9 +1,10 @@
 import { Base, withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
 import { ANIMATIONS } from '../constants/animations';
+import CustomEase from 'gsap/CustomEase';
 
 export default class Image extends withFreezedOptions(withIntersectionObserver(Base, {
-    rootMargin: ANIMATIONS.intersectionObserver.rootMargin,
+    ...ANIMATIONS.intersectionObserver,
 })) {
     static config = {
         name: 'Image',
@@ -11,6 +12,11 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
             auto: {
                 type: Boolean,
                 default: true,
+            },
+            delay: Number,
+            duration: {
+                type: Number,
+                default: 1.2,
             },
             clipPath: {
                 type: String,
@@ -30,18 +36,19 @@ export default class Image extends withFreezedOptions(withIntersectionObserver(B
 
     intersected([{ isIntersecting }]) {
         if (isIntersecting && this.$options.auto && !this.hasBeenReveal) {
+            this.hasBeenReveal = true
             this.animateIn();
         }
     }
 
     animateIn() {
-        this.hasBeenReveal = true;
         gsap.fromTo(this.$el, {
             clipPath: this.$options.clipPath,
         }, {
             clipPath: 'inset(0% 0% 0% 0%)',
-            duration: 1.2,
-            ease: 'cubic.out',
+            duration: this.$options.duration,
+            delay: this.$options.delay,
+            ease: CustomEase.create("custom", "M0,0 C0.046,0.498 0.077,0.805 0.226,0.904 0.356,0.99 0.504,1 1,1 "),
         });
     }
 

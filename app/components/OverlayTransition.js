@@ -1,8 +1,11 @@
-import { Base } from '@studiometa/js-toolkit';
+import { Base, getInstanceFromElement } from '@studiometa/js-toolkit';
 import gsap from 'gsap';
 import { removeClass } from '@studiometa/js-toolkit/utils';
+import { COLORS } from '../constants/colors';
+import HomeHeader from './HomeHeader';
+import Navigation from './Navigation';
 
-export default class Preloader extends Base {
+export default class OverlayTransition extends Base {
     static config = {
         name: 'Preloader',
         refs: ['wrapper', 'logoFrames[]', 'name', 'scribblePath', 'nameWord', 'overlay'],
@@ -34,20 +37,11 @@ export default class Preloader extends Base {
                     const scribblePathLength = this.$refs.scribblePath.getTotalLength();
                     gsap.set(this.$refs.scribblePath, { strokeDasharray: `${scribblePathLength} ${scribblePathLength}` });
                 },
-            })
-                .to(this.$refs.logoFrames, {
-                    keyframes: [{ autoAlpha: 0, duration: 0 }, {
-                        autoAlpha: 1,
-                        duration: 0,
-                        delay: 0.05,
-                    }, { autoAlpha: 0, duration: 0, delay: 0.05 }],
-                    stagger: 0.05,
-                    delay: 1,
-                })
-                .add(this.animateLogoFrames())
+            }).timeScale(1.4)
+                .add(this.animateLogoFrames().repeat(5))
                 .set(this.$refs.name, { autoAlpha: 1 })
                 .to(this.$refs.nameWord, {
-                    duration: 0.3,
+                    duration: 0.45,
                     ease: `step(${this.$options.name.length})`,
                     onUpdate: function(nameTarget, nameString) {
                         nameTarget.innerText = nameString.slice(0, Math.round(this.progress() * nameString.length));
@@ -55,8 +49,8 @@ export default class Preloader extends Base {
                     onUpdateParams: [this.$refs.nameWord, this.$options.name],
                 })
                 .to(this.$refs.nameWord, {
-                    delay: 0.5,
-                    duration: 0.14,
+                    delay: 1.3,
+                    duration: 0.15,
                     ease: `step(${this.$options.name.length})`,
                     onUpdate: function(nameTarget, nameString) {
                         nameTarget.innerText = nameString.slice(0, Math.round((1 -this.progress()) * nameString.length));
@@ -67,7 +61,7 @@ export default class Preloader extends Base {
                     strokeDashoffset: this.$refs.scribblePath.getTotalLength(),
                 }, {
                     strokeDashoffset: -this.$refs.scribblePath.getTotalLength() + 1,
-                    duration: 1.4,
+                    duration: 2.3,
                     ease: 'quart.out',
                 }, '>+=0.1')
                 .set(this.$refs.overlay, { autoAlpha: 1 })
@@ -76,10 +70,14 @@ export default class Preloader extends Base {
     }
 
     async animateOut () {
+        const homeHeaderElement = document.querySelector('[data-component="HomeHeader"]');
+        if (homeHeaderElement) this.header = getInstanceFromElement(homeHeaderElement, HomeHeader);
+        this.navigation = getInstanceFromElement(document.querySelector('[data-component="Navigation"]'), Navigation);
         return new Promise(resolve => {
             gsap.timeline({
                 onComplete: () => {
                     gsap.set(this.$el, { autoAlpha: 0 });
+                    document.querySelector('[data-taxi]').style.transform = '';
                     resolve();
                 },
             })
@@ -91,56 +89,60 @@ export default class Preloader extends Base {
                 }))
                 .add(gsap.to(this.overlay, {
                     onStart: () => {
-                        window.readyForAnimations = true;
                         gsap.set(this.$refs.wrapper, { autoAlpha: 0 });
-                        gsap.set(document.getElementById('page-container'), { clearProps: 'transform' });
-                        window.scrollTo(0, 0);
-                    },
-                    onComplete: () => {
-                        gsap.set(this.$refs.wrapper, { autoAlpha: 1 });
                     },
                     duration: 1,
                     ease: 'expo.out',
                     onUpdate: this.animateOverlay,
                     onUpdateParams: [this.overlay, 0, '#FF6C3C'],
-                }));
+                }))
+                .call(() => {
+                    if (this.header) this.header.animateIn();
+                }, null, '-=0.9')
+                .call(() => {
+                    this.navigation.animateIn();
+                }, null, '-=0.5');
         });
     }
 
-    async animatePageTransitionIn () {
-        return new Promise(resolve => {
-            gsap.timeline({
-                onStart: () => {
-                    gsap.set(this.$refs.name, { autoAlpha: 0 });
-                    this.logoFramesAnimation = this.animateLogoFrames().repeat(-1);
-                },
-                onComplete: resolve,
-            })
-                .to(this.$el, {
-                    autoAlpha: 1,
-                    duration: 0.1,
-                });
-        });
-    }
-
-    async animatePageTransitionOut () {
-        return new Promise(resolve => {
-            gsap.timeline({
-                onStart: () => {
-                    this.logoFramesAnimation.pause();
-                    gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
-                },
+    animatePageTransitionIn ({ onComplete }) {
+        return gsap.timeline({
+            onStart: () => {
+                gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
+                gsap.set(this.$el, { autoAlpha: 1 });
+                gsap.set(this.$refs.wrapper, { autoAlpha: 1, backgroundColor: COLORS.blackDark });
+                gsap.set(this.$refs.name, { autoAlpha: 0 });
+            },
+            onComplete: onComplete,
+        })
+            .from(this.$el, {
+                clipPath: 'inset(0 0 100% 0)',
+                duration: 1,
+                ease: 'expo.inOut',
                 onComplete: () => {
-                    this.logoFramesAnimation.kill();
-                    resolve();
+                    this.logoFramesAnimation = this.animateLogoFrames().repeat(-1).timeScale(1.4);
                 },
-            })
-                .to(this.$el, {
-                    autoAlpha: 0,
-                    duration: 0.3,
-                    onComplete: resolve,
-                });
-        });
+            });
+    }
+
+    animatePageTransitionOut ({ onComplete }) {
+        return gsap.timeline({
+            delay: 1,
+            onComplete: () => {
+                onComplete();
+            },
+        })
+            .to(this.$el, {
+                clipPath: 'inset(100% 0 0 0)',
+                duration: 1,
+                ease: 'expo.inOut',
+                clearProps: 'clipPath',
+                onComplete: () => {
+                    window.lenis.scrollTo(1);
+                    gsap.set(this.$el, { autoAlpha: 0 });
+                    this.logoFramesAnimation.kill();
+                },
+            });
     }
 
     animateLogoFrames () {
@@ -149,8 +151,8 @@ export default class Preloader extends Base {
             onStart: () => {
                 gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
             },
-            keyframes: [{ autoAlpha: 0, duration: 0 }, { autoAlpha: 1, duration: 0, delay: 0.05, }, { autoAlpha: 0, duration: 0, delay: 0.05 }],
-            stagger: 0.05,
+            keyframes: [{ autoAlpha: 0, duration: 0 }, { autoAlpha: 1, duration: 0, delay: 0.04, }, { autoAlpha: 0, duration: 0, delay: 0.08 }],
+            stagger: 0.08,
         });
     }
 

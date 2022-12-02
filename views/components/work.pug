@@ -1,6 +1,6 @@
 article.section-work(data-component='Work' data-option-rotate=`${ (index % 2 === 0 ? 5 : -5) }` class=`is-${ getColorName(work.fields.color) } is-${ getFormat(work.fields.format) } is-${ getAlignment(work.fields.alignment) }`)
     .section-work__container
-        a.section-work__link(href=getLinkUrl(work) data-ref='cursorLink[]')
+        a.section-work__link(href=getLinkUrl(work) data-ref='cursorLink[]' data-cursor-color='white')
             figure.section-work__cover(data-ref='cover')
                 .section-work__cover-inner
                     +parallax(work.fields.coverImage.fields.file.url, work.fields.coverImage.fields.file.details.image.width, work.fields.coverImage.fields.file.details.image.height, work.fields.coverImage.fields.description, 12, false)

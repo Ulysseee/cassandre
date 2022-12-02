@@ -29,8 +29,8 @@ html(lang="fr")
 
         #app.app(data-component="App" data-breakpoint class='is-' + pageShade)
             include components/navigation
-            main#page-container(data-ref="pageContainer")
-                #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent)
+            main#page-container(data-ref="pageContainer" data-taxi)
+                #page(class='page page-' + pageName + ' is-' + pageShade data-component=pageComponent data-taxi-view=renderer ? renderer : '')
                     block page
             include components/cursor
             include components/preloader

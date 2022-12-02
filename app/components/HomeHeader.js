@@ -1,9 +1,10 @@
 import AppEvents from '../containers/AppEvents';
 import Matter from 'matter-js';
-import { withFreezedOptions } from '@studiometa/js-toolkit';
+import { withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import { COLORS } from '../constants/colors';
 import { clamp, map } from '@studiometa/js-toolkit/utils';
 import gsap from 'gsap';
+import { ANIMATIONS } from '../constants/animations';
 
 const Engine = Matter.Engine,
     Render = Matter.Render,
@@ -17,7 +18,9 @@ const Engine = Matter.Engine,
     Body = Matter.Body,
     Composite = Matter.Composite;
 
-export default class HomeHeader extends withFreezedOptions(AppEvents) {
+export default class HomeHeader extends withIntersectionObserver(withFreezedOptions(AppEvents), {
+    ...ANIMATIONS.intersectionObserver,
+}) {
     static config = {
         ...AppEvents.config,
         name: 'HomeHeader',
@@ -67,6 +70,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
         },
     };
 
+    revealed = false;
     bubblesCreated = false;
     engine = null;
     render = null;
@@ -96,6 +100,7 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
     }
 
     mounted() {
+        this.animateIn = this.animateIn.bind(this);
         this.maxTranslateX = this.$el.offsetWidth - this.$refs.content.getBoundingClientRect().right;
         this.sprites = this.$options.bubbleImages;
         for (let i = 0; i < this.$options.numberOfBubbles; i++) {
@@ -110,18 +115,23 @@ export default class HomeHeader extends withFreezedOptions(AppEvents) {
             this.applyRandomForces(window.innerWidth < 700 ? 60 : 120);
             this.bubbles.forEach((bubble, index) => {
                 Body.setPosition(bubble, { x: this.$options.positions[index].x , y: -(window.innerWidth < 700 ? 72 : 108) });
-                gsap.to(bubble, {
-                    duration: 1,
-                    ease: 'elastic.out(1, 0.4)',
-                    onUpdate: function(positions) {
-                        const y = map(this.ratio, 0, 1, window.innerHeight, positions[index].y);
-                        Body.setPosition(bubble, { x: positions[index].x , y });
-                    },
-                    onUpdateParams: [this.$options.positions],
-                    delay: 4 + 0.07 * index,
-                });
             });
         }
+    }
+
+    animateIn(reverseDirection = false, delay = 0.07) {
+        this.bubbles.forEach((bubble, index) => {
+            gsap.to(bubble, {
+                duration: 1,
+                ease: 'elastic.out(1, 0.4)',
+                onUpdate: function(positions) {
+                    const y = map(this.ratio, 0, 1, window.innerHeight * (reverseDirection ? -1 : 1), positions[index].y);
+                    Body.setPosition(bubble, { x: positions[index].x , y });
+                },
+                onUpdateParams: [this.$options.positions],
+                delay: delay * index,
+            });
+        });
     }
 
     scrolled ({ y, progress, max }) {

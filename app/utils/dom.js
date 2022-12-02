@@ -11,14 +11,14 @@ export const getInternalLinks = () => {
     });
 };
 
-export const preloadImages = (targetElement = document, selector = 'img') => {
+export const imagesRendererObserver = (targetElement = document, selector = 'img') => {
     const images = [...targetElement.querySelectorAll(selector)].filter(image => image.getAttribute('loading') !== 'lazy');
-    const promises = [...images].map(imageElement => (
+    return Promise.all([...images].map(imageElement => (
         new Promise(resolve => {
             imageElement.onload = () => {
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
-                        document.body.offsetWidth // force repaint
+                        document.body.offsetWidth;
                         requestAnimationFrame(() => {
                             resolve();
                         })
@@ -26,10 +26,6 @@ export const preloadImages = (targetElement = document, selector = 'img') => {
                 })
             }
             imageElement.onerror = () => resolve();
-            imageElement.src = imageElement.getAttribute('data-load-src');
         })
-    ));
-    return Promise.all(promises).then(() => {
-        window.dispatchEvent(new Event('imagesRendered'));
-    });
+    )));
 };

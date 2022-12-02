@@ -19,48 +19,44 @@ export default class NextProject extends withScrolledInView(AppEvents, {
 
     reachEnd = false;
     splitTitle = null;
+    wordsDistance = 0;
+    scrollProgressY = 0;
 
     mounted () {
         super.mounted();
         this.splitTitle = new SplitType(this.$refs.titleParts, {
             type: 'words',
         });
+        this.wordsDistance = this.splitTitle.words[1].getBoundingClientRect().left - this.splitTitle.words[0].getBoundingClientRect().right;
     }
 
     scrolledInView({ current, start, end }) {
         const maxY = end.y - this.$refs.container.offsetHeight;
         const startY = start.y + this.$refs.container.offsetHeight;
-        const progressY = clamp((current.y - startY) / (maxY - startY), 0, 1);
+        this.scrollProgressY = clamp((current.y - startY) / (maxY - startY), 0, 1);
+        this.scrollProgressYEased = easeInCubic(this.scrollProgressY);
 
-        const progressCubicIn = easeInCubic(progressY);
-        const progressExpoIn = easeInExpo(progressY);
-
-        for (const SVGReveal of this.$children.SVGReveal) {
-            SVGReveal.progressDraw(progressCubicIn);
-        }
-        gsap.set(this.splitTitle.words, {
-            yPercent: i =>  (i % 2 === 0 ? -1 : 1) * 100 * (1 - progressExpoIn),
-        });
-        gsap.set(this.$refs.content, {
-            clipPath: `inset(${ 35 - progressCubicIn * 35 }%)`,
-        });
-
-        if (!this.reachEnd && Math.round(progressCubicIn * 100) / 100 === 1) {
+        if (!this.reachEnd && Math.round(this.scrollProgressYEased * 100) / 100 === 1) {
             this.reachEnd = true;
-            gsap.timeline({
-                onComplete: () => {
-                    this.$refs.content.click();
-                }
-            })
-                .to(this.splitTitle.words, {
-                    yPercent: i =>  (i % 2 === 0 ? 1 : -1) * 100,
-                    duration: 0.4,
-                })
-                .to(this.$refs.content, {
-                    clipPath: 'inset(100% 0 0 0)',
-                    duration: 0.7,
-                    ease: 'power4.out',
-                }, '>-=0.2');
+            this.$refs.content.click();
+        }
+    }
+
+    ticked () {
+        const progressExpoIn = easeInExpo(this.scrollProgressY);
+
+        if (this.reachEnd) this.$services.disable('ticked');
+
+        return () => {
+            gsap.set(this.splitTitle.words, {
+                translateX: i => (i % 2 === 0 ? 1 : -1) * (this.wordsDistance / 2 - 10) * (1 - progressExpoIn),
+            });
+            for (const SVGReveal of this.$children.SVGReveal) {
+                SVGReveal.progressDraw(this.scrollProgressYEased);
+            }
+            gsap.set(this.$refs.content, {
+                clipPath: `inset(0 ${ (1 - this.scrollProgressYEased) * 4.1 }% 0 ${ (1 - this.scrollProgressYEased) * 4.1 }%)`,
+            });
         }
     }
 }

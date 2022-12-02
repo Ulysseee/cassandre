@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { clamp, damp } from '@studiometa/js-toolkit/utils';
 import { withDrag, withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import { isTouchDevice } from '../utils/detector';
+import { imagesRendererObserver } from '../utils/dom';
 
 export default class Slider extends withIntersectionObserver(withDrag(withFreezedOptions(AppEvents), {
     target: instance => instance.$refs.wrapper,
@@ -55,9 +56,9 @@ export default class Slider extends withIntersectionObserver(withDrag(withFreeze
         super.mounted();
 
         this.lerp = isTouchDevice() ? 0.08 : this.$options.lerp;
-
         this.init = this.init.bind(this);
-        window.addEventListener('imagesRendered', this.init);
+
+        imagesRendererObserver(this.$el).then(this.init);
     }
 
     destroyed () {

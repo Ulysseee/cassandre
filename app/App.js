@@ -7,10 +7,8 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Ui from './pages/Ui';
 import ScribbleLink from './components/ScribbleLink';
-import { getInternalLinks, preloadImages } from './utils/dom';
-import Preloader from './components/Preloader';
+import OverlayTransition from './components/OverlayTransition';
 import Parallax from './components/Parallax';
-import Lenis from '@studio-freight/lenis';
 import Title from './components/Title';
 import Project from './pages/Project';
 import Paragraph from './components/Paragraph';
@@ -18,6 +16,13 @@ import Image from './components/Image';
 import { isTouchDevice } from './utils/detector';
 import CustomEase from 'gsap/CustomEase';
 import Divider from './components/Divider';
+import Navigation from './components/Navigation';
+import { Core } from '@unseenco/taxi'
+import DefaultRenderer from './renderers/DefaultRenderer';
+import DefaultTransition from './transitions/DefaultTransition';
+import HomeTransition from './transitions/HomeTransition';
+import HomeRenderer from './renderers/HomeRenderer';
+import { imagesRendererObserver } from './utils/dom';
 
 gsap.registerPlugin(CustomEase);
 
@@ -29,6 +34,7 @@ class App extends AppEvents {
             ...(!isTouchDevice() && { Cursor }),
 
             // Global Components
+            Navigation,
             Title,
             Paragraph,
             Image,
@@ -46,51 +52,44 @@ class App extends AppEvents {
         refs: [...AppEvents.config.refs, 'pageContainer'],
     };
 
+    navigationInstance = null;
     currentPageInstance = null;
-    DOMParser = new DOMParser();
-    internalLinks = [];
-    appColor = null;
 
     mounted () {
         super.mounted();
 
+        this.setupTaxi();
+
         this.removeAppOverlay();
 
-        this.updateCurrentPageInstance();
+        this.setNavigationInstance();
+        this.setCurrentPageInstance();
 
         this.setupListeners();
-        this.setupInternalLinks();
-
-        this.createLenis().stop();
 
         this.onResize();
     }
 
-    removeAppOverlay () {
-        const appOverlay = document.getElementById('appOverlay');
-        if (appOverlay) appOverlay.remove();
-    }
-
-    ticked ({ time }) {
-        window.lenis.raf(time);
-    }
-
-    showCurrentPage () {
-        window.lenis.start();
-        this.currentPageInstance.animateIn();
+    setupTaxi () {
+        this.taxi = new Core({
+            bypassCache: true,
+            renderers: {
+                default: DefaultRenderer,
+                home: HomeRenderer,
+            },
+            transitions: {
+                default: DefaultTransition,
+                toHome: HomeTransition,
+            }
+        });
+        this.taxi.addRoute('.*', '/', 'toHome');
     }
 
     setupListeners () {
-        window.addEventListener('popstate', () => this.onUrlChange({
-            url: window.location.pathname,
-            push: false,
-        }));
         window.addEventListener('resize', () => this.onResize());
-    }
-
-    setupInternalLinks () {
-        this.internalLinks = getInternalLinks();
-        this.addInternalLinkListeners();
+        this.taxi.on('NAVIGATE_OUT', this.onTaxiNavigateOut.bind(this));
+        this.taxi.on('NAVIGATE_IN', this.onTaxiNavigateIn.bind(this));
+        this.taxi.on('NAVIGATE_END', this.onTaxiNavigateEnd.bind(this));
     }
 
     onResize () {
@@ -98,100 +97,45 @@ class App extends AppEvents {
         document.documentElement.style.setProperty('--vw', `${ window.innerWidth * 0.01 }px`);
     }
 
-    async onUrlChange ({ url, push = true, from = undefined, to = undefined }) {
-        const isProjectTransition = from === 'project' && to === 'project';
+    onTaxiNavigateOut () {
+        this.cursor.removeStates();
+    }
 
-        if (!isProjectTransition) {
-            await preloader.animatePageTransitionIn();
-            window.lenis.destroy();
-        }
+    onTaxiNavigateIn () {
+        window.lenis.stop();
+        this.updateAll();
+    }
 
-        if (this.cursor) this.cursor.disable();
+    onTaxiNavigateEnd () {
+        window.lenis.start();
+    }
 
-        const request = await window.fetch(url);
+    ticked ({ time }) {
+        window.lenis.raf(time);
+    }
 
-        if (request.status !== 200) {
-            console.error('Handle request error.');
-            return;
-        }
-
-        if (push) window.history.pushState({}, '', url);
-
-        let pageDocument = await request.text();
-        pageDocument = this.DOMParser.parseFromString(pageDocument, 'text/html');
-
-        this.currentPageInstance.$destroy();
-        this.replacePage(pageDocument, {
-            hideFirst: isProjectTransition,
-            noIntersect: true,
-        });
+    updateAll () {
         this.$update();
-        this.updateCurrentPageInstance();
-
-        this.updateAppColor();
-        this.setupInternalLinks();
-
-        this.createLenis();
-
-        await Promise.all([
-            new Promise(resolve => {
-                setTimeout(resolve, 200);
-            }),
-            preloadImages(),
-        ]);
-
-        if (isProjectTransition) {
-            this.showCurrentPage();
-        } else {
-            preloader.animatePageTransitionOut();
-            this.showCurrentPage();
-        }
+        this.setCurrentPageInstance();
+        this.setAppColor();
     }
 
-    replacePage (pageDocument, { hideFirst = false, noIntersect = false }) {
-        const pageElement = pageDocument.getElementById('page');
-        if (hideFirst) gsap.set(pageElement, { autoAlpha: 0 });
-        if (noIntersect) gsap.set(pageDocument, { translateY: '101vh' });
-        this.$refs.pageContainer.replaceChildren(pageElement);
+    removeAppOverlay () {
+        const appOverlay = document.getElementById('appOverlay');
+        if (appOverlay) appOverlay.remove();
     }
 
-    addInternalLinkListeners () {
-        for (const internalLink of this.internalLinks) {
-            internalLink.onclick = e => {
-                e.preventDefault();
-                if (internalLink.href === window.location.href) return;
-                this.onUrlChange({
-                    url: internalLink.href,
-                    from: internalLink.getAttribute('data-from'),
-                    to: internalLink.getAttribute('data-to'),
-                });
-            };
-        }
+    setNavigationInstance () {
+        [this.navigationInstance] = this.$children.Navigation;
     }
 
-    createLenis () {
-        window.scrollTo(0, 0);
-        if (window.lenis) {
-            window.lenis.scrollTo(0);
-            window.lenis.destroy();
-        }
-        return window.lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            smooth: true,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-    }
-
-    updateCurrentPageInstance () {
+    setCurrentPageInstance () {
         const pageElement = document.getElementById('page');
         const pageClass = pageElement.getAttribute('data-component');
         this.currentPageInstance = getInstanceFromElement(pageElement, App.config.components[pageClass]);
     }
 
-    updateAppColor () {
+    setAppColor () {
         const isDarkPage = this.currentPageInstance.$el.classList.contains('is-dark');
         const app = document.getElementById('app');
         app.classList.remove('is-dark', 'is-light');
@@ -199,19 +143,18 @@ class App extends AppEvents {
     }
 }
 
-const pageContainer = document.getElementById('page-container');
-gsap.set(pageContainer, { translateY: '101vh' });
-
-const [preloader] = Preloader.$factory('Preloader');
+const [overlayTransition] = OverlayTransition.$factory('Preloader');
 const [app] = App.$factory('App');
 
 const bootApp = async () => {
-    await preloader.animateOut();
-    app.showCurrentPage();
+    await overlayTransition.animateOut();
 };
 
 const appLoaded = new Promise((resolve) => {
     window.addEventListener('load', resolve);
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
 });
 
-Promise.all([appLoaded, preloader.animateIn(), preloadImages()]).then(bootApp);
+Promise.all([appLoaded, overlayTransition.animateIn()]).then(bootApp);

@@ -21,15 +21,15 @@ export default class Page extends AppEvents {
     animateIn() {
         return new Promise(resolve => {
             gsap.timeline({
-                onStart: () => {
-                    gsap.set(this.$el, { clearProps: 'display' });
-                },
+                // onStart: () => {
+                //     gsap.set(this.$el, { clearProps: 'display' });
+                // },
                 onComplete: resolve,
             })
-                .to(this.$el, {
-                    autoAlpha: 1,
-                    duration: 0.01,
-                });
+                // .to(this.$el, {
+                //     autoAlpha: 1,
+                //     duration: 0.01,
+                // });
         });
     }
 
@@ -38,9 +38,9 @@ export default class Page extends AppEvents {
             gsap.timeline({
                 onComplete: resolve,
             })
-                .to(this.$el, {
-                    autoAlpha: 0,
-                });
+                // .to(this.$el, {
+                //     autoAlpha: 0,
+                // });
         })
     }
 

@@ -22,6 +22,7 @@ export default class SVGReveal extends Base {
     }
 
     hideShapes () {
+        this.drawn = false;
         gsap.set(this.shapes, {
             strokeDasharray: (i, target) => `${ target.getTotalLength() } ${ target.getTotalLength() }`,
             strokeDashoffset: (i, target) => `${ (this.$options.reverse ? -1 : 1) * target.getTotalLength() }`,

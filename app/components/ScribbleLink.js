@@ -10,7 +10,7 @@ export default class ScribbleLink extends Base {
 
     static config = {
         name: 'ScribbleLink',
-        refs: ['scribble'],
+        refs: ['scribble', 'link'],
     };
 
     mounted () {
@@ -20,13 +20,13 @@ export default class ScribbleLink extends Base {
         addStyle(this.$refs.scribble, { visibility: 'visible' });
     }
 
-    onMouseenter () {
+    onLinkMouseenter () {
         this.tweenOut.finish();
         if (this.tweenIn.progress() === 1) this.tweenIn.progress(0);
         this.tweenIn.play();
     }
 
-    onMouseleave () {
+    onLinkMouseleave () {
         this.tweenIn.finish();
         if (this.tweenOut.progress() === 1) this.tweenOut.progress(0);
         this.tweenOut.play();

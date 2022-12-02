@@ -122,7 +122,7 @@ export default class Cursor extends withBreakpointObserver(Base) {
         this.$el.style.setProperty('--skewY', `${ skewY }deg`);
     }
 
-    disable() {
+    removeStates() {
         this.isListening = false;
         this.onLeaveLink({ target: this.currentTarget.element });
         this.onLeaveSlider({ target: this.currentTarget.element });
