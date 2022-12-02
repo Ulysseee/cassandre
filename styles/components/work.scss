@@ -7,8 +7,8 @@
     @include index-layer(relative, content, card);
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        margin-top: calc(var(--section-padding) * .4);
-        margin-bottom: calc(var(--section-padding) * .4);
+        margin-top: calc(var(--section-padding) * .8);
+        margin-bottom: calc(var(--section-padding) * .8);
     }
 
     // STATES

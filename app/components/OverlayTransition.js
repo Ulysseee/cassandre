@@ -152,7 +152,7 @@ export default class OverlayTransition extends Base {
                 gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
             },
             keyframes: [{ autoAlpha: 0, duration: 0 }, { autoAlpha: 1, duration: 0, delay: 0.04, }, { autoAlpha: 0, duration: 0, delay: 0.08 }],
-            stagger: 0.08,
+            stagger: 0.081,
         });
     }
 

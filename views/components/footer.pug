@@ -4,8 +4,8 @@ footer.component-footer(data-component='Footer')
             .component-footer-top
                 .component-footer-text
                     h4.ui-h5.component-footer-title(data-component='Title' data-option-intersection-observer='{"rootMargin": "0px 0px 80% 0px"}')!=footer.title
-                    p.ui-p-l.component-footer-paragraph(data-component='Paragraph')!=getWysiwyg(footer.text)
-                a.ui-h7.component-footer-mail(href='mailto:' + getMail(common.externalLinks).value data-ref='cursorLink[]')!=getMail(common.externalLinks).value
+                    p.ui-p-l.component-footer-paragraph(data-component='Paragraph' data-option-intersection-observer='{"rootMargin": "0px 0px 80% 0px"}' data-option-delay='0.5')!=getWysiwyg(footer.text)
+                a.ui-h7.component-footer-mail(href='mailto:' + getMail(common.externalLinks).value data-ref='cursorLink[]' data-component='Title' data-option-intersection-observer='{"rootMargin": "0px 0px 80% 0px"}')!=getMail(common.externalLinks).value
             .component-footer-divider(data-component='Divider' data-option-delay=0.4 data-option-intersection-observer='{"rootMargin": "0px 0px 8% 0px"}')
             .component-footer-bottom
                 ul.component-footer-social-list
@@ -13,7 +13,7 @@ footer.component-footer(data-component='Footer')
                         if externalLink.key !== 'mail'
                             li.component-footer-social-item
                                 a.ui-p-xxs.ui-spotLink.component-footer-social-link(href=externalLink.value target='_blank' rel='noopener noreferrer' class=`is-${ externalLink.key }`)
-                                    span.ui-spotLink-text=externalLink.key
+                                    span.ui-spotLink-text(data-component='Paragraph' data-option-delay='0.2')=externalLink.key
                                     svg.ui-spotLink-icon(width='11' height='11' viewbox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg')
                                         path(d='M5.07031 0.520752C5.07031 3.05133 9.07763 5.54845 10.75 5.54845' stroke='#1C1B1A' stroke-width='0.901802')
                                         path(d='M5.07031 10.5762C5.07031 8.0456 9.07763 5.54847 10.75 5.54847' stroke='#1C1B1A' stroke-width='0.901802')

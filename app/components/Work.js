@@ -1,18 +1,23 @@
-import { getInstanceFromElement, withIntersectionObserver, withScrolledInView } from '@studiometa/js-toolkit';
+import {
+    getInstanceFromElement,
+    withIntersectionObserver,
+    withResponsiveOptions,
+    withScrolledInView,
+} from '@studiometa/js-toolkit';
 import AppEvents from '../containers/AppEvents';
 import SVGReveal from './SVGReveal';
-import { addClass, easeInOutExpo, transform } from '@studiometa/js-toolkit/utils';
+import { addClass, transform } from '@studiometa/js-toolkit/utils';
 import Paragraph from './Paragraph';
 import Title from './Title';
 import gsap from 'gsap';
 import CustomEase from 'gsap/CustomEase';
 import { ANIMATIONS } from '../constants/animations';
 
-export default class Work extends withScrolledInView(withIntersectionObserver(AppEvents, {
+export default class Work extends withResponsiveOptions(withScrolledInView(withIntersectionObserver(AppEvents, {
     ...ANIMATIONS.intersectionObserver,
 }), {
     rootMargin: '100%',
-}) {
+})) {
     static config = {
         ...AppEvents.config,
         name: 'Work',
@@ -25,6 +30,7 @@ export default class Work extends withScrolledInView(withIntersectionObserver(Ap
             translateY: {
                 type: Number,
                 default: -250,
+                responsive: true,
             },
         },
         components: {

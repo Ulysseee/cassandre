@@ -98,7 +98,7 @@ class App extends AppEvents {
     }
 
     onTaxiNavigateOut () {
-        this.cursor.removeStates();
+        if (this.cursor) this.cursor.removeStates();
     }
 
     onTaxiNavigateIn () {

@@ -85,6 +85,10 @@
 
     &-social-link {
         text-transform: uppercase;
+
+        .line {
+            overflow: hidden;
+        }
     }
 
     &-signature {

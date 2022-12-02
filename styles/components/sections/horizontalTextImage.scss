@@ -29,6 +29,7 @@
     }
 
     &-text {
+        width: 100%;
         max-width: 410px;
 
         @media screen and #{inspect(map-get($breakpoints, 'large'))} {
@@ -41,7 +42,6 @@
     }
 
     &-wysiwyg {
-        flex-basis: 50%;
         font-size: 1rem;
         line-height: 1.63;
 

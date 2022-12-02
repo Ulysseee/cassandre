@@ -1,4 +1,4 @@
-article.section-work(data-component='Work' data-option-rotate=`${ (index % 2 === 0 ? 5 : -5) }` class=`is-${ getColorName(work.fields.color) } is-${ getFormat(work.fields.format) } is-${ getAlignment(work.fields.alignment) }`)
+article.section-work(data-component='Work' data-option-translate-y:xs:s:m='0' data-option-rotate=`${ (index % 2 === 0 ? 5 : -5) }` class=`is-${ getColorName(work.fields.color) } is-${ getFormat(work.fields.format) } is-${ getAlignment(work.fields.alignment) }`)
     .section-work__container
         a.section-work__link(href=getLinkUrl(work) data-ref='cursorLink[]' data-cursor-color='white')
             figure.section-work__cover(data-ref='cover')

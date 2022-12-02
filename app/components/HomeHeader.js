@@ -5,6 +5,7 @@ import { COLORS } from '../constants/colors';
 import { clamp, map } from '@studiometa/js-toolkit/utils';
 import gsap from 'gsap';
 import { ANIMATIONS } from '../constants/animations';
+import CustomEase from 'gsap/CustomEase';
 
 const Engine = Matter.Engine,
     Render = Matter.Render,
@@ -24,7 +25,7 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
     static config = {
         ...AppEvents.config,
         name: 'HomeHeader',
-        refs: [...AppEvents.config.refs, 'canvas', 'content'],
+        refs: [...AppEvents.config.refs, 'canvas', 'content', 'titleChunks[]'],
         options: {
             width: {
                 type: Number,
@@ -117,13 +118,20 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
                 Body.setPosition(bubble, { x: this.$options.positions[index].x , y: -(window.innerWidth < 700 ? 72 : 108) });
             });
         }
+        this.titleTween = gsap.from(this.$refs.titleChunks, {
+            yPercent: 100,
+            duration: 1.4,
+            stagger: 0.07,
+            ease: CustomEase.create("custom", "M0,0 C0.046,0.498 0.077,0.805 0.226,0.904 0.356,0.99 0.504,1 1,1 "),
+            paused: true,
+        });
     }
 
     animateIn(reverseDirection = false, delay = 0.07) {
         this.bubbles.forEach((bubble, index) => {
             gsap.to(bubble, {
                 duration: 1,
-                ease: 'elastic.out(1, 0.4)',
+                ease: window.innerWidth > 700 ? 'elastic.out(1, 0.4)' : 'elastic.out(1, 0.7)',
                 onUpdate: function(positions) {
                     const y = map(this.ratio, 0, 1, window.innerHeight * (reverseDirection ? -1 : 1), positions[index].y);
                     Body.setPosition(bubble, { x: positions[index].x , y });
@@ -132,6 +140,7 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
                 delay: delay * index,
             });
         });
+        this.titleTween.play(0);
     }
 
     scrolled ({ y, progress, max }) {
@@ -238,16 +247,16 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
     }
 
     setupEvents () {
-        // const mouse = Mouse.create(document.body);
-        // const mouseConstraint = MouseConstraint.create(this.engine, {
-        //     mouse: mouse,
-        //     constraint: {
-        //         render: {
-        //             visible: false,
-        //         },
-        //     },
-        // });
-        // World.add(this.engine.world, mouseConstraint);
+        const mouse = Mouse.create(this.$refs.canvas);
+        const mouseConstraint = MouseConstraint.create(this.engine, {
+            mouse: mouse,
+            constraint: {
+                render: {
+                    visible: false,
+                },
+            },
+        });
+        World.add(this.engine.world, mouseConstraint);
     }
 
     handleMouseMove (e) {

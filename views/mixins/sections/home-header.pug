@@ -1,18 +1,25 @@
 mixin home-header(baseline, bubbleImages)
     header.section-homeHeader(data-component='HomeHeader' data-option-bubble-images=getBubbleImages(bubbleImages))
-        .section-homeHeader-canvas(data-ref='canvas')
         .ui-container-large.section-homeHeader-container
             .section-homeHeader-content(data-ref='content')
                 .section-homeHeader-title
-                    span.ui-h1.section-homeHeader-titleChar C
-                    span.ui-h1.section-homeHeader-titleChar A
-                    .section-homeHeader-titleShape
-                        svg(width='210' height='163' viewbox='0 0 210 163' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') C
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') A
+                    .section-homeHeader-titleShapes
+                        svg(data-ref='titleChunks[]' width='210' height='163' viewbox='0 0 210 163' fill='none' xmlns='http://www.w3.org/2000/svg')
                             path(fill-rule='evenodd' clip-rule='evenodd' d='M60.4072 20.9105C56.8672 28.8962 56.8645 40.2909 64.5805 53.0714L64.5814 53.0728C65.5408 54.6636 66.5003 56.2428 67.4537 57.8118C70.1529 62.2543 72.8029 66.6159 75.2644 70.9327C86.3419 72.2963 97.4155 75.7829 106.712 81.5676L109.896 83.5488L105.933 89.9166L102.749 87.9354C95.9011 83.674 87.9225 80.8029 79.7484 79.2275C82.2381 84.1525 84.358 89.049 85.8948 93.9721C90.2013 107.768 89.9937 121.875 81.3565 137.798L81.3563 137.798C73.086 153.041 56.8196 161.899 41.1305 162.586C25.273 163.28 9.55688 155.586 3.38877 137.394C-0.689237 125.371 0.126372 112.683 6.20617 101.414C12.2743 90.1669 23.4201 80.6267 39.5095 74.4674L39.5146 74.4654C47.217 71.5296 56.5237 70.0962 66.2072 70.2865C64.5519 67.4898 62.813 64.6247 61.0194 61.6692C60.0796 60.1208 59.1248 58.5475 58.159 56.9463C49.3759 42.3973 48.8733 28.4225 53.5507 17.8711C58.1868 7.41256 67.8982 0.519531 78.7402 0.519531C90.3442 0.519531 99.525 10.9571 102.205 23.0453C104.979 35.5565 101.238 50.7816 86.5008 62.2309L83.5395 64.5315L78.9382 58.6088L81.8996 56.3082C94.322 46.6575 97.0365 34.3826 94.8829 24.6687C92.6354 14.5319 85.5062 8.01953 78.7402 8.01953C71.2122 8.01953 63.9885 12.8315 60.4072 20.9105ZM70.627 78.0051C60.279 77.2118 50.1719 78.4308 42.1909 81.4717C27.4303 87.1223 17.8611 95.6071 12.8067 104.975C7.76411 114.321 7.04966 124.838 10.4915 134.985L10.4916 134.985C15.4035 149.473 27.6624 155.669 40.8024 155.093C54.1108 154.51 67.8644 146.938 74.7641 134.221C82.3567 120.224 82.4891 108.231 78.7355 96.207C76.8643 90.2123 74.0424 84.2367 70.627 78.0051Z' fill='#DACAB5')
                             path(fill-rule='evenodd' clip-rule='evenodd' d='M144.102 53.0714C136.386 40.2909 136.389 28.8962 139.929 20.9105C143.511 12.8315 150.734 8.01953 158.262 8.01953C165.028 8.01953 172.157 14.5319 174.405 24.6687C176.558 34.3826 173.844 46.6575 161.422 56.3082L158.46 58.6088L163.061 64.5315L166.023 62.2309C180.76 50.7816 184.501 35.5565 181.727 23.0453C179.047 10.9571 169.866 0.519531 158.262 0.519531C147.42 0.519531 137.709 7.41256 133.073 17.8711C128.395 28.4225 128.898 42.3973 137.681 56.9463C138.646 58.547 139.601 60.1198 140.54 61.6678L140.541 61.6692C142.335 64.6247 144.074 67.4897 145.729 70.2865C136.103 70.0966 126.794 71.5088 119.037 74.4654L119.031 74.4674C102.942 80.6267 91.7963 90.1669 85.7281 101.414C79.6483 112.683 78.8327 125.371 82.9107 137.394C89.0789 155.586 104.795 163.28 120.653 162.586C136.342 161.899 152.608 153.041 160.878 137.798L160.878 137.798C169.516 121.875 169.723 107.768 165.417 93.9721C163.88 89.049 161.76 84.1526 159.27 79.2277C171.696 81.6226 183.412 86.959 191.499 95.3069C197.174 101.166 201.202 108.648 202.358 118H209.905C208.717 106.691 203.953 97.3848 196.886 90.0887C187.051 79.9357 173.057 73.9766 158.988 71.5527C157.592 71.312 156.19 71.1055 154.786 70.9328C152.325 66.6162 149.675 62.255 146.976 57.8129L146.976 57.8118L146.97 57.803C146.019 56.2368 145.061 54.6606 144.103 53.0728L144.102 53.0714ZM121.713 81.4717C129.62 78.4588 139.721 77.2056 150.149 78.0049C153.564 84.2366 156.386 90.2123 158.258 96.207C162.011 108.231 161.879 120.224 154.286 134.221C147.386 146.938 133.633 154.51 120.324 155.093C107.184 155.669 94.9255 149.473 90.0136 134.985L90.0134 134.985C86.5716 124.838 87.2861 114.321 92.3287 104.975C97.3831 95.6071 106.952 87.1223 121.713 81.4717Z' fill='#DACAB5')
-                    span.ui-h1.section-homeHeader-titleChar A
-                    span.ui-h1.section-homeHeader-titleChar N
-                    span.ui-h1.section-homeHeader-titleChar D
-                    span.ui-h1.section-homeHeader-titleChar R
-                    span.ui-h1.section-homeHeader-titleChar E
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') A
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') N
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') D
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') R
+                    span.ui-h1.section-homeHeader-titleChar
+                        span.letter(data-ref='titleChunks[]') E
                 p.section-homeHeader-baseline(data-component='Paragraph' data-option-intersection-observer='{"rootMargin": "0px 0px 0px 0px"}' data-option-delay='0.2' data-option-stagger-lines)!=baseline
+        .section-homeHeader-canvas(data-ref='canvas')

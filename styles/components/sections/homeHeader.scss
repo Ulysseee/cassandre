@@ -52,17 +52,19 @@
         &Char {
             max-width: vw(11.11);
             margin-left: vw(-1);
+            overflow: hidden;
 
             &:nth-of-type(3) {
                 margin-left: vw(-2.4);
             }
         }
 
-        &Shape {
+        &Shapes {
             max-width: vw(22.22);
             width: clamp(5.2rem, vw(15.2), vw(22.22));
             margin-left: vw(-2.5);
             transform: translateY(-6px);
+            overflow: hidden;
 
             @media screen and #{inspect(map-get($breakpoints, 'large'))} {
                 transform: translateY(-4px);
