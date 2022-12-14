@@ -116,7 +116,7 @@ export default class OverlayTransition extends Base {
             onComplete: onComplete,
         })
             .from(this.$el, {
-                clipPath: 'inset(0 0 100% 0)',
+                clipPath: 'inset(100% 0 0 0)',
                 duration: 1,
                 ease: 'expo.inOut',
                 onComplete: () => {
@@ -133,7 +133,7 @@ export default class OverlayTransition extends Base {
             },
         })
             .to(this.$el, {
-                clipPath: 'inset(100% 0 0 0)',
+                clipPath: 'inset(0 0 100% 0)',
                 duration: 1,
                 ease: 'expo.inOut',
                 clearProps: 'clipPath',

@@ -30,8 +30,8 @@ export default class About extends Page {
         const lastTitleWordRect = lastTitleWord.getBoundingClientRect();
         const scribbleRect = this.scribble.$el.getBoundingClientRect();
 
-        this.scribble.$el.style.top = `${ lastTitleWordRect.bottom - scribbleRect.height / 2 - 10 }px`;
-        this.scribble.$el.style.left = `${ lastTitleWordRect.left - 20}px`;
+        this.scribble.$el.style.top = `${ lastTitleWordRect.bottom - scribbleRect.height / 2 - (window.innerWidth < 700 ? 5 : 10) }px`;
+        this.scribble.$el.style.left = `${ lastTitleWordRect.left - (window.innerWidth < 700 ? 10 : 20)}px`;
     }
 
     onTitleAnimateInComplete () {

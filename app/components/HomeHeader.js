@@ -46,9 +46,9 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
                 type: Array,
                 default: () => ([
                     COLORS.brownLight,
+                    COLORS.beige,
+                    COLORS.orange,
                     COLORS.brownLight,
-                    COLORS.orange,
-                    COLORS.orange,
                     COLORS.beige,
                     COLORS.brownLight,
                     COLORS.orange,

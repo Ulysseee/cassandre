@@ -24,6 +24,10 @@
 
     &-scribble {
         position: absolute;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 140px;
+        }
     }
 
     &-title {

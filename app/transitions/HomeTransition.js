@@ -32,6 +32,6 @@ export default class HomeTransition extends Transition {
             this.navigation.animateIn();
             done();
         } })
-            .call(this.header.animateIn, [true, 0.04], '-=0.4');
+            .call(this.header.animateIn, [false, 0.04], '-=0.4');
     }
 }

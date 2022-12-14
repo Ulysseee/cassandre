@@ -4,6 +4,7 @@ import { clamp, damp } from '@studiometa/js-toolkit/utils';
 import { withDrag, withFreezedOptions, withIntersectionObserver } from '@studiometa/js-toolkit';
 import { isTouchDevice } from '../utils/detector';
 import { imagesRendererObserver } from '../utils/dom';
+var imagesLoaded = require('imagesloaded');
 
 export default class Slider extends withIntersectionObserver(withDrag(withFreezedOptions(AppEvents), {
     target: instance => instance.$refs.wrapper,
@@ -58,7 +59,7 @@ export default class Slider extends withIntersectionObserver(withDrag(withFreeze
         this.lerp = isTouchDevice() ? 0.08 : this.$options.lerp;
         this.init = this.init.bind(this);
 
-        imagesRendererObserver(this.$el).then(this.init);
+        imagesLoaded(this.$el, this.init);
     }
 
     destroyed () {

@@ -17,6 +17,10 @@ export default class Title extends withIntersectionObserver(Base, {
                 type: Boolean,
                 default: false,
             },
+            revertSplit: {
+                type: Boolean,
+                default: true,
+            },
             delay: Number,
         },
     };
@@ -53,7 +57,7 @@ export default class Title extends withIntersectionObserver(Base, {
         this.splitText.revert();
     }
 
-    animateIn () {
+    animateIn (revertSplit = this.$options.reverseSplit) {
         this.animateInTriggered = true;
         gsap.killTweensOf(this.splitText.chars);
         gsap.fromTo(this.splitText.chars, {
@@ -68,7 +72,7 @@ export default class Title extends withIntersectionObserver(Base, {
                 if (this.onAnimateInStart) this.onAnimateInStart();
             },
             onComplete: () => {
-                this.revertSplit();
+                if (revertSplit) this.revertSplit();
                 if (this.onAnimateInComplete) this.onAnimateInComplete();
             },
         });

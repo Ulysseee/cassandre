@@ -39,6 +39,34 @@
         }
     }
 
+    &-mail {
+        position: relative;
+
+        &Text {
+            position: relative;
+            z-index: 1;
+        }
+
+        &Spot {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-48%) translateX(-28%);
+            width: 72px;
+            height: 72px;
+            justify-content: center;
+            align-items: center;
+            background-image: url('../assets/images/spot-orange.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: none;
+
+            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+                display: flex;
+            }
+        }
+    }
+
     &-title {
         letter-spacing: -2px;
         max-width: 400px;

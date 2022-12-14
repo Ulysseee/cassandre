@@ -79,8 +79,6 @@ body {
         padding-top: 80px;
     }
 
-    @include index-layer(relative, content);
-
     &-home {
         padding-top: 0;
     }

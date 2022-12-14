@@ -1,6 +1,5 @@
 import AppEvents from '../containers/AppEvents';
 import gsap from 'gsap';
-import { COLORS } from '../constants/colors';
 import { getInstanceFromElement } from '@studiometa/js-toolkit';
 import Title from './Title';
 
@@ -8,7 +7,7 @@ export default class ContactMe extends AppEvents {
     static config = {
         ...AppEvents.config,
         name: 'ContactMe',
-        refs: [...AppEvents.config.refs, 'content', 'button', 'mail', 'socialLinks[]'],
+        refs: [...AppEvents.config.refs, 'content', 'button', 'mail', 'socialLinks[]', 'closeButton', 'closeButtonBars[]'],
         options: {
             isOpen: {
                 type: Boolean,
@@ -86,6 +85,7 @@ export default class ContactMe extends AppEvents {
     }
 
     open () {
+        console.log(this.title);
         gsap.killTweensOf([this.$refs.content, this.$refs.button, this.$refs.socialLinks]);
         gsap.timeline()
             .to(this.$refs.content, {
@@ -100,7 +100,7 @@ export default class ContactMe extends AppEvents {
                 scale: 0,
                 duration: 0.1,
             }, 0.05)
-            .add(() => this.title.animateIn(), 0)
+            .add(() => this.title.animateIn(false), 0)
             .fromTo(this.$refs.socialLinks, {
                 yPercent: 100,
             },{
@@ -109,10 +109,21 @@ export default class ContactMe extends AppEvents {
                 ease: 'expo.out',
                 stagger: 0.07,
             }, 0.3)
+            .from(this.$refs.closeButton, {
+                opacity: 0,
+                duration: 0.2,
+            }, 0.3)
+            .from(this.$refs.closeButtonBars, {
+                scaleX: 0,
+                duration: 1.1,
+                ease: 'expo.out',
+                stagger: 0.14,
+            }, 0.4)
         ;
     }
 
     close () {
+        console.log(this.title);
         gsap.killTweensOf([this.$refs.content, this.$refs.button, this.$refs.socialLinks]);
         gsap.timeline()
             .to(this.$refs.content, {
