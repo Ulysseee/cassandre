@@ -1,7 +1,5 @@
 import { Renderer } from '@unseenco/taxi';
 import { createLenis } from '../constants/lenis';
-import { getInstanceFromElement } from '@studiometa/js-toolkit';
-import Navigation from '../components/Navigation';
 
 export default class DefaultRenderer extends Renderer {
 

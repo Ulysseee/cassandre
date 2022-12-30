@@ -6,6 +6,8 @@ import { clamp, map } from '@studiometa/js-toolkit/utils';
 import gsap from 'gsap';
 import { ANIMATIONS } from '../constants/animations';
 import CustomEase from 'gsap/CustomEase';
+import { triggerChildrenAnimateIn } from '../utils/triggerChildrenAnimateIn';
+import Paragraph from './Paragraph';
 
 const Engine = Matter.Engine,
     Render = Matter.Render,
@@ -26,6 +28,9 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
         ...AppEvents.config,
         name: 'HomeHeader',
         refs: [...AppEvents.config.refs, 'canvas', 'content', 'titleChunks[]'],
+        components: {
+            Paragraph,
+        },
         options: {
             width: {
                 type: Number,
@@ -141,6 +146,7 @@ export default class HomeHeader extends withIntersectionObserver(withFreezedOpti
             });
         });
         this.titleTween.play(0);
+        triggerChildrenAnimateIn(this, 'HomeHeader', ['Paragraph']);
     }
 
     scrolled ({ y, progress, max }) {

@@ -24,6 +24,7 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     animateInTriggered = false;
 
     mounted() {
+        console.log(this);
         if (this.animateInTriggered) return;
         this.animateIn = this.animateIn.bind(this);
         this.setup();
@@ -38,7 +39,9 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     }
 
     intersected([{ isIntersecting }]) {
+        console.log(this, isIntersecting);
         if (isIntersecting && this.$options.auto && !this.animateInTriggered) {
+            console.log(this);
             this.animateIn();
         }
     }
