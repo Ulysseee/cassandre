@@ -16,14 +16,29 @@ html(lang="fr")
 
         base(href="/")
 
-        title cassandre
+        title=(metaPageName ? metaPageName + ' - ' : '') + common.siteName
+        meta(name="description" content=common.siteDescription)
 
         link(rel="icon" type="image/x-icon" href="images/favicon.ico")
+        link(rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png")
+        link(rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png")
+        link(rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png")
+        link(rel="mask-icon" href="images/safari-pinned-tab.svg" color="#DACAB5")
 
         link(href="/main.css" rel="stylesheet")
 
-        meta(name="description" content="Cassandre Levrard digital designer portfolio")
-        // TODO: metas data for favicon (see favicon generator) + facebook and twitter metas
+        meta(name="msapplication-TileColor" content="#F6EDE2")
+        meta(name="theme-color" content="#1C1B1A")
+
+        meta(property="og:type" content="website")
+        meta(property="og:title" content=common.siteName)
+        meta(property="og:description" content=common.siteDescription)
+        meta(property="og:image" content='https://cassandrelevrard.fr/images/ogimage.jpg')
+
+        meta(name="twitter:card" content="summary_large_image")
+        meta(name="twitter:title" content=common.siteName)
+        meta(name="twitter:description" content=common.siteDescription)
+        meta(name="twitter:image" content='https://cassandrelevrard.fr/images/ogimage.jpg')
 
     body
 

@@ -22,7 +22,6 @@ import DefaultRenderer from './renderers/DefaultRenderer';
 import DefaultTransition from './transitions/DefaultTransition';
 import HomeTransition from './transitions/HomeTransition';
 import HomeRenderer from './renderers/HomeRenderer';
-import { imagesRendererObserver } from './utils/dom';
 
 gsap.registerPlugin(CustomEase);
 
