@@ -28,18 +28,21 @@
     font-family: $rebond-extralight;
     font-size: clamp(3.5rem, vw(9.7), 8.75rem);
     line-height: 0.9;
+    letter-spacing: -4px;
 }
 
 .ui-h3 {
     font-family: $rebond-extralight;
     font-size: clamp(3rem, vw(6), 5rem);
     line-height: 1;
+    letter-spacing: -3px;
 }
 
 .ui-h4 {
     font-family: $rebond-extralight;
-    font-size: calc(clamp(3.25em, vw(7), 8em) * .83);
-    line-height: 0.937;
+    font-size: clamp(3rem, vw(5), 4.5rem);
+    line-height: 0.93;
+    letter-spacing: -2px;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
         font-size: calc(clamp(3.25em, vw(7), 8em) * .92);
@@ -50,6 +53,7 @@
     font-family: $rebond-extralight;
     font-size: font-size(40px, 64px);
     line-height: 1;
+    letter-spacing: -2px;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
         line-height: 3rem;
@@ -60,12 +64,14 @@
     font-family: $rebond-extralight;
     font-size: clamp(2rem, vw(3), 2.5rem);
     line-height: 1.2;
+    letter-spacing: -1px;
 }
 
 .ui-h7 {
     font-family: $rebond-extralight;
     font-size: font-size(22px, 40px);
     line-height: 1.05;
+    letter-spacing: -2px;
 
     @include respond-to('medium') {
         font-size: font-size(22px, 40px, 'desktop');
@@ -83,6 +89,7 @@
     font-family: $rebond-extralight;
     font-size: clamp(1.5rem, vw(7), 2rem);
     line-height: 1;
+    letter-spacing: -1px;
 }
 
 .ui-p-xl {

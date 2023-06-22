@@ -35,10 +35,6 @@
     &-title {
         position: relative;
         max-width: 620px;
-        font-family: $rebond-extralight;
-        font-size: clamp(3rem, vw(5), 4.5rem);
-        line-height: 1;
-        letter-spacing: -3px;
     }
 
     &-scribble .component-svgReveal {
