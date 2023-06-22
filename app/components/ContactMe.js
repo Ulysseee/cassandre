@@ -85,7 +85,6 @@ export default class ContactMe extends AppEvents {
     }
 
     open () {
-        console.log(this.title);
         gsap.killTweensOf([this.$refs.content, this.$refs.button, this.$refs.socialLinks]);
         gsap.timeline()
             .to(this.$refs.content, {
@@ -123,7 +122,6 @@ export default class ContactMe extends AppEvents {
     }
 
     close () {
-        console.log(this.title);
         gsap.killTweensOf([this.$refs.content, this.$refs.button, this.$refs.socialLinks]);
         gsap.timeline()
             .to(this.$refs.content, {
