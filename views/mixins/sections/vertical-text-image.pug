@@ -5,3 +5,11 @@ mixin vertical-text-image(title, image)
                 h2.ui-h3.section-verticalTextImage-title(data-component='Title' data-option-auto='true')!=title
             .section-verticalTextImage-image(data-component='Image')
                 +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 12, false)
+
+    section.section-verticalTextImage
+        .ui-container.section-verticalTextImage-container
+            header.section-verticalTextImage-header
+                h2.ui-h3.section-verticalTextImage-title(data-component='Title' data-option-auto='true')!=title
+            .section-verticalTextImage-image(data-component='Image')
+                figure
+                    +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description)

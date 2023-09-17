@@ -9,7 +9,7 @@ mixin project-header(name, year, cover, tags, format)
                 h1.ui-h2.section-projectHeader-title(data-component='Title')=name
             .section-projectHeader-bottom
                 .section-projectHeader-cover(data-component='Image' data-option-duration='2' data-option-delay='0.55' data-option-clip-path='inset(0% 50% 0% 50%)')
-                    +parallax(cover.fields.file.url, cover.fields.file.details.image.width, cover.fields.file.details.image.height, cover.fields.description, 15, false)
+                    +parallax(cover.fields.file.url, cover.fields.file.details.image.width, cover.fields.file.details.image.height, cover.fields.description, 8, false)
                 ul.section-projectHeader-tags
                     each tag, index in tags
                         li.ui-p-xs.section-projectHeader-tagsItem(data-component='Paragraph' data-option-delay=`${ index * 0.07 }`)=tag.sys.id

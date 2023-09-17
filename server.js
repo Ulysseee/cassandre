@@ -15,7 +15,7 @@ const { BLOCKS, INLINES } = require('@contentful/rich-text-types');
 const app = express();
 const path = require('path');
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 const log = data => console.log(JSON.stringify(data, null, 2));
 

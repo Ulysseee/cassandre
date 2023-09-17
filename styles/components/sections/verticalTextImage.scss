@@ -24,8 +24,11 @@
 
     &-image {
         position: relative;
-        width: 100%;
-        max-width: 710px;
-        min-height: 400px;
+        max-width: 80%;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     }
 }

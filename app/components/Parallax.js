@@ -14,26 +14,27 @@ export default class Parallax extends withFreezedOptions(withScrolledInView(Base
                 default: false,
             },
         },
-        refs: ['image'],
+        refs: ['container', 'image'],
     };
 
     scrollProgressY = 0;
 
     mounted () {
         this.$refs.image.style.willChange = 'transform';
-        this.$options.reverse ? this.$refs.image.style.top = '0' : this.$refs.image.style.bottom = '0';
-        this.$refs.image.style.height = `${ 100 + this.$options.percent }%`;
+        this.scaleString = `scale(${ 1 - this.$options.percent / 100 }, ${ 1 + this.$options.percent / 100 })`;
+        this.$el.style.transform = `scaleX(${ 1 + this.$options.percent / 100 })`;
+        this.$refs.container.style.transform = this.scaleString
     }
 
     scrolledInView ({ progress }) {
-        this.scrollProgressY = progress.y;
+        this.scrollProgressY = progress.y - 0.5;
     }
 
     ticked () {
-        const percentY = this.scrollProgressY * this.$options.percent * (this.$options.reverse ? -1 : 1);
+        const percentY = this.scrollProgressY * this.$options.percent * (this.$options.reverse ? 1 : -1);
 
         return () => {
-            this.$refs.image.style.transform = `translateY(${ percentY }%)`;
+            this.$refs.container.style.transform = `${this.scaleString} translateY(${ percentY }%)`;
         };
     }
 }

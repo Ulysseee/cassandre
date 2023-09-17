@@ -6,4 +6,4 @@ mixin horizontal-text-image(title, text, image, reverse)
                 p.section-horizontalTextImage-wysiwyg(data-component='Paragraph' data-option-delay='0.1' data-option-opacity='true')!=text
             .section-horizontalTextImage-imageContainer(data-ref='image')
                 .section-horizontalTextImage-image(data-component='Image')
-                    +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 12, false)
+                    +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 0, false)

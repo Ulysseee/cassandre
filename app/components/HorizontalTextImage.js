@@ -24,7 +24,7 @@ export default class HorizontalTextImage extends withResponsiveOptions(withScrol
 
     scrolledInView({ progress }) {
         gsap.set(this.$refs.image, {
-            y: -this.$options.parallaxAmount * (progress.y - 0.5),
+            y: -this.$options.parallaxAmount * (progress.y - 1),
         });
     }
 }

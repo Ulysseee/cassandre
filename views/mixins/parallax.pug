@@ -1,3 +1,4 @@
 mixin parallax(src, width, height, alt, percent, reverse)
-    figure.component-parallax(data-component='Parallax' data-option-percent=percent data-option-reverse=reverse)
-        +image(src, width, height, alt)(class='component-parallax-image' data-ref='image')
+    div(data-component='Parallax' data-option-percent=percent data-option-reverse=reverse)
+        figure.component-parallax-container(data-ref='container')
+            +image(src, width, height, alt)(class='component-parallax-image' data-ref='image')
