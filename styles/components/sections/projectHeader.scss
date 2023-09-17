@@ -16,6 +16,11 @@
 
     &.is-horizontal .section-projectHeader, &.is-square .section-projectHeader {
 
+        &-text {
+            width: 100%;
+            max-width: 840px;
+        }
+
         &-bottom {
             width: 100%;
             max-width: 840px;
@@ -27,16 +32,33 @@
     }
 
     &-background {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: vh(34);
         right: vw(-3);
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            width: 154%;
+            top: 26%;
+            left: -33%;
+            aspect-ratio: 1.32;
+
+            > svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
     &-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: vh(24);
+        padding-top: vh(18);
+        gap: 32px;
+
+        @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+            gap: 16px;
+        }
     }
 
     &-text {
@@ -64,11 +86,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: vw(-4.5);
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            margin-top: vw(-7);
-        }
     }
 
     &-cover {
