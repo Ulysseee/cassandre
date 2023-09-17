@@ -26,13 +26,13 @@
 
         img {
             max-width: vw(60);
-            max-height: vh(60);
+            max-height: vh(100);
             width: auto;
             height: auto;
 
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                max-width: vw(80);
-            }
+            //@media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+            //    max-width: vw(80);
+            //}
         }
     }
 
