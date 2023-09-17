@@ -47,9 +47,18 @@ export default class Work extends withResponsiveOptions(withScrolledInView(withI
 
     mounted () {
         super.mounted();
-        [this.titleTitleComponent] = this.$children.Title;
+        this.titleTitleComponent = this.$children.Title[0];
         this.indexParagraphComponent = getInstanceFromElement(this.$refs.index, Paragraph);
         this.titleTitleComponent.onAnimateInComplete = this.indexParagraphComponent.animateIn;
+        const lastWordFirstLine = this.titleTitleComponent.splitText.words.map(word => ({
+            dist: word.getBoundingClientRect().top,
+            el: word,
+        })).reduce((a, b) => a.dist < b.dist ? a : b).el;
+        const wordTitleRight = lastWordFirstLine.getBoundingClientRect().right
+        const indexLeft = this.indexParagraphComponent.$el.getBoundingClientRect().left
+        gsap.set(this.indexParagraphComponent.$el, {
+            x: wordTitleRight - indexLeft + 16,
+        })
     }
 
     intersected ([{ isIntersecting }]) {
