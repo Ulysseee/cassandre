@@ -33,7 +33,7 @@ export default class Slider extends withIntersectionObserver(withDrag(withFreeze
             },
             scaleOnPress: {
                 type: Number,
-                default: 0.97,
+                default: 1,
             },
         },
     };
@@ -162,7 +162,7 @@ export default class Slider extends withIntersectionObserver(withDrag(withFreeze
             ease: 'power4.out',
         });
         gsap.to(this.$refs.images, {
-            scale: 1.1,
+            scale: 1.04,
             duration: 1,
             ease: 'power4.out',
         });
