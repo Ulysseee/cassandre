@@ -34,7 +34,7 @@ export default class Title extends withIntersectionObserver(Base, {
         if (this.animateInTriggered && !this.$options.repeat) return;
         this.split();
         gsap.set(this.splitText.chars, {
-            yPercent: 100,
+            yPercent: 103,
         });
     }
 

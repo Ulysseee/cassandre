@@ -92,6 +92,10 @@
         position: relative;
         width: 100%;
         height: 0;
+
+        .component-parallax {
+            height: unset;
+        }
     }
 
     &-tags {

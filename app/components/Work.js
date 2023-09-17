@@ -71,8 +71,8 @@ export default class Work extends withResponsiveOptions(withScrolledInView(withI
         }
     }
 
-    scrolledInView ({ progress }) {
-        this.scrollProgressY = progress.y;
+    scrolledInView ({ dampedProgress }) {
+        this.scrollProgressY = dampedProgress.y;
     }
 
     ticked () {
