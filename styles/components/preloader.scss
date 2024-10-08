@@ -1,93 +1,93 @@
 .component-preloader {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  @include index-layer(fixed, preloader);
+
+  @extend %has-hidden-state;
+
+  &-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $new-beige;
+
+    &.is-blackDark {
+      background-color: $black-dark;
+    }
+  }
+
+  &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Frame {
+      position: absolute;
+      width: 15%;
+      height: auto;
+
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        width: 40%;
+      }
+    }
+  }
+
+  &-name {
+    position: absolute;
+    display: flex;
+    align-items: center;
+
+    &Word {
+      color: $black;
+      letter-spacing: -1%;
+    }
+
+    &Carret {
+      position: absolute;
+      top: 0;
+      right: -6px;
+      width: 2px;
+      height: 85%;
+      background-color: $brown-light;
+      animation: flash 0.75s infinite reverse;
+    }
+  }
+
+  &-scribble {
+    position: absolute;
+    width: 65%;
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  &-overlay {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-
-    @include index-layer(fixed, preloader);
-
-    @extend %has-hidden-state;
-
-    &-wrapper {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $black;
-
-        &.is-blackDark {
-            background-color: $black-dark;
-        }
-    }
-
-    &-logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &Frame {
-            position: absolute;
-            width: 15%;
-            height: auto;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                width: 40%;
-            }
-        }
-    }
-
-    &-name {
-        position: absolute;
-        display: flex;
-        align-items: center;
-
-        &Word {
-            color: $brown-light;
-            text-transform: uppercase;
-        }
-
-        &Carret {
-            position: absolute;
-            top: 0;
-            right: -6px;
-            width: 2px;
-            height: 85%;
-            background-color: $brown-light;
-            animation: flash 0.75s infinite reverse;
-        }
-    }
-
-    &-scribble {
-        position: absolute;
-        width: 65%;
-
-        svg {
-            width: 100%;
-        }
-    }
-
-    &-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+  }
 }
 
 @keyframes flash {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 1;
-    }
-    51% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }

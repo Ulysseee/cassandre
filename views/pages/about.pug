@@ -1,24 +1,56 @@
 extends ../base.pug
 
-include ../mixins/contact-me
-
 block variables
     - var metaPageName = aboutPage.pageName
     - var pageName = 'about'
     - var pageComponent = 'About'
-    - var pageShade = 'dark'
+    - var pageShade = 'light'
 
 block page
 
     section.ui-container.page-about-content
-        .page-about-background
-            svg(width='1655' height='1273' viewbox='0 0 1655 1273' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(opacity='0.01' d='M1443.65 10.4419C834.12 -29.6994 684.79 212.862 778.504 309.876C978.653 517.07 1537.49 419.445 1558.04 285.527C1578.58 151.608 1225.2 127.259 978.652 309.876C732.106 492.492 749.166 692.064 921.061 786.624C1075.98 871.845 1657.03 823.148 1648.81 656.764C1640.6 490.38 1306.55 530.792 1097.59 612.627C947.712 671.325 772.377 792.056 546.376 844.812C320.375 897.567 6.90055 845.868 6.90039 712.627C6.90023 579.385 317.938 578.369 524.422 646.341C730.905 714.313 890.243 798.208 793.122 1082.76C760.698 1167.49 676.577 1245.82 587.55 1265' stroke='#F6EDE2' stroke-width='12' stroke-linecap='square')
-        .page-about-scribble
-            +svg-reveal
-                svg(data-ref='svg' width='201' height='37' viewbox='0 0 201 37' fill='none' xmlns='http://www.w3.org/2000/svg')
-                    path(d='M1.41116 35.3135C7.27729 30.4435 11.0287 27.5637 16.8738 23.1642C24.1802 17.6649 34.5466 10.1008 35.8822 9.55082C37.2178 9.00088 37.8462 8.13698 38.3176 8.8439C38.789 9.55082 37.2963 11.0437 35.8822 11.9865C34.7509 12.7407 14.6424 28.769 15.3773 29.5059C16.1122 30.2429 34.4366 16.2131 36.8249 15.5218C39.8103 14.6576 40.1246 14.6576 40.3603 15.5218C40.5959 16.386 33.761 24.5565 33.211 25.2636C32.6611 25.9706 31.0113 27.4633 33.211 26.3634C35.4108 25.2636 54.1873 11.9865 55.8371 11.2008C57.4869 10.4152 58.8225 10.5723 57.6441 11.9865C56.7013 13.1178 38.6735 24.6873 40.3603 25.8135C42.047 26.9397 72.0525 7.22556 73.7494 7.35126C75.8706 7.50838 74.7708 9.47233 73.7494 9.94371C72.9324 10.3208 50.679 22.8671 51.4376 23.9279C52.1962 24.9886 82.2342 6.37696 83.8055 6.25126C85.3767 6.12556 85.2458 6.93222 84.9839 7.35126C84.9839 7.35126 60.2707 23.3442 60.5509 23.9279C60.8311 24.5115 83.4255 11.9931 89.9509 8.79572C96.4763 5.59833 101.177 3.3565 102.236 4.869C103.096 6.09718 101.366 7.99249 99.4105 9.46357C97.5019 10.8995 80.5617 22.1798 80.9772 22.7493C81.3927 23.3189 122.6 6.28294 125.679 5.46574C129.529 4.44423 133.3 3.26579 133.457 3.81573C133.583 4.25568 108.029 15.4301 108.474 16.4644C108.919 17.4986 146.938 1.45888 147.756 1.45888C148.777 1.45888 149.641 2.63727 147.206 3.81573C145.257 4.75849 124.039 14.4217 124.422 15.443C124.806 16.4644 155.502 3.32898 160.718 5.46574C165.935 7.6025 140.495 20.1206 140.999 21.0995C141.503 22.0785 171.481 10.9649 174.938 13.479C178.395 15.993 161.429 25.03 161.818 25.8919C162.208 26.7537 200 14.8931 200 14.8931' stroke='#FF6C3C' stroke-width='2' stroke-linecap='round')
-        h2.ui-h4.page-about-title(data-component='Title' data-option-no-revert-split)!=aboutPage.title
-        p.page-about-description(data-component='Paragraph' data-option-delay='0.6' data-option-opacity)!=getWysiwyg(aboutPage.description)
+        h1.page-about-title(data-component='AboutTitle' data-loop=`${aboutPage.loopingWords.join()}`)!=getTitleAbout(aboutPage.title)
 
-        +contact-me(common.externalLinks, aboutPage.contactMeButtonLabel)
+        .page-about-wrapper
+            .page-about-wrapper-image
+                .page-about-wrapper-image-inner
+                    span.page-about-wrapper-image-inner-scotch
+                        +image('images/scotch.png', 200, 70, '')
+                    +image(aboutPage.portrait.fields.file.url, aboutPage.portrait.fields.file.details.image.width, aboutPage.portrait.fields.file.details.image.height, aboutPage.portrait.fields.file.title)(data-component='Image' data-option-delay='0.6' data-option-opacity)
+                .page-about-wrapper-image-text
+                    p.ui-p-s(data-component='Paragraph' data-option-delay='0.7' data-option-opacity)=aboutPage.portrait.fields.description
+
+            .page-about-wrapper-text
+                ul.page-about-wrapper-text-skills
+                    each skill in aboutPage.skills
+                        li.pagpage-about-wrapper-text-skills-item(data-component='Paragraph' data-option-delay='0.5' data-option-opacity)='('+skill+')'
+
+                .page-about-wrapper-text-activities
+                    p(data-component='Paragraph' data-option-delay='0.5' data-option-opacity)=aboutPage.recentActivities
+
+                .page-about-wrapper-text-carreer
+                    p.page-about-wrapper-text-carreer-title(data-component='Paragraph' data-option-delay='0.5' data-option-opacity)=aboutPage.previousActivitiesTitle
+
+                    ul.page-about-wrapper-text-carreer-list
+                        each activity in aboutPage.pastExperiences
+                            li.page-about-wrapper-text-carreer-list-item
+                                svg.page-about-wrapper-text-carreer-list-item-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='currentColor' stroke-width='0.813303')
+                                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='currentColor' stroke-width='0.813303')
+                                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='currentColor' stroke-width='0.813303')
+                                span.page-about-wrapper-text-carreer-list-item-name(data-component='Paragraph' data-option-delay='0.9' data-option-opacity)=activity.key
+                                span.page-about-wrapper-text-carreer-list-item-date(data-component='Paragraph' data-option-delay='1' data-option-opacity)='('+activity.value+')'
+
+        .page-about-client 
+            h3.page-about-client-surtitle(data-component='Title' data-option-delay='0.5')=aboutPage.clientSurtitle
+            p.page-about-client-list(data-component='Paragraph' data-option-delay='0.5')!=getWysiwyg(aboutPage.customers)
+
+    section.page-about-push
+        +parallax(aboutPage.pushImage.fields.file.url, aboutPage.pushImage.fields.file.details.image.width, aboutPage.pushImage.fields.file.details.image.height, aboutPage.pushImage.fields.description, 8, false)
+        .page-about-push-content
+            h2.ui-h8.page-about-push-title(data-component='Paragraph' data-option-delay='0.5')!=aboutPage.pushTitle
+            p.page-about-push-text(data-component='Paragraph' data-option-delay='0.6')!=getWysiwyg(aboutPage.pushText)
+            +circled-button('/projects', aboutPage.pushButton)
+    
+    include ../components/footer
+            

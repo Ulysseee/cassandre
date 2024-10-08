@@ -1,52 +1,67 @@
 .page-projects {
-    background-color: $beige;
+  &-header {
+    @extend .ui-container;
+    display: flex;
+    justify-content: flex-start;
 
-    &-header {
-        @extend .ui-container;
+    padding-top: calc(var(--section-padding) * 1.21);
+    padding-bottom: calc(var(--section-padding) * 0.75);
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding-top: calc(var(--section-padding) * 1.21);
-        padding-bottom: calc(var(--section-padding) * .75);
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            padding-top: calc(var(--section-padding) * 1.84);
-            padding-bottom: calc(var(--section-padding) * .75);
-        }
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      padding-top: calc(var(--section-padding) * 1.84);
+      padding-bottom: calc(var(--section-padding) * 0.75);
     }
+  }
 
-    &-paragraph {
-        max-width: 540px;
-        margin-top: 32px;
+  &-title {
+    font-size: clamp(15rem, vw(11), vw(11));
+    color: $new-dark-beige;
+    font-family: $vtc-carrie;
+    text-transform: uppercase;
+
+    .char:not(:first-child) {
+      margin-left: -0.5rem;
     }
+  }
 
-    &-grid {
+  &-amount {
+    font-family: $rebond-extralight;
+    letter-spacing: 0.05rem;
+    padding-top: 1.5rem;
+  }
 
-        &Row {
-            display: flex;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 3.3%;
-            padding-bottom: calc(var(--section-padding) * .82);
+  &-figure {
+    height: fit-content;
+    margin-left: auto;
+    margin-top: auto;
+    padding-bottom: 1.5rem;
+    padding-right: 5rem;
+  }
 
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                gap: calc(var(--section-padding) * 0.5);
-                padding-bottom: calc(var(--section-padding) * 0.5);
-            }
+  &-grid {
+    &Row {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5%;
+      padding-bottom: calc(var(--section-padding) * 0.72);
 
-            &:nth-of-type(3n+1) {
-                justify-content: flex-end;
-            }
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        gap: calc(var(--section-padding) * 0.5);
+        padding-bottom: calc(var(--section-padding) * 0.5);
+      }
 
-            &:nth-of-type(3n+2) {
-                justify-content: flex-start;
-            }
+      &:nth-of-type(3n + 1) {
+        justify-content: flex-end;
+      }
 
-            &:nth-of-type(3n+3) {
-                justify-content: space-between;
-            }
-        }
+      &:nth-of-type(3n + 2) {
+        justify-content: flex-start;
+      }
+
+      &:nth-of-type(3n + 3) {
+        justify-content: space-between;
+      }
     }
+  }
 }

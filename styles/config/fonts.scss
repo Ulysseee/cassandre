@@ -11,34 +11,46 @@
 */
 
 @font-face {
-    font-family: $neue-regular;
-    src: url('../assets/fonts/neue-regular/neue-regular.woff2') format('woff2'),
-    url('../assets/fonts/neue-regular/neue-regular.woff') format('woff'),
-    url('../assets/fonts/neue-regular/neue-regular.ttf') format('tff'),
-    url('../assets/fonts/neue-regular/neue-regular.eot') format('eot');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: $neue-regular;
+  src: url("../assets/fonts/neue-regular/neue-regular.woff2") format("woff2"),
+    url("../assets/fonts/neue-regular/neue-regular.woff") format("woff"),
+    url("../assets/fonts/neue-regular/neue-regular.ttf") format("tff"),
+    url("../assets/fonts/neue-regular/neue-regular.eot") format("eot");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: $neue-thin;
-    src: url('../assets/fonts/neue-thin/neue-thin.woff2') format('woff2'),
-    url('../assets/fonts/neue-thin/neue-thin.woff') format('woff'),
-    url('../assets/fonts/neue-thin/neue-thin.ttf') format('tff'),
-    url('../assets/fonts/neue-thin/neue-thin.eot') format('eot');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
+  font-family: $neue-thin;
+  src: url("../assets/fonts/neue-thin/neue-thin.woff2") format("woff2"),
+    url("../assets/fonts/neue-thin/neue-thin.woff") format("woff"),
+    url("../assets/fonts/neue-thin/neue-thin.ttf") format("tff"),
+    url("../assets/fonts/neue-thin/neue-thin.eot") format("eot");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: $rebond-extralight;
-    src: url('../assets/fonts/rebond-extralight/rebond-extralight.woff2') format('woff2'),
-    url('../assets/fonts/rebond-extralight/rebond-extralight.woff') format('woff'),
-    url('../assets/fonts/rebond-extralight/rebond-extralight.ttf') format('tff'),
-    url('../assets/fonts/rebond-extralight/rebond-extralight.eot') format('eot');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
+  font-family: $rebond-extralight;
+  src: url("../assets/fonts/rebond-extralight/rebond-extralight.woff2")
+      format("woff2"),
+    url("../assets/fonts/rebond-extralight/rebond-extralight.woff")
+      format("woff"),
+    url("../assets/fonts/rebond-extralight/rebond-extralight.ttf") format("tff"),
+    url("../assets/fonts/rebond-extralight/rebond-extralight.eot") format("eot");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $vtc-carrie;
+  src: url("../assets/fonts/vtc-carrie/VTCCarrie-Regular.woff2") format("woff2"),
+    url("../assets/fonts/vtc-carrie/VTCCarrie-Regular.woff") format("woff"),
+    url("../assets/fonts/vtc-carrie/VTCCarrie-Regular.eot") format("eot");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }

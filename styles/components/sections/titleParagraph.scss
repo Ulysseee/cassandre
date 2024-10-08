@@ -1,0 +1,23 @@
+.section-titleParagraph {
+  margin-top: calc(var(--section-padding) * 0.6);
+  margin-bottom: calc(var(--section-padding) * 0.6);
+  position: relative;
+  z-index: 1;
+
+  &-wrapper {
+    width: 80%;
+    padding-top: calc(var(--section-padding) * 0.18);
+    padding-bottom: calc(var(--section-padding) * 0.1);
+    margin-left: auto;
+    display: flex;
+    gap: 126px;
+    font-family: $rebond-extralight;
+    @extend .ui-container-large;
+  }
+
+  &-paragraph {
+    font-size: clamp(1rem, vw(1.7), 1.5rem);
+    line-height: 1.875rem;
+    text-indent: 5rem;
+  }
+}

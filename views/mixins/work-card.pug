@@ -1,4 +1,4 @@
-mixin work-card(format, name, excerpt, date, url, cover)
+mixin work-card(format, name, clientName, date, url, cover)
     a.component-workCard(class='is-' + getFormat(format) href=url)
         article.component-workCard-wrapper(data-ref='cursorLink[]')
             .component-workCard-cover(data-component='Image')
@@ -6,7 +6,5 @@ mixin work-card(format, name, excerpt, date, url, cover)
                     +parallax(cover.fields.file.url, cover.fields.file.details.image.width, cover.fields.file.details.image.height, cover.fields.description, 12, false)
             .component-workCard-content
                 h2.ui-h9.ui-wordMask.component-workCard-name(data-component='Title')=name
-                .component-workCard-separator(data-component='Divider' data-option-delay='0.3')
                 .component-workCard-details
-                    p.ui-p-xl.component-workCard-excerpt(data-component='Paragraph' data-option-delay='0.9')=excerpt
-                    span.ui-p-xl.component-workCard-date(data-component='Paragraph' data-option-delay='1.1')=date
+                    p.ui-p-m.component-workCard-excerpt(data-component='Paragraph' data-option-delay='0.9')=clientName

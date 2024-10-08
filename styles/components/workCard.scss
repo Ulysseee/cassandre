@@ -1,106 +1,95 @@
 .component-workCard {
-    display: inline-block;
+  display: inline-block;
 
-    &.is-horizontal {
-        width: 36.7%;
-        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
+  &.is-horizontal {
+    width: 36.7%;
+    min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
 
-        .component-workCard-cover {
-            padding-bottom: 79%;
-        }
+    .component-workCard-cover {
+      padding-bottom: 79%;
     }
+  }
 
+  &.is-square {
+    width: 36.7%;
+    min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
+
+    .component-workCard-cover {
+      padding-bottom: 98.3%;
+    }
+  }
+
+  &.is-vertical {
+    width: 36.7%;
+    min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
+
+    .component-workCard-cover {
+      padding-bottom: 125%;
+    }
+  }
+
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    &.is-horizontal,
+    &.is-vertical,
     &.is-square {
-        width: 36.7%;
-        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
+      width: 100%;
 
-        .component-workCard-cover {
-            padding-bottom: 98.3%;
-        }
+      .component-workCard-cover {
+        padding-bottom: 64%;
+      }
     }
+  }
 
-    &.is-vertical {
-        width: 36.7%;
-        min-width: calc(720px / 2 - var(--container-padding) - 3.3%);
-
-        .component-workCard-cover {
-            padding-bottom: 125%;
-        }
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    &.is-horizontal,
+    &.is-vertical,
+    &.is-square {
+      .component-workCard-cover {
+        padding-bottom: 98.2%;
+      }
     }
+  }
+
+  @include hover() {
+    .component-workCard {
+      &-cover {
+        &Inner {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    display: inline-block;
+    width: 100%;
+  }
+
+  &-cover {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+
+    &Inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: transform 1.4s $strong-ease-out;
+    }
+  }
+
+  &-content {
+    padding-top: 1rem;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-
-        &.is-horizontal, &.is-vertical, &.is-square {
-            width: 100%;
-
-            .component-workCard-cover {
-                padding-bottom: 64%;
-            }
-        }
+      padding-top: 1.5rem;
     }
+  }
 
-    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-
-        &.is-horizontal, &.is-vertical, &.is-square {
-
-            .component-workCard-cover {
-                padding-bottom: 98.2%;
-            }
-        }
-    }
-
-    @include hover() {
-
-        .component-workCard {
-
-            &-cover {
-
-                &Inner {
-                    transform: scale(1.1);
-                }
-            }
-        }
-    }
-
-    &-wrapper {
-        display: inline-block;
-        width: 100%;
-    }
-
-    &-cover {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-
-        &Inner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: transform 1.4s $strong-ease-out;
-        }
-    }
-
-    &-content {
-        padding-top: 2.5rem;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            padding-top: 1.5rem;
-        }
-    }
-
-    &-separator {
-        width: 100%;
-        height: 1px;
-        background-color: $black;
-        margin: 1.5rem 0;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            margin: 0.888rem 0;
-        }
-    }
-
-    &-details {
-        display: flex;
-        justify-content: space-between;
-    }
+  &-details {
+    display: flex;
+    justify-content: space-between;
+    font-family: $rebond-extralight;
+  }
 }

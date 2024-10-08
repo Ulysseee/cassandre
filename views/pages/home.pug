@@ -1,21 +1,26 @@
 extends ../base.pug
 
 include ../mixins/sections/home-header
+include ../mixins/sections/title-paragraph
+include ../mixins/work-card
 
 block variables
     - var metaPageName = homePage.pageName
     - var pageName = 'home'
     - var pageComponent = 'Home'
-    - var pageShade = 'dark'
+    - var pageShade = 'light'
     - var renderer = 'home'
 
 block page
 
     +home-header(homePage.baseline, homePage.bubbleImages)
 
-    section.ui-container.page-home-works
+    +title-paragraph(homePage.title, homePage.paragraph)
+
+    section.ui-container-large.page-home-works
         each work, index in homePage.works
-            include ../components/work
+            //- include ../components/work
+            +work-card(work.fields.format, work.fields.name, work.fields.clientName, getYear(work.fields.date), getLinkUrl(work), work.fields.coverImage)
 
     section.page-home-projectsButton
         +circled-button('/projects', 'Tous les projets')

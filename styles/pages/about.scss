@@ -1,64 +1,254 @@
 .page-about {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  background: $new-dark-beige;
+
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-content {
+    padding-top: 8rem;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        display: flex;
-        flex-direction: column;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
+  }
+
+  &-title {
+    max-width: 1300px;
+    position: relative;
+    font-family: $vtc-carrie;
+    text-transform: uppercase;
+    color: $white;
+    text-align: center;
+    font-size: clamp(3.5rem, vw(6.4), 8.75rem);
+    line-height: clamp(3.5rem, vw(6), 8.75rem);
+    margin: 0 auto;
+  }
+
+  &-scribble {
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
+  }
+
+  &-loop {
+    display: inline-flex !important;
+    position: relative;
+    color: $white;
+    overflow: hidden;
+    min-width: clamp(7rem, vw(15), 18.75rem);
+
+    &-word {
+      width: fit-content;
+      height: fit-content;
+      margin: auto;
+      position: relative;
+      display: flex !important;
+      justify-content: center;
+    }
+
+    &-inner {
+      font-size: clamp(1rem, vw(4), 2rem);
+      line-height: clamp(1rem, vw(4), 2rem);
+      font-family: $rebond-extralight;
+      text-transform: lowercase;
+      letter-spacing: -2px;
+    }
+
+    &-carret {
+      position: absolute;
+      top: 0;
+      right: -6px;
+      width: 2px;
+      height: 85%;
+      background-color: $black;
+      animation: flash 0.75s infinite reverse;
+    }
+
+    &-parenthesis {
+      font-family: $rebond-extralight;
+    }
+  }
+
+  &-scribble .component-svgReveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 120px;
+    }
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: vw(2.2);
+    margin-bottom: vw(8);
+    padding-right: vw(8);
+
+    &-image {
+      width: clamp(27.25rem, vw(15.2), vw(22.22));
+
+      &-inner {
+        transform: rotate(-1.25deg);
+        position: relative;
+
+        &-scotch {
+          position: absolute;
+          top: -13%;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          width: vw(14);
+          height: auto;
+          z-index: 1;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      &-text {
+        font-family: $rebond-extralight;
+        color: #1c1b1a4d;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        margin-top: 0.75rem;
+      }
+    }
+
+    &-text {
+      font-family: $rebond-extralight;
+      padding-top: vw(3);
+
+      &-skills {
+        display: flex;
+        flex-direction: row;
+        gap: 0.375rem;
+        font-size: 1rem;
+      }
+
+      &-activities {
+        font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
+        width: clamp(19.75rem, vw(11.1), vw(15.5));
+        margin-top: 1rem;
+      }
+
+      &-carreer {
+        margin-top: vw(5);
+        font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
+
+        &-title {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        &-list {
+          min-width: vw(20);
+
+          &-item {
+            display: flex;
+            cursor: pointer;
+            color: $black;
+            transition: color 1s $middle-ease-out;
+
+            &:not(:last-child) {
+              margin-bottom: 0.625rem;
+            }
+
+            .line {
+              display: inline-flex !important;
+            }
+
+            &-arrow {
+              color: $black;
+              transform: rotate(-45deg);
+              transition: all 0.8s $middle-ease-out;
+            }
+
+            &-name {
+              margin-left: 1rem;
+            }
+
+            &-date {
+              margin-left: auto;
+
+              .word:nth-child(2) {
+                margin-left: 2rem;
+              }
+
+              .word:nth-child(3) {
+                margin-left: 0.5rem;
+              }
+            }
+
+            @include hover() {
+              color: $orange;
+
+              .page-about-wrapper-text-carreer-list-item-arrow {
+                color: $orange;
+                transform: rotate(0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-client {
+    margin-left: auto;
+    width: clamp(27.25rem, vw(29), vw(33));
+    font-family: $rebond-extralight;
+    margin-bottom: vw(3);
+
+    &-surtitle {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &-push {
+    width: 100%;
+    // height: clamp(26rem, vw(29), vw(33));
+    position: relative;
+    color: $white;
 
     &-content {
-        padding-top: 3rem;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-    }
-
-    &-background {
-        position: absolute;
-        top: -200px;
-        left: 0;
-
-        @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-            top: -110px;
-            left: -330px;
-
-            svg {
-                width: 120%;
-            }
-        }
+      position: absolute;
+      top: 55%;
+      width: 100%;
+      padding: 0 2.5rem;
+      display: flex;
+      justify-content: space-between;
     }
 
     &-title {
-        position: relative;
-        max-width: 620px;
+      width: fit-content;
     }
 
-    &-scribble .component-svgReveal {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .component-circledButton {
+      min-height: auto;
+      margin-right: vw(6);
 
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 120px;
+      &-arrow {
+        path {
+          fill: $white;
+          stroke: $white;
         }
-    }
+      }
 
-    &-description {
-        max-width: 470px;
-        font-size: 1rem;
-        line-height: 1.67;
-        margin-top: 48px;
+      &-text {
+        color: $white;
+      }
     }
-
-    .component-contactMe {
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            margin: 120px auto 0 auto;
-            padding-bottom: 2.8rem;
-        }
-    }
+  }
 }

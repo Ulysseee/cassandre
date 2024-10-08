@@ -1,103 +1,103 @@
 html {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-    scroll-behavior: initial;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  scroll-behavior: initial;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-    pointer-events: auto;
-    -webkit-overflow-scrolling: touch;
-    -webkit-font-smoothing: antialiased;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
 }
 
 .app {
-    --release: '17-09-2023';
-    width: vw(100);
-    min-height: vh(100);
+  --release: "17-09-2023";
+  width: vw(100);
+  min-height: vh(100);
 
-    font-family: $neue-regular;
-    font-size: 16px;
-    font-size: clamp(16px, vw(1.2), 19px);
-    line-height: 1;
+  font-family: $neue-regular;
+  font-size: 16px;
+  font-size: clamp(16px, vw(1.2), 19px);
+  line-height: 1;
 
-    background-color: $beige;
+  background-color: $beige;
+  color: $black;
+
+  &.is-dark {
+    background-color: $black;
+    color: $beige;
+  }
+
+  &.is-light {
+    background-color: $new-beige;
     color: $black;
+  }
 
-    &.is-dark {
-        background-color: $black;
-        color: $beige;
+  &::before {
+    content: "xs";
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    @media screen and (min-width: 540px) {
+      content: "s";
     }
 
-    &.is-light {
-        background-color: $beige;
-        color: $black;
+    @media screen and (min-width: 720px) {
+      content: "m";
     }
 
-    &::before {
-        content: 'xs';
-        position: absolute;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-
-        @media screen and (min-width: 540px) {
-            content: 's';
-        }
-
-        @media screen and (min-width: 720px) {
-            content: 'm';
-        }
-
-        @media screen and (min-width: 1200px) {
-            content: 'l';
-        }
+    @media screen and (min-width: 1200px) {
+      content: "l";
     }
+  }
 }
 
 .appOverlay {
-    top: 0;
-    left: 0;
-    width: vw(100);
-    height: vh(100);
-    background-color: $black;
+  top: 0;
+  left: 0;
+  width: vw(100);
+  height: vh(100);
+  background-color: $black;
 
-    @include index-layer(absolute, appOverlay);
+  @include index-layer(absolute, appOverlay);
 }
 
 .page {
-    width: 100%;
-    height: 100%;
-    min-height: vh(100);
-    padding-top: 110px;
+  width: 100%;
+  height: 100%;
+  min-height: vh(100);
+  padding-top: 110px;
 
-    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-        padding-top: 80px;
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    padding-top: 80px;
+  }
 
-    &-home {
-        padding-top: 0;
-    }
+  &-home {
+    padding-top: 0;
+  }
 }
 
 * {
-    font-kerning: none;
+  font-kerning: none;
 }
 
 .line {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .word {
-    display: inline-flex!important;
-    overflow: hidden;
+  display: inline-flex !important;
+  overflow: hidden;
 }
 
 .letter {
-    display: inline-block!important;
+  display: inline-block !important;
 }

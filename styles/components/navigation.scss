@@ -1,71 +1,69 @@
 .app.is-dark {
-
-    .component-navigation {
-
-        &-entryFigure path {
-            stroke: $beige;
-        }
-
-        &-entry {
-            color: $beige;
-
-            path {
-                stroke: $beige;
-            }
-        }
-    }
-}
-
-.component-navigation {
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-
-    @include index-layer(fixed, nav);
-
-    &-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding-top: 2.125rem;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            align-items: center;
-        }
-    }
-
-    &-entryFigure {
-        width: 58px;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 48px;
-        }
-
-        path {
-
-            stroke: $black;
-        }
-    }
-
-    &-entries {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            gap: 24px;
-        }
+  .component-navigation {
+    &-entryFigure path {
+      stroke: $beige;
     }
 
     &-entry {
-        display: block;
-        color: $black;
-        text-transform: uppercase;
-        pointer-events: auto;
+      color: $beige;
 
-        path {
-            stroke: $black;
-        }
+      path {
+        stroke: $beige;
+      }
     }
+  }
+}
+
+.component-navigation {
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+
+  @include index-layer(fixed, nav);
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2.125rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      align-items: center;
+    }
+  }
+
+  &-entries {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      gap: 24px;
+    }
+  }
+
+  &-entry {
+    display: block;
+    color: $black;
+    pointer-events: auto;
+    font-family: $rebond-extralight;
+    font-size: clamp(0.875rem, vw(1.1), 1rem);
+
+    path {
+      stroke: $orange;
+    }
+  }
+
+  &-entryFigure {
+    width: 58px;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 48px;
+    }
+
+    path {
+      stroke: $black;
+    }
+  }
 }

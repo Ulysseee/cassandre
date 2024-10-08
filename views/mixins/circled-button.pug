@@ -1,17 +1,16 @@
 mixin circled-button(url, text)
     a.component-circledButton(href=url)
         .component-circledButton-content
-            svg.component-circledButton-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='#DACAB5' stroke-width='0.813303')
-                path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='#DACAB5' stroke-width='0.813303')
-                path(d='M16.6869 8.18848L0.474121 8.18848' stroke='#DACAB5' stroke-width='0.813303')
+            span.component-circledButton-parenthesis.component-circledButton-parenthesis--left="("
+            div.component-circledButton-whitespace
+                svg.component-circledButton-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='#1C1B1A' stroke-width='0.813303')
+                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='#1C1B1A' stroke-width='0.813303')
+                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='#1C1B1A' stroke-width='0.813303')
+                svg.component-circledButton-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='#1C1B1A' stroke-width='0.813303')
+                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='#1C1B1A' stroke-width='0.813303')
+                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='#1C1B1A' stroke-width='0.813303')
             span.component-circledButton-text=text
-            svg.component-circledButton-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='#DACAB5' stroke-width='0.813303')
-                path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='#DACAB5' stroke-width='0.813303')
-                path(d='M16.6869 8.18848L0.474121 8.18848' stroke='#DACAB5' stroke-width='0.813303')
-        svg.component-circledButton-circle(width='360' height='152' viewbox='0 0 360 152' fill='none' xmlns='http://www.w3.org/2000/svg')
-            path(d='M358.698 58.1131C359.671 67.8383 355.762 77.6846 347.655 87.1983C339.546 96.7148 327.293 105.827 311.762 114.025C280.706 130.418 236.732 143.059 187.207 148.015C137.682 152.971 92.0756 149.296 58.387 139.382C41.54 134.424 27.724 127.921 17.8899 120.2C8.05866 112.482 2.27527 103.605 1.302 93.8802C0.328734 84.155 4.23842 74.3087 12.3451 64.795C20.4542 55.2785 32.7075 46.1666 48.2379 37.9687C79.2937 21.5754 123.268 8.93451 172.793 3.9782C222.318 -0.978118 267.924 2.69777 301.613 12.6116C318.46 17.5694 332.276 24.0723 342.11 31.7931C351.941 39.5116 357.725 48.3879 358.698 58.1131Z' stroke='#686158' stroke-width='2')
-        svg.component-circledButton-circle(width='360' height='152' viewbox='0 0 360 152' fill='none' xmlns='http://www.w3.org/2000/svg')
-            path(d='M358.698 58.1131C359.671 67.8383 355.762 77.6846 347.655 87.1983C339.546 96.7148 327.293 105.827 311.762 114.025C280.706 130.418 236.732 143.059 187.207 148.015C137.682 152.971 92.0756 149.296 58.387 139.382C41.54 134.424 27.724 127.921 17.8899 120.2C8.05866 112.482 2.27527 103.605 1.302 93.8802C0.328734 84.155 4.23842 74.3087 12.3451 64.795C20.4542 55.2785 32.7075 46.1666 48.2379 37.9687C79.2937 21.5754 123.268 8.93451 172.793 3.9782C222.318 -0.978118 267.924 2.69777 301.613 12.6116C318.46 17.5694 332.276 24.0723 342.11 31.7931C351.941 39.5116 357.725 48.3879 358.698 58.1131Z' stroke='#686158' stroke-width='2')
+            span.component-circledButton-parenthesis.component-circledButton-parenthesis--right=")"
 

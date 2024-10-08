@@ -1,243 +1,244 @@
 .ui-container {
-    margin: 0 auto;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
-    max-width: 1600px;
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  // max-width: 1600px;
 
+  &-large {
+    padding-left: calc(var(--container-padding) * 0.35);
+    padding-right: calc(var(--container-padding) * 0.35);
+  }
+
+  @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+    &,
     &-large {
-        padding-left: calc(var(--container-padding) * 0.35);
-        padding-right: calc(var(--container-padding) * 0.35);
+      padding-left: var(--container-padding);
+      padding-right: var(--container-padding);
     }
-
-    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-
-        &, &-large {
-            padding-left: var(--container-padding);
-            padding-right: var(--container-padding);
-        }
-    }
+  }
 }
 
 .ui-h1 {
-    font-family: $rebond-extralight;
-    font-size: clamp(4.125rem, vw(11.11), vw(11.11));
-    line-height: 0.94;
+  font-family: $vtc-carrie;
+  font-size: clamp(4.125rem, vw(24), vw(24));
+  //   line-height: 1.05;
+  line-height: 0.9;
 }
 
 .ui-h2 {
-    font-family: $rebond-extralight;
-    font-size: clamp(3.5rem, vw(9.7), 8.75rem);
-    line-height: 0.8;
-    letter-spacing: -4px;
+  font-family: $rebond-extralight;
+  font-size: clamp(3.5rem, vw(9.7), 8.75rem);
+  line-height: 0.8;
+  letter-spacing: -4px;
 }
 
 .ui-h3 {
-    font-family: $rebond-extralight;
-    font-size: clamp(3rem, vw(6), 5rem);
-    line-height: 1;
-    letter-spacing: -3px;
+  font-family: $rebond-extralight;
+  font-size: clamp(3rem, vw(6), 5rem);
+  line-height: 1;
+  letter-spacing: -3px;
 }
 
 .ui-h4 {
-    font-family: $rebond-extralight;
-    font-size: clamp(3rem, vw(5), 4.5rem);
-    line-height: 0.93;
-    letter-spacing: -2px;
+  font-family: $rebond-extralight;
+  font-size: clamp(3rem, vw(5), 4.5rem);
+  line-height: 0.93;
+  letter-spacing: -2px;
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        font-size: calc(clamp(3.25em, vw(7), 8em) * .92);
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    font-size: calc(clamp(3.25em, vw(7), 8em) * 0.92);
+  }
 }
 
 .ui-h5 {
-    font-family: $rebond-extralight;
-    font-size: font-size(40px, 64px);
-    line-height: 1;
-    letter-spacing: -2px;
+  font-family: $rebond-extralight;
+  font-size: font-size(40px, 64px);
+  line-height: 1;
+  letter-spacing: -2px;
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        line-height: 3rem;
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    line-height: 3rem;
+  }
 }
 
 .ui-h6 {
-    font-family: $rebond-extralight;
-    font-size: clamp(2rem, vw(3), 2.5rem);
-    line-height: 1.2;
-    letter-spacing: -1px;
+  font-family: $rebond-extralight;
+  font-size: clamp(2rem, vw(3), 2.5rem);
+  line-height: 1.2;
+  letter-spacing: -1px;
 }
 
 .ui-h7 {
-    font-family: $rebond-extralight;
-    font-size: font-size(22px, 40px);
-    line-height: 1.05;
-    letter-spacing: -2px;
+  font-family: $rebond-extralight;
+  font-size: font-size(22px, 40px);
+  line-height: 1.05;
+  letter-spacing: -2px;
 
-    @include respond-to('medium') {
-        font-size: font-size(22px, 40px, 'desktop');
-        line-height: 0.95;
-    }
+  @include respond-to("medium") {
+    font-size: font-size(22px, 40px, "desktop");
+    line-height: 0.95;
+  }
 }
 
 .ui-h8 {
-    font-family: $rebond-extralight;
-    font-size: clamp(1.1rem, vw(8), 2rem);
-    line-height: 1;
+  font-family: $rebond-extralight;
+  font-size: clamp(1.1rem, vw(8), 2rem);
+  line-height: 1;
 }
 
 .ui-h9 {
-    font-family: $rebond-extralight;
-    font-size: clamp(1.5rem, vw(7), 2rem);
-    line-height: 1;
-    letter-spacing: -1px;
+  font-family: $rebond-extralight;
+  font-size: clamp(1rem, vw(2), 1.5rem);
+  line-height: 1;
+  letter-spacing: -1px;
 }
 
 .ui-p-xl {
-    font-size: clamp(1rem, vw(1.7), 1.125rem);
-    line-height: 1;
+  font-size: clamp(1rem, vw(1.7), 1.125rem);
+  line-height: 1;
 }
 
 .ui-p-l {
-    font-size: clamp(1rem, vw(1.7), 1.125rem);
-    line-height: 1.4;
+  font-size: clamp(1rem, vw(1.7), 1.125rem);
+  line-height: 1.4;
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        line-height: 1.6;
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    line-height: 1.6;
+  }
 }
 
 .ui-p-m {
-    font-size: calc(clamp(5.5em, vw(7), 8em) * .159);
-    line-height: 1.67;
+  font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
+  line-height: 1.67;
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        font-size: calc(clamp(6.3em, vw(7), 8em) * .159);
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    font-size: calc(clamp(6.3em, vw(7), 8em) * 0.159);
+  }
 }
 
 .ui-p-s {
-    font-size: 0.75rem;
-    line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.4;
 }
 
 .ui-p-xs {
-    font-size: 12px;
-    line-height: 1.22;
+  font-size: 12px;
+  line-height: 1.22;
 }
 
 .ui-p-xxs {
-    font-size: 12px;
-    line-height: 1.43;
+  font-size: 12px;
+  line-height: 1.43;
 }
 
 .ui-spotLink {
-    display: inline-flex;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    white-space: pre;
-    cursor: pointer;
+  display: inline-flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  white-space: pre;
+  cursor: pointer;
 
-    @include index-layer(relative, content, base);
+  @include index-layer(relative, content, base);
 
-    @include hover() {
-        &::before {
-            transform: scale(1);
-        }
-    }
-
+  @include hover() {
     &::before {
-        content: '';
-        position: absolute;
-        width: 96px;
-        height: 96px;
-        background: url('../assets/images/spot-brown.png') no-repeat;
-        background-size: contain;
-        transform: scale(0);
-        transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
-        z-index: -1;
+      transform: scale(1);
     }
+  }
 
-    &-text {
-        margin-top: 3px;
-        line-height: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background: url("../assets/images/spot-brown.png") no-repeat;
+    background-size: contain;
+    transform: scale(0);
+    transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+  }
+
+  &-text {
+    margin-top: 3px;
+    line-height: 1;
+  }
+
+  &-icon {
+    display: none;
+    transform: rotate(-45deg);
+
+    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+      display: inline;
     }
-
-    &-icon {
-        display: none;
-        transform: rotate(-45deg);
-
-        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-            display: inline;
-        }
-    }
+  }
 }
 
 .ui-underlineLink {
-    position: relative;
-    padding-bottom: 0.375rem;
-    white-space: pre;
-    cursor: pointer;
+  position: relative;
+  padding-bottom: 0.375rem;
+  white-space: pre;
+  cursor: pointer;
 
-    &:hover {
-
-        &::before {
-            transform: scaleX(1);
-        }
-
-        &::after {
-            transform: scaleX(0);
-        }
-    }
-
-    &::before, &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: $black;
-        transition: .8s;
-        transition-timing-function: cubic-bezier(0,.89,.41,1);
-    }
-
+  &:hover {
     &::before {
-        left: 0;
-        transform-origin: left;
-        transform: scaleX(0);
-        transition-delay: .2s;
+      transform: scaleX(1);
     }
 
     &::after {
-        right: 0;
-        transform-origin: right;
+      transform: scaleX(0);
     }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $black;
+    transition: 0.8s;
+    transition-timing-function: cubic-bezier(0, 0.89, 0.41, 1);
+  }
+
+  &::before {
+    left: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition-delay: 0.2s;
+  }
+
+  &::after {
+    right: 0;
+    transform-origin: right;
+  }
 }
 
 .ui-cursorTextLink {
-    cursor: pointer;
+  cursor: pointer;
 
-    @include index-layer(relative, content, base);
+  @include index-layer(relative, content, base);
 }
 
 .ui-wordMask {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    > span {
-        display: block;
-    }
+  > span {
+    display: block;
+  }
 
-    > span:nth-child(2) {
-        position: absolute;
-        top: 100%;
-        left: 0;
-    }
+  //   > span:nth-child(2) {
+  //     position: absolute;
+  //     top: 100%;
+  //     left: 0;
+  //   }
 }
 
 .ui-hyperlink {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.4rem
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4rem;
 }
