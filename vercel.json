@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "git": {
-    "deploymentEnabled": {
-      "master": false
-    }
-  },
   "builds": [
     {
       "src": "index.js",
