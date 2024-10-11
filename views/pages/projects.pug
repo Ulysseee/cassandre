@@ -19,6 +19,6 @@ block page
         each row in getWorksRows(projectsPage.works)
             .page-projects-gridRow
                  each work, index in row
-                     +work-card(work.fields.format, work.fields.name, work.fields.description, getYear(work.fields.date), getLinkUrl(work), work.fields.coverImage)
+                     +work-card(work.fields.format, work.fields.name, work.fields.clientName, getYear(work.fields.date), getLinkUrl(work), work.fields.coverImage)
 
     include ../components/footer

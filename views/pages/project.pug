@@ -15,11 +15,11 @@ block variables
 
 block page
 
-    +project-header(name, getYear(date), coverImage, tags, getFormat(format))
+    +project-header(name, clientName, coverImage, tags, getFormat(format), description)
 
-    .page-project-divider(data-component='Divider' data-option-direction='vertical')
+    //- .page-project-divider(data-component='Divider' data-option-direction='vertical')
 
-    +vertical-text-image(verticalTextImageTitle, verticalTextImageImage)
+    //- +vertical-text-image(verticalTextImageTitle, verticalTextImageImage)
 
     +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage, false)
 

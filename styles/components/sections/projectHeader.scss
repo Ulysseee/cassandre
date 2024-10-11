@@ -1,120 +1,111 @@
 .section-projectHeader {
-    position: relative;
+  position: relative;
 
-    // FORMATS
-    &.is-vertical .section-projectHeader {
-
-        &-bottom {
-            width: 100%;
-            max-width: 628px;
-        }
-
-        &-cover {
-            padding-bottom: 121%;
-        }
-    }
-
-    &.is-horizontal .section-projectHeader, &.is-square .section-projectHeader {
-
-        &-text {
-            width: 100%;
-            max-width: 840px;
-        }
-
-        &-bottom {
-            width: 100%;
-            max-width: 840px;
-        }
-
-        &-cover {
-            padding-bottom: 58%;
-        }
-    }
-
-    &-background {
-        position: fixed;
-        top: vh(34);
-        right: vw(-3);
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 154%;
-            top: 26%;
-            left: -33%;
-            aspect-ratio: 1.32;
-
-            > svg {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-    &-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: vh(18);
-        gap: 32px;
-
-        @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-            gap: 16px;
-        }
-    }
-
-    &-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        @include index-layer(relative, content, raised);
-    }
-
-    &-year {
-        font-size: 0.875rem;
-        margin-bottom: 0.75rem;
-    }
-
-    &-title {
-        max-width: 875px;
-        text-transform: lowercase;
-    }
-
+  &.is-vertical .section-projectHeader {
     &-bottom {
-        position: relative;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      width: 100%;
+      max-width: 628px;
     }
 
     &-cover {
-        position: relative;
-        width: 100%;
-        height: 0;
+      padding-bottom: 121%;
+    }
+  }
 
-        .component-parallax {
-            height: unset;
-        }
+  &.is-horizontal .section-projectHeader,
+  &.is-square .section-projectHeader {
+    &-text {
+      width: 100%;
+      max-width: 1240px;
     }
 
-    &-tags {
-        position: absolute;
-        left: 100%;
-        bottom: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        padding: 0 0 0 3.75rem;
-
-        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-            left: 0;
-            padding: 1.5rem 0 0 0;
-            top: 100%;
-        }
-
-        &Item {
-            text-transform: uppercase;
-        }
+    &-bottom {
+      width: 100%;
     }
+
+    &-cover {
+      padding-bottom: 58%;
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: vh(18);
+    gap: 32px;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      gap: 16px;
+    }
+  }
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @include index-layer(relative, content, raised);
+  }
+
+  &-year {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  &-bottom {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-cover {
+    position: relative;
+    width: 100%;
+    height: 0;
+
+    .component-parallax {
+      height: unset;
+    }
+  }
+
+  &-details {
+    display: flex;
+    gap: 3.125rem;
+    margin-left: auto;
+    margin-right: 3rem;
+  }
+
+  &-description {
+    display: flex;
+    gap: 2.5rem;
+
+    &Item {
+      max-width: 324px;
+      font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
+      line-height: 1.25;
+
+      &:first-child {
+        text-indent: 3rem;
+      }
+    }
+  }
+
+  &-tags {
+    display: flex;
+    flex-direction: column;
+    margin-right: vw(7);
+
+    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+      padding: 1.5rem 0 0 0;
+      top: 100%;
+    }
+
+    &Item {
+      text-transform: capitalize;
+    }
+  }
 }

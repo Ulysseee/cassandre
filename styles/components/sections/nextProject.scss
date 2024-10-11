@@ -1,43 +1,43 @@
 .section-nextProject {
+  width: 100%;
+  height: calc(#{vh(100)} + clamp(422px, #{vh(68)}, 500px));
+
+  &-container {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: flex-end;
     width: 100%;
-    height: calc(#{vh(100)} + clamp(422px, #{vh(68)}, 500px));
+    height: vh(100);
+  }
 
-    &-container {
-        position: sticky;
-        top: 0;
-        display: flex;
-        align-items: flex-end;
-        width: 100%;
-        height: vh(100);
+  &-content {
+    position: relative;
+    width: 100%;
+    height: clamp(422px, vh(68), 500px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $new-dark-beige;
+    pointer-events: none;
+  }
+
+  &-scribble {
+    position: absolute;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 140px;
     }
+  }
 
-    &-content {
-        position: relative;
-        width: 100%;
-        height: clamp(422px, vh(68), 500px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $brown-light;
-        pointer-events: none;
+  &-title {
+    display: inline-flex;
+    gap: vw(5);
+
+    @include index-layer(relative, content, raised);
+
+    .line {
+      overflow: visible;
     }
-
-    &-scribble {
-        position: absolute;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 140px;
-        }
-    }
-
-    &-title {
-        display: inline-flex;
-        gap: vw(5);
-
-        @include index-layer(relative, content, raised);
-
-        .line {
-            overflow: visible;
-        }
-    }
+  }
 }

@@ -213,13 +213,10 @@ export default class HomeHeader extends withIntersectionObserver(
 
   scrolled({ y, progress, max }) {
     this.scrollProgressY = progress.y;
-    // console.log(y, max.y);
     // this.progressOutOfView = clamp(y / window.innerHeight, 0, 1);
     this.progressOutOfView = clamp(y / max.y, 0, 1);
     this.maxTranslateY = max.y - window.innerHeight + window.innerHeight / 10;
     this.minScale = 0.5;
-    // console.log(this.maxTranslateY);
-    console.log(this.progressOutOfView);
   }
 
   ticked() {
