@@ -122,3 +122,7 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+iframe {
+  scroll-behavior: auto !important;
+}

@@ -30,7 +30,7 @@ class App extends AppEvents {
     name: "App",
     components: {
       // Shared Components
-      ...(!isTouchDevice() && { Cursor }),
+      Cursor: () => import("./components/Cursor"),
 
       // Global Components
       Navigation,

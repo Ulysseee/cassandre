@@ -1,35 +1,33 @@
-import { Base, getInstanceFromElement } from '@studiometa/js-toolkit';
-import Cursor from '../components/Cursor';
+import { Base, getInstanceFromElement } from "@studiometa/js-toolkit";
+import Cursor from "../components/Cursor";
 
 export default class AppEvents extends Base {
-    static config = {
-        refs: ['cursorLink[]', 'cursorSlider[]'],
-        log: true,
-    };
+  static config = {
+    refs: ["cursorLink[]", "cursorSlider[]"],
+    log: true,
+  };
 
-    cursor;
+  cursor;
 
-    mounted () {
-        const cursorElement = document.querySelector('[data-component="Cursor"]');
-        this.cursor = getInstanceFromElement(cursorElement, Cursor);
-    }
+  mounted() {}
 
-    destroyed () {
-    }
+  onCursorLinkMouseenter(e) {
+    const cursorElement = document.querySelector('[data-component="Cursor"]');
+    this.cursor = getInstanceFromElement(cursorElement, Cursor);
+    if (this.cursor && this.cursor.$isMounted) this.cursor.onEnterLink(e);
+  }
 
-    onCursorLinkMouseenter (e) {
-        if (this.cursor && this.cursor.$isMounted) this.cursor.onEnterLink(e);
-    }
+  onCursorLinkMouseleave(e) {
+    if (this.cursor && this.cursor.$isMounted) this.cursor.onLeaveLink(e);
+  }
 
-    onCursorLinkMouseleave (e) {
-        if (this.cursor && this.cursor.$isMounted) this.cursor.onLeaveLink(e);
-    }
+  onCursorSliderMouseenter(e) {
+    const cursorElement = document.querySelector('[data-component="Cursor"]');
+    this.cursor = getInstanceFromElement(cursorElement, Cursor);
+    if (this.cursor && this.cursor.$isMounted) this.cursor.onEnterSlider(e);
+  }
 
-    onCursorSliderMouseenter (e) {
-        if (this.cursor && this.cursor.$isMounted) this.cursor.onEnterSlider(e);
-    }
-
-    onCursorSliderMouseleave (e) {
-        if (this.cursor && this.cursor.$isMounted) this.cursor.onLeaveSlider(e);
-    }
+  onCursorSliderMouseleave(e) {
+    if (this.cursor && this.cursor.$isMounted) this.cursor.onLeaveSlider(e);
+  }
 }

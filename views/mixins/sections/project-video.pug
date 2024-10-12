@@ -1,4 +1,4 @@
 mixin project-video(youtubeVideoURL)
     section.section-video
-        .section-video-iframe
+        .section-video-iframe(data-lenis-prevent)
             iframe(src=youtubeVideoURL + "?rel=0", frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen, data-lenis-prevent)

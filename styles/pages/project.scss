@@ -1,37 +1,47 @@
 .page-project {
+  .component-circledButton {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
 
-    &-divider {
-        width: 1px;
-        height: min(#{32vh}, 235px);
-        margin: 2.875rem auto 1.5rem auto;
-        background-color: $black;
+    padding-right: calc(var(--container-padding) * 0.35);
+
+    @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+      padding-right: var(--container-padding);
+    }
+  }
+
+  &-divider {
+    width: 1px;
+    height: min(#{32vh}, 235px);
+    margin: 2.875rem auto 1.5rem auto;
+    background-color: $black;
+  }
+
+  &-sliderSection {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: calc(var(--section-padding) * 0.7);
+    padding-bottom: calc(var(--section-padding) * 0.7);
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      padding-top: calc(var(--section-padding) * 0.15);
+      padding-bottom: calc(var(--section-padding) * 0.15);
     }
 
-    &-sliderSection {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding-top: calc(var(--section-padding) * 0.7);
-        padding-bottom: calc(var(--section-padding) * .7);
+    &-figure {
+      position: absolute;
+      left: -35%;
+      width: 100%;
+      height: auto;
+      z-index: -1;
 
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            padding-top: calc(var(--section-padding) * .15);
-            padding-bottom: calc(var(--section-padding) * .15);
-        }
-
-        &-figure {
-            position: absolute;
-            left: -35%;
-            width: 100%;
-            height: auto;
-            z-index: -1;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                width: 110%;
-                top: -60%;
-            }
-        }
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        width: 110%;
+        top: -60%;
+      }
     }
-
+  }
 }

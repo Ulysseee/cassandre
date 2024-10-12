@@ -31,6 +31,9 @@ block page
 
     +project-header(fields.name, fields.clientName, fields.coverImage, tags, getFormat(fields.format), fields.description)
 
+    if fields.shouldDisplayCta
+        +circled-button(fields.cta_url, fields.cta_text)
+
     if template === 'work_left_template'
         +work-left-template(fields)
     if template === 'work_right_template'
