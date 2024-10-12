@@ -7,6 +7,20 @@ include ../mixins/sections/project-header
 include ../mixins/sections/next-project
 include ../mixins/sections/vertical-text-image
 
+include ../mixins/sections/title-paragraph
+
+include ../mixins/sections/project-big-small-images
+include ../mixins/sections/project-dual-images
+include ../mixins/sections/project-parallax-image
+include ../mixins/sections/project-big-main-title
+include ../mixins/sections/project-large-image
+include ../mixins/sections/project-mid-image
+include ../mixins/sections/project-video
+
+include ../mixins/templates/work-left-template
+include ../mixins/templates/work-right-template
+include ../mixins/templates/work-video-template
+
 block variables
     - var metaPageName = pageName
     - var pageName = 'project'
@@ -15,22 +29,26 @@ block variables
 
 block page
 
-    +project-header(name, clientName, coverImage, tags, getFormat(format), description)
+    +project-header(fields.name, fields.clientName, fields.coverImage, tags, getFormat(fields.format), fields.description)
 
-    //- .page-project-divider(data-component='Divider' data-option-direction='vertical')
+    if template === 'work_left_template'
+        +work-left-template(fields)
+    if template === 'work_right_template'
+        +work-right-template(fields)
+    if template === 'work_video_template'
+        +work-video-template(fields)
+
+    //- OLD STUFFS
 
     //- +vertical-text-image(verticalTextImageTitle, verticalTextImageImage)
+    //- +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage, false)
 
-    +horizontal-text-image(horizontalTextImageTitle, getWysiwyg(horizontalTextImageText), horizontalTextImageImage, false)
+    //- section.page-project-sliderSection
+    //-     svg.page-project-sliderSection-figure(viewbox='0 0 1654 1273' fill='none' xmlns='http://www.w3.org/2000/svg')
+    //-         path(opacity='0.11' d='M1442.75 10.4419C833.22 -29.6994 683.889 212.862 777.603 309.876C977.752 517.07 1536.59 419.445 1557.14 285.527C1577.68 151.608 1224.3 127.259 977.752 309.876C731.206 492.492 748.265 692.064 920.16 786.624C1075.08 871.845 1656.13 823.148 1647.91 656.764C1639.7 490.38 1305.65 530.792 1096.69 612.627C946.812 671.325 771.476 792.056 545.476 844.812C319.475 897.567 6.00016 845.868 6 712.627C5.99984 579.385 317.037 578.369 523.521 646.341C730.005 714.313 889.342 798.208 792.222 1082.76C759.798 1167.49 675.677 1245.82 586.65 1265' stroke='#DACAB5' stroke-width='12' stroke-linecap='square')
+    //-     +slider(infiniteSliderImages, 'true')
 
-    section.page-project-sliderSection
-        svg.page-project-sliderSection-figure(viewbox='0 0 1654 1273' fill='none' xmlns='http://www.w3.org/2000/svg')
-            path(opacity='0.11' d='M1442.75 10.4419C833.22 -29.6994 683.889 212.862 777.603 309.876C977.752 517.07 1536.59 419.445 1557.14 285.527C1577.68 151.608 1224.3 127.259 977.752 309.876C731.206 492.492 748.265 692.064 920.16 786.624C1075.08 871.845 1656.13 823.148 1647.91 656.764C1639.7 490.38 1305.65 530.792 1096.69 612.627C946.812 671.325 771.476 792.056 545.476 844.812C319.475 897.567 6.00016 845.868 6 712.627C5.99984 579.385 317.037 578.369 523.521 646.341C730.005 714.313 889.342 798.208 792.222 1082.76C759.798 1167.49 675.677 1245.82 586.65 1265' stroke='#DACAB5' stroke-width='12' stroke-linecap='square')
-        +slider(infiniteSliderImages, 'true')
-
-    +horizontal-text-image(horizontalTextImageReverseTitle, getWysiwyg(horizontalTextImageReverseText), horizontalTextImageReverseImage, true)
-
-    if fullViewImage
-        +full-view-image(fullViewImage, 16, false)
+    //- if fullViewImage
+    //-     +full-view-image(fullViewImage, 16, false)
 
     +next-project('projet', 'suivant', nextWork)

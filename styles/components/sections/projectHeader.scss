@@ -87,10 +87,6 @@
       max-width: 324px;
       font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
       line-height: 1.25;
-
-      &:first-child {
-        text-indent: 3rem;
-      }
     }
   }
 

@@ -28,7 +28,7 @@
 .ui-h2 {
   font-family: $rebond-extralight;
   font-size: clamp(3.5rem, vw(9.7), 8.75rem);
-  line-height: 0.8;
+  line-height: 1;
   letter-spacing: -4px;
 }
 
@@ -241,4 +241,8 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.4rem;
+}
+
+.ui-spacer {
+  width: 4rem;
 }

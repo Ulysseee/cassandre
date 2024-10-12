@@ -2,10 +2,10 @@ require("dotenv").config();
 
 // OFFLINE STUFF
 const IS_OFFLINE = false;
-const WORKS = require("./model/works");
-const COMMON = require("./model/common");
 const FOOTER = require("./model/footer");
 const ABOUT = require("./model/about");
+const COMMON = require("./model/common");
+const WORKS = require("./model/works");
 
 const express = require("express");
 const { createClient } = require("contentful");
@@ -61,7 +61,7 @@ const handleColorName = (col) => {
 };
 
 const handleLinkResolver = (content) => {
-  if (content.sys.contentType.sys.id === "work") {
+  if (content.sys.contentType.sys.id.includes("work")) {
     return `/project/${content.fields.slug}`;
   }
 
@@ -91,15 +91,14 @@ const handleAlignment = (alignment) => {
   return "alignCenter";
 };
 
-const handleWorksRows = (works) => {
-  return works.reduce(
+const handleWorksRows = (works) =>
+  works.reduce(
     (prev, curr, index) =>
       (index % 2 === 0
         ? prev.push([curr])
         : prev[prev.length - 1].push(curr)) && prev,
     []
   );
-};
 
 const handleYear = (date) => new Date(date).getFullYear();
 
@@ -115,7 +114,7 @@ const handleTitleAbout = (title) => {
     raw = documentToHtmlString(title);
   }
 
-  let newStr = raw.replace(
+  const newStr = raw.replace(
     /\[scribble\]/g,
     `
     <span class="page-about-scribble" data-component="SVGReveal" data-option-duration="2">
@@ -125,7 +124,7 @@ const handleTitleAbout = (title) => {
     </span>
   `
   );
-  let newStr2 = newStr.replace(
+  const newStr2 = newStr.replace(
     /\[object\]/g,
     `
     <span data-ref="loop" class="page-about-loop">
@@ -140,6 +139,17 @@ const handleTitleAbout = (title) => {
   );
 
   return newStr2;
+};
+
+const handleSpacer = (data) => {
+  let raw = handleWysiwyg(data);
+
+  const newStr = raw.replace(
+    /\[spacer\]/g,
+    `<span class="ui-spacer">&nbsp</span>`
+  );
+
+  return newStr;
 };
 
 const handleOffline = (path, res) => {
@@ -194,6 +204,7 @@ app.use((req, res, next) => {
   res.locals.getYear = handleYear;
   res.locals.getBubbleImages = handleBubbleImages;
   res.locals.getTitleAbout = handleTitleAbout;
+  res.locals.getSpacerText = handleSpacer;
 
   next();
 });
@@ -237,19 +248,39 @@ app.get("/project/:uid", async (req, res) => {
   const CMS = await initCMS();
   const common = await getCommon(CMS);
 
-  const {
-    items: [work],
-  } = await CMS.getEntries({
-    content_type: "work",
-    "fields.slug": req.params.uid,
-    limit: 1,
-  });
+  const contentTypes = [
+    "work_left_template",
+    "work_right_template",
+    "work_video_template",
+  ];
 
-  const currentWorkDate = work.fields.date;
-  const currentWorkSlug = work.fields.slug;
+  let project = null;
+
+  for (const contentType of contentTypes) {
+    const {
+      items: [work],
+    } = await CMS.getEntries({
+      content_type: contentType,
+      "fields.slug": req.params.uid,
+      limit: 1,
+    });
+
+    if (work) {
+      project = work;
+      break; // Stop searching once the project is found
+    }
+  }
+
+  if (!project) {
+    return res.status(404).render("pages/404");
+  }
+
+  const currentWorkDate = project.fields.date;
+  const currentWorkSlug = project.fields.slug;
+  const content_type = project.sys.contentType.sys.id;
 
   let nextWork = await CMS.getEntries({
-    content_type: "work",
+    content_type,
     "fields.date[gte]": currentWorkDate,
     "fields.slug[nin]": currentWorkSlug,
     order: "fields.date",
@@ -258,18 +289,21 @@ app.get("/project/:uid", async (req, res) => {
 
   if (nextWork.total === 0) {
     nextWork = await CMS.getEntries({
-      content_type: "work",
+      content_type,
       order: "fields.date",
       limit: 1,
     });
   }
+
   [nextWork] = nextWork.items;
 
   res.render("pages/project", {
     ...common,
-    ...work.fields,
-    tags: work.metadata.tags,
-    nextWork: nextWork,
+    // ...project.fields,
+    fields: project.fields,
+    tags: project.metadata.tags,
+    template: project.sys.contentType.sys.id,
+    nextWork,
   });
 });
 

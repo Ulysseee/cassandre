@@ -311,8 +311,6 @@ export default class HomeHeader extends withIntersectionObserver(
     const radius = window.innerWidth < 700 ? 36 : 54;
     const spriteScale = window.innerWidth < 700 ? 0.666 : 1;
     for (let i = 0; i < number; i++) {
-      console.log(this.$options.colors[i], COLORS);
-
       const customBubbleProperty = {
         ...this.circleProperties,
         render: {

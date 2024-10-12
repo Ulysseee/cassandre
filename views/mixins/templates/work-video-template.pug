@@ -1,0 +1,66 @@
+mixin work-video-template(fields)
+    block variables
+        - var displayBigSmallImages = fields.shouldDisplayBigSmallImages
+        - var bigImage = fields.bigSmallImages_verticalImage
+        - var smallImage = fields.bigSmallImages_squareImage
+
+        - var displayApproach = fields.shouldDisplayApproach
+        - var approachSurtitle = fields.approach_surtitle
+        - var approachParagraph = fields.approach_paragraph
+        - var approachyoutubeURL = fields.approach_youtubeUrl
+
+        - var displayMidImage = fields.shouldDisplayMediumImage
+        - var midImage = fields.mediumImage_image
+
+        - var displayBigSmallImages_second = fields.shouldDisplaySecondBigSmallImages
+        - var bigImage_second = fields.secondBigSmallImages_verticalImage
+        - var smallImage_second = fields.secondBigSmallImages_squareImage
+
+        - var displayLargeImage = fields.shouldDisplayLargeImage
+        - var largeImage = fields.largeImage_Image
+
+        - var displayDualImages = fields.shoudDisplayDualImages
+        - var dualImagesFirst = fields.doubleImage_firstImage
+        - var dualImagesSecond = fields.doubleImage_secondImage
+
+        - var displayMidImage_second = fields.shouldDisplaySecondMediumImage
+        - var midImage_second = fields.secondMediumImage_image
+
+        - var displayBigSmallImages_third = fields.shouldDisplayThirdBigSmallImages
+        - var bigImage_third = fields.thirdBigSmallImages_verticalImage
+        - var smallImage_third = fields.thirdBigSmallImages_squareImage
+
+        - var displayLargeImage_second = fields.shouldDisplaySecondLargeImage
+        - var largeImage_second = fields.secondLargeImage_image
+        
+    if displayBigSmallImages
+        +project-big-small-images(bigImage, smallImage)
+
+    if displayApproach
+         section.ui-container-large.section-approach
+            +title-paragraph(approachSurtitle, approachParagraph)
+            +project-video(approachyoutubeURL)
+                
+    if displayMidImage
+        +project-mid-image(midImage, true)
+
+    if displayBigSmallImages_second
+        +project-big-small-images(bigImage_second, smallImage_second, true)
+    
+    if displayLargeImage
+        +project-large-image(largeImage)
+
+    if fields.bigMainTitle
+        +project-big-main-title(fields.bigMainTitle)
+
+    if displayDualImages
+        +project-dual-images(dualImagesFirst, dualImagesSecond)
+
+    if displayMidImage_second
+        +project-mid-image(midImage_second, false)
+
+    if displayBigSmallImages_third
+        +project-big-small-images(bigImage_third, smallImage_third)
+
+    if displayLargeImage_second
+        +project-large-image(largeImage_second)

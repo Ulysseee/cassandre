@@ -1,0 +1,12 @@
+.section-bigMainTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: vw(12) 0;
+  min-height: vh(55);
+
+  &-text {
+    width: clamp(24rem, vw(40), 48rem);
+    text-align: center;
+  }
+}

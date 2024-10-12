@@ -1,0 +1,12 @@
+.section-midImage {
+  margin: vw(12) 0;
+
+  &--reverse {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-image {
+    width: vw(75);
+  }
+}

@@ -1,0 +1,6 @@
+mixin project-big-small-images(bigImage, smallImage, isBottom = false)
+    section.ui-container-large.section-bigSmallImages(class=(isBottom ? 'section-bigSmallImages--is-bottom' : ''))
+        .section-bigSmallImages-big-image
+            +project-parallax-image(bigImage.fields.file.url, bigImage.fields.file.details.image.width, bigImage.fields.file.details.image.height, bigImage.fields.description)
+        .section-bigSmallImages-small-image
+            +project-parallax-image(smallImage.fields.file.url, smallImage.fields.file.details.image.width, smallImage.fields.file.details.image.height, smallImage.fields.description, 3, 0.55)

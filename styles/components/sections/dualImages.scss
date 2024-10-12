@@ -1,0 +1,12 @@
+.section-dualImages {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: vw(12) 0;
+
+  &-first-image,
+  &-second-image {
+    width: 44%;
+  }
+}

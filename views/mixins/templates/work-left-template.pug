@@ -1,0 +1,66 @@
+mixin work-left-template(fields)
+    block variables
+        - var displayBigSmallImages = fields.shouldDisplayBigSmallImages
+        - var bigImage = fields.bigSmallImages_verticalImage
+        - var smallImage = fields.bigSmallImages_squareImage
+
+        - var displayApproach = fields.shouldDisplayApproach
+        - var approachSurtitle = fields.approach_surtitle
+        - var approachParagraph = fields.approach_paragraph
+        - var approachImage = fields.approach_image
+
+        - var displayDualImages = fields.shoudDisplayDualImages
+        - var dualImagesFirst = fields.doubleImage_firstImage
+        - var dualImagesSecond = fields.doubleImage_secondImage
+
+        - var displayBigSmallImages_second = fields.shouldDisplaySecondBigSmallImages
+        - var bigImage_second = fields.secondBigSmallImages_verticalImage
+        - var smallImage_second = fields.secondBigSmallImages_squareImage
+
+        - var displayLargeImage = fields.shouldDisplayLargeImage
+        - var largeImage = fields.largeImage_Image
+
+        - var displayMidImage = fields.shouldDisplayMediumImage
+        - var midImage = fields.mediumImage_image
+
+        - var displayDualImages_second = fields.shouldDisplaySecondDualImages
+        - var dualImagesFirst_second = fields.secondDoubleImage_firstImage
+        - var dualImagesSecond_second = fields.secondDoubleImage_secondImage
+
+        - var displayMidImage_second = fields.shouldDisplaySecondMediumImage
+        - var midImage_second = fields.secondMediumImage_image
+
+        - var displayLargeImage_second = fields.shouldDisplaySecondLargeImage
+        - var largeImage_second = fields.secondLargeImage_image
+        
+    if displayBigSmallImages
+        +project-big-small-images(bigImage, smallImage, true)
+
+    if displayApproach
+         section.ui-container-large.section-approach
+            +title-paragraph(approachSurtitle, approachParagraph)
+            +project-parallax-image(approachImage.fields.file.url, approachImage.fields.file.details.image.width, approachImage.fields.file.details.image.height, approachImage.fields.description, 3.5)
+                
+    if displayDualImages
+        +project-dual-images(dualImagesFirst, dualImagesSecond)
+
+    if displayBigSmallImages_second
+        +project-big-small-images(bigImage_second, smallImage_second)
+
+    if fields.bigMainTitle
+        +project-big-main-title(fields.bigMainTitle)
+
+    if displayDualImages_second
+        +project-dual-images(dualImagesFirst_second, dualImagesSecond_second)
+
+    if displayMidImage
+        +project-mid-image(midImage, true)
+
+    if displayLargeImage
+        +project-large-image(largeImage)
+
+    if displayMidImage_second
+        +project-mid-image(midImage_second, false)
+
+    if displayLargeImage_second
+        +project-large-image(largeImage_second)

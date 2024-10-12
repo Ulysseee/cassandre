@@ -1,5 +1,5 @@
 mixin title-paragraph(title, paragraph)
     section.section-titleParagraph
         .section-titleParagraph-wrapper
-            h3.ui-p-m.section-titleParagraph-title!=title
-            p.section-titleParagraph-paragraph!=paragraph
+            h3(data-component='Title' data-option-delay='0.4').ui-p-m.section-titleParagraph-title!=title
+            p(data-component='Paragraph' data-option-delay='0.5' data-option-opacity data-option-stagger-lines).section-titleParagraph-paragraph!=getSpacerText(paragraph)

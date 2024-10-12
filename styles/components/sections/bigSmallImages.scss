@@ -1,0 +1,20 @@
+.section-bigSmallImages {
+  display: flex;
+  justify-content: space-between;
+  margin: vw(20) 0 vw(12) 0;
+
+  &--is-bottom {
+    align-items: flex-end;
+  }
+
+  &-big-image {
+    width: clamp(24rem, vw(40), 48rem);
+  }
+  &-small-image {
+    width: clamp(24rem, vw(40), 40rem);
+  }
+
+  .component-parallax-container {
+    height: auto;
+  }
+}

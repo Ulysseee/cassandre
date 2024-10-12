@@ -1,0 +1,6 @@
+mixin project-dual-images(firstImage, secondImage)
+    section.ui-container-large.section-dualImages
+        .section-dualImages-first-image
+            +project-parallax-image(firstImage.fields.file.url, firstImage.fields.file.details.image.width, firstImage.fields.file.details.image.height, firstImage.fields.description, 3, 0.35, 'inset(0 0 100% 0)')
+        .section-dualImages-second-image
+            +project-parallax-image(secondImage.fields.file.url, secondImage.fields.file.details.image.width, secondImage.fields.file.details.image.height, secondImage.fields.description, 3, 0.55, 'inset(0 0 100% 0)')

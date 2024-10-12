@@ -1,0 +1,3 @@
+mixin project-parallax-image(url, width, height, description, duration = 3, delay = 0.35, clipPath = 'inset(0% 50% 0% 50%)')
+    .image-container(data-component='Image' data-option-duration=duration data-option-delay=delay data-option-clip-path=clipPath)
+        +parallax(url, width, height, description, 8, false)

@@ -5,7 +5,7 @@ mixin project-header(name, clientName, cover, tags, format, description)
                 span.section-projectHeader-year(data-component='Paragraph' data-option-delay='1')='('+clientName+')'
                 h1.ui-h2.section-projectHeader-title(data-component='Title')=name
             .section-projectHeader-bottom
-                .section-projectHeader-cover(data-component='Image' data-option-duration='2' data-option-delay='0.55' data-option-clip-path='inset(0% 50% 0% 50%)')
+                .section-projectHeader-cover(data-component='Image' data-option-duration='3' data-option-delay='0.55' data-option-clip-path='inset(0% 50% 0% 50%)')
                     +parallax(cover.fields.file.url, cover.fields.file.details.image.width, cover.fields.file.details.image.height, cover.fields.description, 8, false)
                 .section-projectHeader-details
                     ul.section-projectHeader-tags
@@ -14,4 +14,4 @@ mixin project-header(name, clientName, cover, tags, format, description)
                     .section-projectHeader-description
                          each $ in description.content
                             each node in $.content
-                                p.section-projectHeader-descriptionItem=node.value
+                                p(data-component='Paragraph' data-option-delay='0.5' data-option-opacity data-option-stagger-lines).section-projectHeader-descriptionItem!=getSpacerText(node.value)

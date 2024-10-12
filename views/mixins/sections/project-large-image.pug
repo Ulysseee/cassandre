@@ -1,0 +1,5 @@
+mixin project-large-image(image)
+ section.section-largeImage.section-largeImage
+    .section-largeImage-image(data-component='Image' data-option-duration='3.5' data-option-delay='0.35' data-option-clip-path='inset(0 0 100% 0)')
+        figure.component-parallax-container(data-ref='container')
+            +image(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description)(data-ref='image')
