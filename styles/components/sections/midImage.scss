@@ -1,6 +1,10 @@
 .section-midImage {
   margin: vw(12) 0;
 
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    margin: 1rem 0;
+  }
+
   &--reverse {
     display: flex;
     justify-content: flex-end;
@@ -8,5 +12,9 @@
 
   &-image {
     width: vw(75);
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      width: 100%;
+    }
   }
 }

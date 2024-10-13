@@ -13,10 +13,29 @@
     gap: 126px;
     font-family: $rebond-extralight;
     @extend .ui-container-large;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-left: 0;
+      padding: 0;
+      width: 100%;
+      gap: 3.25rem;
+    }
+  }
+
+  &-title {
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 1rem;
+    }
   }
 
   &-paragraph {
     font-size: clamp(1rem, vw(1.7), 1.5rem);
     line-height: 1.875rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      flex: 1;
+      font-size: 1.125rem;
+      line-height: 1.25;
+    }
   }
 }

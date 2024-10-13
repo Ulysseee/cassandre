@@ -54,4 +54,5 @@ block page
     //- if fullViewImage
     //-     +full-view-image(fullViewImage, 16, false)
 
-    +next-project('projet', 'suivant', nextWork)
+    if nextWork
+        +next-project('projet', 'suivant', nextWork)

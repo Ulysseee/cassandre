@@ -303,7 +303,7 @@ app.get("/project/:uid", async (req, res) => {
     fields: project.fields,
     tags: project.metadata.tags,
     template: project.sys.contentType.sys.id,
-    nextWork,
+    ...(nextWork && { nextWork }),
   });
 });
 

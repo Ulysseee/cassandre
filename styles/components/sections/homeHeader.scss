@@ -80,5 +80,10 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       line-height: 1rem;
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin: auto auto vh(40) auto;
+      font-size: 1rem;
+    }
   }
 }

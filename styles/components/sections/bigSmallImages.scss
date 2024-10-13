@@ -3,6 +3,12 @@
   justify-content: space-between;
   margin: vw(10) 0 vw(10) 0;
 
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    margin: 1rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
   &--is-bottom {
     align-items: flex-end;
   }

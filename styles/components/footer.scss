@@ -7,9 +7,10 @@
   color: $black;
   overflow: hidden;
   background: transparent;
+  min-height: auto;
 
   @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-    height: 36.375rem;
+    min-height: 27.063rem;
   }
 
   &-mask {
@@ -42,6 +43,10 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       padding-bottom: 2.625rem;
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      padding-bottom: 4.688rem;
+    }
   }
 
   &-mail {
@@ -49,6 +54,10 @@
     font-family: $rebond-extralight;
     margin-bottom: 0.875rem;
     display: block;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-bottom: 0.5rem;
+    }
 
     &Text {
       position: relative;
@@ -77,12 +86,18 @@
 
   &-title {
     margin-bottom: 24px;
-    font-size: clamp(24rem, vw(22), vw(22));
+    font-size: clamp(4.125rem, vw(22), vw(24));
     color: $new-dark-beige;
     font-family: $vtc-carrie;
     text-transform: uppercase;
     letter-spacing: -0.825rem;
     white-space: nowrap;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: clamp(5rem, vw(18), vw(22));
+      letter-spacing: -2px;
+      margin-bottom: 0;
+    }
   }
 
   &-paragraph {
@@ -99,6 +114,11 @@
       align-items: flex-end;
       padding: 1.5rem 0;
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      //   padding: 0 0 1.5rem 0;
+      padding: 0;
+    }
   }
 
   &-content {
@@ -106,8 +126,20 @@
     flex-wrap: nowrap;
     font-family: $rebond-extralight;
 
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      flex-direction: column;
+    }
+
     &-activities {
       margin-left: vw(8);
+      margin-top: unset;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        margin-top: 2rem;
+      }
 
       &-text {
         line-height: 1.25;
@@ -118,6 +150,10 @@
   &-subtitle {
     color: $orange;
     margin-bottom: 0.875rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-bottom: 0.563rem;
+    }
   }
 
   &-social-item {
@@ -128,6 +164,10 @@
   &-social-list {
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       width: 100%;
+    }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      width: 75%;
     }
   }
 
@@ -149,6 +189,10 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       margin-top: 60px;
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-top: 0;
+    }
   }
 
   &-legal {
@@ -157,12 +201,32 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 2.625rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      width: 100%;
+      font-size: 11.25px;
+    }
   }
 
   &-signature-link {
     font-family: $rebond-extralight;
 
     @include index-layer(relative, content, raised);
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: inherit;
+    }
+
+    .ui-underlineLink {
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        padding-bottom: 0;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+    }
   }
 
   &-signature-figure {
@@ -173,6 +237,11 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       left: -31px;
       transform: rotate(13deg);
+    }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      left: 18px;
+      bottom: 48px;
     }
 
     .component-svgReveal svg {

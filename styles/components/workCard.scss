@@ -85,11 +85,27 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       padding-top: 1.5rem;
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      padding-top: 0.813rem;
+    }
   }
 
   &-details {
     display: flex;
     justify-content: space-between;
     font-family: $rebond-extralight;
+  }
+
+  &-name {
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 1.125rem;
+    }
+  }
+
+  &-excerpt {
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 0.875rem;
+    }
   }
 }

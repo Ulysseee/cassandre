@@ -38,9 +38,7 @@ export default class Cursor extends withBreakpointObserver(Base) {
     type: null,
   };
 
-  mounted() {
-    console.log("Cursor mounted", this.$refs);
-  }
+  mounted() {}
 
   moved({ x, y, last, isDown, delta }) {
     toggleClass(this.$el, "is-down", isDown);

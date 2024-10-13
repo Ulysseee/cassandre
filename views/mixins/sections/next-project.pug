@@ -1,5 +1,5 @@
 mixin next-project(titleFirstPart, titleSecondPart, nextWork)
-    section.section-nextProject(data-component='NextProject' class=`is-${getColorName(nextWork.fields.color)}`)
+    section.section-nextProject(data-component='NextProject')
         .section-nextProject-container(data-ref='container')
             a.section-nextProject-content(href=getLinkUrl(nextWork) data-ref='content' data-from='project' data-to='project')
                 .section-nextProject-scribble

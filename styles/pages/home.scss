@@ -1,6 +1,12 @@
 .page-home {
   background: linear-gradient($white, $new-dark-beige);
 
+  .section-titleParagraph {
+    &-title {
+      display: none;
+    }
+  }
+
   &-works {
     overflow: hidden;
     display: flex;
@@ -15,6 +21,10 @@
         padding-bottom: 110% !important;
       }
     }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      flex-direction: column;
+    }
   }
 
   &-projectsButton {
@@ -27,6 +37,10 @@
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       padding-top: calc(var(--section-padding) * 0.6);
       padding-bottom: calc(var(--section-padding) * 0.6);
+    }
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      padding-right: var(--container-padding);
     }
   }
 }

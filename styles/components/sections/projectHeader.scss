@@ -37,6 +37,7 @@
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       gap: 16px;
+      padding-top: 4.75rem;
     }
   }
 
@@ -49,9 +50,21 @@
     @include index-layer(relative, content, raised);
   }
 
+  &-title {
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 2rem;
+      letter-spacing: -1px;
+    }
+  }
+
   &-year {
     font-size: 1.25rem;
     margin-bottom: 2rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 1.125rem;
+      margin-bottom: 1.25rem;
+    }
   }
 
   &-bottom {
@@ -77,16 +90,33 @@
     gap: 3.125rem;
     margin-left: auto;
     margin-right: 3rem;
+    font-family: $rebond-extralight;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      gap: 1.875rem;
+      margin-right: 0;
+      margin-left: 0;
+      margin-top: 2.5rem;
+    }
   }
 
   &-description {
     display: flex;
     gap: 2.5rem;
 
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      gap: 1rem;
+      flex-direction: column;
+    }
+
     &Item {
       max-width: 324px;
       font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
       line-height: 1.25;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        font-size: 1.125rem;
+      }
     }
   }
 
@@ -100,8 +130,18 @@
       top: 100%;
     }
 
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-right: 0;
+      padding-top: 0;
+    }
+
     &Item {
       text-transform: capitalize;
+      font-size: 1rem;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        font-size: 0.875rem;
+      }
     }
   }
 }
