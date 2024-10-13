@@ -26,18 +26,22 @@ body {
   font-size: clamp(16px, vw(1.2), 19px);
   line-height: 1;
 
-  background-color: $beige;
+  background-color: $new-beige;
   color: $black;
 
-  &.is-dark {
-    background-color: $black;
-    color: $beige;
+  &.is-dark-beige {
+    background: $new-dark-beige;
   }
 
-  &.is-light {
-    background-color: $new-beige;
-    color: $black;
-  }
+  //   &.is-dark {
+  //     background-color: $black;
+  //     color: $beige;
+  //   }
+
+  //   &.is-light {
+  //     background-color: $new-beige;
+  //     color: $black;
+  //   }
 
   &::before {
     content: "xs";
@@ -65,7 +69,7 @@ body {
   left: 0;
   width: vw(100);
   height: vh(100);
-  background-color: $black;
+  background-color: $new-beige;
 
   @include index-layer(absolute, appOverlay);
 }

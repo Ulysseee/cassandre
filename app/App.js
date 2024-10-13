@@ -48,7 +48,7 @@ class App extends AppEvents {
       About,
       Ui,
     },
-    refs: [...AppEvents.config.refs, "pageContainer"],
+    refs: [...AppEvents.config.refs],
   };
 
   navigationInstance = null;
@@ -146,10 +146,12 @@ class App extends AppEvents {
   setAppColor() {
     const isDarkPage =
       this.currentPageInstance.$el.classList.contains("is-dark");
-    console.log(isDarkPage);
     const app = document.getElementById("app");
-    app.classList.remove("is-dark", "is-light");
-    app.classList.add(isDarkPage ? "is-dark" : "is-light");
+    const page = document.getElementById("page");
+    const isAboutPage = page.classList.contains("page-about");
+    app.classList.remove("is-dark", "is-light", "is-dark-beige");
+    if (isAboutPage) app.classList.add("is-dark-beige");
+    else app.classList.add(isDarkPage ? "is-dark" : "is-light");
   }
 }
 

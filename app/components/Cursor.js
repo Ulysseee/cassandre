@@ -9,7 +9,7 @@ import {
 export default class Cursor extends withBreakpointObserver(Base) {
   static config = {
     name: "Cursor",
-    refs: ["inner", "cursorLink[]", "cursorSlider[]"],
+    refs: ["inner"],
     log: true,
     options: {
       inactiveBreakpoints: {

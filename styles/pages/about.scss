@@ -1,7 +1,6 @@
 .page-about {
   position: relative;
   overflow: hidden;
-  background: $new-dark-beige;
 
   @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
     display: flex;

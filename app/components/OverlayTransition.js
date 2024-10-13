@@ -5,6 +5,8 @@ import { COLORS } from "../constants/colors";
 import HomeHeader from "./HomeHeader";
 import Navigation from "./Navigation";
 
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default class OverlayTransition extends Base {
   static config = {
     name: "Preloader",
@@ -150,47 +152,57 @@ export default class OverlayTransition extends Base {
     return gsap
       .timeline({
         onStart: () => {
-          gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
           gsap.set(this.$el, { autoAlpha: 1 });
-          gsap.set(this.$refs.wrapper, {
-            autoAlpha: 1,
-            backgroundColor: COLORS.white,
-          });
+          gsap.set(this.$refs.wrapper, { autoAlpha: 1 });
+
+          gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
           gsap.set(this.$refs.name, { autoAlpha: 0 });
         },
         onComplete: onComplete,
       })
-      .from(this.$el, {
+      .from(this.$refs.wrapper, {
         clipPath: "inset(100% 0 0 0)",
         duration: 1,
         ease: "expo.inOut",
         onComplete: () => {
-          this.logoFramesAnimation = this.animateLogoFrames()
-            .repeat(-1)
-            .timeScale(1.4);
+          this.logoFramesAnimation = this.animateLogoFrames().repeat(5);
         },
-      });
+      })
+      .add(
+        gsap.to(this.overlay, {
+          duration: 1,
+          ease: "expo.in",
+          onUpdate: this.animateOverlay,
+          onUpdateParams: [this.overlay, this.overlay.height, "#FF6C3C"],
+          onComplete: () => {
+            gsap.set(this.$refs.wrapper, { autoAlpha: 0 });
+            gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
+            document.querySelector("[data-taxi]").style.transform = "";
+            // this.logoFramesAnimation.kill();
+          },
+        }),
+        ">+=1"
+      );
   }
 
   animatePageTransitionOut({ onComplete }) {
     return gsap
       .timeline({
-        delay: 1,
-        onComplete: () => {
+        delay: 0.2,
+        onComplete: async () => {
+          window.lenis.scrollTo(1);
+          gsap.set(this.$el, { autoAlpha: 0 });
           onComplete();
         },
       })
-      .to(this.$el, {
-        clipPath: "inset(0 0 100% 0)",
-        duration: 1,
-        ease: "expo.inOut",
-        clearProps: "clipPath",
-        onComplete: () => {
-          window.lenis.scrollTo(1);
-          gsap.set(this.$el, { autoAlpha: 0 });
-          this.logoFramesAnimation.kill();
-        },
-      });
+      .add(
+        gsap.to(this.overlay, {
+          duration: 1,
+          ease: "expo.out",
+          onUpdate: this.animateOverlay,
+          onUpdateParams: [this.overlay, 0, "#FF6C3C"],
+        })
+      );
   }
 
   animateLogoFrames() {
