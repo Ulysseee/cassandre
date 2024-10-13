@@ -150,6 +150,7 @@
   &-subtitle {
     color: $orange;
     margin-bottom: 0.875rem;
+    line-height: 1;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       margin-bottom: 0.563rem;
@@ -201,6 +202,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 2.625rem;
+    font-size: 0.875rem;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       width: 100%;
