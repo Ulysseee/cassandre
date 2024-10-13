@@ -2,6 +2,10 @@
   background: linear-gradient($white, $new-dark-beige);
 
   .section-titleParagraph {
+    &-wrapper {
+      width: 66%;
+    }
+
     &-title {
       display: none;
     }

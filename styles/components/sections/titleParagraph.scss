@@ -11,7 +11,7 @@
     margin-left: auto;
     display: flex;
     gap: 126px;
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
     @extend .ui-container-large;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {

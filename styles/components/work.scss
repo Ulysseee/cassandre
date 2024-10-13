@@ -1,347 +1,338 @@
 .section-work {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: calc(var(--section-padding) * 1.6);
-    margin-bottom: calc(var(--section-padding) * 1.6);
+  display: flex;
+  justify-content: flex-start;
+  margin-top: calc(var(--section-padding) * 1.6);
+  margin-bottom: calc(var(--section-padding) * 1.6);
 
-    @include index-layer(relative, content, card);
+  @include index-layer(relative, content, card);
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        margin-top: calc(var(--section-padding) * .8);
-        margin-bottom: calc(var(--section-padding) * .8);
-    }
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    margin-top: calc(var(--section-padding) * 0.8);
+    margin-bottom: calc(var(--section-padding) * 0.8);
+  }
 
-    // STATES
-    &.is-visible .section-work {
-
-        &__cover {
-            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
-        }
-
-        &__cover-overlay {
-            clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-        }
-    }
-
-    &.is-visible &__link {
-
-        @include hover() {
-            .section-work__cover {
-                transform: scale(0.95);
-
-                &-inner .component-parallax {
-                    transform: scale(1.1);
-                }
-            }
-        }
-    }
-
-    // FORMATS & ALIGNMENTS
-    &.is-alignCenter {
-        justify-content: center;
-    }
-
-    &.is-horizontal, &.is-square {
-
-        .section-work {
-
-            &__cover {
-                width: vw(50.4);
-                aspect-ratio: 1.67;
-                padding-bottom: 61%;
-
-                @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-                    width: vw(64);
-                }
-
-                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                    width: 100%;
-                }
-            }
-        }
-    }
-
-    &.is-vertical {
-
-        .section-work {
-
-            &__cover {
-                padding-bottom: 141%;
-                width: vw(26.6);
-                aspect-ratio: 0.7;
-
-                @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-                    width: vw(32);
-                }
-
-                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                    width: 100%;
-                }
-            }
-
-            &__scribble {
-                width: 50%;
-                top: 87%;
-                left: -27%;
-
-                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                    width: 35%;
-                    top: 62%;
-                    right: -5%;
-                    left: unset;
-                }
-            }
-
-            &__text {
-                min-width: 130%;
-
-                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                    min-width: unset;
-                }
-            }
-        }
-    }
-
-    &.is-vertical.is-alignCenter {
-        padding-right: vw(1);
-
-        .section-work {
-
-            &__cover {
-                width: vw(30);
-
-                @media screen and #{inspect(map-get($breakpoints, 'large'))} {
-                    width: vw(36);
-                    padding-right: vw(3);
-                }
-
-                @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                    width: 100%;
-                    padding-right: 0;
-                }
-            }
-        }
-    }
-
-    &.is-vertical.is-alignLeft {
-        margin-left: 8rem;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            margin-left: 0;
-        }
-    }
-
-    &.is-horizontal.is-alignLeft .section-work, &.is-square.is-alignLeft .section-work {
-
-        &__scribble {
-            width: 13%;
-            top: 93%;
-            left: 4%;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                width: 11%;
-                top: -10%;
-                left: 3%;
-            }
-        }
-    }
-
-    &.is-horizontal.is-alignCenter .section-work, &.is-square.is-alignCenter .section-work {
-
-        &__container {
-            flex-direction: row-reverse;
-        }
-
-        &__scribble {
-            width: 30%;
-            top: -10%;
-            left: 90%;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                width: 26%;
-                top: -6%;
-                left: unset;
-                right: 0;
-            }
-        }
-
-        &__header {
-            flex-direction: row-reverse;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                flex-direction: row;
-            }
-        }
-
-        &__index {
-            margin: 4px 16px 0 0;
-
-            @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-                margin: 10px 0 0 12px;
-            }
-        }
-    }
-
-    // COLORS
-    &.is-beige, .section-work {
-
-        &__cover-overlay {
-            background-color: $beige;
-        }
-    }
-
-    &.is-lightblue .section-work {
-
-        &__cover-overlay {
-            background-color: $blue-light;
-        }
-    }
-
-    &.is-blue, .section-work {
-
-        &__cover-overlay {
-            background-color: $blue;
-        }
-    }
-
-    &.is-green, .section-work {
-
-        &__cover-overlay {
-            background-color: $green;
-        }
-    }
-
-    &.is-pink, .section-work {
-
-        &__cover-overlay {
-            background-color: $pink;
-        }
-    }
-
-    &.is-orange, .section-work {
-
-        &__cover-overlay {
-            background-color: $orange;
-        }
-    }
-
-    &__container {
-        display: flex;
-        align-items: center;
-        gap: 48px;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            flex-direction: column!important;
-            gap: 8px;
-        }
-    }
-
-    &__link {
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 100%;
-        }
-    }
-
-    &__coverContainer {
-        position: relative;
-
-        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 100%;
-        }
-    }
-
+  // STATES
+  &.is-visible .section-work {
     &__cover {
-        position: relative;
-        width: 100%;
-        clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-        transition: clip-path 0.7s $strong-ease-out, transform 0.9s $strong-ease-out;
-
-        @extend %cover-media-container;
-    }
-
-    &__cover-inner {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        transition: transform 1.8s $strong-ease-out 0.4s;
-
-        .component-parallax {
-            transition: transform 1.4s $strong-ease-out;
-        }
+      clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
     }
 
     &__cover-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
-        transition: clip-path 1.4s $strong-ease-out 0.4s;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     }
+  }
 
-    &__text {
+  &.is-visible &__link {
+    @include hover() {
+      .section-work__cover {
+        transform: scale(0.95);
+
+        &-inner .component-parallax {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  // FORMATS & ALIGNMENTS
+  &.is-alignCenter {
+    justify-content: center;
+  }
+
+  &.is-horizontal,
+  &.is-square {
+    .section-work {
+      &__cover {
+        width: vw(50.4);
+        aspect-ratio: 1.67;
+        padding-bottom: 61%;
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+          width: vw(64);
+        }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            width: 100%;
-            margin-top: 16px;
+          width: 100%;
         }
+      }
     }
+  }
 
-    &__header {
-        position: relative;
-        max-width: vw(32);
+  &.is-vertical {
+    .section-work {
+      &__cover {
+        padding-bottom: 141%;
+        width: vw(26.6);
+        aspect-ratio: 0.7;
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+          width: vw(32);
+        }
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            max-width: unset;
+          width: 100%;
         }
-    }
+      }
 
-    &__name {
-        display: inline-block;
-        color: $beige;
-        text-transform: lowercase;
-    }
-
-    &__index {
-        position: absolute;
-        font-family: $rebond-extralight;
-        color: $beige;
-        margin: 10px 0 0 10px;
-        overflow: hidden;
-    }
-
-    &__tags {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        margin: 24px 0 0 0;
+      &__scribble {
+        width: 50%;
+        top: 87%;
+        left: -27%;
 
         @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-            flex-direction: row;
-            gap: 16px;
-            margin: 12px 0 0 0;
+          width: 35%;
+          top: 62%;
+          right: -5%;
+          left: unset;
         }
-    }
+      }
 
-    &__tag-item {
-        font-family: $neue-regular;
-        color: $beige;
-        text-transform: uppercase;
-        overflow: hidden;
+      &__text {
+        min-width: 130%;
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+          min-width: unset;
+        }
+      }
+    }
+  }
+
+  &.is-vertical.is-alignCenter {
+    padding-right: vw(1);
+
+    .section-work {
+      &__cover {
+        width: vw(30);
+
+        @media screen and #{inspect(map-get($breakpoints, 'large'))} {
+          width: vw(36);
+          padding-right: vw(3);
+        }
+
+        @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+          width: 100%;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  &.is-vertical.is-alignLeft {
+    margin-left: 8rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      margin-left: 0;
+    }
+  }
+
+  &.is-horizontal.is-alignLeft .section-work,
+  &.is-square.is-alignLeft .section-work {
+    &__scribble {
+      width: 13%;
+      top: 93%;
+      left: 4%;
+
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        width: 11%;
+        top: -10%;
+        left: 3%;
+      }
+    }
+  }
+
+  &.is-horizontal.is-alignCenter .section-work,
+  &.is-square.is-alignCenter .section-work {
+    &__container {
+      flex-direction: row-reverse;
     }
 
     &__scribble {
-        position: absolute;
+      width: 30%;
+      top: -10%;
+      left: 90%;
 
-        svg path {
-            stroke-width: 2px;
-
-            @include respond-to('medium') {
-                stroke-width: 3px;
-            }
-        }
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        width: 26%;
+        top: -6%;
+        left: unset;
+        right: 0;
+      }
     }
+
+    &__header {
+      flex-direction: row-reverse;
+
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        flex-direction: row;
+      }
+    }
+
+    &__index {
+      margin: 4px 16px 0 0;
+
+      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+        margin: 10px 0 0 12px;
+      }
+    }
+  }
+
+  // COLORS
+  &.is-beige,
+  .section-work {
+    &__cover-overlay {
+      background-color: $beige;
+    }
+  }
+
+  &.is-lightblue .section-work {
+    &__cover-overlay {
+      background-color: $blue-light;
+    }
+  }
+
+  &.is-blue,
+  .section-work {
+    &__cover-overlay {
+      background-color: $blue;
+    }
+  }
+
+  &.is-green,
+  .section-work {
+    &__cover-overlay {
+      background-color: $green;
+    }
+  }
+
+  &.is-pink,
+  .section-work {
+    &__cover-overlay {
+      background-color: $pink;
+    }
+  }
+
+  &.is-orange,
+  .section-work {
+    &__cover-overlay {
+      background-color: $orange;
+    }
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      flex-direction: column !important;
+      gap: 8px;
+    }
+  }
+
+  &__link {
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 100%;
+    }
+  }
+
+  &__coverContainer {
+    position: relative;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 100%;
+    }
+  }
+
+  &__cover {
+    position: relative;
+    width: 100%;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    transition: clip-path 0.7s $strong-ease-out, transform 0.9s $strong-ease-out;
+
+    @extend %cover-media-container;
+  }
+
+  &__cover-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 1.8s $strong-ease-out 0.4s;
+
+    .component-parallax {
+      transition: transform 1.4s $strong-ease-out;
+    }
+  }
+
+  &__cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+    transition: clip-path 1.4s $strong-ease-out 0.4s;
+  }
+
+  &__text {
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      width: 100%;
+      margin-top: 16px;
+    }
+  }
+
+  &__header {
+    position: relative;
+    max-width: vw(32);
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      max-width: unset;
+    }
+  }
+
+  &__name {
+    display: inline-block;
+    color: $beige;
+    text-transform: lowercase;
+  }
+
+  &__index {
+    position: absolute;
+    font-family: $rebond-regular;
+    color: $beige;
+    margin: 10px 0 0 10px;
+    overflow: hidden;
+  }
+
+  &__tags {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 24px 0 0 0;
+
+    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+      flex-direction: row;
+      gap: 16px;
+      margin: 12px 0 0 0;
+    }
+  }
+
+  &__tag-item {
+    font-family: $neue-regular;
+    color: $beige;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  &__scribble {
+    position: absolute;
+
+    svg path {
+      stroke-width: 2px;
+
+      @include respond-to("medium") {
+        stroke-width: 3px;
+      }
+    }
+  }
 }

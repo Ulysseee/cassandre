@@ -72,7 +72,7 @@
     &-inner {
       font-size: clamp(1rem, vw(4), 2rem);
       line-height: clamp(1rem, vw(4), 2rem);
-      font-family: $rebond-extralight;
+      font-family: $rebond-regular;
       text-transform: lowercase;
       letter-spacing: -2px;
     }
@@ -88,7 +88,7 @@
     }
 
     &-parenthesis {
-      font-family: $rebond-extralight;
+      font-family: $rebond-regular;
     }
   }
 
@@ -151,7 +151,7 @@
       }
 
       &-text {
-        font-family: $rebond-extralight;
+        font-family: $rebond-regular;
         color: #1c1b1a4d;
         font-size: 0.875rem;
         line-height: 1.5rem;
@@ -164,7 +164,7 @@
     }
 
     &-text {
-      font-family: $rebond-extralight;
+      font-family: $rebond-regular;
       padding-top: vw(3);
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
@@ -278,7 +278,7 @@
   &-client {
     margin-left: auto;
     width: clamp(27.25rem, vw(29), vw(33));
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
     margin-bottom: vw(3);
 
     &-surtitle {

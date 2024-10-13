@@ -51,7 +51,7 @@
 
   &-mail {
     position: relative;
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
     margin-bottom: 0.875rem;
     display: block;
 
@@ -124,7 +124,7 @@
   &-content {
     display: flex;
     flex-wrap: nowrap;
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       flex-direction: column;
@@ -196,7 +196,7 @@
   }
 
   &-legal {
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -209,7 +209,7 @@
   }
 
   &-signature-link {
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
 
     @include index-layer(relative, content, raised);
 

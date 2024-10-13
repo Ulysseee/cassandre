@@ -11,20 +11,22 @@
 
   @include hover() {
     .component-circledButton {
-      //   &-text {
-      //     transform: translateX(28px);
-      //     transition-delay: 0.1s;
-      //   }
+      &-text {
+        transform: translateX(-76px);
+        transition-delay: 0.18s;
+      }
 
-      &-arrow {
-        &:nth-of-type(1) {
-          transform: translateX(74px);
-          transition-delay: 0.2s;
-        }
-
-        &:nth-of-type(2) {
-          transform: translateX(90px);
+      &-whitespace--first {
+        .component-circledButton-arrow {
+          transform: translateX(112px);
           transition-delay: 0s;
+        }
+      }
+
+      &-whitespace--second {
+        .component-circledButton-arrow {
+          transform: translateX(70px);
+          transition-delay: 0.32s;
         }
       }
     }
@@ -35,15 +37,16 @@
     // width: 242px;
     display: flex;
     justify-content: space-between;
-    padding: 0 12px;
+    padding: 0 7px;
     font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
     align-items: center;
   }
 
   &-text {
-    font-family: $rebond-extralight;
+    font-family: $rebond-regular;
     color: $black;
-    transition: transform 1s $middle-ease-out;
+    transition: transform 0.8s $middle-ease-out;
+    transition-delay: 0.18s;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       font-size: 14px;
@@ -54,20 +57,30 @@
     position: relative;
     width: 76px;
     overflow: hidden;
+    display: flex;
+    height: 16px;
+
+    &--first {
+      .component-circledButton-arrow {
+        transition-delay: 0.32s;
+      }
+    }
+
+    &--second {
+      position: absolute;
+      right: 0;
+
+      .component-circledButton-arrow {
+        position: absolute;
+        right: 100%;
+        transition-delay: 0s;
+        transform: translate(-10px);
+      }
+    }
   }
 
   &-arrow {
-    transition: transform 1s $middle-ease-out;
-
-    &:nth-of-type(1) {
-      position: absolute;
-      right: 100%;
-      transform: translateX(-16px);
-    }
-
-    &:nth-of-type(2) {
-      transition-delay: 0.12s;
-    }
+    transition: transform 0.8s $middle-ease-out;
 
     @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
       width: 15px;
@@ -76,6 +89,7 @@
 
   &-parenthesis {
     position: absolute;
+    padding-top: 3px;
 
     &--left {
       left: 0;

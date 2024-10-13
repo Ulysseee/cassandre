@@ -46,6 +46,18 @@
 }
 
 @font-face {
+  font-family: $rebond-regular;
+  src: url("../assets/fonts/rebond-regular/rebond-regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/rebond-regular/rebond-regular.woff") format("woff"),
+    url("../assets/fonts/rebond-regular/rebond-regular.ttf") format("tff"),
+    url("../assets/fonts/rebond-regular/rebond-regular.eot") format("eot");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: $vtc-carrie;
   src: url("../assets/fonts/vtc-carrie/VTCCarrie-Regular.woff2") format("woff2"),
     url("../assets/fonts/vtc-carrie/VTCCarrie-Regular.woff") format("woff"),
