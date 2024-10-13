@@ -3,7 +3,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin: vw(12) 0;
+  margin: vw(9.75) 0 vw(9.75) 0;
 
   @media screen and #{inspect(map-get($breakpoints, 'small'))} {
     margin: 1rem 0;

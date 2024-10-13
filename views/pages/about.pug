@@ -17,8 +17,8 @@ block page
                     span.page-about-wrapper-image-inner-scotch
                         +image('images/scotch.png', 200, 70, '')
                     +image(aboutPage.portrait.fields.file.url, aboutPage.portrait.fields.file.details.image.width, aboutPage.portrait.fields.file.details.image.height, aboutPage.portrait.fields.file.title)(data-component='Image' data-option-delay='0.6' data-option-opacity)
-                .page-about-wrapper-image-text
-                    p.ui-p-s(data-component='Paragraph' data-option-delay='0.7' data-option-opacity)=aboutPage.portrait.fields.description
+                //- .page-about-wrapper-image-text
+                //-     p.ui-p-s(data-component='Paragraph' data-option-delay='0.7' data-option-opacity)=aboutPage.portrait.fields.description
 
             .page-about-wrapper-text
                 ul.page-about-wrapper-text-skills

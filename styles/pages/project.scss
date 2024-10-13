@@ -11,11 +11,8 @@
     }
   }
 
-  &-divider {
-    width: 1px;
-    height: min(#{32vh}, 235px);
-    margin: 2.875rem auto 1.5rem auto;
-    background-color: $black;
+  .component-circledButton + .section-bigSmallImages {
+    margin-top: 5.25rem;
   }
 
   &-sliderSection {
