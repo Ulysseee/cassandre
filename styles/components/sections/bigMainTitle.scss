@@ -3,10 +3,24 @@
   justify-content: center;
   align-items: center;
   margin: vw(9.75) 0 vw(9.75) 0;
-  min-height: vh(55);
+  min-height: 727px;
+
+  @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
+    min-height: 652px;
+  }
+
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    min-height: 508px;
+  }
 
   &-text {
-    width: clamp(24rem, vw(40), 48rem);
+    width: clamp(44rem, vw(72), 66.25rem);
+    font-size: 2rem;
+    line-height: 1.2;
     text-align: center;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 1.125rem;
+    }
   }
 }
