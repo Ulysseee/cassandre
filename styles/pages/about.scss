@@ -18,20 +18,18 @@
   }
 
   &-title {
-    max-width: 1300px;
+    max-width: 1360px;
     position: relative;
     font-family: $vtc-carrie;
     text-transform: uppercase;
     color: $white;
     text-align: center;
-    font-size: clamp(3.5rem, vw(6.4), 8.75rem);
-    line-height: clamp(3.5rem, vw(6), 8.75rem);
+    font-size: clamp(3.5rem, vw(8.8), 8.75rem);
+    line-height: clamp(3.5rem, vw(7.3), 8.75rem);
     margin: 0 auto;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       max-width: 100%;
-      //   font-size: clamp(2.125rem, vw(20.4), 3.125rem);
-      //   line-height: clamp(2.125rem, vw(20), 3.125rem);
       font-size: clamp(2.125rem, vw(16.4), 3.125rem);
       line-height: clamp(2.125rem, vw(16), 3.125rem);
     }
@@ -58,7 +56,7 @@
     position: relative;
     color: $white;
     overflow: hidden;
-    min-width: clamp(7rem, vw(15), 18.75rem);
+    min-width: clamp(7rem, vw(17), 18.75rem);
 
     &-word {
       width: fit-content;
@@ -107,7 +105,6 @@
     justify-content: space-between;
     margin-top: vw(2.2);
     margin-bottom: vw(8);
-    padding-right: vw(8);
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       flex-direction: column;
@@ -130,7 +127,7 @@
 
         &-scotch {
           position: absolute;
-          top: -13%;
+          top: -57px;
           left: 0;
           right: 0;
           margin: 0 auto;
@@ -166,6 +163,8 @@
     &-text {
       font-family: $rebond-regular;
       padding-top: vw(3);
+      width: clamp(34.563rem, vw(29), vw(33));
+      padding-right: vw(14);
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
         width: 100%;
@@ -184,7 +183,8 @@
       }
 
       &-activities {
-        font-size: calc(clamp(5.5em, vw(7), 8em) * 0.159);
+        font-size: 1.25rem;
+        line-height: 1.2;
         width: clamp(19.75rem, vw(11.1), vw(15.5));
         margin-top: 1rem;
 
@@ -218,6 +218,7 @@
             cursor: pointer;
             color: $black;
             transition: color 1s $middle-ease-out;
+            font-size: 1.25rem;
 
             @media screen and #{inspect(map-get($breakpoints, 'small'))} {
               font-size: 1.125rem;
@@ -277,12 +278,13 @@
 
   &-client {
     margin-left: auto;
-    width: clamp(27.25rem, vw(29), vw(33));
+    width: clamp(34.563rem, vw(29), vw(33));
     font-family: $rebond-regular;
     margin-bottom: vw(3);
 
     &-surtitle {
       font-size: 1rem;
+      line-height: 1.2;
       margin-bottom: 1rem;
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
@@ -291,6 +293,8 @@
     }
 
     &-list {
+      font-size: 1.25rem;
+
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
         font-size: 1.125rem;
       }

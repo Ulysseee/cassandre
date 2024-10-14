@@ -8,17 +8,16 @@ block variables
 
 block page
 
-    section.ui-container.page-about-content
+    section.ui-container-large.page-about-content
         h1.page-about-title(data-component='AboutTitle' data-loop=`${aboutPage.loopingWords.join()}`)!=getTitleAbout(aboutPage.title)
 
         .page-about-wrapper
             .page-about-wrapper-image
                 .page-about-wrapper-image-inner
                     span.page-about-wrapper-image-inner-scotch
-                        +image('images/scotch.png', 200, 70, '')
+                        +image('images/scotch.png', 200, 70, '')(data-component='Image' data-option-delay='0.8' data-option-opacity)
                     +image(aboutPage.portrait.fields.file.url, aboutPage.portrait.fields.file.details.image.width, aboutPage.portrait.fields.file.details.image.height, aboutPage.portrait.fields.file.title)(data-component='Image' data-option-delay='0.6' data-option-opacity)
-                //- .page-about-wrapper-image-text
-                //-     p.ui-p-s(data-component='Paragraph' data-option-delay='0.7' data-option-opacity)=aboutPage.portrait.fields.description
+            
 
             .page-about-wrapper-text
                 ul.page-about-wrapper-text-skills
@@ -34,10 +33,10 @@ block page
                     ul.page-about-wrapper-text-carreer-list
                         each activity in aboutPage.pastExperiences
                             li.page-about-wrapper-text-carreer-list-item
-                                svg.page-about-wrapper-text-carreer-list-item-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')
-                                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='currentColor' stroke-width='0.813303')
-                                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='currentColor' stroke-width='0.813303')
-                                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='currentColor' stroke-width='0.813303')
+                                svg.page-about-wrapper-text-carreer-list-item-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')(data-component='Image' data-option-delay='0.9' data-option-opacity)
+                                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='currentColor' stroke-width='1.5')
+                                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='currentColor' stroke-width='1.5')
+                                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='currentColor' stroke-width='1.5')
                                 span.page-about-wrapper-text-carreer-list-item-name(data-component='Paragraph' data-option-delay='0.9' data-option-opacity)=activity.key
                                 span.page-about-wrapper-text-carreer-list-item-date(data-component='Paragraph' data-option-delay='1' data-option-opacity)='('+activity.value+')'
 
