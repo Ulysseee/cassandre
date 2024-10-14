@@ -1,33 +1,6 @@
 .section-projectHeader {
   position: relative;
 
-  &.is-vertical .section-projectHeader {
-    &-bottom {
-      width: 100%;
-      max-width: 628px;
-    }
-
-    &-cover {
-      padding-bottom: 121%;
-    }
-  }
-
-  &.is-horizontal .section-projectHeader,
-  &.is-square .section-projectHeader {
-    &-text {
-      width: 100%;
-      max-width: 1240px;
-    }
-
-    &-bottom {
-      width: 100%;
-    }
-
-    &-cover {
-      padding-bottom: 58%;
-    }
-  }
-
   &-container {
     display: flex;
     flex-direction: column;
@@ -80,6 +53,7 @@
     position: relative;
     width: 100%;
     height: 0;
+    padding-bottom: 58%;
 
     .component-parallax {
       height: unset;
@@ -91,6 +65,7 @@
     gap: 3.125rem;
     margin-left: auto;
     margin-right: 3rem;
+    margin-top: 2rem;
     font-family: $rebond-regular;
     padding: 0;
 
@@ -99,6 +74,9 @@
       margin-right: 0;
       margin-left: 0;
       margin-top: 2.5rem;
+      width: 100%;
+      padding-left: var(--container-padding);
+      padding-right: var(--container-padding);
     }
   }
 
@@ -108,6 +86,7 @@
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       gap: 1rem;
+      flex: 1;
       flex-direction: column;
     }
 
@@ -118,6 +97,7 @@
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
         font-size: 1.125rem;
+        max-width: none;
       }
     }
   }
