@@ -165,9 +165,9 @@ const bootApp = async () => {
 const appLoaded = new Promise((resolve) => {
   window.addEventListener("load", resolve);
   window.onbeforeunload = function () {
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
 });
 
-// Promise.all([appLoaded, overlayTransition.animateIn()]).then(bootApp);
+Promise.all([appLoaded, overlayTransition.animateIn()]).then(bootApp);
 Promise.all([appLoaded]).then(bootApp);
