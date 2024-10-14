@@ -29,7 +29,7 @@ export default class Parallax extends withFreezedOptions(
     this.scaleString = `scale(${1 + this.$options.percent / 100}, ${
       1 + this.$options.percent / 100
     })`;
-    this.$el.style.transform = `scaleX(${1 + this.$options.percent / 100})`;
+    this.$el.style.transform = `scale(${1 + this.$options.percent / 100})`;
     this.$refs.container.style.transform = this.scaleString;
   }
 
