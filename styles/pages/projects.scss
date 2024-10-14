@@ -1,4 +1,6 @@
 .page-projects {
+  background: linear-gradient($white, $new-dark-beige 80%);
+
   &-header {
     @extend .ui-container;
     display: flex;
