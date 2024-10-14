@@ -29,8 +29,9 @@ class App extends AppEvents {
   static config = {
     name: "App",
     components: {
-      // Shared Components
-      Cursor: () => import("./components/Cursor"),
+      // Shared components
+      ...(!isTouchDevice() && { Cursor }),
+      //   Cursor: () => import("./components/Cursor"),
 
       // Global Components
       Navigation,
