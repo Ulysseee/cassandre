@@ -60,11 +60,11 @@
 
   &-year {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       font-size: 1.125rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
   }
 
