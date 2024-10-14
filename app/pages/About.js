@@ -21,6 +21,8 @@ export default class About extends Page {
   scribble = null;
 
   mounted() {
+    super.mounted();
+
     [this.title] = this.$children.AboutTitle;
     [this.scribble] = this.$children.SVGReveal;
     this.title.onAnimateInStart = this.onTitleAnimateInStart.bind(this);
@@ -31,5 +33,9 @@ export default class About extends Page {
       ease: "cubic.out",
       delay: 1,
     });
+  }
+
+  destroyed() {
+    super.mounted();
   }
 }

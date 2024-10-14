@@ -17,6 +17,8 @@ export default class Projects extends Page {
   };
 
   mounted() {
+    super.mounted();
+
     [this.title] = this.$children.Title;
     [this.scribble] = this.$children.SVGReveal;
     this.title.onAnimateInComplete = this.onTitleAnimateInStart.bind(this);
@@ -27,5 +29,9 @@ export default class Projects extends Page {
       ease: "cubic.out",
       delay: 0.5,
     });
+  }
+
+  destroyed() {
+    super.mounted();
   }
 }

@@ -6,13 +6,13 @@
 
   &-wrapper {
     width: 80%;
-    padding-top: calc(var(--section-padding) * 0.18);
-    padding-bottom: calc(var(--section-padding) * 0.1);
+    // padding-top: calc(var(--section-padding) * 0.18);
+    // padding-bottom: calc(var(--section-padding) * 0.1);
     margin-left: auto;
     display: flex;
     gap: 126px;
     font-family: $rebond-regular;
-    @extend .ui-container-large;
+    // @extend .ui-container-large;
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       margin-left: 0;

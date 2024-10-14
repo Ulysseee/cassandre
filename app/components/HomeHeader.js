@@ -11,6 +11,7 @@ import { ANIMATIONS } from "../constants/animations";
 import CustomEase from "gsap/CustomEase";
 import { triggerChildrenAnimateIn } from "../utils/triggerChildrenAnimateIn";
 import Paragraph from "./Paragraph";
+import { isTouchDevice } from "../utils/detector";
 
 const Engine = Matter.Engine,
   Render = Matter.Render,
@@ -213,18 +214,24 @@ export default class HomeHeader extends withIntersectionObserver(
 
   scrolled({ y, progress, max }) {
     this.scrollProgressY = progress.y;
-    // this.progressOutOfView = clamp(y / window.innerHeight, 0, 1);
-    this.progressOutOfView = clamp(y / max.y, 0, 1);
-    this.maxTranslateY = max.y - window.innerHeight + window.innerHeight / 10;
+    this.progressOutOfView = clamp(y / window.innerHeight, 0, 1);
+    // this.progressOutOfView = clamp(y / max.y, 0, 1);
+    // this.maxTranslateY = max.y - window.innerHeight + window.innerHeight / 10;
+    // this.maxTranslateY = max.y - window.innerHeight;
+    this.maxTranslateY =
+      this.$refs.content.clientHeight * (isTouchDevice() ? 2.5 : 1.5);
     this.minScale = 0.5;
   }
 
   ticked() {
+    // console.log("this.progressOutOfView", this.progressOutOfView);
+
     return () => {
       this.engine.gravity.y = this.progressOutOfView;
       gsap.set(this.$refs.content, {
-        y: this.maxTranslateY * this.scrollProgressY,
-        opacity: 1 - this.progressOutOfView + 0.1,
+        // y: this.maxTranslateY * this.scrollProgressY,
+        y: this.maxTranslateY * this.progressOutOfView,
+        // opacity: 1 - this.progressOutOfView * 5.6 + 0.1,
       });
     };
   }

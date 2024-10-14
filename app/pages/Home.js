@@ -27,26 +27,29 @@ export default class Home extends Page {
   }
 
   boot() {
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: this.$el,
-        // start: "top top", // when the top of the trigger hits the top of the viewport
-        start: `${window.innerHeight}`,
-        end: `bottom-=30% bottom`, // end after scrolling 500px beyond the start
-        scrub: 1,
-        // markers: true,
-        // onEnter: () => {
-        //   console.log("Enter");
-        // },
-        // onLeave: () => {
-        //   console.log("Leave");
-        // },
-        // onEnterBack: () => {
-        //   console.log("EnterBack");
-        // },
-      },
-    });
+    // let tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: this.$el,
+    //     // start: "top top", // when the top of the trigger hits the top of the viewport
+    //     start: `${window.innerHeight}`,
+    //     end: `bottom-=30% bottom`, // end after scrolling 500px beyond the start
+    //     scrub: 1,
+    //     // markers: true,
+    //     // onEnter: () => {
+    //     //   console.log("Enter");
+    //     // },
+    //     // onLeave: () => {
+    //     //   console.log("Leave");
+    //     // },
+    //     // onEnterBack: () => {
+    //     //   console.log("EnterBack");
+    //     // },
+    //   },
+    // });
+    // tl.to(this.$el, { backgroundColor: "#ede9e3" });
+  }
 
-    tl.to(this.$el, { backgroundColor: "#ede9e3" });
+  destroyed() {
+    super.mounted();
   }
 }

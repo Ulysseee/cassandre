@@ -38,7 +38,9 @@ export default class Cursor extends withBreakpointObserver(Base) {
     type: null,
   };
 
-  mounted() {}
+  mounted() {
+    window.cursor = this.$el;
+  }
 
   moved({ x, y, last, isDown, delta }) {
     toggleClass(this.$el, "is-down", isDown);
@@ -163,6 +165,10 @@ export default class Cursor extends withBreakpointObserver(Base) {
       );
       addClass(this.$el, "on-link");
     }
+  }
+
+  disable() {
+    this.isListening = false;
   }
 
   set isListening(value) {

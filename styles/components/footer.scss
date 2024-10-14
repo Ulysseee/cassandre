@@ -6,7 +6,7 @@
   align-items: center;
   color: $black;
   overflow: hidden;
-  background: transparent;
+  background: $new-dark-beige;
   min-height: auto;
 
   @media screen and #{inspect(map-get($breakpoints, 'large'))} {

@@ -1,9 +1,23 @@
 .page-home {
-  background: linear-gradient($white, $new-dark-beige);
+  //   background: linear-gradient($white, $new-dark-beige);
+  background: $new-beige;
 
   .section-titleParagraph {
+    margin: 0;
+    background: $new-dark-beige;
+    padding-bottom: calc(var(--section-padding) * 0.6);
+    position: relative;
+    z-index: 1;
+    margin-top: -6rem;
+
     &-wrapper {
       width: 66%;
+      position: relative;
+      z-index: 1;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        width: 100%;
+      }
     }
 
     &-title {
@@ -12,6 +26,7 @@
   }
 
   &-works {
+    background: $new-dark-beige;
     overflow: hidden;
     display: flex;
     gap: 1.25rem;
@@ -32,6 +47,8 @@
   }
 
   &-projectsButton {
+    background: $new-dark-beige;
+
     display: flex;
     justify-content: flex-end;
     padding-right: 10.125rem;

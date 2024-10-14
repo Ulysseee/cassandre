@@ -48,8 +48,8 @@
     transition: transform 0.8s $middle-ease-out;
     transition-delay: 0.18s;
 
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-      font-size: 14px;
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      font-size: 1.125rem;
     }
   }
 
