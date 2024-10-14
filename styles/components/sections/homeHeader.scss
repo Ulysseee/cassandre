@@ -35,6 +35,7 @@
 
   &-content {
     @include index-layer(relative, content, raised);
+    margin-bottom: 2rem;
   }
 
   &-title {
@@ -71,7 +72,9 @@
   }
 
   &-baseline {
-    font-size: clamp(0.875rem, vw(1.1), 1.25rem);
+    font-family: $rebond-regular;
+    font-size: 1.25rem;
+    line-height: 1.2;
     color: $black;
     margin-top: 4px;
     opacity: 0.6;

@@ -26,21 +26,21 @@
 }
 
 .ui-h2 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(3.5rem, vw(7), 8.75rem);
   line-height: 1.2;
   letter-spacing: -4px;
 }
 
 .ui-h3 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(3rem, vw(6), 5rem);
   line-height: 1;
   letter-spacing: -3px;
 }
 
 .ui-h4 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(3rem, vw(5), 4.5rem);
   line-height: 0.93;
   letter-spacing: -2px;
@@ -51,7 +51,7 @@
 }
 
 .ui-h5 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: font-size(40px, 64px);
   line-height: 1;
   letter-spacing: -2px;
@@ -62,14 +62,14 @@
 }
 
 .ui-h6 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(2rem, vw(3), 2.5rem);
   line-height: 1.2;
   letter-spacing: -1px;
 }
 
 .ui-h7 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: font-size(22px, 40px);
   line-height: 1.05;
   letter-spacing: -2px;
@@ -81,13 +81,13 @@
 }
 
 .ui-h8 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(1.1rem, vw(8), 2rem);
   line-height: 1;
 }
 
 .ui-h9 {
-  font-family: $rebond-extralight;
+  font-family: $rebond-regular;
   font-size: clamp(1rem, vw(1.4), 1.5rem);
   line-height: 1;
   letter-spacing: -1px;

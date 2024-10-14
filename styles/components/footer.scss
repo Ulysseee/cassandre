@@ -25,6 +25,7 @@
     width: 100%;
     padding-top: calc(var(--section-padding) * 0.18);
     padding-bottom: calc(var(--section-padding) * 0.1);
+    background: $new-beige;
 
     @extend .ui-container;
   }
