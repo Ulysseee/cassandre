@@ -170,4 +170,4 @@ const appLoaded = new Promise((resolve) => {
 });
 
 Promise.all([appLoaded, overlayTransition.animateIn()]).then(bootApp);
-Promise.all([appLoaded]).then(bootApp);
+// Promise.all([appLoaded]).then(bootApp);
