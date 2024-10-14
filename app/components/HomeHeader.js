@@ -58,13 +58,13 @@ export default class HomeHeader extends withIntersectionObserver(
         type: Array,
         default: () => [
           COLORS.brownLight,
-          COLORS.beige,
           COLORS.orange,
-          COLORS.brownLight,
           COLORS.beige,
           COLORS.brownLight,
           COLORS.orange,
+          COLORS.beige,
           COLORS.brownLight,
+          COLORS.orange,
         ],
       },
       positions: {
