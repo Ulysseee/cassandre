@@ -113,8 +113,9 @@
     }
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-      margin-right: 0;
-      padding-top: 0;
+      //   margin-right: 0;
+      //   padding-top: 0;
+      display: none;
     }
 
     &Item {
