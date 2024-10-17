@@ -43,7 +43,8 @@
     &Word {
       color: $black;
       letter-spacing: -1%;
-      font-size: clamp(0.875rem, 1.1 * var(--vw), 1.25rem);
+      //   font-size: clamp(0.875rem, 1.1 * var(--vw), 1.25rem);
+      font-size: 1.5rem;
     }
 
     &Carret {

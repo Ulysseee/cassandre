@@ -164,10 +164,8 @@ export default class OverlayTransition extends Base {
         clipPath: "inset(100% 0 0 0)",
         duration: 1,
         ease: "expo.inOut",
-        onComplete: () => {
-          this.logoFramesAnimation = this.animateLogoFrames().repeat(5);
-        },
       })
+      .add(this.animateLogoFrames(1.4).repeat(6), "<=0.7")
       .add(
         gsap.to(this.overlay, {
           duration: 1,
@@ -181,14 +179,13 @@ export default class OverlayTransition extends Base {
             // this.logoFramesAnimation.kill();
           },
         }),
-        ">+=1"
+        "<+=0.7"
       );
   }
 
   animatePageTransitionOut({ onComplete }) {
     return gsap
       .timeline({
-        delay: 0.2,
         onComplete: async () => {
           window.lenis.scrollTo(1);
           gsap.set(this.$el, { autoAlpha: 0 });
@@ -197,7 +194,7 @@ export default class OverlayTransition extends Base {
       })
       .add(
         gsap.to(this.overlay, {
-          duration: 1,
+          duration: 1.5,
           ease: "expo.out",
           onUpdate: this.animateOverlay,
           onUpdateParams: [this.overlay, 0, "#FF6C3C"],
@@ -205,19 +202,22 @@ export default class OverlayTransition extends Base {
       );
   }
 
-  animateLogoFrames() {
+  animateLogoFrames(timescale = 1) {
     if (this.logoFramesAnimation) this.logoFramesAnimation.kill();
-    return gsap.to(this.$refs.logoFrames, {
-      onStart: () => {
-        gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
-      },
-      keyframes: [
-        { autoAlpha: 0, duration: 0 },
-        { autoAlpha: 1, duration: 0, delay: 0.04 },
-        { autoAlpha: 0, duration: 0, delay: 0.08 },
-      ],
-      stagger: 0.081,
-    });
+    return gsap
+      .timeline()
+      .timeScale(timescale)
+      .to(this.$refs.logoFrames, {
+        onStart: () => {
+          gsap.set(this.$refs.logoFrames, { autoAlpha: 0 });
+        },
+        keyframes: [
+          { autoAlpha: 0, duration: 0 },
+          { autoAlpha: 1, duration: 0, delay: 0.04 },
+          { autoAlpha: 0, duration: 0, delay: 0.08 },
+        ],
+        stagger: 0.081,
+      });
   }
 
   animateOverlay(overlay, baseY, fillColor) {

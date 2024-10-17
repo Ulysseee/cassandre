@@ -161,6 +161,11 @@
   &-social-item {
     display: inline-block;
     line-height: 1.25;
+    transition: color 1s $middle-ease-out;
+
+    @include hover() {
+      color: $orange;
+    }
   }
 
   &-social-list {

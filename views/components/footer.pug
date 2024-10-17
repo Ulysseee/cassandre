@@ -28,7 +28,7 @@ footer.component-footer(data-component='Footer')
                 .component-footer-legal
                     p © #{new Date().getFullYear()}
                     .component-footer-signature
-                        .component-footer-signature-link=footer.signatureDesigner + ' '
-                            +scribble-link(footer.designerLink, 'Cassandre Levrard', {"target":"_blank"}, {"rel": "noopener noreferrer"})
-                        .component-footer-signature-link=', ' + footer.developerSignature + ' '
-                            +scribble-link(footer.developerLink, 'Tibère Debizet', {"target":"_blank"}, {"rel": "noopener noreferrer"})
+                        .component-footer-signature-link=footer.signature + ' '
+                            +scribble-link(footer.firstDeveloperLink, 'Tibère Debizet', {"target":"_blank"}, {"rel": "noopener noreferrer"})
+                            span="& "
+                            +scribble-link(footer.secondDeveloperLink, 'Ulysse Gravier', {"target":"_blank"}, {"rel": "noopener noreferrer"})

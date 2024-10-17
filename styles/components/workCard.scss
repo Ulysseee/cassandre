@@ -98,6 +98,7 @@
   }
 
   &-name {
+    line-height: 1.2;
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       font-size: 1.125rem;
     }
