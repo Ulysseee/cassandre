@@ -16,7 +16,7 @@ footer.component-footer(data-component='Footer')
                             span.component-footer-mailText(data-component='Title')!=getMail(common.externalLinks).value
                         ul.component-footer-social-list
                             each externalLink, index in common.externalLinks
-                                if externalLink.key !== 'mail'
+                                if externalLink.key !== 'mail' & externalLink.key !== 'Purée Maison' & externalLink.key !== 'Ultranoir' 
                                     li.component-footer-social-item
                                         a.ui-p-m.component-footer-social-link(href=externalLink.value target='_blank' rel='noopener noreferrer' class=`is-${ externalLink.key }`)
                                             span(data-component='Paragraph' data-option-delay='0.2')!=externalLink.key
