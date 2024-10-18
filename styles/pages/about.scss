@@ -232,6 +232,13 @@
               }
             }
 
+            a {
+              display: inline-flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+            }
+
             .line {
               display: inline-flex !important;
             }

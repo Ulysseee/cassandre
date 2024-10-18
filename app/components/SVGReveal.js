@@ -16,7 +16,6 @@ export default class SVGReveal extends Base {
   drawn = false;
 
   mounted() {
-    console.log("mounted", this.$el);
     if (this.drawn) return;
     this.shapes = SVG.getShapes(this.$refs.svg).map((shape) => shape.el);
     this.hideShapes();

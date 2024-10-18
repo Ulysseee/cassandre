@@ -31,14 +31,17 @@ block page
                     p.page-about-wrapper-text-carreer-title(data-component='Paragraph' data-option-delay='0.5' data-option-opacity)=aboutPage.previousActivitiesTitle
 
                     ul.page-about-wrapper-text-carreer-list
-                        each activity in aboutPage.pastExperiences
-                            li.page-about-wrapper-text-carreer-list-item
-                                svg.page-about-wrapper-text-carreer-list-item-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')(data-component='Image' data-option-delay='0.9' data-option-opacity)
-                                    path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='currentColor' stroke-width='1.5')
-                                    path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='currentColor' stroke-width='1.5')
-                                    path(d='M16.6869 8.18848L0.474121 8.18848' stroke='currentColor' stroke-width='1.5')
-                                span.page-about-wrapper-text-carreer-list-item-name(data-component='Paragraph' data-option-delay='0.9' data-option-opacity)=activity.key
-                                span.page-about-wrapper-text-carreer-list-item-date(data-component='Paragraph' data-option-delay='1' data-option-opacity)='('+activity.value+')'
+                        each externalLink in common.externalLinks
+                            each activity in aboutPage.pastExperiences
+                                if activity.key == externalLink.key
+                                    li.page-about-wrapper-text-carreer-list-item
+                                        a(href!=`${activity.key == externalLink.key ? externalLink.value : ""}` target='_blank' rel='noopener noreferrer') 
+                                            svg.page-about-wrapper-text-carreer-list-item-arrow(width='18' height='16' viewbox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg')(data-component='Image' data-option-delay='0.9' data-option-opacity)
+                                                path(d='M8.1604 1.00195C8.1604 4.61926 14.366 8.18875 16.9557 8.18875' stroke='currentColor' stroke-width='1.5')
+                                                path(d='M8.1604 15.3755C8.1604 11.7582 14.366 8.18869 16.9557 8.18869' stroke='currentColor' stroke-width='1.5')
+                                                path(d='M16.6869 8.18848L0.474121 8.18848' stroke='currentColor' stroke-width='1.5')
+                                            span.page-about-wrapper-text-carreer-list-item-name(data-component='Paragraph' data-option-delay='0.9' data-option-opacity)=activity.key
+                                            span.page-about-wrapper-text-carreer-list-item-date(data-component='Paragraph' data-option-delay='1' data-option-opacity)='('+activity.value+')'
 
         .page-about-client 
             h3.page-about-client-surtitle(data-component='Title' data-option-delay='0.5')=aboutPage.clientSurtitle
