@@ -93,12 +93,7 @@
     line-height: 1.2;
     color: $black;
     margin-top: 4px;
-    opacity: 0.6;
     margin: auto auto 3.5rem auto;
-
-    @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-      line-height: 1rem;
-    }
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       margin: auto auto vh(40) auto;

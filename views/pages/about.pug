@@ -50,8 +50,7 @@ block page
     section.page-about-push
         +parallax(aboutPage.pushImage.fields.file.url, aboutPage.pushImage.fields.file.details.image.width, aboutPage.pushImage.fields.file.details.image.height, aboutPage.pushImage.fields.description, 8, false)
         .page-about-push-content
-            h2.ui-h8.page-about-push-title(data-component='Paragraph' data-option-delay='0.5')!=aboutPage.pushTitle
-            p.page-about-push-text(data-component='Paragraph' data-option-delay='0.6')!=getWysiwyg(aboutPage.pushText)
+            h2.ui-h8.page-about-push-title(data-component='Paragraph' data-option-delay='0.3')!=aboutPage.pushTitle
             +circled-button('/projects', aboutPage.pushButton)
     
     include ../components/footer

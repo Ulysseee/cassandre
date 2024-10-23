@@ -131,7 +131,7 @@ const handleTitleAbout = (title) => {
         <span data-ref="leftParenthesis" class="page-about-loop-parenthesis page-about-loop-parenthesis--left">(</span>
         <span data-ref="loopWord" class="page-about-loop-word">
             <span data-ref="loopInner" class="page-about-loop-inner"></span>
-            <span data-ref="loopCarret" class="page-about-loop-carret"></span>
+            <span data-ref="loopCarret" class="page-about-loop-carret page-about-loop-carret--is-off"></span>
         </span>
         <span data-ref="rightParenthesis" class="page-about-loop-parenthesis page-about-loop-parenthesis--right">)</span>
     </span>

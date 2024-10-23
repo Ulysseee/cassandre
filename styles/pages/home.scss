@@ -1,5 +1,4 @@
 .page-home {
-  //   background: linear-gradient($white, $new-dark-beige);
   background: $new-beige;
 
   .section-titleParagraph {
@@ -16,7 +15,8 @@
       z-index: 1;
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-        width: 100%;
+        width: 15.5rem;
+        margin-left: auto;
       }
     }
 
@@ -43,6 +43,7 @@
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       flex-direction: column;
+      gap: 2.5rem;
     }
   }
 

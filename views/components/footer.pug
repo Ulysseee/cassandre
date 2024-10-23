@@ -12,7 +12,7 @@ footer.component-footer(data-component='Footer')
                 .component-footer-content 
                     .component-footer-content-contact
                         h5.ui-p-m.component-footer-subtitle=footer.contactColumnTitle
-                        a.ui-p-m.component-footer-mail(href='mailto:' + getMail(common.externalLinks).value data-ref='cursorLink[]')
+                        a.ui-p-m.component-footer-mail(href='mailto:' + getMail(common.externalLinks).value)
                             span.component-footer-mailText(data-component='Title')!=getMail(common.externalLinks).value
                         ul.component-footer-social-list
                             each externalLink, index in common.externalLinks

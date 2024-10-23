@@ -24,7 +24,7 @@
   &-wrapper {
     width: 100%;
     padding-top: calc(var(--section-padding) * 0.18);
-    padding-bottom: calc(var(--section-padding) * 0.1);
+    padding-bottom: calc(var(--section-padding) * 0.24);
     background: $new-beige;
 
     @extend .ui-container;
@@ -55,6 +55,11 @@
     font-family: $rebond-regular;
     margin-bottom: 0.875rem;
     display: block;
+    transition: color 1s $middle-ease-out;
+
+    @include hover() {
+      color: $orange;
+    }
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       margin-bottom: 0.5rem;
@@ -63,25 +68,6 @@
     &Text {
       position: relative;
       z-index: 1;
-    }
-
-    &Spot {
-      position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translateY(-48%) translateX(-28%);
-      width: 72px;
-      height: 72px;
-      justify-content: center;
-      align-items: center;
-      background-image: url("../assets/images/spot-orange.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      display: none;
-
-      @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
-        display: flex;
-      }
     }
   }
 

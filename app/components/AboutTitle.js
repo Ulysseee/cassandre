@@ -46,10 +46,16 @@ export default class AboutTitle extends withIntersectionObserver(Base, {
       this.loopingWords = ["design"];
     }
 
+    this.setFirstWord();
     this.split();
     gsap.set(this.splitText.chars, {
       yPercent: 103,
     });
+  }
+
+  setFirstWord() {
+    this.$refs.loopInner.innerHTML = this.loopingWords[0];
+    this.loopIndex++;
   }
 
   intersected([{ isIntersecting }]) {
@@ -94,23 +100,26 @@ export default class AboutTitle extends withIntersectionObserver(Base, {
         },
         onComplete: () => {
           if (this.onAnimateInComplete) this.onAnimateInComplete();
-
           this.$setupLoop();
         },
       }
     );
   }
 
-  animateOut() {
-    this.animateInTriggered = false;
-    gsap.killTweensOf(this.splitText.chars);
-    gsap.to(this.splitText.chars, {
-      yPercent: -100,
-      duration: 0.3,
-    });
-  }
-
   async $setupLoop() {
+    this.$refs.loopCarret.classList.remove("page-about-loop-carret--is-off");
+    await wait(300);
+    await gsap.to(this.$refs.loopInner, {
+      duration: this.DURATION,
+      ease: `step(${this.loopingWords[this.loopIndex].length})`,
+      onUpdate: function (nameTarget, nameString) {
+        nameTarget.innerText = nameString.slice(
+          0,
+          Math.round((1 - this.progress()) * nameString.length)
+        );
+      },
+      onUpdateParams: [this.$refs.loopInner, this.loopingWords[this.loopIndex]],
+    });
     await this.$onLoop();
   }
 
