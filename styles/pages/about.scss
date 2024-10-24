@@ -30,8 +30,8 @@
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       max-width: 100%;
-      font-size: clamp(2.125rem, vw(16.4), 3.125rem);
-      line-height: clamp(2.125rem, vw(16), 3.125rem);
+      font-size: clamp(2.125rem, vw(12), 3.125rem);
+      line-height: clamp(2.125rem, vw(10), 3.125rem);
     }
   }
 
@@ -73,6 +73,10 @@
       font-family: $rebond-regular;
       text-transform: lowercase;
       letter-spacing: -2px;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        letter-spacing: -0.625px;
+      }
     }
 
     &-carret {
@@ -322,6 +326,7 @@
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
         font-size: 1.125rem;
+        line-height: 1.5rem;
       }
     }
 

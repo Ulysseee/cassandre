@@ -4,6 +4,7 @@
   align-items: center;
   margin: vw(9.75) 0 vw(9.75) 0;
   min-height: 727px;
+  padding: 0 calc(var(--section-padding) * 0.26);
 
   @media screen and #{inspect(map-get($breakpoints, 'medium'))} {
     min-height: 652px;

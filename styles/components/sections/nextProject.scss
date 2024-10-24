@@ -2,6 +2,10 @@
   width: 100%;
   height: calc(#{vh(100)} + clamp(422px, #{vh(68)}, 500px));
 
+  @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+    height: calc(#{vh(100)} + #{vh(90)});
+  }
+
   &-container {
     position: sticky;
     top: 0;
@@ -20,6 +24,10 @@
     align-items: center;
     background-color: $new-dark-beige;
     pointer-events: none;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      height: vh(90);
+    }
   }
 
   &-scribble {

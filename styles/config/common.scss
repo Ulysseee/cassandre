@@ -29,19 +29,11 @@ body {
   background-color: $new-beige;
   color: $black;
 
+  overflow-x: clip;
+
   &.is-dark-beige {
     background: $new-dark-beige;
   }
-
-  //   &.is-dark {
-  //     background-color: $black;
-  //     color: $beige;
-  //   }
-
-  //   &.is-light {
-  //     background-color: $new-beige;
-  //     color: $black;
-  //   }
 
   &::before {
     content: "xs";

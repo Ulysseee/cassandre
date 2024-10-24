@@ -11,8 +11,12 @@
     }
   }
 
-  .component-circledButton + .section-bigSmallImages {
-    margin-top: 5.25rem;
+  .section-bigSmallImages {
+    margin-top: 2.25rem;
+
+    @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+      margin-top: 5.25rem;
+    }
   }
 
   &-sliderSection {
