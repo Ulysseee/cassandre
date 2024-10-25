@@ -309,6 +309,7 @@
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       font-size: 3rem;
+      margin-bottom: 0;
     }
 
     &-surtitle {

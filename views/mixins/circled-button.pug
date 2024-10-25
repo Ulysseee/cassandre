@@ -1,5 +1,5 @@
-mixin circled-button(url, text)
-    a.component-circledButton(href=url)
+mixin circled-button(url, text, rel)
+    a.component-circledButton(href=url)&attributes(ext, rel)
         .component-circledButton-content
             span(data-component='Paragraph' data-option-delay='0.3').component-circledButton-parenthesis.component-circledButton-parenthesis--left="("
             div.component-circledButton-whitespace.component-circledButton-whitespace--first(data-component='Image' data-option-delay='0.35' data-option-opacity)

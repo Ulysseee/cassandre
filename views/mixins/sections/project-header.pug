@@ -12,6 +12,4 @@ mixin project-header(name, clientName, cover, tags, format, description)
                         each tag, index in tags
                             li.section-projectHeader-tagsItem(data-component='Paragraph' data-option-delay=`${ index * 0.07 }`)=tag.sys.id + `${index === tags.length - 1 ? '' : ','}`
                     .section-projectHeader-description
-                         each $ in description.content
-                            each node in $.content
-                                p(data-component='Paragraph' data-option-delay='0.5' data-option-opacity data-option-stagger-lines).section-projectHeader-descriptionItem!=getSpacerText(node.value)
+                        p(data-component='Paragraph' data-option-delay='0.5' data-option-opacity data-option-stagger-lines data-option-column)!=getSpacerText(description)

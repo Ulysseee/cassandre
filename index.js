@@ -7,6 +7,12 @@ const ABOUT = require("./model/about");
 const COMMON = require("./model/common");
 const WORKS = require("./model/works");
 
+const WORKS_TYPE = [
+  "work_left_template",
+  "work_right_template",
+  "work_video_template",
+];
+
 const express = require("express");
 const { createClient } = require("contentful");
 const { documentToHtmlString } = require("@contentful/rich-text-html-renderer");
@@ -280,8 +286,8 @@ app.get("/project/:uid", async (req, res) => {
   const content_type = project.sys.contentType.sys.id;
 
   let nextWork = await CMS.getEntries({
-    content_type,
-    "fields.date[gte]": currentWorkDate,
+    content_type: WORKS_TYPE[Math.floor(Math.random() * WORKS_TYPE.length)],
+    // "fields.date[gte]": currentWorkDate,
     "fields.slug[nin]": currentWorkSlug,
     order: "fields.date",
     limit: 1,

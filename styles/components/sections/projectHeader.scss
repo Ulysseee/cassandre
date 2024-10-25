@@ -83,21 +83,22 @@
   &-description {
     display: flex;
     gap: 2.5rem;
+    max-width: vw(44);
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
       gap: 1rem;
       flex: 1;
       flex-direction: column;
+      max-width: none;
     }
 
-    &Item {
-      max-width: vw(22);
+    p {
       font-size: calc(clamp(5.5em, vw(7), 8em) * 0.2);
       line-height: 1.25;
 
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        column-count: 1 !important;
         font-size: 1.125rem;
-        max-width: none;
       }
     }
   }
