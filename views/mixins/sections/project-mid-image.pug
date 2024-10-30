@@ -1,4 +1,4 @@
 mixin project-mid-image(image, reverse = false)
     section.ui-container-large.section-midImage(class=reverse ? 'section-midImage--reverse' : '')
         .section-midImage-image(data-component='Image' data-option-duration='3' data-option-delay='0.35' data-option-clip-path='inset(0% 50% 0% 50%)')
-            +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 8, false)
+            +parallax(image.fields.file.url, image.fields.file.details.image.width, image.fields.file.details.image.height, image.fields.description, 0, false)
