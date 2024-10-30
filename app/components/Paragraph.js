@@ -33,7 +33,6 @@ export default class Paragraph extends withIntersectionObserver(Base, {
   setup() {
     this.split();
     if (this.$options.column) {
-      console.log("column");
       this.$el.style.columnCount = 2;
     }
     gsap.set(this.splitText.words, {
