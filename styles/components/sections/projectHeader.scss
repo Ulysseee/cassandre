@@ -32,6 +32,7 @@
   }
 
   &-year {
+    font-family: $rebond-regular;
     font-size: 1.25rem;
     margin-bottom: 1rem;
 
@@ -82,23 +83,33 @@
 
   &-description {
     display: flex;
-    gap: 2.5rem;
     max-width: vw(44);
 
     @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-      gap: 1rem;
       flex: 1;
-      flex-direction: column;
       max-width: none;
+    }
+
+    .column {
+      width: 50%;
+      font-kerning: none;
+
+      @media screen and #{inspect(map-get($breakpoints, 'small'))} {
+        width: 100%;
+      }
     }
 
     p {
       font-size: calc(clamp(5.5em, vw(7), 8em) * 0.2);
       line-height: 1.25;
 
+      gap: 2.5rem;
+      justify-content: space-between;
+
       @media screen and #{inspect(map-get($breakpoints, 'small'))} {
-        column-count: 1 !important;
         font-size: 1.125rem;
+        gap: 1rem;
+        flex-direction: column;
       }
     }
   }

@@ -62,7 +62,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7",
     "pug": "^3.0.2",
-    "split-type": "^0.3.3",
+    "split-type": "^0.3.4",
     "ua-parser-js": "^0.7.28"
   }
 }

@@ -21,7 +21,7 @@ body {
   width: vw(100);
   min-height: vh(100);
 
-  font-family: $neue-regular;
+  font-family: $rebond-regular;
   font-size: 16px;
   font-size: clamp(16px, vw(1.2), 19px);
   line-height: 1;
@@ -81,12 +81,9 @@ body {
   }
 }
 
-* {
-  font-kerning: none;
-}
-
 .line {
   overflow: hidden;
+  font-kerning: none;
 }
 
 .word {

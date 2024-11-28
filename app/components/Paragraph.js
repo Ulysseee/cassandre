@@ -2,6 +2,7 @@ import { Base, withIntersectionObserver } from "@studiometa/js-toolkit";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ANIMATIONS } from "../constants/animations";
+import { isTouchDevice } from "../utils/detector";
 
 export default class Paragraph extends withIntersectionObserver(Base, {
   ...ANIMATIONS.intersectionObserver,
@@ -20,6 +21,8 @@ export default class Paragraph extends withIntersectionObserver(Base, {
     },
   };
 
+  BREAKPOINT = 1024;
+
   splitText = null;
   wordsPerLine = null;
   animateInTriggered = false;
@@ -31,9 +34,14 @@ export default class Paragraph extends withIntersectionObserver(Base, {
   }
 
   setup() {
-    this.split();
-    if (this.$options.column) {
-      this.$el.style.columnCount = 2;
+    if (
+      this.$options.column &&
+      !isTouchDevice() &&
+      window.innerWidth > this.BREAKPOINT
+    ) {
+      this.splitColumn();
+    } else {
+      this.split();
     }
     gsap.set(this.splitText.words, {
       yPercent: 100,
@@ -44,6 +52,64 @@ export default class Paragraph extends withIntersectionObserver(Base, {
   intersected([{ isIntersecting }]) {
     if (isIntersecting && this.$options.auto && !this.animateInTriggered) {
       this.animateIn();
+    }
+  }
+
+  splitColumn() {
+    this.$el.style.fontKerning = "none";
+    const split = new SplitType(this.$el, {
+      types: "lines",
+      tagName: "span",
+    });
+    this.$el.innerHTML = "";
+
+    const firstColumn = document.createElement("div");
+    firstColumn.classList.add("column");
+    const secondColumn = document.createElement("div");
+    secondColumn.classList.add("column");
+
+    let firstRaw = "";
+    let secondRaw = "";
+    const linesTotal = split.lines.length;
+    const mid = Math.round(split.lines.length / 2);
+
+    for (let i = 0; i < linesTotal; i++) {
+      const el = split.lines[i];
+
+      if (i < mid) {
+        firstRaw = firstRaw + el.innerHTML;
+      } else {
+        secondRaw = secondRaw + el.innerHTML;
+      }
+    }
+
+    firstColumn.innerHTML = firstRaw;
+    secondColumn.innerHTML = secondRaw;
+
+    this.$el.appendChild(firstColumn);
+    this.$el.appendChild(secondColumn);
+
+    this.$el.style.display = "flex";
+
+    const firtColumnSplit = new SplitType(firstColumn, {
+      types: "lines, words",
+      tagName: "span",
+    });
+    const secondColumnSplit = new SplitType(secondColumn, {
+      types: "lines, words",
+      tagName: "span",
+    });
+
+    this.splitText = {};
+    this.splitText.words = Array.from(this.$el.querySelectorAll(".word"));
+    this.wordsPerLine = [];
+    for (let i = 0; i < firtColumnSplit.lines.length; i++) {
+      const $ = firtColumnSplit.lines[i];
+      this.wordsPerLine.push($.querySelectorAll(".word"));
+    }
+    for (let i = 0; i < secondColumnSplit.lines.length; i++) {
+      const $ = secondColumnSplit.lines[i];
+      this.wordsPerLine.push($.querySelectorAll(".word"));
     }
   }
 
